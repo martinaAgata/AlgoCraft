@@ -1,68 +1,44 @@
 package test;
 
+import org.junit.Test;
+
 public class HachaDeMaderaTests {
 
     @Test
-    public void test01MaderaEsDesgastadaPorHachaMadera(){
-        Material madera = Material nuevaMadera();
-        Integer durabilidadMadera = madera.getdurabilidad();
+    public void test04HachaMaderaSeUsaContraMaderaReduceSuDurabilidad(){
         Hacha hachaMadera = Hacha nuevaHachaMadera();
-        madera.usar(hachaMadera);
-        assertEquals(durabilidadMadera - 2, madera.getdurabilidad());
+        Material madera = Material nuevaMadera();
+        Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
+        hachaMadera.usar(madera);
+        assertEquals(durabilidadHachaMadera - 2, hachaMadera.getDurabilidad());
     }
 
     @Test
-    public void test02MaderaEsDesgastadaPorHachaPiedra(){
-        Material madera = Material nuevaMadera();
-        Integer durabilidadMadera = madera.getdurabilidad();
-        Hacha hachaPiedra = Hacha nuevaHachaPiedra();
-        madera.usar(hachaPiedra);
-        assertEquals(durabilidadMadera - 5, madera.getdurabilidad());
+    public void test05HachaMaderaSeUsaContraPiedraReduceSuDurabilidad(){
+        Hacha hachaMadera = Hacha nuevaHachaMadera();
+        Material piedra = Material nuevaPiedra();
+        Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
+        hachaMadera.usar(piedra);
+        assertEquals(durabilidadHachaMadera - 2, hachaMadera.getDurabilidad());
     }
 
     @Test
-    public void test03MaderaEsDesgastadaPorHachaMetal(){
-        Material madera = Material nuevaMadera();
-        Integer durabilidadMadera = madera.getdurabilidad();
-        Hacha hachaMetal = Hacha nuevaHachaMetal();
-        madera.usar(hachaMetal);
-        assertEquals(durabilidadMadera - 10, madera.getdurabilidad());
+    public void test06HachaMaderaSeUsaContraMetalReduceSuDurabilidad(){
+        Hacha hachaMadera = Hacha nuevaHachaMadera();
+        Material metal = Material nuevoMetal();
+        Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
+        hachaMadera.usar(metal);
+        assertEquals(durabilidadHachaMadera - 2, hachaMadera.getDurabilidad());
     }
 
     @Test
-    public void test04MaderaNoEsDesgastadaPorPicoMadera(){
-        Material madera = Material nuevaMadera();
-        Integer durabilidadMadera = madera.getdurabilidad();
-        Pico picoMadera = Pico nuevoPicoMadera();
-        madera.usar(picoMadera);
-        assertEquals(durabilidadMadera, madera.getdurabilidad());
+    public void test07HachaMaderaSeUsaContraDiamanteReduceSuDurabilidad() {
+        Hacha hachaMadera = Hacha nuevaHachaMadera();
+        Material diamante = Material nuevoDiamante();
+        Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
+        hachaMadera.usar(material);
+        assertEquals(durabilidadHachaMadera - 2, hachaMadera.getDurabilidad());
 
-    }
-
-    @Test
-    public void test05MaderaNoEsDesgastadaPorPicoPiedra(){
-        Material madera = Material nuevaMadera();
-        Integer durabilidadMadera = madera.getdurabilidad();
-        Pico picoPiedra = Pico nuevoPicoPiedra();
-        madera.usar(picoPiedra);
-        assertEquals(durabilidadMadera, madera.getdurabilidad());
-    }
-
-    @Test
-    public void test06MaderaNoEsDesgastadaPorPicoMetal(){
-        Material madera = Material nuevaMadera();
-        Integer durabilidadMadera = madera.getdurabilidad();
-        Pico picoMetal = Pico nuevoPicoMetal();
-        madera.usar(picoMetal);
-        assertEquals(durabilidadMadera, madera.getdurabilidad());
-    }
-
-    @Test
-    public void test07MaderaNoEsDesgastadaPorPicoFino(){
-        Material madera = Material nuevaMadera();
-        Integer durabilidadMadera = madera.getdurabilidad();
-        PicoFino picoFino = PicoFino nuevoPicoFino();
-        madera.usar(picoFino);
-        assertEquals(durabilidadMadera, madera.getdurabilidad());
     }
 }
+
