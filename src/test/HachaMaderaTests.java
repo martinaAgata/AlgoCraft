@@ -36,9 +36,8 @@ public class HachaMaderaTests {
         HachaMadera hachaMadera = HachaMadera nuevaHachaMadera();
         Material diamante = Material nuevoDiamante();
         Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
-        hachaMadera.usar(material);
+        hachaMadera.usar(diamante);
         assertEquals(durabilidadHachaMadera - 2, hachaMadera.getDurabilidad());
-
     }
 }
 

@@ -1,5 +1,9 @@
 package test;
 
+import main.herramientas.PicoMadera;
+import main.materiales.Madera;
+import main.materiales.Metal;
+import main.materiales.Piedra;
 import org.junit.Test;
 
 import static junit.framework.TestCase.fail;
@@ -7,34 +11,34 @@ import static junit.framework.TestCase.fail;
 public class PicoMaderaTests {
     @Test
     public void test01CrearPicoDeMaderaConDurabilidad() {
-        Pico picoMadera = Pico nuevoPicoDeMadera();
-        assertEquals(100, pico.getDurabilidad());
+        PicoMadera picoMadera = new PicoMadera();
+        assertEquals(100, picoMadera.getDurabilidad());
     }
     @Test
     public void test02CrearPicoDeMaderaConFuerza() {
-        Pico picoMadera = Pico nuevoPicoDeMadera();
-        assertEquals(2, pico.getFuerza());
+        PicoMadera picoMadera = new PicoMadera();
+        assertEquals(2, picoMadera.getFuerza());
     }
     @Test
     public void test03PicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
-        Pico picoMadera = Pico nuevoPicoDeMadera();
-        Material madera = Material nuevaMadera();
+        PicoMadera picoMadera = new PicoMadera();
+        Madera madera = new Madera();
         Integer durabilidadPicoMadera = picoMadera.getDurabilidad();
         picoMadera.usar(madera);
-        assertEquals(durabilidadPicoMadera - 2, pico.getDurabilidad());
+        assertEquals(durabilidadPicoMadera - 2, picoMadera.getDurabilidad());
     }
     @Test
     public void test04PicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
-        Pico picoMadera = Pico nuevoPicoDeMadera();
-        Material piedra = Material nuevaPiedra();
+        PicoMadera picoMadera = new PicoMadera();
+        Piedra piedra = new Piedra();
         Integer durabilidadPicoMadera = picoMadera.getDurabilidad();
         picoMadera.usar(piedra);
-        assertEquals(durabilidadPicoMadera - 2, pico.getDurabilidad());
+        assertEquals(durabilidadPicoMadera - 2, picoMadera.getDurabilidad());
     }
     @Test
     public void test05PicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
-        Pico picoMadera = Pico nuevoPicoDeMadera();
-        Material metal = Material nuevoMetal();
+        PicoMadera picoMadera = new PicoMadera();
+        Metal metal = new Metal();
         Integer durabilidadPicoMadera = picoMadera.getDurabilidad();
         picoMadera.usar(metal);
         assertEquals(durabilidadPicoMadera - 2, picoMadera.getDurabilidad());
