@@ -1,15 +1,25 @@
 package main;
 
 public abstract class Herramienta {
-    public void usar() {
 
-        desgastarse();
+    private EstrategiaDesgaste estrategia;
+    private int durabilidad;
+    private int fuerza;
+
+    public Herramienta(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
+        this.durabilidad = durabilidad;
+        this.estrategia = estrategia;
+        this.fuerza = fuerza;
     }
 
-    private desgastarse() {
-        this.desgaste -= this.calcularDesgaste();
+    public void usar(Material material) {
+        this.durabilidad = estrategia.calcularDesgaste(fuerza);
+        this.desgastarMaterial(material);
     }
 
-    protected abstract int calcularDesgaste();
+    public int getFuerza(){
+        return fuerza;
+    }
 
+    protected abstract void desgastarMaterial(Material material);
 }
