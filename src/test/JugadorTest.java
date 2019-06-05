@@ -19,8 +19,9 @@ public class JugadorTest {
     @Test
     public void test02JugadorSeInicializaConUnHachaDeMadera(){
         Jugador jugador = Jugador nuevoJugadorConHachaMadera();
-        Herramienta herramientaJugador = jugador.getHerramientaActual();
-        assertTrue(herramientaJugador instanceof Hacha);
-        assertTrue(true/* Comparacion con doubledispatch para el tipo de Hacha*/);
+        Madera madera = new Madera();
+        Integer durabilidadMadera = madera.getDurabilidad();
+        jugador.desagastarMaterial(madera);
+        assertEquals(madera.getDurabilidad() ,durabilidadMadera - 2);
     }
 }

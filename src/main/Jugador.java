@@ -3,6 +3,7 @@
 public class Jugador(){
     //Atributos
     private ArrayList<Usable> inventario;
+    private Herramienta herramientaActual;
 
     //Constructor
     private Jugador(){
@@ -11,14 +12,22 @@ public class Jugador(){
 
     public static Jugador nuevoJugadorConHachaMadera(){
         Jugador jugadorConHachaMadera = new Jugador();
-        jugadorConHachaMadera.agregarAInventario((Hacha nuevaHachaMaddera()));
+        Hacha hachaMadera = Hacha nuevaHachaMaddera();
+        jugadorConHachaMadera.agregarAInventario(hachaMadera);
+        jugadorConHachaMadera.herramientaActual = hachaMadera;
+        return jugadorConHachaMadera;
     }
+
+    public void desgastarMaterial(Material material){
+            this.herramientaActual.usar(material);
+        }
 
     private void agregarAInventario(Usable usable){
             this.inventario.add(usable);
         }
-    public Herramienta getHerramientaActual(){
+    private void getHerramientaActual(){
         //Completar funcion QUITAR
-        return null;
+        //No hay ninguna especificacion de como se utilizara/elegira una Herramienta. QUITAR
+        return (this.inventario[0]);
         }
 }
