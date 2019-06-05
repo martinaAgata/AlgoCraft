@@ -6,6 +6,7 @@ import main.herramientas.HachaMetal;
 import main.materiales.Diamante;
 import main.materiales.Madera;
 import main.materiales.Metal;
+import main.materiales.Piedra;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
