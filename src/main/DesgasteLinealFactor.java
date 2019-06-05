@@ -8,4 +8,4 @@ public class DesgasteLinealFactor {
         return durabilidad - (int) fuerza_final;
     }
 }
-}
+
