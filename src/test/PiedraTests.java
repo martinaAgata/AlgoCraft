@@ -16,51 +16,57 @@ public class PiedraTests {
     }
     @Test
     public void test02PiedraNoEsDesgastadaPorHachaMadera() {
-        Piedra piedra = new Piedra(30);
-        DesgasteLineal desgaste = new DesgasteLineal();
+        Piedra piedra = new Piedra;
         HachaMadera hachaMadera = new HachaMadera();
         hachaMadera.usar(piedra);
+        assertThat(piedra.getDurabilidad(), is(30));
     }
     @Test
     public void test03PiedraNoEsDesgastadaPorHachaPiedra() {
         Piedra piedra = new Piedra();
         HachaPiedra hachaPiedra = new HachaPiedra();
-        Integer durabilidadPiedra = piedra.getDurabilidad();
         hachaPiedra.usar(piedra);
+        assertThat(piedra.getDurabilidad(), is(30));
+
     }
     @Test
     public void test04PiedraNoEsDesgastadaPorHachaMetal() {
         Piedra piedra = new Piedra();
         HachaMetal hachaMetal = new HachaMetal();
-        Integer durabilidadPiedra = piedra.getDurabilidad();
         hachaMetal.usar(piedra);
+        assertThat(piedra.getDurabilidad(), is(30));
+
     }
     @Test
     public void test05PiedraEsDesgastadaPorPicoMadera() {
         Piedra piedra = new Piedra();
         PicoMadera picoMadera = new PicoMadera();
-        Integer durabilidadPiedra = piedra.getDurabilidad();
         picoMadera.usar(piedra);
+        assertThat(piedra.getDurabilidad(), is(28));
+
     }
     @Test
     public void test06PiedraEsDesgastadaPorPicoPiedra() {
         Piedra piedra = new Piedra();
         PicoPiedra picoPiedra = new PicoPiedra();
-        Integer durabilidadPiedra = piedra.getDurabilidad();
         picoPiedra.usar(piedra);
+        assertThat(piedra.getDurabilidad(), is(28));
+
     }
     @Test
     public void test07PiedraEsDesgastadaPorPicoMetal() {
         Piedra piedra = new Piedra();
         PicoMetal picoMetal = new PicoMetal();
-        Integer durabilidadPiedra = piedra.getDurabilidad();
         picoMetal.usar(piedra);
+        assertThat(piedra.getDurabilidad(), is(28));
+
     }
     @Test
     public void test08PiedraNoEsDesgastadaPorPicoFino() {
         Piedra piedra = new Piedra();
         PicoFino picoFino = new PicoFino();
-        Integer durabilidadPiedra = piedra.getDurabilidad();
         picoFino.usar(piedra);
+        assertThat(piedra.getDurabilidad(), is(30));
+
     }
 }

@@ -34,7 +34,7 @@ public class HachaMetalTests {
     public void test14HachaMetalSeUsaContraMetalReduceSuDurabilidad(){
         HachaMetal hachaMetal = new HachaMetal;
         Metal metal = new Metal();
-        hachaMetal.usar();
+        hachaMetal.usar(metal);
         assertThat(hachaMetal.getDurabilidad(), is(395));
     }
 
