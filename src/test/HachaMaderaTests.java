@@ -16,7 +16,6 @@ public class HachaMaderaTests {
 
     @Test
     public void test04HachaMaderaSeUsaContraMaderaReduceSuDurabilidad(){
-
         HachaMadera hachaMadera = new HachaMadera();
         Madera madera = new Madera();
         hachaMadera.usar(madera);

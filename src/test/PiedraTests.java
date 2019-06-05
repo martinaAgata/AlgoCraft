@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 public class PiedraTests {
     @Test
     public void test01CrearPiedra() {
-        Piedra piedra = new Piedra(30);
+        Piedra piedra = new Piedra;
         assertThat(piedra.getDurabilidad(), is(30));
     }
     @Test
