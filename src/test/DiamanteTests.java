@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class DiamanteTests {
     @Test
     public void test01CrearDiamante() {
-        Diamante diamante = new Diamante(100);
+        Diamante diamante = new Diamante();
         assertThat(diamante.getDurabilidad(), is(100));
     }
 
