@@ -1,18 +1,28 @@
 package test;
 
+import main.herramientas.HachaMadera;
 import main.herramientas.PicoPiedra;
+import main.materiales.Madera;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+
 public class MaderaTests {
+
+
     @Test
-    public void test01MaderaEsDesgastadaPorHachaMadera(){
-        Material madera = Material nuevaMadera();
-        Integer durabilidadMadera = madera.getDurabilidad();
+    public void test01MaderaEsDesgastadaPorHachaMaderaYReduceSuDurabilidad(){
+        Madera madera = new Madera(10);
         HachaMadera hachaMadera = new HachaMadera();
-        madera.usar(hachaMadera);
-        assertEquals(durabilidadMadera - 2, madera.getDurabilidad());
+        hachaMadera.usar(madera);
+        assertThat(madera.getDurabilidad(),is(98));
     }
 
+    // hay que probar qeu el reducir durabilidad tmb funciona bien
+
+    
     @Test
     public void test02MaderaEsDesgastadaPorHachaPiedra(){
         Material madera = Material nuevaMadera();

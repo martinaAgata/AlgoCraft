@@ -1,16 +1,22 @@
 package test;
 
+import main.estrategias.DesgasteLineal;
+import main.herramientas.HachaPiedra;
+import main.materiales.Madera;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class HachaPiedraTests {
 
     @Test
     public void test08HachaPiedraSeUsaContraMaderaReduceSuDurabilidad() {
-        HachaPiedra hachaPiedra = new HachaPiedra();
-        Material madera = Material nuevaMadera();
-        Integer durabilidadHachaPiedra = hachaPiedra.getDurabilidad();
+        DesgasteLineal desgasteLineal = new DesgasteLineal();
+        HachaPiedra hachaPiedra = new HachaPiedra(200, 5, desgasteLineal );
+        Madera madera = new Madera();
         hachaPiedra.usar(madera);
-        assertEquals(durabilidadHachaPiedra - 5, hachaPiedra.getDurabilidad());
+        assertThat(hachaPiedra.getDurabilidad(), is(195));
     }
 
     @Test
