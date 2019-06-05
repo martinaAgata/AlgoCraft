@@ -19,5 +19,5 @@ public class Jugador {
         HachaMadera hachaMadera = new HachaMadera(10, 10, new DesgasteLineal());
         this.herramientaActual = hachaMadera;
     }
-    
+
 }

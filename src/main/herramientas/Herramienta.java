@@ -9,7 +9,6 @@ public abstract class Herramienta {
 
     private Estado estado;
     private EstrategiaDesgaste estrategia;
-    private int durabilidad;
     private int fuerza;
 
     public Herramienta(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {

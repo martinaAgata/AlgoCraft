@@ -2,17 +2,17 @@ package main.materiales;
 
 import main.Desgastable;
 import main.Estado;
+import main.EstadoVivo;
 
 public abstract class Material implements Desgastable {
 
     private Estado estado;
 
+    public Material (int durabilidad) {
+        this.estado = new EstadoVivo(durabilidad);
+    }
 
-    private int durabilidad;
-    // hay que poder sacarlo de donde esta ( tablero del jugador) y ver si se murio
-
-    protected void reducirDurabilidad(int fuerza){
-        //aca podria ver el tema del estado
-        durabilidad-=fuerza;
+    protected void reducirDurabilidad(int fuerza) {
+        estado = estado.desgastar(fuerza);
     }
 }
