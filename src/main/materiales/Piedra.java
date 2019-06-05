@@ -7,7 +7,7 @@ import main.herramientas.PicoPiedra;
 public class Piedra extends Material {
     private static final int DURABILIDAD_PIEDRA = 30;
 
-    public Madera(int durabilidad) {
+    public Piedra(int durabilidad) {
         super(DURABILIDAD_PIEDRA);
     }
     @Override

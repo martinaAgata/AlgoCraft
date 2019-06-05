@@ -1,5 +1,6 @@
 package test;
 
+import main.Jugador;
 import org.junit.Test;
 
 public class JugadorTests {
@@ -13,7 +14,8 @@ public class JugadorTests {
     */
     @Test
     public void test01JugadorSeInicializaConUnItemEnElInventario(){
-        Jugador jugador = Jugador nuevoJugadorConHachaMadera();
+        Jugador jugador = new Jugador();
+        assertThat(jugador.get);
         assertEquals(jugador.getInventario().length(), 1);
     }
     @Test
@@ -22,6 +24,6 @@ public class JugadorTests {
         Madera madera = new Madera();
         Integer durabilidadMadera = madera.getDurabilidad();
         jugador.desagastarMaterial(madera);
-        assertEquals(madera.getDurabilidad() ,durabilidadMadera - 2);
+        assertEquals(madera.getDurabilidad() ,durabilidadMadera-2);
     }
 }

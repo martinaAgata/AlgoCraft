@@ -10,7 +10,7 @@ public class HachaMetal extends Herramienta {
     private static final int FUERZA_HACHA_METAL = 10;
     private static final DesgasteLinealMitad DESGASTE = new DesgasteLinealMitad();
 
-    public HachaMadera(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
+    public HachaMetal(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
         super(DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, DESGASTE);
     }
 
