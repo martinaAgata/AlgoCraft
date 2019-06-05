@@ -6,7 +6,6 @@ public class Madera extends Material {
     public void desgastar(HachaMadera hacha) {
         int fuerza = hacha.getFuerza();
         this.reducirDurabilidad(fuerza);
-
     }
 
     @Override

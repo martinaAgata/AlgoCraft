@@ -2,7 +2,7 @@ package test;
 
 import org.junit.Test;
 
-public class HachaDeMaderaTests {
+public class HachaMaderaTests {
 
     @Test
     public void test04HachaMaderaSeUsaContraMaderaReduceSuDurabilidad(){

@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.fail;
 
-public class PicoDeMaderaTests {
+public class PicoMaderaTests {
     @Test
     public void test01CrearPicoDeMaderaConDurabilidad() {
         Pico picoMadera = Pico nuevoPicoDeMadera();

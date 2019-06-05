@@ -2,7 +2,7 @@ package test;
 
 import org.junit.Test;
 
-public class PicoDeMetalTests {
+public class PicoMetalTests {
     public void test01CrearPicoDeMetalConDurabilidad() {
         PicoMetal picoMetal = PicoMetal nuevoPicoDeMetal();
         assertEquals(400, picoMetal.getDurabilidad());
