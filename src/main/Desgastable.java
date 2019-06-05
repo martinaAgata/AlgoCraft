@@ -9,5 +9,4 @@ public interface Desgastable {
     default void desgastar(HachaMadera hacha) {};
     default void desgastar(HachaMetal hacha) {};
     default void desgastar(HachaPiedra hacha) {};
-
 }

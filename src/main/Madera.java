@@ -20,4 +20,5 @@ public class Madera extends Material {
         int fuerza = hacha.getFuerza();
         this.reducirDurabilidad(fuerza);
     }
+
 }
