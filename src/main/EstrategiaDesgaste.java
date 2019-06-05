@@ -2,7 +2,7 @@ package main;
 
 public interface EstrategiaDesgaste {
 
-    int calcularDesgaste(int fuerza, int durabilidad);
+    int desgastar(int fuerza, int durabilidad);
 
 
 }

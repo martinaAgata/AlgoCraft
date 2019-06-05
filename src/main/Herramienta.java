@@ -2,6 +2,7 @@ package main;
 
 public abstract class Herramienta {
 
+    private Estado estado;
     private EstrategiaDesgaste estrategia;
     private int durabilidad;
     private int fuerza;
@@ -13,7 +14,7 @@ public abstract class Herramienta {
     }
 
     public void usar(Material material) {
-        this.durabilidad = estrategia.calcularDesgaste(fuerza);
+        this.durabilidad = estrategia.desgastar(fuerza, estado); //DESGASTAR
         this.desgastarMaterial(material);
     }
 
