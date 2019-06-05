@@ -16,7 +16,8 @@ public class HachaMaderaTests {
 
     @Test
     public void test04HachaMaderaSeUsaContraMaderaReduceSuDurabilidad(){
-        HachaMadera hachaMadera = new HachaMadera;
+
+        HachaMadera hachaMadera = new HachaMadera();
         Madera madera = new Madera();
         hachaMadera.usar(madera);
         assertThat(hachaMadera.getDurabilidad(), is(98));
@@ -27,13 +28,14 @@ public class HachaMaderaTests {
         HachaMadera hachaMadera = new HachaMadera;
         Piedra piedra = new Piedra();
         hachaMadera.usar(piedra);
-        assertThat(hachaMadera.getDurabilidad(), is(98));;
-    }
+
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+   }
 
     @Test
     public void test06HachaMaderaSeUsaContraMetalReduceSuDurabilidad(){
         HachaMadera hachaMadera = new HachaMadera;
-        Metal metal = new  Metal();
+        Metal metal = new Metal();
         hachaMadera.usar(metal);
         assertThat(hachaMadera.getDurabilidad(), is(98));
     }
@@ -41,10 +43,9 @@ public class HachaMaderaTests {
     @Test
     public void test07HachaMaderaSeUsaContraDiamanteReduceSuDurabilidad() {
         HachaMadera hachaMadera = new HachaMadera();
-        Diamante diamante = Diamante();
+        Diamante diamante = new Diamante();
         Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
         hachaMadera.usar(diamante);
         assertThat(hachaMadera.getDurabilidad(), is(98));
     }
 }
-

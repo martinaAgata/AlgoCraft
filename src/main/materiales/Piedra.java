@@ -5,7 +5,11 @@ import main.herramientas.PicoMetal;
 import main.herramientas.PicoPiedra;
 
 public class Piedra extends Material {
+    private static final int DURABILIDAD_PIEDRA = 30;
 
+    public Madera(int durabilidad) {
+        super(DURABILIDAD_PIEDRA);
+    }
     @Override
     public void desgastar(PicoMadera pico) {
         int fuerza = pico.getFuerza();
