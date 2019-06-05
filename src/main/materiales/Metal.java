@@ -1,4 +1,6 @@
-package main;
+package main.materiales;
+
+import main.herramientas.PicoPiedra;
 
 public class Metal extends Material {
 

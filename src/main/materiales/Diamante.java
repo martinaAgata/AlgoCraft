@@ -1,4 +1,6 @@
-package main;
+package main.materiales;
+
+import main.herramientas.PicoFino;
 
 public class Diamante extends Material {
 

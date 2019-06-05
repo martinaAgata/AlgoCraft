@@ -1,6 +1,9 @@
-package main;
+package main.herramientas;
 
-public class HachaMetal extends Herramienta {
+import main.materiales.Material;
+import main.estrategias.EstrategiaDesgaste;
+
+public class HachaMadera extends Herramienta {
 
     public HachaMadera(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
         super(durabilidad, fuerza, estrategia);
@@ -8,7 +11,7 @@ public class HachaMetal extends Herramienta {
 
     @Override
     protected void desgastarMaterial(Material material) {
+
         material.desgastar(this);
     }
-
 }

@@ -1,4 +1,7 @@
-package main;
+package main.herramientas;
+
+import main.materiales.Material;
+import main.estrategias.EstrategiaDesgaste;
 
 public class PicoMadera extends Herramienta {
 

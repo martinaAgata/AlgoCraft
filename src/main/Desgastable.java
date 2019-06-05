@@ -1,5 +1,7 @@
 package main;
 
+import main.herramientas.*;
+
 public interface Desgastable {
 
     default void desgastar(PicoMadera pico) {};

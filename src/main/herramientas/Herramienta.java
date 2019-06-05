@@ -1,4 +1,9 @@
-package main;
+package main.herramientas;
+
+import main.Estado;
+import main.EstadoVivo;
+import main.materiales.Material;
+import main.estrategias.EstrategiaDesgaste;
 
 public abstract class Herramienta {
 
@@ -8,13 +13,13 @@ public abstract class Herramienta {
     private int fuerza;
 
     public Herramienta(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
-        this.durabilidad = durabilidad;
+        this.estado = new EstadoVivo(durabilidad);
         this.estrategia = estrategia;
         this.fuerza = fuerza;
     }
 
     public void usar(Material material) {
-        this.durabilidad = estrategia.desgastar(fuerza, estado); //DESGASTAR
+        this.estado = estrategia.desgastar(fuerza, estado); //DESGASTAR
         this.desgastarMaterial(material);
     }
 

@@ -1,4 +1,8 @@
-package main;
+package main.materiales;
+
+import main.herramientas.PicoMadera;
+import main.herramientas.PicoMetal;
+import main.herramientas.PicoPiedra;
 
 public class Piedra extends Material {
 

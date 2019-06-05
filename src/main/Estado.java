@@ -2,9 +2,9 @@ package main;
 
 public interface Estado {
 
-    Estado desgastar();
+    Estado desgastar(int fuerza);
 
-    boolean sePuedeUsar();
+    public boolean sePuedeUsar();
 
 
 

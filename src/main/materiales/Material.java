@@ -1,4 +1,7 @@
-package main;
+package main.materiales;
+
+import main.Desgastable;
+import main.Estado;
 
 public abstract class Material implements Desgastable {
 

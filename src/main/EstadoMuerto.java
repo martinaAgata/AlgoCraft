@@ -3,7 +3,11 @@ package main;
 public class EstadoMuerto implements Estado {
 
 
-    boolean sePuedeUsar() {
+    public boolean sePuedeUsar() {
         return false;
+    }
+
+    public Estado desgastar(int fuerza) {
+        throw new IllegalStateException("No puede desgastarse una herramienta rota"); // Chequear
     }
 }
