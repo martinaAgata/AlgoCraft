@@ -74,5 +74,3 @@ public class MaderaTests {
         assertThat(durabilidadMadera, is(madera.getDurabilidad()));
     }
 }
-
-}
