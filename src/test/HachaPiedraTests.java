@@ -6,7 +6,7 @@ public class HachaDePiedraTests {
 
     @Test
     public void test08HachaPiedraSeUsaContraMaderaReduceSuDurabilidad(){
-        Hacha hachaPiedra = Hacha nuevaHachaPiedra ();
+        HachaPiedra hachaPiedra = HachaPiedra nuevaHachaPiedra ();
         Material madera = Material nuevaMadera();
         Integer durabilidadHachaPiedra = hachaPiedra.getDurabilidad();
         hachaPiedra.usar(madera);
@@ -15,7 +15,7 @@ public class HachaDePiedraTests {
 
     @Test
     public void test09HachaPiedraSeUsaContraPiedraReduceSuDurabilidad(){
-        Hacha hachaPiedra = Hacha nuevaHachaPiedra ();
+        HachaPiedra hachaPiedra = HachaPiedra nuevaHachaPiedra ();
         Material piedra = Material nuevaPiedra();
         Integer durabilidadMaterial = material.getDurabilidad();
         hachaPiedra.usar(piedra);
@@ -25,7 +25,7 @@ public class HachaDePiedraTests {
 
     @Test
     public void test10HachaPiedraSeUsaContraMetalReduceSuDurabilidad(){
-        Hacha hachaPiedra = Hacha nuevaHachaPiedra ();
+        HachaPiedra hachaPiedra = HachaPiedra nuevaHachaPiedra ();
         Material metal = Material nuevoMetal();
         Integer durabilidadMaterial = material.getDurabilidad();
         hachaPiedra.usar(metal);
@@ -34,7 +34,7 @@ public class HachaDePiedraTests {
 
     @Tests
     public void test11HachaPiedraSeUsaContraDiamanteReduceSuDurabilidad(){
-        Hacha hachaPiedra = Hacha nuevaHachaPiedra ();
+        HachaPiedra hachaPiedra = HachaPiedra nuevaHachaPiedra ();
         Material diamante = Material nuevoDiamante();
         Integer durabilidadHachaPiedra = hacHachahetal.gehachaMetalidad();
         hachaPiedra.usar(diamante);
