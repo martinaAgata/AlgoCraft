@@ -2,7 +2,10 @@ package test;
 
 import main.estrategias.DesgasteLineal;
 import main.herramientas.HachaPiedra;
+import main.materiales.Diamante;
 import main.materiales.Madera;
+import main.materiales.Metal;
+import main.materiales.Piedra;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -12,8 +15,7 @@ public class HachaPiedraTests {
 
     @Test
     public void test08HachaPiedraSeUsaContraMaderaReduceSuDurabilidad() {
-        DesgasteLineal desgasteLineal = new DesgasteLineal();
-        HachaPiedra hachaPiedra = new HachaPiedra(200, 5, desgasteLineal );
+        HachaPiedra hachaPiedra = new HachaPiedra();
         Madera madera = new Madera();
         hachaPiedra.usar(madera);
         assertThat(hachaPiedra.getDurabilidad(), is(195));
@@ -22,28 +24,24 @@ public class HachaPiedraTests {
     @Test
     public void test09HachaPiedraSeUsaContraPiedraReduceSuDurabilidad() {
         HachaPiedra hachaPiedra = new HachaPiedra();
-        Material piedra = Material nuevaPiedra();
-        Integer durabilidadHachaPiedra = hachaPiedra.getDurabilidad();
+        Piedra piedra = new Piedra();
         hachaPiedra.usar(piedra);
-        assertEquals(durabilidadHachaPiedra - 5, hachaPiedra.getDurabilidad());
-
+        assertThat(hachaPiedra.getDurabilidad(), is(195));
     }
 
     @Test
     public void test10HachaPiedraSeUsaContraMetalReduceSuDurabilidad() {
         HachaPiedra hachaPiedra = new HachaPiedra();
-        Material metal = Material nuevoMetal();
-        Integer durabilidadHachaPiedra = hachaPiedra.getDurabilidad();
+        Metal metal = new Metal();
         hachaPiedra.usar(metal);
-        assertEquals(durabilidadHachaPiedra - 5, hachaPiedra.getDurabilidad());
+        assertThat(hachaPiedra.getDurabilidad(), is(195));
     }
 
-    @Tests
+    @Test
     public void test11HachaPiedraSeUsaContraDiamanteReduceSuDurabilidad() {
         HachaPiedra hachaPiedra = new HachaPiedra();
-        Material diamante = Material nuevoDiamante();
-        Integer durabilidadHachaPiedra = hachaPiedra.getDurabilidad();
+        Diamante diamante = new Diamante();
         hachaPiedra.usar(diamante);
-        assertEquals(durabilidadHachaPiedra - 5, hachaPiedra.getDurabilidad());
+        assertThat(hachaPiedra.getDurabilidad(), is(195));
     }
 }

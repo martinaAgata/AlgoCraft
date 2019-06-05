@@ -1,6 +1,8 @@
 package test;
 
+import main.estrategias.DesgasteLineal;
 import main.estrategias.DesgasteLinealFactor;
+import main.herramientas.PicoMadera;
 import main.herramientas.PicoPiedra;
 import main.materiales.Madera;
 import main.materiales.Metal;
@@ -13,35 +15,37 @@ public class PicoPiedraTests {
 
     @Test
     public void test01CrearPicoDePiedraConDurabilidad() {
-        DesgasteLinealFactor desgaste = new DesgasteLinealFactor();
-        PicoPiedra picoPiedra = new PicoPiedra(200, 4, desgaste);
+        PicoPiedra picoPiedra = new PicoPiedra;
         assertThat(picoPiedra.getDurabilidad(), is(200));
     }
     @Test
     public void test02CrearPicoDePiedraConFuerza() {
-        DesgasteLinealFactor desgaste = new DesgasteLinealFactor();
-        PicoPiedra picoPiedra = new PicoPiedra(200,4, desgaste);
+        PicoPiedra picoPiedra = new PicoPiedra;
         assertThat(picoPiedra.getFuerza(), is(4));
     }
     @Test
-    public void test03PicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
-        PicoPiedra picoPiedra = new PicoPiedra(200,4);
-        Madera madera = new Madera(10);
+    public void test03PicoDePiedraSeUsaContraMaderaReduceSuDurabilidad() {
+        PicoPiedra picoPiedra = new PicoPiedra;
+        Madera madera = new Madera();
+        picoPiedra.usar(madera);
+        assertThat(picoPiedra.getDurabilidad(), is(196));
 
     }
     @Test
-    public void test04PicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
-        PicoPiedra picoPiedra = new PicoPiedra(200,4);
-        Piedra piedra = new Piedra(30);
-        Integer durabilidadPicoPiedra = picoPiedra.getDurabilidad();
+    public void test04PicoDePiedraSeUsaContraPiedraReduceSuDurabilidad() {
+        PicoPiedra picoPiedra = new PicoPiedra;
+        Piedra piedra = new Piedra();
         picoPiedra.usar(piedra);
-        assertThat(picoPiedra.getDurabilidad(), is(4/1.5));
+        assertThat(picoPiedra.getDurabilidad(), is(196));
+
     }
 
     @Test
-    public void test05PicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
-        PicoPiedra picoPiedra = new PicoPiedra(200,4);
-        Metal metal = new Metal(50);
+    public void test05PicoDePiedraSeUsaContraMetalReduceSuDurabilidad() {
+        PicoPiedra picoPiedra = new PicoPiedra;
+        Metal metal = new Metal();
+        picoPiedra.usar(metal);
+        assertThat(picoPiedra.getDurabilidad(), is(196));
 
     }
 }

@@ -18,11 +18,12 @@ public class MaderaTests {
         HachaMadera hachaMadera = new HachaMadera();
         hachaMadera.usar(madera);
         assertThat(madera.getDurabilidad(),is(98));
+
     }
 
     // hay que probar qeu el reducir durabilidad tmb funciona bien
 
-    
+
     @Test
     public void test02MaderaEsDesgastadaPorHachaPiedra(){
         Material madera = Material nuevaMadera();
