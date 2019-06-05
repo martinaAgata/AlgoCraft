@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class PicoMaderaTests {
     @Test
     public void test01CrearPicoDeMaderaConDurabilidad() {
-        PicoMadera picoMadera = new PicoMadera;
+        PicoMadera picoMadera = new PicoMadera();
         assertThat(picoMadera.getDurabilidad(), is(100));
     }
 

@@ -16,7 +16,7 @@ public class PiedraTests {
     }
     @Test
     public void test02PiedraNoEsDesgastadaPorHachaMadera() {
-        Piedra piedra = new Piedra;
+        Piedra piedra = new Piedra();
         HachaMadera hachaMadera = new HachaMadera();
         hachaMadera.usar(piedra);
         assertThat(piedra.getDurabilidad(), is(30));
