@@ -1,7 +1,5 @@
 package test;
 
-import main.estrategias.DesgasteLinealMitad;
-import main.estrategias.EstrategiaDesgaste;
 import main.herramientas.HachaMetal;
 import main.materiales.Diamante;
 import main.materiales.Madera;

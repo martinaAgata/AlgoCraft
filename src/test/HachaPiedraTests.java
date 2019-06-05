@@ -1,6 +1,5 @@
 package test;
 
-import main.estrategias.DesgasteLineal;
 import main.herramientas.HachaPiedra;
 import main.materiales.Diamante;
 import main.materiales.Madera;
@@ -49,12 +48,12 @@ public class HachaPiedraTests {
     public void test05SeUsaContraMaderaReduceSuDurabilidadDeManeraCorrecta(){
         HachaPiedra hachaPiedra = new HachaPiedra();
         Madera madera = new Madera();
-        Integer durabilidadHachaPiedra = HachaPiedra.getDurabilidad();
-        HachaPiedra.usar(madera);
+        Integer durabilidadHachaPiedra = hachaPiedra.getDurabilidad();
+        hachaPiedra.usar(madera);
         assertThat(hachaPiedra.getDurabilidad(), is(durabilidadHachaPiedra - (4/1.5)));
-        HachaPiedra.usar(madera);
+        hachaPiedra.usar(madera);
         assertThat(hachaPiedra.getDurabilidad(), is(durabilidadHachaPiedra - 2*(4/1.5)));
-        HachaPiedra.usar(madera);
+        hachaPiedra.usar(madera);
         assertThat(hachaPiedra.getDurabilidad(), is(durabilidadHachaPiedra - 3*(4/1.5)));
     }
 

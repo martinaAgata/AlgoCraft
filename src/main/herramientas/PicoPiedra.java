@@ -1,5 +1,6 @@
 package main.herramientas;
 
+import main.EstadoVivo;
 import main.estrategias.DesgasteLinealFactor;
 import main.materiales.Material;
 import main.estrategias.EstrategiaDesgaste;
@@ -11,8 +12,10 @@ public class PicoPiedra extends Herramienta {
     private static final DesgasteLinealFactor DESGASTE = new DesgasteLinealFactor();
 
 
-    public PicoPiedra(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
-        super(DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, DESGASTE);
+    public PicoPiedra() {
+        this.estado = new EstadoVivo(DURABILIDAD_PICO_PIEDRA);
+        this.estrategia = DESGASTE;
+        this.fuerza = FUERZA_PICO_PIEDRA;
     }
 
     @Override

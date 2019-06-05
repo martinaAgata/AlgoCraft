@@ -1,5 +1,6 @@
 package main.herramientas;
 
+import main.EstadoVivo;
 import main.estrategias.DesgasteLinealDecimal;
 import main.materiales.Material;
 import main.estrategias.EstrategiaDesgaste;
@@ -11,8 +12,10 @@ public class PicoFino extends Herramienta {
     private static final DesgasteLinealDecimal DESGASTE = new DesgasteLinealDecimal();
 
 
-    public PicoFino(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
-        super(DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO, DESGASTE);
+    public PicoFino() {
+        this.estado = new EstadoVivo(DURABILIDAD_PICO_FINO);
+        this.estrategia = DESGASTE;
+        this.fuerza = FUERZA_PICO_FINO;
     }
 
     @Override

@@ -1,8 +1,13 @@
 package test;
 
 import main.Jugador;
+import main.herramientas.HachaMadera;
+import main.herramientas.Herramienta;
 import main.materiales.Madera;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class JugadorTests {
 
@@ -16,14 +21,13 @@ public class JugadorTests {
     @Test
     public void test01JugadorSeInicializaConUnItemEnElInventario(){
         Jugador jugador = new Jugador();
-        assertEquals(jugador.getInventario().length(), 1);
+        Herramienta herramienta = jugador.obtenerHerramientaActual();
+        //assertThat(herramienta.isInstance(HachaMadera), is(true));
     }
     @Test
     public void test02JugadorSeInicializaConUnHachaDeMadera(){
         Jugador jugador = new Jugador();
         Madera madera = new Madera();
         Integer durabilidadMadera = madera.getDurabilidad();
-        jugador.desgastarMaterial(madera);
-        assertEquals(madera.getDurabilidad() ,durabilidadMadera-2);
     }
 }

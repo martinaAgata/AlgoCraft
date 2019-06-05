@@ -1,5 +1,6 @@
 package main.herramientas;
 
+import main.EstadoVivo;
 import main.estrategias.DesgasteLineal;
 import main.materiales.Material;
 import main.estrategias.EstrategiaDesgaste;
@@ -10,8 +11,10 @@ public class PicoMadera extends Herramienta {
     private static final int FUERZA_PICO_MADERA = 2;
     private static final DesgasteLineal DESGASTE = new DesgasteLineal();
 
-    public PicoMadera(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
-        super(DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, DESGASTE);
+    public PicoMadera() {
+        this.estado = new EstadoVivo(DURABILIDAD_PICO_MADERA);
+        this.estrategia = DESGASTE;
+        this.fuerza = FUERZA_PICO_MADERA;
     }
 
     @Override

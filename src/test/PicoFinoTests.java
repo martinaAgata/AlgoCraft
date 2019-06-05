@@ -13,8 +13,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class PicoFinoTests {
     @Test
     public void test01CrearPicoFinoConDurabilidad() {
-        DesgasteLinealDecimal desgaste = new DesgasteLinealDecimal();
-        PicoFino picoFino = new PicoFino(1000, 20, desgaste);
+        PicoFino picoFino = new PicoFino();
         assertThat(picoFino.getDurabilidad(), is(1000));
     }
     @Test

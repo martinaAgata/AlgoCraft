@@ -1,5 +1,6 @@
 package main.materiales;
 
+import main.EstadoVivo;
 import main.herramientas.HachaMadera;
 import main.herramientas.HachaMetal;
 import main.herramientas.HachaPiedra;
@@ -7,9 +8,8 @@ import main.herramientas.HachaPiedra;
 public class Madera extends Material {
 
     private static final int DURABILIDAD_MADERA = 10;
-
-    public Madera(int durabilidad) {
-        super(DURABILIDAD_MADERA);
+    public Madera() {
+        this.estado = new EstadoVivo(DURABILIDAD_MADERA);
     }
 
     @Override

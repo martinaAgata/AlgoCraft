@@ -7,15 +7,9 @@ import main.estrategias.EstrategiaDesgaste;
 
 public abstract class Herramienta {
 
-    private Estado estado;
-    private EstrategiaDesgaste estrategia;
-    private int fuerza;
-
-    public Herramienta(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
-        this.estado = new EstadoVivo(durabilidad);
-        this.estrategia = estrategia;
-        this.fuerza = fuerza;
-    }
+    protected Estado estado;
+    protected EstrategiaDesgaste estrategia;
+    protected int fuerza;
 
     public void usar(Material material) {
         this.estado = estrategia.desgastar(fuerza, estado);

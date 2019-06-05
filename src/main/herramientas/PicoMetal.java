@@ -1,5 +1,6 @@
 package main.herramientas;
 
+import main.EstadoVivo;
 import main.estrategias.DesgasteAbrupto;
 import main.materiales.Material;
 import main.estrategias.EstrategiaDesgaste;
@@ -11,8 +12,10 @@ public class PicoMetal extends Herramienta {
     private static final DesgasteAbrupto DESGASTE = new DesgasteAbrupto();
 
 
-    public PicoMetal(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
-        super(DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, DESGASTE);
+    public PicoMetal() {
+        this.estado = new EstadoVivo(DURABILIDAD_PICO_METAL);
+        this.estrategia = DESGASTE;
+        this.fuerza = FUERZA_PICO_METAL;
     }
 
     @Override

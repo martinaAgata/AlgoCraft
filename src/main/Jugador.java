@@ -10,14 +10,15 @@ import java.util.List;
 
 public class Jugador {
     //Atributos
-    private List<Material> inventario;
+    //private List<Material> inventario;
     private Herramienta herramientaActual;
 
     //Constructor
-    public Jugador(){
-        this.inventario = new ArrayList<>();
-        HachaMadera hachaMadera = new HachaMadera(10, 10, new DesgasteLineal());
+    public Jugador() {
+        HachaMadera hachaMadera = new HachaMadera();
         this.herramientaActual = hachaMadera;
     }
-
+    public Herramienta obtenerHerramientaActual() {
+        return herramientaActual;
+    }
 }

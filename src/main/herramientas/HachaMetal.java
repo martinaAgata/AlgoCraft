@@ -1,5 +1,6 @@
 package main.herramientas;
 
+import main.EstadoVivo;
 import main.estrategias.DesgasteLinealMitad;
 import main.materiales.Material;
 import main.estrategias.EstrategiaDesgaste;
@@ -10,8 +11,10 @@ public class HachaMetal extends Herramienta {
     private static final int FUERZA_HACHA_METAL = 10;
     private static final DesgasteLinealMitad DESGASTE = new DesgasteLinealMitad();
 
-    public HachaMetal(int durabilidad, int fuerza, EstrategiaDesgaste estrategia) {
-        super(DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, DESGASTE);
+    public HachaMetal() {
+        this.estado = new EstadoVivo(DURABILIDAD_HACHA_METAL);
+        this.estrategia = DESGASTE;
+        this.fuerza = FUERZA_HACHA_METAL;
     }
 
     @Override
