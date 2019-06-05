@@ -8,6 +8,7 @@ public class HachaMadera extends Herramienta {
 
     @Override
     protected void desgastarMaterial(Material material) {
+
         material.desgastar(this);
     }
 }
