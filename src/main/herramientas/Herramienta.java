@@ -21,6 +21,7 @@ public abstract class Herramienta {
         this.estado = estrategia.desgastar(fuerza, estado); //DESGASTAR
         this.desgastarMaterial(material);
     }
+    public int getDurabilidad() { return estado.getDurabilidad(); }
 
     public int getFuerza(){
         return fuerza;
