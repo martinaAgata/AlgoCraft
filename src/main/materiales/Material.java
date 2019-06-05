@@ -1,15 +1,16 @@
 package main.materiales;
 
-import main.Desgastable;
 import main.Estado;
 import main.EstadoVivo;
 
 public abstract class Material implements Desgastable {
 
     private Estado estado;
+    private int fuerza;
 
-    public Material (int durabilidad) {
+    public Material(int durabilidad, int fuerza) {
         this.estado = new EstadoVivo(durabilidad);
+        this.fuerza = fuerza;
     }
 
     protected void reducirDurabilidad(int fuerza) {

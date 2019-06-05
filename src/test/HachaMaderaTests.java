@@ -13,8 +13,7 @@ public class HachaMaderaTests {
 
     @Test
     public void test04HachaMaderaSeUsaContraMaderaReduceSuDurabilidad(){
-        DesgasteLineal desgaste = new DesgasteLineal();
-        HachaMadera hachaMadera = new HachaMadera(100, 2, desgaste);
+        HachaMadera hachaMadera = new HachaMadera();
         Madera madera = new Madera();
         hachaMadera.usar(madera);
         assertThat(hachaMadera.getDurabilidad(), is(98));

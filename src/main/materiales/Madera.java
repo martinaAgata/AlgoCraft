@@ -6,6 +6,12 @@ import main.herramientas.HachaPiedra;
 
 public class Madera extends Material {
 
+    private static final int DURABILIDAD_MADERA = 10;
+
+    public Madera(int durabilidad) {
+        super(DURABILIDAD_MADERA);
+    }
+
     @Override
     public void desgastar(HachaMadera hacha) {
         int fuerza = hacha.getFuerza();
