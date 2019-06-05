@@ -11,7 +11,7 @@ public class PiedraTests {
     @Test
     public void test02PiedraNoEsDesgastadaPorHachaMadera() {
         Material piedra = Material nuevaPiedra();
-        Hacha hachaMadera = Hacha nuevaHachadeMadera();
+        HachaMadera hachaMadera = new HachaMadera();
         Integer durabilidadPiedra = piedra.getDurabilidad();
         hachaMadera.usar(piedra);
         assertEquals(durabilidadPiedra, piedra.getDurabilidad());
@@ -19,7 +19,7 @@ public class PiedraTests {
     @Test
     public void test03PiedraNoEsDesgastadaPorHachaPiedra() {
         Material piedra = Material nuevaPiedra();
-        Hacha hachaPiedra = Hacha nuevaHachaDePiedra();
+        HachaPiedra hachaPiedra = new HachaPiedra();
         Integer durabilidadPiedra = piedra.getDurabilidad();
         hachaPiedra.usar(piedra);
         assertEquals(durabilidadPiedra, piedra.getDurabilidad());
@@ -27,7 +27,7 @@ public class PiedraTests {
     @Test
     public void test04PiedraNoEsDesgastadaPorHachaMetal() {
         Material piedra = Material nuevaPiedra();
-        Hacha hachaMetal = Hacha nuevaHachaDeMetal();
+        HachaMetal hachaMetal = new HachaMetal();
         Integer durabilidadPiedra = piedra.getDurabilidad();
         hachaMetal.usar(piedra);
         assertEquals(durabilidadPiedra, piedra.getDurabilidad());
@@ -35,7 +35,7 @@ public class PiedraTests {
     @Test
     public void test05PiedraEsDesgastadaPorPicoMadera() {
         Material piedra = Material nuevaPiedra();
-        Pico picoMadera = Pico nuevoPicodeMadera();
+        Pico picoMadera = new PicoMadera();
         Integer durabilidadPiedra = piedra.getDurabilidad();
         picoMadera.usar(piedra);
         assertEquals(durabilidadPiedra - picoMadera.getFuerza(), piedra.getDurabilidad());
@@ -43,7 +43,7 @@ public class PiedraTests {
     @Test
     public void test06PiedraEsDesgastadaPorPicoPiedra() {
         Material piedra = Material nuevaPiedra();
-        Pico picoPiedra = Pico nuevoPicoDePiedra();
+        Pico picoPiedra = new PicoPiedra();
         Integer durabilidadPiedra = piedra.getDurabilidad();
         picoPiedra.usar(piedra);
         assertEquals(durabilidadPiedra - picoPiedra.getFuerza(), piedra.getDurabilidad());
@@ -51,7 +51,7 @@ public class PiedraTests {
     @Test
     public void test07PiedraEsDesgastadaPorPicoMetal() {
         Material piedra = Material nuevaPiedra();
-        Pico picoMetal = Pico nuevoPicoDeMetal();
+        Pico picoMetal = new PicoMetal();
         Integer durabilidadPiedra = piedra.getDurabilidad();
         picoMetal.usar(piedra);
         assertEquals(durabilidadPiedra - picoMetal.getFuerza(), piedra.getDurabilidad());
@@ -59,7 +59,7 @@ public class PiedraTests {
     @Test
     public void test08PiedraNoEsDesgastadaPorPicoFino() {
         Material piedra = Material nuevaPiedra();
-        PicoFino picoFino = PicoFinoo nuevoPicoFino();
+        PicoFino picoFino = new PicoFino();
         Integer durabilidadPiedra = piedra.getDurabilidad();
         picoFino.usar(piedra);
         assertEquals(durabilidadPiedra, piedra.getDurabilidad());

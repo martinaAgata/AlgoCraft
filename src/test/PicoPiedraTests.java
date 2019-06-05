@@ -10,17 +10,17 @@ public class PicoPiedraTests {
 
     @Test
     public void test01CrearPicoDePiedraConDurabilidad() {
-        PicoPiedra picoPiedra = PicoPiedra nuevoPicoDePiedra();
+        PicoPiedra picoPiedra = new PicoPiedra();
         assertThat(picoPiedra.getDurabilidad(), is(200));
     }
     @Test
     public void test02CrearPicoDePiedraConFuerza() {
-        PicoPiedra picoPiedra = PicoPiedra nuevoPicoDePiedra();
+        PicoPiedra picoPiedra = new PicoPiedra();
         assertEquals(4, picoPiedra.getFuerza());
     }
     @Test
     public void test03PicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
-        PicoPiedra picoPiedra = PicoPiedra nuevoPicoDePiedra();
+        PicoPiedra picoPiedra = new PicoPiedra();
         Material madera = Material nuevaMadera();
         Integer durabilidadPicoPiedra = picoPiedra.getDurabilidad();
         picoPiedra.usar(madera);
@@ -28,7 +28,7 @@ public class PicoPiedraTests {
     }
     @Test
     public void test04PicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
-        PicoPiedra picoPiedra = PicoPiedra nuevoPicoDePiedra();
+        PicoPiedra picoPiedra = new PicoPiedra();
         Material piedra = Material nuevaPiedra();
         Integer durabilidadPicoPiedra = picoPiedra.getDurabilidad();
         picoPiedra.usar(piedra);
@@ -37,7 +37,7 @@ public class PicoPiedraTests {
 
     @Test
     public void test05PicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
-        PicoPiedra picoPiedra = PicoPiedra nuevoPicoDeMadera();
+        PicoPiedra picoPiedra = new PicoPiedra();
         Material metal = Material nuevoMetal();
         Integer durabilidadPicoPiedra = picoPiedra.getDurabilidad();
         picoPiedra.usar(metal);

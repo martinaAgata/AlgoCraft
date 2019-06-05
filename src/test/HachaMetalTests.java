@@ -16,7 +16,7 @@ public class HachaMetalTests {
     @Test
     public void test13HachaMetalSeUsaContraPiedraReduceSuDurabilidad(){
         HachaMetal hachaMetal = HachaMetal nuevaHachaMetal();
-        Material material = Material
+        Material piedra = Material
         Integer durabilidadHachaMetal = hachaMetal.getDurabilidad();
         hachaMetal.usar(piedra);
         assertEquals(durabilidadHachaMetal - 10, hachaMetal.getDurabilidad());
