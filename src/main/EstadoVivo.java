@@ -17,4 +17,7 @@ public class EstadoVivo implements Estado {
         if(this.durabilidad <= 0) return new EstadoMuerto();
         return this;
     }
+    public int getDurabilidad() {
+        return this.durabilidad;
+    }
 }

@@ -14,18 +14,18 @@ public class PicoPiedraTests {
 
     @Test
     public void test01CrearPicoDePiedraConDurabilidad() {
-        PicoPiedra picoPiedra = new PicoPiedra();
+        PicoPiedra picoPiedra = new PicoPiedra(200, 4);
         assertThat(picoPiedra.getDurabilidad(), is(200));
     }
     @Test
     public void test02CrearPicoDePiedraConFuerza() {
-        PicoPiedra picoPiedra = new PicoPiedra();
+        PicoPiedra picoPiedra = new PicoPiedra(200,4);
         assertEquals(4, picoPiedra.getFuerza());
     }
     @Test
     public void test03PicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
-        PicoPiedra picoPiedra = new PicoPiedra();
-        Madera madera = new Madera();
+        PicoPiedra picoPiedra = new PicoPiedra(200,4);
+        Madera madera = new Madera(10);
         Integer durabilidadPicoPiedra = picoPiedra.getDurabilidad();
         picoPiedra.usar(madera);
         assertEquals(4/1.5, picoPiedra.getDurabilidad());

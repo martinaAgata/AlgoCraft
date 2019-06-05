@@ -15,4 +15,8 @@ public abstract class Material implements Desgastable {
     protected void reducirDurabilidad(int fuerza) {
         estado = estado.desgastar(fuerza);
     }
+
+    public int getDurabilidad() {
+        return this.estado.getDurabilidad();
+    }
 }

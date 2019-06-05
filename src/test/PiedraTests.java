@@ -7,7 +7,7 @@ import org.junit.Test;
 public class PiedraTests {
     @Test
     public void test01CrearPiedra() {
-        Piedra piedra = new Piedra();
+        Piedra piedra = new Piedra(30);
         assertEquals(30, piedra.getDurabilidad());
     }
     @Test

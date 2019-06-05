@@ -6,6 +6,7 @@ public interface Estado {
 
     public boolean sePuedeUsar();
 
+    public int getDurabilidad();
 
 
 }
