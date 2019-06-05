@@ -1,43 +1,48 @@
 package test;
 
+import main.estrategias.DesgasteAbrupto;
 import main.herramientas.PicoMetal;
 import main.materiales.Madera;
 import main.materiales.Metal;
 import main.materiales.Piedra;
 import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class PicoMetalTests {
     public void test01CrearPicoDeMetalConDurabilidad() {
-        PicoMetal picoMetal = new PicoMetal();
-        assertEquals(400, picoMetal.getDurabilidad());
+        DesgasteAbrupto desgaste = new DesgasteAbrupto();
+        PicoMetal picoMetal = new PicoMetal(400, 12, desgaste);
+        assertThat(picoMetal.getFuerza(), is(4));
     }
     @Test
     public void test01CrearPicoDeMetalConFuerza() {
-        PicoMetal picoMetal = new PicoMetal();
-        assertEquals(12, picoMetal.getFuerza());
+        DesgasteAbrupto desgaste = new DesgasteAbrupto();
+        PicoMetal picoMetal = new PicoMetal(400, 12, desgaste);
+        assertThat(picoMetal.getFuerza(), is(12));
     }
     @Test
     public void test02PicoDeMetalSeUsaContraMaderaReduceSuDurabilidad() {
-        PicoMetal picoMetal = new PicoMetal();
+        DesgasteAbrupto desgaste = new DesgasteAbrupto();
+        PicoMetal picoMetal = new PicoMetal(400, 12, desgaste);
         Madera madera = new Madera();
         Integer durabilidadPicoMetal = picoMetal.getDurabilidad();
         picoMetal.usar(madera);
-        assertEquals(durabilidadPicoMetal, picoMetal.getDurabilidad());
     }
     @Test
     public void test03PicoDeMetalSeUsaContraPiedraReduceSuDurabilidad() {
-        PicoMetal picoMetal = new PicoMetal();
+        DesgasteAbrupto desgaste = new DesgasteAbrupto();
+        PicoMetal picoMetal = new PicoMetal(400, 12, desgaste);
         Piedra piedra = new Piedra();
         Integer durabilidadPicoMetal = picoMetal.getDurabilidad();
-        picoMetal.usar(piedra);
-        assertEquals(durabilidadPicoMetal, picoMetal.getDurabilidad());
+        picoMetal.usar(piedra);;
     }
     @Test
     public void test04PicoDeMetalSeUsaContraMetalReduceSuDurabilidad() {
-        PicoMetal picoMetal = new PicoMetal();
+        DesgasteAbrupto desgaste = new DesgasteAbrupto();
+        PicoMetal picoMetal = new PicoMetal(400, 12, desgaste);
         Metal metal = new Metal();
         Integer durabilidadPicoMetal = picoMetal.getDurabilidad();
         picoMetal.usar(metal);
-        assertEquals(durabilidadPicoMetal, picoMetal.getDurabilidad());
     }
 }

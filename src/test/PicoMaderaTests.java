@@ -1,23 +1,24 @@
 package test;
 
+import main.estrategias.DesgasteLineal;
 import main.herramientas.PicoMadera;
 import main.materiales.Madera;
 import main.materiales.Metal;
 import main.materiales.Piedra;
 import org.junit.Test;
-
-import static junit.framework.TestCase.fail;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class PicoMaderaTests {
     @Test
     public void test01CrearPicoDeMaderaConDurabilidad() {
-        PicoMadera picoMadera = new PicoMadera();
-        assertEquals(100, picoMadera.getDurabilidad());
+        DesgasteLineal desgaste = new DesgasteLineal();
+        PicoMadera picoMadera = new PicoMadera(100,2, desgaste);
+        assertThat(picoMadera.getDurabilidad(), is(100));
     }
     @Test
     public void test02CrearPicoDeMaderaConFuerza() {
         PicoMadera picoMadera = new PicoMadera();
-        assertEquals(2, picoMadera.getFuerza());
     }
     @Test
     public void test03PicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
@@ -25,7 +26,6 @@ public class PicoMaderaTests {
         Madera madera = new Madera();
         Integer durabilidadPicoMadera = picoMadera.getDurabilidad();
         picoMadera.usar(madera);
-        assertEquals(durabilidadPicoMadera - 2, picoMadera.getDurabilidad());
     }
     @Test
     public void test04PicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
@@ -33,7 +33,6 @@ public class PicoMaderaTests {
         Piedra piedra = new Piedra();
         Integer durabilidadPicoMadera = picoMadera.getDurabilidad();
         picoMadera.usar(piedra);
-        assertEquals(durabilidadPicoMadera - 2, picoMadera.getDurabilidad());
     }
     @Test
     public void test05PicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
@@ -41,6 +40,5 @@ public class PicoMaderaTests {
         Metal metal = new Metal();
         Integer durabilidadPicoMadera = picoMadera.getDurabilidad();
         picoMadera.usar(metal);
-        assertEquals(durabilidadPicoMadera - 2, picoMadera.getDurabilidad());
     }
 }

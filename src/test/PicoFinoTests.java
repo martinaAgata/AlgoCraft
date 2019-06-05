@@ -1,16 +1,21 @@
 package test;
 
+import main.estrategias.DesgasteLinealDecimal;
+import main.herramientas.PicoFino;
 import org.junit.Test;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 
 public class PicoFinoTests {
     @Test
     public void test01CrearPicoFinoConDurabilidad() {
-        Pico picoFino = new PicoFino();
-        assertEquals(1000, pico.getDurabilidad());
+        DesgasteLinealDecimal desgaste = new DesgasteLinealDecimal();
+        PicoFino picoFino = new PicoFino(1000, 20, desgaste);
+        assertThat(picoFino.getDurabilidad(), is(1000));
     }
     @Test
     public void test02CrearPicoFinoConFuerza() {
-        Pico picoFino = new PicoFino();
-        assertEquals(20, pico.getFuerza());
+        PicoFino picoFino = new PicoFino();
+        assertThat(picoFino.getFuerza(), is(20));
     }
 }
