@@ -2,7 +2,7 @@ package test;
 
 import org.junit.Test;
 
-public class JugadorTest {
+public class JugadorTests {
 
     /*Es la entidad controlable por el usuario, el cual puede moverse
     por el mapa, y conseguir materiales que haya en su camino.

@@ -1,5 +1,9 @@
 package test;
 
+import main.herramientas.PicoPiedra;
+import main.materiales.Madera;
+import main.materiales.Metal;
+import main.materiales.Piedra;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -21,7 +25,7 @@ public class PicoPiedraTests {
     @Test
     public void test03PicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
         PicoPiedra picoPiedra = new PicoPiedra();
-        Material madera = Material nuevaMadera();
+        Madera madera = new Madera();
         Integer durabilidadPicoPiedra = picoPiedra.getDurabilidad();
         picoPiedra.usar(madera);
         assertEquals(4/1.5, picoPiedra.getDurabilidad());
@@ -29,7 +33,7 @@ public class PicoPiedraTests {
     @Test
     public void test04PicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
         PicoPiedra picoPiedra = new PicoPiedra();
-        Material piedra = Material nuevaPiedra();
+        Piedra piedra = new Piedra();
         Integer durabilidadPicoPiedra = picoPiedra.getDurabilidad();
         picoPiedra.usar(piedra);
         assertEquals(4/1.5, picoPiedra.getDurabilidad());
@@ -38,7 +42,7 @@ public class PicoPiedraTests {
     @Test
     public void test05PicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
         PicoPiedra picoPiedra = new PicoPiedra();
-        Material metal = Material nuevoMetal();
+        Metal metal = new Metal();
         Integer durabilidadPicoPiedra = picoPiedra.getDurabilidad();
         picoPiedra.usar(metal);
         assertEquals(4/1.5, picoPiedra.getDurabilidad());

@@ -1,5 +1,9 @@
 package test;
 
+import main.herramientas.PicoMetal;
+import main.materiales.Madera;
+import main.materiales.Metal;
+import main.materiales.Piedra;
 import org.junit.Test;
 
 public class PicoMetalTests {
@@ -15,7 +19,7 @@ public class PicoMetalTests {
     @Test
     public void test02PicoDeMetalSeUsaContraMaderaReduceSuDurabilidad() {
         PicoMetal picoMetal = new PicoMetal();
-        Material madera = Material nuevaMadera();
+        Madera madera = new Madera();
         Integer durabilidadPicoMetal = picoMetal.getDurabilidad();
         picoMetal.usar(madera);
         assertEquals(durabilidadPicoMetal, picoMetal.getDurabilidad());
@@ -23,7 +27,7 @@ public class PicoMetalTests {
     @Test
     public void test03PicoDeMetalSeUsaContraPiedraReduceSuDurabilidad() {
         PicoMetal picoMetal = new PicoMetal();
-        Material piedra = Material nuevaPiedra();
+        Piedra piedra = new Piedra();
         Integer durabilidadPicoMetal = picoMetal.getDurabilidad();
         picoMetal.usar(piedra);
         assertEquals(durabilidadPicoMetal, picoMetal.getDurabilidad());
@@ -31,7 +35,7 @@ public class PicoMetalTests {
     @Test
     public void test04PicoDeMetalSeUsaContraMetalReduceSuDurabilidad() {
         PicoMetal picoMetal = new PicoMetal();
-        Material metal = Material nuevoMetal();
+        Metal metal = new Metal();
         Integer durabilidadPicoMetal = picoMetal.getDurabilidad();
         picoMetal.usar(metal);
         assertEquals(durabilidadPicoMetal, picoMetal.getDurabilidad());
