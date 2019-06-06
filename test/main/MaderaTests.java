@@ -68,4 +68,69 @@ public class MaderaTests {
         picoFino.usar(madera);
         assertThat(madera.getDurabilidad(), is(madera.DURABILIDAD_MADERA));
     }
+
+    @Test
+    public void test08MaderaEsDesgastadaPorHachaMaderaSeReduceVariasVeces(){
+        Madera madera = new Madera();
+        HachaMadera hachaMadera = new HachaMadera();
+        hachaMadera.usar(madera);
+        assertThat(madera.getDurabilidad(), is(Madera.DURABILIDAD_MADERA - HachaMadera.FUERZA_HACHA_MADERA));
+        hachaMadera.usar(madera);
+        assertThat(madera.getDurabilidad(), is(Madera.DURABILIDAD_MADERA - 2 * HachaMadera.FUERZA_HACHA_MADERA));
+        hachaMadera.usar(madera);
+        assertThat(madera.getDurabilidad(), is(Madera.DURABILIDAD_MADERA - 3 * HachaMadera.FUERZA_HACHA_MADERA));
+        hachaMadera.usar(madera);
+        assertThat(madera.getDurabilidad(), is(Madera.DURABILIDAD_MADERA - 4 * HachaMadera.FUERZA_HACHA_MADERA));
+    }
+
+    @Test
+    public void test09MaderaEsDesgastadaPorHachaPiedraSeReduceVariasVeces(){
+        Madera madera = new Madera();
+        HachaPiedra hachaPiedra = new HachaPiedra();
+        hachaPiedra.usar(madera);
+        assertThat(madera.getDurabilidad(), is(Madera.DURABILIDAD_MADERA - HachaPiedra.FUERZA_HACHA_PIEDRA));
+        hachaPiedra.usar(madera);
+        assertThat(madera.getDurabilidad(), is(Madera.DURABILIDAD_MADERA - 2 * HachaPiedra.FUERZA_HACHA_PIEDRA));
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void test10MaderaEsDesgastadaPorHachaMaderaLanzaExcepcionTrasRomperse(){
+        Madera madera = new Madera();
+        HachaMadera hachaMadera = new HachaMadera();
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void test11MaderaEsDesgastadaPorHachaPiedraLanzaExcepcionTrasRomperse(){
+        Madera madera = new Madera();
+        HachaPiedra hachaPiedra = new HachaPiedra();
+        hachaPiedra.usar(madera);
+        hachaPiedra.usar(madera);
+        hachaPiedra.usar(madera);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void test12MaderaEsDesgastadaPorHachaMetalLanzaExcepcionTrasRomperse(){
+        Madera madera = new Madera();
+        HachaMetal hachaMetal = new HachaMetal();
+        hachaMetal.usar(madera);
+        hachaMetal.usar(madera);
+    }
+
+    @Test
+    public void test13MaderaConEstadoMuertoDevuelveDurabilidadCero(){
+        Madera madera = new Madera();
+        HachaMadera hachaMadera = new HachaMadera();
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        assertThat(madera.getDurabilidad(), is(0));
+    }
 }
