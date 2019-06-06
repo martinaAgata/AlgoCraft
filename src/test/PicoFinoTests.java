@@ -1,6 +1,5 @@
 package test;
 
-import main.estrategias.DesgasteLinealDecimal;
 import main.herramientas.PicoFino;
 import main.materiales.Diamante;
 import main.materiales.Madera;
@@ -25,35 +24,31 @@ public class PicoFinoTests {
     public void test03PicoFinoSeUsaContraDiamanteYSeReduceSuDurabilidad(){
         PicoFino picoFino = new PicoFino();
         Diamante diamante = new Diamante();
-        Integer durabilidadPicoFino = picoFino.getDurabilidad();
         picoFino.usar(diamante);
-        assertThat(picoFino.getDurabilidad(), is(durabilidadPicoFino -(1000 * 0.1)));
+        assertThat(picoFino.getDurabilidad(), is(picoFino.DURABILIDAD_PICO_FINO - ((int)(picoFino.getFuerza()*0.1))));
     }
 
     @Test
     public void test04PicoFinoSeUsaContraMaderaYNoReduceSuDurabilidad(){
         PicoFino picoFino = new PicoFino();
         Madera madera = new Madera();
-        Integer durabilidadPicoFino = picoFino.getDurabilidad();
         picoFino.usar(madera);
-        assertThat(picoFino.getDurabilidad(), is(durabilidadPicoFino));
+        assertThat(picoFino.getDurabilidad(), is(picoFino.DURABILIDAD_PICO_FINO - ((int)(picoFino.getFuerza()*0.1))));
     }
 
     @Test
     public void test05PicoFinoSeUsaContraMetalYNoReduceSuDurabilidad(){
         PicoFino picoFino = new PicoFino();
         Metal metal = new Metal();
-        Integer durabilidadPicoFino = picoFino.getDurabilidad();
         picoFino.usar(metal);
-        assertThat(picoFino.getDurabilidad(), is(durabilidadPicoFino));
+        assertThat(picoFino.getDurabilidad(), is(picoFino.DURABILIDAD_PICO_FINO - ((int)(picoFino.getFuerza()*0.1))));
     }
 
     @Test
     public void test06PicoFinoSeUsaContraPiedraYNoReduceSuDurabilidad(){
         PicoFino picoFino = new PicoFino();
         Piedra piedra = new Piedra();
-        Integer durabilidadPicoFino = picoFino.getDurabilidad();
         picoFino.usar(piedra);
-        assertThat(picoFino.getDurabilidad(), is(durabilidadPicoFino));
+        assertThat(picoFino.getDurabilidad(), is(picoFino.DURABILIDAD_PICO_FINO - ((int)(picoFino.getFuerza()*0.1))));
     }
 }

@@ -28,7 +28,7 @@ public class PicoPiedraTests {
         PicoPiedra picoPiedra = new PicoPiedra();
         Madera madera = new Madera();
         picoPiedra.usar(madera);
-        assertThat(picoPiedra.getDurabilidad(), is(196));
+        assertThat(picoPiedra.getDurabilidad(), is(picoPiedra.DURABILIDAD_PICO_PIEDRA - ((int)(picoPiedra.getFuerza()/1.5))));
 
     }
     @Test
@@ -36,7 +36,7 @@ public class PicoPiedraTests {
         PicoPiedra picoPiedra = new PicoPiedra();
         Piedra piedra = new Piedra();
         picoPiedra.usar(piedra);
-        assertThat(picoPiedra.getDurabilidad(), is(196));
+        assertThat(picoPiedra.getDurabilidad(), is(picoPiedra.DURABILIDAD_PICO_PIEDRA - ((int)(picoPiedra.getFuerza()/1.5))));
 
     }
 
@@ -45,7 +45,7 @@ public class PicoPiedraTests {
         PicoPiedra picoPiedra = new PicoPiedra();
         Metal metal = new Metal();
         picoPiedra.usar(metal);
-        assertThat(picoPiedra.getDurabilidad(), is(196));
+        assertThat(picoPiedra.getDurabilidad(), is(picoPiedra.DURABILIDAD_PICO_PIEDRA - ((int)(picoPiedra.getFuerza()/1.5))));
 
     }
 }
