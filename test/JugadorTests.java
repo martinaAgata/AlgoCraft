@@ -23,6 +23,7 @@ public class JugadorTests {
         Jugador jugador = new Jugador();
         Herramienta herramienta = jugador.obtenerHerramientaActual();
         HachaMadera hacha = new HachaMadera();
+        assertThat(herramienta.instanceof(hacha), is(true));
     }
     @Test
     public void test02JugadorSeInicializaConUnHachaDeMadera(){
