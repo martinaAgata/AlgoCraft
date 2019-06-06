@@ -1,4 +1,4 @@
-package test;
+package main;
 
 import main.estrategias.DesgasteAbrupto;
 import main.herramientas.PicoMadera;

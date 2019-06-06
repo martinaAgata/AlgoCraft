@@ -1,4 +1,4 @@
-package test;
+package main;
 
 import main.herramientas.HachaPiedra;
 import main.materiales.Diamante;
