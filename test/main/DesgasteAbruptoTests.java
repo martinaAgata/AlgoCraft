@@ -15,7 +15,7 @@ public class DesgasteAbruptoTests {
         EstadoVivo estadoVivo = new EstadoVivo(10);
         assertTrue(desgasteAbrupto.desgastar(0, estadoVivo) instanceof EstadoVivo);
         EstadoMuerto estadoMuerto = new EstadoMuerto();
-        assertTrue(desgasteAbrupto.desgastar(0, estadoVivo) instanceof EstadoMuerto);
+        assertTrue(desgasteAbrupto.desgastar(0, estadoMuerto) instanceof EstadoMuerto);
     }
 
     @Test

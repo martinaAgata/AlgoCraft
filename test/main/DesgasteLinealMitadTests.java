@@ -26,8 +26,8 @@ public class DesgasteLinealMitadTests {
         DesgasteLinealMitad desgasteLinealMitad = new DesgasteLinealMitad();
         EstadoVivo estadoVivo = new EstadoVivo(8);
         assertTrue(desgasteLinealMitad.desgastar(8, estadoVivo) instanceof EstadoVivo);
-        assertTrue(desgasteLinealMitad.desgastar(8, estadoVivo) instanceof EstadoVivo);
-        assertFalse(desgasteLinealMitad.desgastar(1, estadoVivo) instanceof EstadoVivo);
+        assertTrue(desgasteLinealMitad.desgastar(4, estadoVivo) instanceof EstadoVivo);
+        assertFalse(desgasteLinealMitad.desgastar(8, estadoVivo) instanceof EstadoVivo);
     }
 
     @Test (expected = IllegalStateException.class)

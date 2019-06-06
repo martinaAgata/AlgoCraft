@@ -25,10 +25,10 @@ public class DesgasteLinealTests {
     @Test
     public void test02DesgasteLinealDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado(){
         DesgasteLineal desgasteLineal = new DesgasteLineal();
-        EstadoVivo estadoVivo = new EstadoVivo(2);
+        EstadoVivo estadoVivo = new EstadoVivo(3);
         assertTrue(desgasteLineal.desgastar(1, estadoVivo) instanceof EstadoVivo);
         assertTrue(desgasteLineal.desgastar(1, estadoVivo) instanceof EstadoVivo);
-        assertFalse(desgasteLineal.desgastar(1, estadoVivo) instanceof EstadoVivo);
+        assertFalse(desgasteLineal.desgastar(4, estadoVivo) instanceof EstadoVivo);
     }
 
     @Test (expected = IllegalStateException.class)

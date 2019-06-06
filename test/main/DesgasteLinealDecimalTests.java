@@ -28,7 +28,7 @@ public class DesgasteLinealDecimalTests {
         DesgasteLinealDecimal desgasteLineal = new DesgasteLinealDecimal();
         EstadoVivo estadoVivo = new EstadoVivo(10);
         assertTrue(desgasteLineal.desgastar(30, estadoVivo) instanceof EstadoVivo);
-        assertTrue(desgasteLineal.desgastar(70, estadoVivo) instanceof EstadoVivo);
+        assertTrue(desgasteLineal.desgastar(60, estadoVivo) instanceof EstadoVivo);
         assertFalse(desgasteLineal.desgastar(120, estadoVivo) instanceof EstadoVivo);
     }
 
