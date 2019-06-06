@@ -15,7 +15,7 @@ public class MaderaTests {
         Madera madera = new Madera();
         HachaMadera hachaMadera = new HachaMadera();
         hachaMadera.usar(madera);
-        assertThat(madera.getDurabilidad(),is(98));
+        assertThat(madera.getDurabilidad(),is(Madera.DURABILIDAD_MADERA - hachaMadera.getFuerza()));
 
     }
     // hay que probar qeu el reducir durabilidad tmb funciona bien
@@ -23,10 +23,9 @@ public class MaderaTests {
     @Test
     public void test02MaderaEsDesgastadaPorHachaPiedra(){
         Madera madera = new Madera();
-        Integer durabilidadMadera = madera.getDurabilidad();
         HachaPiedra hachaPiedra = new HachaPiedra();
         hachaPiedra.usar(madera);
-        assertThat(madera.getDurabilidad(), is(durabilidadMadera-5));
+        assertThat(madera.getDurabilidad(), is(Madera.DURABILIDAD_MADERA - hachaPiedra.getFuerza()));
     }
 
     @Test
@@ -35,42 +34,38 @@ public class MaderaTests {
         Integer durabilidadMadera = madera.getDurabilidad();
         HachaMetal hachaMetal = new HachaMetal();
         hachaMetal.usar(madera);
-        assertThat(madera.getDurabilidad(), is(durabilidadMadera-hachaMetal.getFuerza()));
+        assertThat(madera.getDurabilidad(), is(Madera.DURABILIDAD_MADERA - hachaMetal.getFuerza()));
     }
 
     @Test
     public void test04MaderaNoEsDesgastadaPorPicoMadera(){
         Madera madera = new Madera();
-        Integer durabilidadMadera = madera.getDurabilidad();
         PicoMadera picoMadera = new PicoMadera();
         picoMadera.usar(madera);
-        assertThat(durabilidadMadera, is(madera.getDurabilidad()));
+        assertThat(madera.getDurabilidad(), is(madera.DURABILIDAD_MADERA));
     }
 
     @Test
     public void test05MaderaNoEsDesgastadaPorPicoPiedra(){
         Madera madera = new Madera();
-        Integer durabilidadMadera = madera.getDurabilidad();
         PicoPiedra picoPiedra = new PicoPiedra();
         picoPiedra.usar(madera);
-        assertThat(durabilidadMadera, is(madera.getDurabilidad()));
+        assertThat(madera.getDurabilidad(), is(madera.DURABILIDAD_MADERA));
     }
 
     @Test
     public void test06MaderaNoEsDesgastadaPorPicoMetal(){
         Madera madera = new Madera();
-        Integer durabilidadMadera = madera.getDurabilidad();
         PicoMetal picoMetal = new PicoMetal();
         picoMetal.usar(madera);
-        assertThat(durabilidadMadera, is(madera.getDurabilidad()));
+        assertThat(madera.getDurabilidad(), is(madera.DURABILIDAD_MADERA));
     }
 
     @Test
     public void test07MaderaNoEsDesgastadaPorPicoFino(){
         Madera madera = new Madera();
-        Integer durabilidadMadera = madera.getDurabilidad();
         PicoFino picoFino = new PicoFino();
         picoFino.usar(madera);
-        assertThat(durabilidadMadera, is(madera.getDurabilidad()));
+        assertThat(madera.getDurabilidad(), is(madera.DURABILIDAD_MADERA));
     }
 }
