@@ -93,12 +93,15 @@ public class DiamanteTests {
         picoFino.usar(diamante);
         picoFino.usar(diamante);
         picoFino.usar(diamante);
+        picoFino.usar(diamante);
+        assertThat(diamante.getDurabilidad(), is(0));
     }
 
     @Test
     public void test11DiamanteConEstadoMuertoDevuelveDurabilidadCero(){
         Diamante diamante = new Diamante();
         PicoFino picoFino = new PicoFino();
+        picoFino.usar(diamante);
         picoFino.usar(diamante);
         picoFino.usar(diamante);
         picoFino.usar(diamante);
