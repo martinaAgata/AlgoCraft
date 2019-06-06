@@ -5,7 +5,7 @@ import main.herramientas.PicoPiedra;
 
 public class Metal extends Material {
 
-    private static final int DURABILIDAD_METAL = 50;
+    public static final int DURABILIDAD_METAL = 50;
     public Metal() {
         this.estado = new EstadoVivo(DURABILIDAD_METAL);
     }

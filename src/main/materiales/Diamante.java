@@ -5,7 +5,7 @@ import main.herramientas.PicoFino;
 
 public class Diamante extends Material {
 
-    private static final int DURABILIDAD_DIAMANTE = 100;
+    public static final int DURABILIDAD_DIAMANTE = 100;
     public Diamante() {
         this.estado = new EstadoVivo(DURABILIDAD_DIAMANTE);
     }

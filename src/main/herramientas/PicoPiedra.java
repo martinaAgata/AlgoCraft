@@ -7,9 +7,9 @@ import main.estrategias.EstrategiaDesgaste;
 
 public class PicoPiedra extends Herramienta {
 
-    private static final int DURABILIDAD_PICO_PIEDRA = 200;
-    private static final int FUERZA_PICO_PIEDRA = 4;
-    private static final DesgasteLinealFactor DESGASTE = new DesgasteLinealFactor();
+    public static final int DURABILIDAD_PICO_PIEDRA = 200;
+    public static final int FUERZA_PICO_PIEDRA = 4;
+    public static final DesgasteLinealFactor DESGASTE = new DesgasteLinealFactor();
 
 
     public PicoPiedra() {

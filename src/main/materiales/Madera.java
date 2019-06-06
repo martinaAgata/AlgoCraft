@@ -7,7 +7,7 @@ import main.herramientas.HachaPiedra;
 
 public class Madera extends Material {
 
-    private static final int DURABILIDAD_MADERA = 10;
+    public static final int DURABILIDAD_MADERA = 10;
     public Madera() {
         this.estado = new EstadoVivo(DURABILIDAD_MADERA);
     }

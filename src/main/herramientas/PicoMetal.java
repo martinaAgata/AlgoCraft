@@ -7,9 +7,9 @@ import main.estrategias.EstrategiaDesgaste;
 
 public class PicoMetal extends Herramienta {
 
-    private static final int DURABILIDAD_PICO_METAL = 400;
-    private static final int FUERZA_PICO_METAL = 12;
-    private static final DesgasteAbrupto DESGASTE = new DesgasteAbrupto();
+    public static final int DURABILIDAD_PICO_METAL = 400;
+    public static final int FUERZA_PICO_METAL = 12;
+    public static final DesgasteAbrupto DESGASTE = new DesgasteAbrupto();
 
 
     public PicoMetal() {
