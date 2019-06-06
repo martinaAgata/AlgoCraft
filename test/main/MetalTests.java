@@ -97,7 +97,7 @@ public class MetalTests {
     public void test11MetalEsDesgastadoPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Metal metal = new Metal();
         PicoPiedra picoPiedra = new PicoPiedra();
-        for (int i = 0; i < 13; i++) { picoPiedra.usar(metal); }
+        for (int i = 0; i < 14; i++) { picoPiedra.usar(metal); }
     }
 
     @Test(expected = IllegalStateException.class)
@@ -105,6 +105,18 @@ public class MetalTests {
         Metal metal = new Metal();
         PicoMetal picoMetal = new PicoMetal();
         for (int i = 0; i < 5; i++) { picoMetal.usar(metal); }
+    }
+
+    @Test
+    public void test13MetalEsDesgastadoPorPicoPiedraYPicoMetal(){
+        Metal metal = new Metal();
+        PicoPiedra picoPiedra = new PicoPiedra();
+        PicoMetal picoMetal = new PicoMetal();
+        Integer durabilidadMetal = metal.getDurabilidad();
+        picoPiedra.usar(metal);
+        assertThat(metal.getDurabilidad(), is(durabilidadMetal - PicoPiedra.FUERZA_PICO_PIEDRA));
+        picoMetal.usar(metal);
+        assertThat(metal.getDurabilidad(), is(durabilidadMetal - PicoPiedra.FUERZA_PICO_PIEDRA - PicoMetal.FUERZA_PICO_METAL));
     }
 
 }

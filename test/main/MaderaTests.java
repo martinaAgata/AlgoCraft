@@ -133,4 +133,21 @@ public class MaderaTests {
         hachaMadera.usar(madera);
         assertThat(madera.getDurabilidad(), is(0));
     }
+
+    @Test
+    public void test15MaderaEsDesgastadaConHachaMaderaHachaPiedraHachaMetal(){
+        Madera madera = new Madera();
+        HachaMadera hachaMadera = new HachaMadera();
+        HachaPiedra hachaPiedra = new HachaPiedra();
+        HachaMetal hachaMetal = new HachaMetal();
+        Integer durabilidadMadera = madera.getDurabilidad();
+        hachaMadera.usar(madera);
+        assertThat(madera.getDurabilidad(), is(durabilidadMadera - HachaMadera.FUERZA_HACHA_MADERA));
+        durabilidadMadera -= hachaMadera.getFuerza();
+        hachaPiedra.usar(madera);
+        assertThat(madera.getDurabilidad(), is(durabilidadMadera - HachaPiedra.FUERZA_HACHA_PIEDRA));
+        durabilidadMadera -= hachaPiedra.getFuerza();
+        hachaMetal.usar(madera);
+        assertThat(madera.getDurabilidad(), is(0));//Es cero porque la madera ya estaria rota a este punto.
+    }
 }
