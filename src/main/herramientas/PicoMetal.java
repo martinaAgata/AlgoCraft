@@ -3,14 +3,12 @@ package main.herramientas;
 import main.EstadoVivo;
 import main.estrategias.DesgasteAbrupto;
 import main.materiales.Material;
-import main.estrategias.EstrategiaDesgaste;
 
 public class PicoMetal extends Herramienta {
 
     public static final int DURABILIDAD_PICO_METAL = 400;
     public static final int FUERZA_PICO_METAL = 12;
     public static final DesgasteAbrupto DESGASTE = new DesgasteAbrupto();
-
 
     public PicoMetal() {
         this.estado = new EstadoVivo(DURABILIDAD_PICO_METAL);

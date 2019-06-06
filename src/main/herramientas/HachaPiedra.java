@@ -3,7 +3,6 @@ package main.herramientas;
 import main.EstadoVivo;
 import main.estrategias.DesgasteLineal;
 import main.materiales.Material;
-import main.estrategias.EstrategiaDesgaste;
 
 public class HachaPiedra extends Herramienta {
 

@@ -1,7 +1,6 @@
 package main.materiales;
 
 import main.Estado;
-import main.EstadoVivo;
 
 public abstract class Material implements Desgastable {
 

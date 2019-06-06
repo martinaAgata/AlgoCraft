@@ -3,7 +3,6 @@ package main.herramientas;
 import main.EstadoVivo;
 import main.estrategias.DesgasteLinealFactor;
 import main.materiales.Material;
-import main.estrategias.EstrategiaDesgaste;
 
 public class PicoPiedra extends Herramienta {
 

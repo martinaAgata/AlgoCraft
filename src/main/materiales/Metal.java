@@ -1,7 +1,6 @@
 package main.materiales;
 
 import main.EstadoVivo;
-import main.herramientas.PicoMetal;
 import main.herramientas.PicoPiedra;
 
 public class Metal extends Material {

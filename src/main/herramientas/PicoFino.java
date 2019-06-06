@@ -3,7 +3,6 @@ package main.herramientas;
 import main.EstadoVivo;
 import main.estrategias.DesgasteLinealDecimal;
 import main.materiales.Material;
-import main.estrategias.EstrategiaDesgaste;
 
 public class PicoFino extends Herramienta {
 

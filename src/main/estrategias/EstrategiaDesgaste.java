@@ -6,5 +6,4 @@ public interface EstrategiaDesgaste {
 
     Estado desgastar(int fuerza, Estado estado);
 
-
 }

@@ -4,9 +4,9 @@ public interface Estado {
 
     Estado desgastar(int fuerza);
 
-    public boolean sePuedeUsar();
+    boolean sePuedeUsar();
 
-    public int getDurabilidad();
+    int getDurabilidad();
 
 
 }
