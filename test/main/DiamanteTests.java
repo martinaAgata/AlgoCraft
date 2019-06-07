@@ -7,18 +7,23 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
 public class DiamanteTests {
+
+    Diamante diamante = new Diamante;
+
+    static final int DURABILIDAD_INICIAL_DIAMANTE = 100;
+
     @Test
-    public void test01CrearDiamante() {
+    public void testSeCreaDiamanteConDurabilidadCorrespondiente() {
         Diamante diamante = new Diamante();
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE));
+        assertThat(diamante.getDurabilidad(), is(100));
     }
 
     @Test
-    public void test02DiamanteNoEsDesgastadoPorHachaMadera() {
+    public void testDiamanteNoEsDesgastadoPorHachaMadera() {
         Diamante diamante = new Diamante();
         HachaMadera hachaMadera = new HachaMadera();
         hachaMadera.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
     @Test
@@ -26,7 +31,7 @@ public class DiamanteTests {
         Diamante diamante = new Diamante();
         HachaPiedra hachaPiedra= new HachaPiedra();
         hachaPiedra.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(100));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
     @Test
@@ -34,7 +39,7 @@ public class DiamanteTests {
         Diamante diamante = new Diamante();
         HachaMetal hachaMetal = new HachaMetal();
         hachaMetal.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
     @Test
@@ -42,7 +47,7 @@ public class DiamanteTests {
         Diamante diamante = new Diamante();
         PicoMadera picoMadera = new PicoMadera();
         picoMadera.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
     @Test
@@ -50,7 +55,7 @@ public class DiamanteTests {
         Diamante diamante = new Diamante();
         PicoPiedra picoPiedra = new PicoPiedra();
         picoPiedra.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
     @Test
@@ -58,7 +63,7 @@ public class DiamanteTests {
         Diamante diamante = new Diamante();
         PicoMetal picoMetal = new PicoMetal();
         picoMetal.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
 
     }
 
@@ -67,7 +72,7 @@ public class DiamanteTests {
         Diamante diamante = new Diamante();
         PicoFino picoFino = new PicoFino();
         picoFino.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE - PicoFino.FUERZA_PICO_FINO));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - picoFino.getFuerza()));
     }
 
     @Test
@@ -75,13 +80,13 @@ public class DiamanteTests {
         Diamante diamante = new Diamante();
         PicoFino picoFino = new PicoFino();
         picoFino.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE - PicoFino.FUERZA_PICO_FINO));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - picoFino.getFuerza()));
         picoFino.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE - 2 * PicoFino.FUERZA_PICO_FINO));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 2 * picoFino.getFuerza()));
         picoFino.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE - 3 * PicoFino.FUERZA_PICO_FINO));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 3 * picoFino.getFuerza()));
         picoFino.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(Diamante.DURABILIDAD_DIAMANTE - 4 * PicoFino.FUERZA_PICO_FINO));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 4 * picoFino.getFuerza()));
     }
 
     @Test(expected = IllegalStateException.class)

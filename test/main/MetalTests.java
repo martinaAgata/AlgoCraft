@@ -9,66 +9,62 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class MetalTests {
+
+    private static final int DURABILIDAD_INICIAL_METAL = 50;
+
     @Test
-    public void test01CrearMetal() {
+    public void testSeCreaMetalConDurabilidadCorrespondiente() {
         Metal metal = new Metal();
         assertThat(metal.getDurabilidad(), is(Metal.DURABILIDAD_METAL));
     }
     @Test
-    public void test02MetalNoEsDesgastadoPorHachaMadera() {
+    public void testMetalNoEsDesgastadoPorHachaMadera() {
         Metal metal = new Metal();
         HachaMadera hachaMadera = new HachaMadera();
-        Integer durabilidadMetal = metal.getDurabilidad();
         hachaMadera.usar(metal);
-        assertThat(metal.getDurabilidad(), is(durabilidadMetal));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
     public void test03MetalNoEsDesgastadoPorHachaPiedra() {
         Material metal = new Metal();
         HachaPiedra hachaPiedra = new HachaPiedra();
-        Integer durabilidadMetal = metal.getDurabilidad();
         hachaPiedra.usar(metal);
-        assertThat(metal.getDurabilidad(), is(durabilidadMetal));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
     public void test04MetalNoEsDesgastadoPorHachaMetal() {
         Material metal = new Metal();
         HachaMetal hachaMetal = new HachaMetal();
-        Integer durabilidadMetal = metal.getDurabilidad();
         hachaMetal.usar(metal);
-        assertThat(metal.getDurabilidad(), is(durabilidadMetal));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
     public void test05MetalNoEsDesgastadoPorPicoMadera() {
         Material metal = new Metal();
         PicoMadera picoMadera = new PicoMadera();
-        Integer durabilidadMetal = metal.getDurabilidad();
         picoMadera.usar(metal);
-        assertThat(metal.getDurabilidad(), is(durabilidadMetal));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
     public void test06MetalEsDesgastadoPorPicoPiedra() {
         Metal metal = new Metal();
         PicoPiedra picoPiedra = new PicoPiedra();
-        Integer durabilidadMetal = metal.getDurabilidad();
         picoPiedra.usar(metal);
-        assertThat(metal.getDurabilidad(), is(durabilidadMetal - PicoPiedra.FUERZA_PICO_PIEDRA));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - PicoPiedra.getFuerza()));
     }
     @Test
     public void test07MetalNoEsDesgastadoPorPicoMetal() {
         Metal metal = new Metal();
         PicoMetal picoMetal = new PicoMetal();
-        Integer durabilidadMetal = metal.getDurabilidad();
         picoMetal.usar(metal);
-        assertThat(metal.getDurabilidad(), is(durabilidadMetal));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
     public void test08MetalNoEsDesgastadoPorPicoFino() {
         Metal metal = new Metal();
         PicoFino picoFino = new PicoFino();
-        Integer durabilidadMetal = metal.getDurabilidad();
         picoFino.usar(metal);
-        assertThat(metal.getDurabilidad(), is(durabilidadMetal));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
 
     @Test
@@ -76,11 +72,11 @@ public class MetalTests {
         Metal metal = new Metal();
         PicoPiedra picoPiedra = new PicoPiedra();
         picoPiedra.usar(metal);
-        assertThat(metal.getDurabilidad(), is(Metal.DURABILIDAD_METAL - PicoPiedra.FUERZA_PICO_PIEDRA));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - PicoPiedra.getFuerza()));
         picoPiedra.usar(metal);
-        assertThat(metal.getDurabilidad(), is(Metal.DURABILIDAD_METAL - 2 * PicoPiedra.FUERZA_PICO_PIEDRA));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 2 * PicoPiedra.getFuerza()));
         picoPiedra.usar(metal);
-        assertThat(metal.getDurabilidad(), is(Metal.DURABILIDAD_METAL - 3 * PicoPiedra.FUERZA_PICO_PIEDRA));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 3 * PicoPiedra.getFuerza()));
     }
 
     @Test(expected = IllegalStateException.class)
