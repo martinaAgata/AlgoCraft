@@ -6,9 +6,9 @@ import main.materiales.Material;
 
 public class PicoMetal extends Herramienta {
 
-    public static final int DURABILIDAD_PICO_METAL = 400;
-    public static final int FUERZA_PICO_METAL = 12;
-    public static final DesgasteAbrupto DESGASTE = new DesgasteAbrupto();
+    private static final int DURABILIDAD_PICO_METAL = 400;
+    private static final int FUERZA_PICO_METAL = 12;
+    private static final DesgasteAbrupto DESGASTE = new DesgasteAbrupto();
 
     public PicoMetal() {
         this.estado = new EstadoVivo(DURABILIDAD_PICO_METAL);

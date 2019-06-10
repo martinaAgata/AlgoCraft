@@ -6,9 +6,9 @@ import main.materiales.Material;
 
 public class HachaPiedra extends Herramienta {
 
-    public static final int DURABILIDAD_HACHA_PIEDRA = 200;
-    public static final int FUERZA_HACHA_PIEDRA = 5;
-    public static final DesgasteLineal DESGASTE = new DesgasteLineal();
+    private static final int DURABILIDAD_HACHA_PIEDRA = 200;
+    private static final int FUERZA_HACHA_PIEDRA = 5;
+    private static final DesgasteLineal DESGASTE = new DesgasteLineal();
 
     public HachaPiedra() {
         this.estado = new EstadoVivo(DURABILIDAD_HACHA_PIEDRA);

@@ -6,10 +6,9 @@ import main.materiales.Material;
 
 public class PicoFino extends Herramienta {
 
-    public static final int DURABILIDAD_PICO_FINO = 1000;
-    public static final int FUERZA_PICO_FINO = 20;
-    public static final DesgasteLinealDecimal DESGASTE = new DesgasteLinealDecimal();
-
+    private static final int DURABILIDAD_PICO_FINO = 1000;
+    private static final int FUERZA_PICO_FINO = 20;
+    private static final DesgasteLinealDecimal DESGASTE = new DesgasteLinealDecimal();
 
     public PicoFino() {
         this.estado = new EstadoVivo(DURABILIDAD_PICO_FINO);
