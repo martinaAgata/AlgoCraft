@@ -34,14 +34,13 @@ public class Pico extends Herramienta {
         return  picoMadera;
     }
 
-
     public static Pico nuevoPicoPiedra(){
-        Pico picoPiedra = new Pico(DesgasteLinealFactor(FACTOR_DESGASTE_PIEDRA), DURABILIDAD_PICO_MADERA,  FUERZA_PICO_MADERA);
+        Pico picoPiedra = new Pico(DesgasteLinealFactor(FACTOR_DESGASTE_PIEDRA), DURABILIDAD_PICO_PIEDRA,  FUERZA_PICO_PIEDRA);
         return  picoPiedra;
     }
 
     public static Pico nuevoPicoMetal(){
-        Pico picoMetal = new Pico(DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_PICO_MADERA,  FUERZA_PICO_MADERA);
+        Pico picoMetal = new Pico(DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_PICO_METAL,  FUERZA_PICO_METAL);
         return  picoMetal;
     }
 
