@@ -1,6 +1,5 @@
 package main;
 
-import main.herramientas.HachaMadera;
 import main.herramientas.Herramienta;
 
 

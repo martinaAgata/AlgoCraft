@@ -1,6 +1,5 @@
 package main;
 
-import main.herramientas.HachaPiedra;
 import main.materiales.Diamante;
 import main.materiales.Madera;
 import main.materiales.Metal;

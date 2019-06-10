@@ -1,7 +1,5 @@
 package main;
 
-import main.Jugador;
-import main.herramientas.HachaMadera;
 import main.herramientas.Herramienta;
 import main.materiales.Madera;
 import org.junit.Test;

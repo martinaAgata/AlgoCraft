@@ -1,9 +1,6 @@
 package main.materiales;
 
 import main.EstadoVivo;
-import main.herramientas.HachaMadera;
-import main.herramientas.HachaMetal;
-import main.herramientas.HachaPiedra;
 
 public class Madera extends Material {
 
