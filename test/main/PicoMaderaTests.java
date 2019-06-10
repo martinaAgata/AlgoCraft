@@ -1,7 +1,5 @@
 package main;
 
-import main.estrategias.DesgasteLineal;
-import main.herramientas.PicoMadera;
 import main.materiales.Madera;
 import main.materiales.Metal;
 import main.materiales.Piedra;

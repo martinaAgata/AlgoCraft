@@ -1,8 +1,5 @@
 package main;
 
-import main.estrategias.DesgasteAbrupto;
-import main.herramientas.PicoMadera;
-import main.herramientas.PicoMetal;
 import main.materiales.Madera;
 import main.materiales.Metal;
 import main.materiales.Piedra;
