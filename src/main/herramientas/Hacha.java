@@ -5,7 +5,8 @@ import main.estrategias.DesgasteLinealFactor;
 import main.estrategias.EstrategiaDesgaste;
 import main.materiales.Material;
 
-public class Hacha extends Herramienta{
+public class Hacha extends Herramienta {
+
     /*----- Hacha Madera -----*/
     private static final int DURABILIDAD_HACHA_MADERA = 100;
     private static final int FUERZA_HACHA_MADERA = 2;
@@ -25,15 +26,15 @@ public class Hacha extends Herramienta{
         this.fuerza = fuerza;
     }
 
-    public static Hacha nuevaHachaMadera(){
+    public static Hacha nuevaHachaMadera() {
         return (new Hacha(new DesgasteLinealFactor(FACTOR_DESGASTE_MADERA), DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA));
     }
 
-    public static Hacha nuevaHachaPiedra(){
+    public static Hacha nuevaHachaPiedra() {
         return (new Hacha(new DesgasteLinealFactor(FACTOR_DESGASTE_PIEDRA), DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA));
     }
 
-    public static Hacha nuevaHachaMetal(){
+    public static Hacha nuevaHachaMetal() {
         return (new Hacha(new DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL));
     }
 
