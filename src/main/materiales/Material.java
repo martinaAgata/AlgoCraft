@@ -1,12 +1,14 @@
 package main.materiales;
 import main.Estado;
 import main.Ubicable;
+import main.herramientas.Herramienta;
 
 public abstract class Material implements Desgastable, Ubicable {
 
     protected Estado estado;
 
-    protected void reducirDurabilidad(int fuerza) {
+    public Material desgastarCon(Herramienta herramienta){ return this; }
+    public void reducirDurabilidad(int fuerza) {
         estado = estado.desgastar(fuerza);
     }
 

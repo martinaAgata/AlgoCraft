@@ -20,14 +20,14 @@ public class PiedraTests {
     @Test
     public void test02PiedraNoEsDesgastadaPorHachaMadera() {
         Piedra piedra = new Piedra();
-        HachaMadera hachaMadera = new HachaMadera();
+        Hacha hachaMadera = Hacha.nuevaHachaMadera();
         hachaMadera.usar(piedra);
         assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA));
     }
     @Test
     public void test03PiedraNoEsDesgastadaPorHachaPiedra() {
         Piedra piedra = new Piedra();
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         hachaPiedra.usar(piedra);
         assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA));
 
@@ -35,7 +35,7 @@ public class PiedraTests {
     @Test
     public void test04PiedraNoEsDesgastadaPorHachaMetal() {
         Piedra piedra = new Piedra();
-        HachaMetal hachaMetal = new HachaMetal();
+        Hacha hachaMetal = Hacha.nuevaHachaMetal();
         hachaMetal.usar(piedra);
         assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA));
 
@@ -43,25 +43,25 @@ public class PiedraTests {
     @Test
     public void test05PiedraEsDesgastadaPorPicoMadera() {
         Piedra piedra = new Piedra();
-        PicoMadera picoMadera = new PicoMadera();
+        Pico picoMadera = Pico.nuevoPicoMadera();
         picoMadera.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - picoMadera.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 2));
 
     }
     @Test
     public void test06PiedraEsDesgastadaPorPicoPiedra() {
         Piedra piedra = new Piedra();
-        PicoPiedra picoPiedra = new PicoPiedra();
+        Pico picoPiedra = Pico.nuevoPicoPiedra();
         picoPiedra.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - picoPiedra.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 4));
 
     }
     @Test
     public void test07PiedraEsDesgastadaPorPicoMetal() {
         Piedra piedra = new Piedra();
-        PicoMetal picoMetal = new PicoMetal();
+        Pico picoMetal = Pico.nuevoPicoMetal();
         picoMetal.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - picoMetal.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 12));
 
     }
     @Test
@@ -76,57 +76,57 @@ public class PiedraTests {
     @Test
     public void test08PiedraEsDesgastadaPorPicoMaderaSeReduceVariasVeces(){
         Piedra piedra = new Piedra();
-        PicoMadera picoMadera = new PicoMadera();
+        Pico picoMadera = Pico.nuevoPicoMadera();
         picoMadera.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - PicoMadera.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 2));
         picoMadera.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 2 * PicoMadera.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 4));
         picoMadera.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 3 * PicoMadera.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 6));
         picoMadera.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 4 * PicoMadera.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 8));
     }
 
     @Test
     public void test09PiedraEsDesgastadaPorPicoPiedraSeReduceVariasVeces(){
         Piedra piedra = new Piedra();
-        PicoPiedra picoPiedra = new PicoPiedra();
+        Pico picoPiedra = Pico.nuevoPicoPiedra();
         picoPiedra.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - PicoPiedra.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 4));
         picoPiedra.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 2 * PicoPiedra.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 8));
         picoPiedra.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 3 * PicoPiedra.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 12));
     }
 
     @Test
     public void test10PiedraEsDesgastadaPorPicoMetalSeReduceVariasVeces(){
         Piedra piedra = new Piedra();
-        PicoMetal picoMetal = new PicoMetal();
+        Pico picoMetal = Pico.nuevoPicoMetal();
         picoMetal.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - PicoMetal.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 12));
         picoMetal.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 2 * PicoMetal.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 24));
     }
 
     @Test(expected = IllegalStateException.class)
     public void test11PiedraEsDesgastadaPorPicoMaderaLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
-        PicoMadera picoMadera = new PicoMadera();
+        Pico picoMadera = Pico.nuevoPicoMadera();
         for (int i = 0; i < 16; i++){ picoMadera.usar(piedra); }
     }
 
     @Test(expected = IllegalStateException.class)
     public void test12PiedraEsDesgastadaPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
-        PicoPiedra picoPiedra = new PicoPiedra();
+        Pico picoPiedra = Pico.nuevoPicoPiedra();
         for (int i = 0; i < 9; i++) { picoPiedra.usar(piedra); }
     }
 
     @Test(expected = IllegalStateException.class)
     public void test13PiedraEsDesgastadaPorPicoMetalLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
-        PicoMetal picoMetal = new PicoMetal();
+        Pico picoMetal = Pico.nuevoPicoMetal();
         picoMetal.usar(piedra);
         picoMetal.usar(piedra);
         picoMetal.usar(piedra);
@@ -136,7 +136,7 @@ public class PiedraTests {
     @Test
     public void test14PiedraConEstadoMuertoDevuelveDurabilidadCero(){
         Piedra piedra = new Piedra();
-        PicoMadera picoMadera = new PicoMadera();
+        Pico picoMadera = Pico.nuevoPicoMadera();
         for (int i = 0; i < 15; i++){ picoMadera.usar(piedra); }
         assertThat(piedra.getDurabilidad(), is(0));
     }
@@ -144,17 +144,17 @@ public class PiedraTests {
     @Test
     public void test15PiedraEsDesgastadaConPicoMaderaPicoPiedraPicoMetal(){
         Piedra piedra = new Piedra();
-        PicoMadera picoMadera = new PicoMadera();
-        PicoPiedra picoPiedra = new PicoPiedra();
-        PicoMetal picoMetal = new PicoMetal();
+        Pico picoMadera = Pico.nuevoPicoMadera();
+        Pico picoPiedra = Pico.nuevoPicoPiedra();
+        Pico picoMetal = Pico.nuevoPicoMetal();
         Integer durabilidadPiedra = piedra.getDurabilidad();
         picoMadera.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(durabilidadPiedra - PicoMadera.getFuerza());
+        assertThat(piedra.getDurabilidad(), is(durabilidadPiedra - 2));
         durabilidadPiedra -= picoMadera.getFuerza();
         picoPiedra.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(durabilidadPiedra - PicoPiedra.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(durabilidadPiedra - 4));
         durabilidadPiedra -= picoPiedra.getFuerza();
         picoMetal.usar(piedra);
-        assertThat(piedra.getDurabilidad(), is(durabilidadPiedra - PicoMetal.getFuerza()));
+        assertThat(piedra.getDurabilidad(), is(durabilidadPiedra - 12));
     }
 }

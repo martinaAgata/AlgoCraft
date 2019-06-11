@@ -9,7 +9,7 @@ public class Madera extends Material {
         this.estado = new EstadoVivo(DURABILIDAD_MADERA);
     }
 
-    @Override
+/*    @Override
     public void desgastar(HachaMadera hacha) {
         int fuerza = hacha.getFuerza();
         this.reducirDurabilidad(fuerza);
@@ -25,6 +25,6 @@ public class Madera extends Material {
     public void desgastar(HachaPiedra hacha) {
         int fuerza = hacha.getFuerza();
         this.reducirDurabilidad(fuerza);
-    }
+    }*/
 
 }

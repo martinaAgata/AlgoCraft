@@ -11,10 +11,11 @@ public class Juego {
     private static final int CANTIDAD_PIEDRAS = 50;
     private static final int CANTIDAD_METALES = 35;
     private static final int CANTIDAD_DIAMANTES = 10;
-
+    private Mapa mapa;
+    private Jugador jugador;
     public Juego() {
-        private Mapa mapa = new Mapa();
-        private Jugador jugador = new Jugador();
+        mapa = new Mapa();
+        jugador = new Jugador();
         mapa.ubicarEnCasillero(jugador);
         posicionarNMaderas(mapa, CANTIDAD_MADERAS);
         posicionarNPiedras(mapa, CANTIDAD_PIEDRAS);

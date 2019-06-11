@@ -9,9 +9,9 @@ public class Metal extends Material {
         this.estado = new EstadoVivo(DURABILIDAD_METAL);
     }
 
-    @Override
+/*    @Override
     public void desgastar(PicoPiedra pico) {
         int fuerza = pico.getFuerza();
         this.reducirDurabilidad(fuerza);
-    }
+    }*/
 }

@@ -10,9 +10,9 @@ public class Diamante extends Material {
         this.estado = new EstadoVivo(DURABILIDAD_DIAMANTE);
     }
 
-    @Override
+/*    @Override
     public void desgastar(PicoFino pico) {
         int fuerza = pico.getFuerza();
         this.reducirDurabilidad(fuerza);
-    }
+    }*/
 }

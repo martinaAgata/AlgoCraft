@@ -50,8 +50,6 @@ public class Pico extends Herramienta {
         material.desgastarCon(this);
     }
 
-    @Override
-    public void desgastarPiedra(Piedra piedra) {
-        this.material.desgastarPiedra(piedra, fuerza);
-    }
+    //@Override
+    //public void desgastarPiedra(Piedra piedra) { this.material.desgastarPiedra(piedra, fuerza); }
 }

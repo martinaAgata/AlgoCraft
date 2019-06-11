@@ -45,7 +45,7 @@ public class EstadoVivoTests {
         assertTrue(estadoVivo.desgastar(120) instanceof EstadoMuerto);
     }
 
-    @Test
+/*    @Test
     public void test05EstadoVivoSePuedeUsarSiempreDevuelveTrue(){
         EstadoVivo estadoVivo = new EstadoVivo(100);
         assertTrue(estadoVivo.sePuedeUsar());
@@ -55,5 +55,5 @@ public class EstadoVivoTests {
         assertTrue(estadoVivo.sePuedeUsar());
         estadoVivo.desgastar(1000);
         assertTrue(estadoVivo.sePuedeUsar());
-    }
+    }*/
 }

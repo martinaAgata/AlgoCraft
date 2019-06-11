@@ -10,6 +10,10 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
 public class PicoFinoTests {
+
+    private final int DURABILIDAD_PICO_FINO = 1000;
+    private final int FUERZA_PICO_FINO = 20;
+
     @Test
     public void test01CrearPicoFinoConDurabilidad() {
         PicoFino picoFino = new PicoFino();
@@ -25,7 +29,7 @@ public class PicoFinoTests {
         PicoFino picoFino = new PicoFino();
         Diamante diamante = new Diamante();
         picoFino.usar(diamante);
-        assertThat(picoFino.getDurabilidad(), is(picoFino.DURABILIDAD_PICO_FINO - ((int)(picoFino.getFuerza()*0.1))));
+        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int)(FUERZA_PICO_FINO*0.1))));
     }
 
     @Test
@@ -33,7 +37,7 @@ public class PicoFinoTests {
         PicoFino picoFino = new PicoFino();
         Madera madera = new Madera();
         picoFino.usar(madera);
-        assertThat(picoFino.getDurabilidad(), is(picoFino.DURABILIDAD_PICO_FINO - ((int)(picoFino.getFuerza()*0.1))));
+        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int)(FUERZA_PICO_FINO*0.1))));
     }
 
     @Test
@@ -41,7 +45,7 @@ public class PicoFinoTests {
         PicoFino picoFino = new PicoFino();
         Metal metal = new Metal();
         picoFino.usar(metal);
-        assertThat(picoFino.getDurabilidad(), is(picoFino.DURABILIDAD_PICO_FINO - ((int)(picoFino.getFuerza()*0.1))));
+        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int)(FUERZA_PICO_FINO*0.1))));
     }
 
     @Test
@@ -49,6 +53,6 @@ public class PicoFinoTests {
         PicoFino picoFino = new PicoFino();
         Piedra piedra = new Piedra();
         picoFino.usar(piedra);
-        assertThat(picoFino.getDurabilidad(), is(picoFino.DURABILIDAD_PICO_FINO - ((int)(picoFino.getFuerza()*0.1))));
+        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int)(FUERZA_PICO_FINO*0.1))));
     }
 }

@@ -47,6 +47,6 @@ public class Hacha extends Herramienta {
 
     @Override
     public void desgastarMadera(Madera madera) {
-        madera.reducirDurabilidad();
+        madera.reducirDurabilidad(this.fuerza);
     }
 }

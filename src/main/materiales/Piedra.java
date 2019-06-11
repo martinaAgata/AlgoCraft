@@ -9,7 +9,7 @@ public class Piedra extends Material {
         this.estado = new EstadoVivo(DURABILIDAD_PIEDRA);
     }
 
-    @Override
+/*    @Override
     public void desgastar(PicoMadera pico) {
         int fuerza = pico.getFuerza();
         this.reducirDurabilidad(fuerza);
@@ -25,5 +25,5 @@ public class Piedra extends Material {
     public void desgastar(PicoPiedra pico) {
         int fuerza = pico.getFuerza();
         this.reducirDurabilidad(fuerza);
-    }
+    }*/
 }

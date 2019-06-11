@@ -4,6 +4,7 @@ import main.EstadoVivo;
 import main.estrategias.DesgasteLinealDecimal;
 import main.estrategias.DesgasteLinealFactor;
 import main.estrategias.EstrategiaDesgaste;
+import main.materiales.Diamante;
 import main.materiales.Material;
 
 public class PicoFino extends Herramienta {
@@ -21,18 +22,23 @@ public class PicoFino extends Herramienta {
 
     public PicoFino() {
         this.estado = new EstadoVivo(DURABILIDAD_PICO_FINO);
-        this.estrategia = DesgasteLinealFactor(FACTOR_DESGASTE);
+        this.estrategia = new DesgasteLinealFactor(FACTOR_DESGASTE);
         this.fuerza = FUERZA_PICO_FINO;
     }
 
-    public static Pico nuevoPicoFino() {
-        Pico picoFino = new Pico(DesgasteLinealFactor(FACTOR_DESGASTE),DURABILIDAD_PICO_FINO,FUERZA_PICO_FINO);
+    public static PicoFino nuevoPicoFino() {
+        PicoFino picoFino = new PicoFino();
         return  picoFino;
     }
 
     @Override
     protected void desgastarMaterial(Material material) {
         material.desgastar(this);
+    }
+
+    @Override
+    public void desgastarDiamante(Diamante diamante) {
+        diamante.reducirDurabilidad(this.fuerza);
     }
 
 }

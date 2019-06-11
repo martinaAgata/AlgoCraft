@@ -10,22 +10,27 @@ import static org.junit.Assert.assertTrue;
 
 public class DesgasteLinealFactorTests {
     @Test
-    public void test01DesgasteLinealFactorDesgastaEstadoVivoSegunFuerzaDivididaPorUnoYMedio(){
-        DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor();
+    public void test01DesgasteLinealFactorDesgastaEstadoVivoSegunFactorIngresado(){
+        DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(1);
         EstadoVivo estadoVivo = new EstadoVivo(20);
         Integer durabilidadEstado = estadoVivo.getDurabilidad();
         desgasteLineal.desgastar(3, estadoVivo);
-        assertThat(estadoVivo.getDurabilidad(), is(durabilidadEstado - 2));
+        assertThat(estadoVivo.getDurabilidad(), is(durabilidadEstado - 3));
         desgasteLineal.desgastar(6, estadoVivo);
-        assertThat(estadoVivo.getDurabilidad(), is(durabilidadEstado - 6));
-        desgasteLineal.desgastar(9, estadoVivo);
-        assertThat(estadoVivo.getDurabilidad(), is(durabilidadEstado - 12));
+        assertThat(estadoVivo.getDurabilidad(), is(durabilidadEstado - 9));
+        desgasteLineal = new DesgasteLinealFactor(0.5);
+        estadoVivo = new EstadoVivo(20);
+        durabilidadEstado = estadoVivo.getDurabilidad();
+        desgasteLineal.desgastar(2, estadoVivo);
+        assertThat(estadoVivo.getDurabilidad(), is(durabilidadEstado - 1));
+        desgasteLineal.desgastar(6, estadoVivo);
+        assertThat(estadoVivo.getDurabilidad(), is(durabilidadEstado - 4));
 
     }
 
     @Test
     public void test02DesgasteLinealFactorDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado(){
-        DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor();
+        DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(1);
         EstadoVivo estadoVivo = new EstadoVivo(6);
         assertTrue(desgasteLineal.desgastar(3, estadoVivo) instanceof EstadoVivo);
         assertTrue(desgasteLineal.desgastar(4, estadoVivo) instanceof EstadoVivo);
@@ -34,7 +39,7 @@ public class DesgasteLinealFactorTests {
 
     @Test (expected = IllegalStateException.class)
     public void test03DesgasteLinealFactorLanzaExcepcionAlDesgastarEstadoMuerto(){
-        DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor();
+        DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(1);
         EstadoMuerto estadoMuerto = new EstadoMuerto();
         desgasteLineal.desgastar(1, estadoMuerto);
     }

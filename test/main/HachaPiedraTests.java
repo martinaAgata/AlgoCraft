@@ -1,5 +1,6 @@
 package main;
 
+import main.herramientas.Hacha;
 import main.materiales.Diamante;
 import main.materiales.Madera;
 import main.materiales.Metal;
@@ -11,9 +12,12 @@ import static org.junit.Assert.assertThat;
 
 public class HachaPiedraTests {
 
+    private final int DURABILIDAD_HACHA_PIEDRA = 200;
+    private final int FUERZA_HACHA_PIEDRA = 5;
+
     @Test
     public void test08HachaPiedraSeUsaContraMaderaReduceSuDurabilidad() {
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         Madera madera = new Madera();
         hachaPiedra.usar(madera);
         assertThat(hachaPiedra.getDurabilidad(), is(195));
@@ -21,7 +25,7 @@ public class HachaPiedraTests {
 
     @Test
     public void test09HachaPiedraSeUsaContraPiedraReduceSuDurabilidad() {
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         Piedra piedra = new Piedra();
         hachaPiedra.usar(piedra);
         assertThat(hachaPiedra.getDurabilidad(), is(195));
@@ -29,7 +33,7 @@ public class HachaPiedraTests {
 
     @Test
     public void test10HachaPiedraSeUsaContraMetalReduceSuDurabilidad() {
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         Metal metal = new Metal();
         hachaPiedra.usar(metal);
         assertThat(hachaPiedra.getDurabilidad(), is(195));
@@ -37,7 +41,7 @@ public class HachaPiedraTests {
 
     @Test
     public void test11HachaPiedraSeUsaContraDiamanteReduceSuDurabilidad() {
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         Diamante diamante = new Diamante();
         hachaPiedra.usar(diamante);
         assertThat(hachaPiedra.getDurabilidad(), is(195));
@@ -45,37 +49,37 @@ public class HachaPiedraTests {
 
     @Test
     public void test05SeUsaContraMaderaReduceSuDurabilidadDeManeraCorrecta(){
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         Madera madera = new Madera();
         Integer durabilidadHachaPiedra = hachaPiedra.getDurabilidad();
         hachaPiedra.usar(madera);
-        assertThat(hachaPiedra.getDurabilidad(), is(hachaPiedra.DURABILIDAD_HACHA_PIEDRA - hachaPiedra.getFuerza()));
+        assertThat(hachaPiedra.getDurabilidad(), is(DURABILIDAD_HACHA_PIEDRA - FUERZA_HACHA_PIEDRA));
     }
 
     @Test
     public void test06HachaPiedraSeUsaContraPiedraReduceSuDurabilidadDeManeraCorrecta(){
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         Piedra piedra = new Piedra();
         hachaPiedra.usar(piedra);
-        assertThat(hachaPiedra.getDurabilidad(), is(hachaPiedra.DURABILIDAD_HACHA_PIEDRA - hachaPiedra.getFuerza()));
+        assertThat(hachaPiedra.getDurabilidad(), is(DURABILIDAD_HACHA_PIEDRA - FUERZA_HACHA_PIEDRA));
 
     }
 
     @Test
     public void test07HachaPiedraSeUsaContraMetalReduceSuDurabilidadDeManeraCorrecta(){
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         Metal metal = new Metal();
         Integer durabilidadHachaPiedra = hachaPiedra.getDurabilidad();
         hachaPiedra.usar(metal);
-        assertThat(hachaPiedra.getDurabilidad(), is(hachaPiedra.DURABILIDAD_HACHA_PIEDRA - hachaPiedra.getFuerza()));
+        assertThat(hachaPiedra.getDurabilidad(), is(DURABILIDAD_HACHA_PIEDRA - FUERZA_HACHA_PIEDRA));
     }
 
     @Test
     public void test08HachaPiedraSeUsaContraDiamanteReduceSuDurabilidadDeManeraCorrecta(){
-        HachaPiedra hachaPiedra = new HachaPiedra();
+        Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         Diamante diamante = new Diamante();
         hachaPiedra.usar(diamante);
-        assertThat(hachaPiedra.getDurabilidad(), is(hachaPiedra.DURABILIDAD_HACHA_PIEDRA - hachaPiedra.getFuerza()));
+        assertThat(hachaPiedra.getDurabilidad(), is(DURABILIDAD_HACHA_PIEDRA - FUERZA_HACHA_PIEDRA));
 
     }
 }

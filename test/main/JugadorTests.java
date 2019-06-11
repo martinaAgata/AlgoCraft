@@ -1,5 +1,6 @@
 package main;
 
+import main.herramientas.Hacha;
 import main.herramientas.Herramienta;
 import main.materiales.Madera;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class JugadorTests {
     public void test01JugadorSeInicializaConUnItemEnElInventario(){
         Jugador jugador = new Jugador();
         Herramienta herramienta = jugador.obtenerHerramientaActual();
-        HachaMadera hacha = new HachaMadera();
+        Hacha hacha = Hacha.nuevaHachaMadera();
     }
     @Test
     public void test02JugadorSeInicializaConUnHachaDeMadera(){
