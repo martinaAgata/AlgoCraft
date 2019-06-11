@@ -8,7 +8,7 @@ public class EstadoMuerto implements Estado {
     }
 
     public Estado desgastar(int fuerza) {
-        throw new IllegalStateException("No puede desgastarse una herramienta rota"); // Chequear
+        throw new IllegalStateException("No puede desgastarse una herramienta rota");
     }
 
     public int getDurabilidad() {
