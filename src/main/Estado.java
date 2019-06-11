@@ -4,7 +4,7 @@ public interface Estado {
 
     Estado desgastar(int fuerza);
 
-    boolean sePuedeUsar();
+    boolean sePuedeUsar(); // corregir
 
     int getDurabilidad();
 
