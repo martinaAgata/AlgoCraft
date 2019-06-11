@@ -15,7 +15,7 @@ public class Pico extends Herramienta {
     private static final int DURABILIDAD_PICO_MADERA = 100;
     private static final int FUERZA_PICO_MADERA = 2;
     /*----- PicoPiedra -----*/
-    private static final double FACTOR_DESGASTE_PIEDRA = (1/1.5);
+    private static final double FACTOR_DESGASTE_PIEDRA = (1 / 1.5);
     private static final int DURABILIDAD_PICO_PIEDRA = 200;
     private static final int FUERZA_PICO_PIEDRA = 4;
     /*----- PicoMetal -----*/
@@ -31,20 +31,21 @@ public class Pico extends Herramienta {
     }
 
     public static Pico nuevoPicoMadera() {
-        Pico picoMadera = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_MADERA), DURABILIDAD_PICO_MADERA,  FUERZA_PICO_MADERA, new Madera());
-        return  picoMadera;
+        Pico picoMadera = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_MADERA), DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        return picoMadera;
     }
 
     public static Pico nuevoPicoPiedra() {
-        Pico picoPiedra = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_PIEDRA), DURABILIDAD_PICO_PIEDRA,  FUERZA_PICO_PIEDRA, new Piedra());
-        return  picoPiedra;
+        Pico picoPiedra = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_PIEDRA), DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        return picoPiedra;
     }
 
     public static Pico nuevoPicoMetal() {
-        Pico picoMetal = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_PICO_METAL,  FUERZA_PICO_METAL, new Metal());
-        return  picoMetal;
+        Pico picoMetal = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        return picoMetal;
     }
 
+    @Override
     public void desgastarMaterial(Material material){
         material.desgastarCon(this);
     }
