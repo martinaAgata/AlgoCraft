@@ -1,15 +1,14 @@
 package main;
-
+import main.herramientas.Hacha;
 import main.herramientas.Herramienta;
 
-
-public class Jugador {
+public class Jugador implements Ubicable {
     //Atributos
     private Herramienta herramientaActual;
 
     //Constructor
     public Jugador() {
-        HachaMadera hachaMadera = new HachaMadera();
+        Hacha hachaMadera = Hacha.nuevaHachaMadera();
         this.herramientaActual = hachaMadera;
     }
     public Herramienta obtenerHerramientaActual() {

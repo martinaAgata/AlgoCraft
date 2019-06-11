@@ -1,8 +1,8 @@
 package main.materiales;
-
 import main.Estado;
+import main.Ubicable;
 
-public abstract class Material implements Desgastable {
+public abstract class Material implements Desgastable, Ubicable {
 
     protected Estado estado;
 
