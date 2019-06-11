@@ -14,10 +14,10 @@ public class Mapa {
      }
 
      private void inicializarMapa() {
-         for (int i=0; i<=this.filas; i++) {
+         for (int i=0; i<=this.filas; i++) { // ver si inicializar de 0 o 1
              for (int j=0; j<=this.columnas; j++) {
-                 this.filas[i] = new ArrayList<Casillero>();
-                 this.filas[i].push(new Casillero);
+                 casilleros[i] = new ArrayList<Casillero>();
+                 casilleros[i].push(new Casillero);
              }
          }
      }
