@@ -16,7 +16,7 @@ public class Mapa {
          this.inicializarMapa();
      }
 
-     public void inicializarMapa() {
+     private void inicializarMapa() {
          for (int i=0; i<=this.filas; i++) {
              this.casilleros[i] = new ArrayList<>();
              for (int j=0; j<=this.columnas; j++) {
