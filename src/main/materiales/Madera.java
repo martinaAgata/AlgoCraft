@@ -1,6 +1,7 @@
 package main.materiales;
 
 import main.EstadoVivo;
+import main.herramientas.Hacha;
 
 public class Madera extends Material {
 
@@ -26,5 +27,9 @@ public class Madera extends Material {
         int fuerza = hacha.getFuerza();
         this.reducirDurabilidad(fuerza);
     }*/
+    @Override
+    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    @Override
+    public Desgastable desgastarContra(Hacha hacha){ return hacha.desgastarContra(this);}
 
 }

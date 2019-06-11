@@ -1,12 +1,10 @@
 package main.herramientas;
 
 import main.EstadoVivo;
+import main.estrategias.DesgasteAbrupto;
 import main.estrategias.DesgasteLinealFactor;
 import main.estrategias.EstrategiaDesgaste;
-import main.materiales.Madera;
-import main.materiales.Material;
-import main.materiales.Metal;
-import main.materiales.Piedra;
+import main.materiales.*;
 
 public class Pico extends Herramienta {
 
@@ -41,14 +39,29 @@ public class Pico extends Herramienta {
     }
 
     public static Pico nuevoPicoMetal() {
-        Pico picoMetal = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Pico picoMetal = new Pico(new DesgasteAbrupto(), DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
         return picoMetal;
     }
 
-    @Override
+    /*@Override
     public void desgastarMaterial(Material material){
         material.desgastarCon(this);
+    }*/
+    @Override
+    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    @Override
+    public Desgastable desgastarContra(Piedra piedra){
+        piedra.reducirDurabilidad(this.fuerza);
+        return null;
     }
+    @Override
+    public Desgastable desgastarContra(Metal metal){
+        //Razonar mejor para tripledispatch.. QUITAR
+        if(this.material.desgastarContra(metal) == null) return null;
+        metal.reducirDurabilidad(this.fuerza);
+        return null;
+    }
+
 
     //@Override
     //public void desgastarPiedra(Piedra piedra) { this.material.desgastarPiedra(piedra, fuerza); }

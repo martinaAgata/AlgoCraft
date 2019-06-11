@@ -1,6 +1,7 @@
 package main;
 
 import main.herramientas.*;
+import main.materiales.Desgastable;
 import main.materiales.Diamante;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
@@ -72,7 +73,7 @@ public class DiamanteTests {
         Diamante diamante = new Diamante();
         PicoFino picoFino = new PicoFino();
         picoFino.usar(diamante);
-        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - picoFino.getFuerza()));
+        assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 20));
     }
 
     @Test

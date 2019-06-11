@@ -15,4 +15,9 @@ public class Diamante extends Material {
         int fuerza = pico.getFuerza();
         this.reducirDurabilidad(fuerza);
     }*/
+
+    @Override
+    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    @Override
+    public Desgastable desgastarContra(PicoFino pico){ return pico.desgastarContra(this); }
 }

@@ -1,6 +1,7 @@
 package main.materiales;
 
 import main.EstadoVivo;
+import main.herramientas.Pico;
 
 public class Piedra extends Material {
 
@@ -26,4 +27,12 @@ public class Piedra extends Material {
         int fuerza = pico.getFuerza();
         this.reducirDurabilidad(fuerza);
     }*/
+    @Override
+    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    @Override
+    public Desgastable desgastarContra(Pico pico){ return pico.desgastarContra(this);}
+    @Override
+    public Desgastable desgastarContra(Metal metal){
+        return this;
+    }
 }

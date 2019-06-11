@@ -29,7 +29,7 @@ public class MaderaTests {
         Madera madera = new Madera();
         Hacha hachaPiedra = Hacha.nuevaHachaPiedra();
         hachaPiedra.usar(madera);
-        assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - hachaPiedra.getFuerza()));
+        assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 5));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class MaderaTests {
         Integer durabilidadMadera = madera.getDurabilidad();
         Hacha hachaMetal = Hacha.nuevaHachaMetal();
         hachaMetal.usar(madera);
-        assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - hachaMetal.getFuerza()));
+        assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 10));
     }
 
     @Test
@@ -147,7 +147,6 @@ public class MaderaTests {
         Integer durabilidadMadera = madera.getDurabilidad();
         hachaMadera.usar(madera);
         assertThat(madera.getDurabilidad(), is(durabilidadMadera - 2));
-        durabilidadMadera -= hachaMadera.getFuerza();
         hachaPiedra.usar(madera);
         assertThat(madera.getDurabilidad(), is(durabilidadMadera - 7));
         hachaMetal.usar(madera);

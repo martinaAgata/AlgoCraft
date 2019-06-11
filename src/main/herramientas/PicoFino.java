@@ -4,6 +4,7 @@ import main.EstadoVivo;
 import main.estrategias.DesgasteLinealDecimal;
 import main.estrategias.DesgasteLinealFactor;
 import main.estrategias.EstrategiaDesgaste;
+import main.materiales.Desgastable;
 import main.materiales.Diamante;
 import main.materiales.Material;
 
@@ -31,13 +32,20 @@ public class PicoFino extends Herramienta {
         return  picoFino;
     }
 
-    @Override
+/*    @Override
     protected void desgastarMaterial(Material material) {
         material.desgastar(this);
+    }*/
+    @Override
+    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    @Override
+    public Desgastable desgastarContra(Diamante diamante){
+    //if(diamante == null) return null;
+    this.desgastarMaterial(diamante);
+    return null;
     }
 
-    @Override
-    public void desgastarDiamante(Diamante diamante) {
+    public void desgastarMaterial(Diamante diamante) {
         diamante.reducirDurabilidad(this.fuerza);
     }
 

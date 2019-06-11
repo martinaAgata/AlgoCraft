@@ -4,11 +4,12 @@ import main.herramientas.*;
 
 public interface Desgastable {
 
-/*    default void desgastar(PicoMadera pico) {};
-    default void desgastar(PicoMetal pico) {};
-    default void desgastar(PicoPiedra pico) {};*/
-    default void desgastar(PicoFino pico) {};
-/*    default void desgastar(HachaMadera hacha) {};
-    default void desgastar(HachaMetal hacha) {};
-    default void desgastar(HachaPiedra hacha) {};*/
+    public abstract Desgastable desgastarContra(Desgastable desgastable);
+    public abstract Desgastable desgastarContra(Pico pico);
+    public abstract Desgastable desgastarContra(Hacha pico);
+    public abstract Desgastable desgastarContra(PicoFino pico);
+    public abstract Desgastable desgastarContra(Madera madera);
+    public abstract Desgastable desgastarContra(Piedra piedra);
+    public abstract Desgastable desgastarContra(Metal metal);
+    public abstract Desgastable desgastarContra(Diamante diamante);
 }

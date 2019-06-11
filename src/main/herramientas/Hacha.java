@@ -3,6 +3,7 @@ package main.herramientas;
 import main.EstadoVivo;
 import main.estrategias.DesgasteLinealFactor;
 import main.estrategias.EstrategiaDesgaste;
+import main.materiales.Desgastable;
 import main.materiales.Madera;
 import main.materiales.Material;
 import main.materiales.Piedra;
@@ -40,13 +41,19 @@ public class Hacha extends Herramienta {
         return (new Hacha(new DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL));
     }
 
-    @Override
+    /*@Override
     protected void desgastarMaterial(Material material) {
         material.desgastarCon(this);
-    }
+    }*/
 
     @Override
-    public void desgastarMadera(Madera madera) {
+    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    @Override
+    public Desgastable desgastarContra(Madera madera){
         madera.reducirDurabilidad(this.fuerza);
-    }
+        return null;}
+
+    /*public void desgastarMaterial(Madera madera) {
+        madera.reducirDurabilidad(this.fuerza);
+    }*/
 }
