@@ -3,7 +3,10 @@ package main.herramientas;
 import main.EstadoVivo;
 import main.estrategias.DesgasteLinealFactor;
 import main.estrategias.EstrategiaDesgaste;
+import main.materiales.Madera;
 import main.materiales.Material;
+import main.materiales.Metal;
+import main.materiales.Piedra;
 
 public class Pico extends Herramienta {
 
@@ -20,26 +23,34 @@ public class Pico extends Herramienta {
     private static final int DURABILIDAD_PICO_METAL = 400;
     private static final int FUERZA_PICO_METAL = 12;
 
-    private Pico(EstrategiaDesgaste estrategia, int durabilidad, int fuerza) {
+    private Pico(EstrategiaDesgaste estrategia, int durabilidad, int fuerza, Material material) {
         this.estado = new EstadoVivo(durabilidad);
         this.estrategia = estrategia;
         this.fuerza = fuerza;
+        this.material = material;
     }
 
     public static Pico nuevoPicoMadera() {
-        Pico picoMadera = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_MADERA), DURABILIDAD_PICO_MADERA,  FUERZA_PICO_MADERA);
+        Pico picoMadera = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_MADERA), DURABILIDAD_PICO_MADERA,  FUERZA_PICO_MADERA, new Madera());
         return  picoMadera;
     }
 
     public static Pico nuevoPicoPiedra() {
-        Pico picoPiedra = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_PIEDRA), DURABILIDAD_PICO_PIEDRA,  FUERZA_PICO_PIEDRA);
+        Pico picoPiedra = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_PIEDRA), DURABILIDAD_PICO_PIEDRA,  FUERZA_PICO_PIEDRA, new Piedra());
         return  picoPiedra;
     }
 
     public static Pico nuevoPicoMetal() {
-        Pico picoMetal = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_PICO_METAL,  FUERZA_PICO_METAL);
+        Pico picoMetal = new Pico(new DesgasteLinealFactor(FACTOR_DESGASTE_METAL), DURABILIDAD_PICO_METAL,  FUERZA_PICO_METAL, new Metal());
         return  picoMetal;
     }
 
-    public void desgastarMaterial(Material material){ material.desgastar(this);}
+    public void desgastarMaterial(Material material){
+        material.desgastarCon(this);
+    }
+
+    @Override
+    public void desgastarPiedra(Piedra piedra) {
+        this.material.desgastarPiedra(piedra, fuerza);
+    }
 }
