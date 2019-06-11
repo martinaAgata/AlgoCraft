@@ -1,11 +1,15 @@
 package main.mapa;
+import main.Ubicable;
+import java.util.Optional;
 
 public class Casillero {
-    private EstadoCasillero estado;
-    // se debe poder guardar un jugador o un material
+    private Optional<Ubicable> ubicableOptional = Optional.empty();
 
+    public void setUbicable(Ubicable u) {
+        this.ubicableOptional = Optional.of(u);
+    }
 
-    public Casillero() {
-        this.estado = new EstadoLibre();
+    public void haceraraza() {
+
     }
 }
