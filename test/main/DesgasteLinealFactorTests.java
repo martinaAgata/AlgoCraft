@@ -14,11 +14,7 @@ import static org.junit.Assert.assertTrue;
 public class DesgasteLinealFactorTests {
     @Test
     public void test01DesgasteLinealFactorDesgastaEstadoVivoSegunFactorIngresado() {
-<<<<<<< Updated upstream
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor((double)2/3);
-=======
-        DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(2 / 3);
->>>>>>> Stashed changes
         EstadoVivo estadoVivo = new EstadoVivo(20);
         Integer durabilidadEstado = estadoVivo.getDurabilidad();
         desgasteLineal.desgastar(3, estadoVivo);
@@ -37,11 +33,7 @@ public class DesgasteLinealFactorTests {
 
     @Test
     public void test02DesgasteLinealFactorDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado() {
-<<<<<<< Updated upstream
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor((double)2/3);
-=======
-        DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(2 / 3);
->>>>>>> Stashed changes
         EstadoVivo estadoVivo = new EstadoVivo(6);
         assertTrue(desgasteLineal.desgastar(6, estadoVivo) instanceof EstadoVivo);
         assertTrue(desgasteLineal.desgastar(2, estadoVivo) instanceof EstadoVivo);

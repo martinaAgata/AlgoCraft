@@ -1,4 +1,4 @@
 package main.patrones;
 
-public class PatronPicoFino {
+public class PatronPicoFino extends Patron {
 }

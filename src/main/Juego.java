@@ -19,7 +19,7 @@ public class Juego {
     public Juego() {
         mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
         jugador = new Jugador();
-        mapa.ubicarEnCasillero(jugador);
+        mapa.ubicarEnCasilleroAleatorio(jugador);
         posicionarNMaderas(mapa, CANTIDAD_MADERAS);
         posicionarNPiedras(mapa, CANTIDAD_PIEDRAS);
         posicionarNMetales(mapa, CANTIDAD_METALES);
