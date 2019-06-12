@@ -8,6 +8,8 @@ import main.materiales.Madera;
 import main.materiales.Material;
 import main.materiales.Piedra;
 
+import java.util.Optional;
+
 public class Hacha extends Herramienta {
 
     /*----- Hacha Madera -----*/
@@ -47,11 +49,15 @@ public class Hacha extends Herramienta {
     }*/
 
     @Override
-    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    public Optional<Desgastable> desgastarContra(Desgastable desgastable){
+        return desgastable.desgastarContra(this);
+    }
+
     @Override
-    public Desgastable desgastarContra(Madera madera){
+    public Optional<Desgastable> desgastarContra(Madera madera){
         madera.reducirDurabilidad(this.fuerza);
-        return null;}
+        return Optional.empty();
+    }
 
     /*public void desgastarMaterial(Madera madera) {
         madera.reducirDurabilidad(this.fuerza);

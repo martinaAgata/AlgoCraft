@@ -6,6 +6,8 @@ import main.estrategias.DesgasteLinealFactor;
 import main.estrategias.EstrategiaDesgaste;
 import main.materiales.*;
 
+import java.util.Optional;
+
 public class Pico extends Herramienta {
 
     /*----- PicoMadera -----*/
@@ -48,20 +50,23 @@ public class Pico extends Herramienta {
         material.desgastarCon(this);
     }*/
     @Override
-    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
-    @Override
-    public Desgastable desgastarContra(Piedra piedra){
-        piedra.reducirDurabilidad(this.fuerza);
-        return null;
-    }
-    @Override
-    public Desgastable desgastarContra(Metal metal){
-        //Razonar mejor para tripledispatch.. QUITAR
-        if(this.material.desgastarContra(metal) == null) return null;
-        metal.reducirDurabilidad(this.fuerza);
-        return null;
+    public Optional<Desgastable> desgastarContra(Desgastable desgastable){
+        return desgastable.desgastarContra(this);
     }
 
+    @Override
+    public Optional<Desgastable> desgastarContra(Piedra piedra){
+        piedra.reducirDurabilidad(this.fuerza);
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Desgastable> desgastarContra(Metal metal){
+        if (this.material.desgastarContra(metal).isPresent()) {
+            metal.reducirDurabilidad(this.fuerza);
+        }
+        return Optional.empty();
+    }
 
     //@Override
     //public void desgastarPiedra(Piedra piedra) { this.material.desgastarPiedra(piedra, fuerza); }

@@ -4,7 +4,6 @@ import main.Estado;
 import main.EstadoVivo;
 import main.materiales.*;
 import main.estrategias.EstrategiaDesgaste;
-import sun.security.krb5.internal.crypto.Des;
 
 public abstract class Herramienta implements Desgastable{
 
@@ -37,15 +36,5 @@ public abstract class Herramienta implements Desgastable{
     public void desgastarMaterial(Madera madera) { }
 
     public void desgastarMaterial(Diamante diamante) { }*/
-
-    public Desgastable desgastarContra(Desgastable desgastable){ return null;}
-    public Desgastable desgastarContra(Pico pico){ return null; }
-    public Desgastable desgastarContra(Hacha pico){ return null; }
-    public Desgastable desgastarContra(PicoFino pico){ return null; }
-    public Desgastable desgastarContra(Madera madera){ return null; }
-    public Desgastable desgastarContra(Piedra piedra){ return null; }
-    public Desgastable desgastarContra(Metal metal){ return null; }
-    public Desgastable desgastarContra(Diamante diamante){ return null; }
-
 
 }

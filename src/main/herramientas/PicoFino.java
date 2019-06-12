@@ -8,6 +8,8 @@ import main.materiales.Desgastable;
 import main.materiales.Diamante;
 import main.materiales.Material;
 
+import java.util.Optional;
+
 public class PicoFino extends Herramienta {
 
     private static final int DURABILIDAD_PICO_FINO = 1000;
@@ -37,12 +39,12 @@ public class PicoFino extends Herramienta {
         material.desgastar(this);
     }*/
     @Override
-    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
     @Override
-    public Desgastable desgastarContra(Diamante diamante){
+    public Optional<Desgastable> desgastarContra(Diamante diamante){
     //if(diamante == null) return null;
     this.desgastarMaterial(diamante);
-    return null;
+    return Optional.empty();
     }
 
     public void desgastarMaterial(Diamante diamante) {
