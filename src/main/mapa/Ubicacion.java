@@ -37,11 +37,15 @@ public class Ubicacion {
         return new Ubicacion(this.x, this.y-1);
     }
     public Ubicacion arribaDerecha() {
+        return this.arriba().derecha();
     }
     public Ubicacion arribaIzquierda() {
+        return this.arriba().izquierda();
     }
     public Ubicacion abajoDerecha() {
+        this.abajo().derecha();
     }
     public Ubicacion abajoIzquierda() {
+        this.abajo().izquierda();
     }
 }
