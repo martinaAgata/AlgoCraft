@@ -24,7 +24,7 @@ public class Jugador implements Ubicable {
 
     public void moverseALaDerecha(Mapa mapa) {
         this.ubicacion = ubicacion.derecha();
-        mapa.ubicarEnCasillero(this);
+        mapa.ubicarEnCasillero(this, ubicacion);
     }
     public void moverseALaIzquierda(Mapa mapa) {
         this.ubicacion = ubicacion.izquierda();

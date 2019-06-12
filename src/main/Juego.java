@@ -28,22 +28,22 @@ public class Juego {
 
     public void posicionarNMaderas(Mapa mapa, int n) {
         for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasillero(new Madera());
+            mapa.ubicarEnCasilleroAleatorio(new Madera());
         }
     }
     public void posicionarNPiedras(Mapa mapa, int n) {
         for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasillero(new Piedra());
+            mapa.ubicarEnCasilleroAleatorio(new Piedra());
         }
     }
     public void posicionarNMetales(Mapa mapa, int n) {
         for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasillero(new Metal());
+            mapa.ubicarEnCasilleroAleatorio(new Metal());
         }
     }
     public void posicionarNDiamantes(Mapa mapa,  int n) {
         for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasillero(new Diamante());
+            mapa.ubicarEnCasilleroAleatorio(new Diamante());
         }
     }
 }

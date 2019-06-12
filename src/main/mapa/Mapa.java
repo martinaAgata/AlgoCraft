@@ -23,10 +23,14 @@ public class Mapa {
          }
      }
 
-    public void ubicarEnCasillero(Ubicable ubicable) {
+    public void ubicarEnCasilleroAleatorio(Ubicable ubicable) {
         int x = (int)(Math.random()*filas);
         int y = (int)(Math.random()*columnas);
         this.casilleros.get(new Ubicacion(x, y)).guardarUbicable(ubicable);
+        // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
+    }
+    public void ubicarEnCasillero(Ubicable ubicable, Ubicacion ubicacion) {
+        this.casilleros.get(ubicacion).guardarUbicable(ubicable);
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
 }

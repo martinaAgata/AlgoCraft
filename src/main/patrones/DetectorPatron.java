@@ -1,11 +1,11 @@
-package main.herramientas;
+package main.patrones;
 
+import main.herramientas.Herramienta;
 import main.mapa.Mapa;
 
 import java.util.Optional;
 
-public abstract class DetectorPatron {
-    /*
+public abstract class DetectorPatron {/*
         private Optional<DetectorPatron> siguiente = Optional.empty();
 
         public DetectorPatron() {
