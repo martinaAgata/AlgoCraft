@@ -3,6 +3,8 @@ import main.estados.Estado;
 import main.Ubicable;
 import main.herramientas.Herramienta;
 
+import java.util.Objects;
+
 public abstract class Material implements Desgastable, Ubicable {
 
     protected Estado estado;
