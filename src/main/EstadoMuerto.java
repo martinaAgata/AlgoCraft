@@ -1,11 +1,11 @@
 package main;
 
-import main.exceptions.HerramientaRotaError;
+import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 
 public class EstadoMuerto implements Estado {
 
     public Estado desgastar(int fuerza) {
-        throw new HerramientaRotaError("No puede desgastarse una herramienta rota");
+        throw new HerramientaRotaNoPuedeDesgastarseException("No puede desgastarse una herramienta rota");
     }
 
     public int getDurabilidad() {
