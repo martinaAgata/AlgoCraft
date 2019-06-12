@@ -3,6 +3,8 @@ package main.materiales;
 import main.EstadoVivo;
 import main.herramientas.Pico;
 
+import java.util.Optional;
+
 public class Metal extends Material {
 
     public static final int DURABILIDAD_METAL = 50;
@@ -16,7 +18,7 @@ public class Metal extends Material {
         this.reducirDurabilidad(fuerza);
     }*/
     @Override
-    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
     @Override
-    public Desgastable desgastarContra(Pico pico){ return pico.desgastarContra(this);}
+    public Optional<Desgastable> desgastarContra(Pico pico){ return pico.desgastarContra(this);}
 }

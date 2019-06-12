@@ -3,6 +3,8 @@ package main.materiales;
 import main.EstadoVivo;
 import main.herramientas.Hacha;
 
+import java.util.Optional;
+
 public class Madera extends Material {
 
     public static final int DURABILIDAD_MADERA = 10;
@@ -28,8 +30,13 @@ public class Madera extends Material {
         this.reducirDurabilidad(fuerza);
     }*/
     @Override
-    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    public Optional<Desgastable> desgastarContra(Desgastable desgastable){
+        return desgastable.desgastarContra(this);
+    }
+
     @Override
-    public Desgastable desgastarContra(Hacha hacha){ return hacha.desgastarContra(this);}
+    public Optional<Desgastable> desgastarContra(Hacha hacha){
+        return hacha.desgastarContra(this);
+    }
 
 }

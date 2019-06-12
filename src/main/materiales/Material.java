@@ -19,12 +19,4 @@ public abstract class Material implements Desgastable, Ubicable {
         return this.estado.getDurabilidad();
     }
 
-    public Desgastable desgastarContra(Desgastable desgastable){ return null;}
-    public Desgastable desgastarContra(Pico pico){ return null; }
-    public Desgastable desgastarContra(Hacha pico){ return null; }
-    public Desgastable desgastarContra(PicoFino pico){ return null; }
-    public Desgastable desgastarContra(Madera madera){ return null; }
-    public Desgastable desgastarContra(Piedra piedra){ return null; }
-    public Desgastable desgastarContra(Metal metal){ return null; }
-    public Desgastable desgastarContra(Diamante diamante){ return null; }
 }

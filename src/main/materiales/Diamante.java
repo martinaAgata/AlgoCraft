@@ -3,6 +3,8 @@ package main.materiales;
 import main.EstadoVivo;
 import main.herramientas.PicoFino;
 
+import java.util.Optional;
+
 public class Diamante extends Material {
 
     public static final int DURABILIDAD_DIAMANTE = 100;
@@ -17,7 +19,7 @@ public class Diamante extends Material {
     }*/
 
     @Override
-    public Desgastable desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
     @Override
-    public Desgastable desgastarContra(PicoFino pico){ return pico.desgastarContra(this); }
+    public Optional<Desgastable> desgastarContra(PicoFino pico){ return pico.desgastarContra(this); }
 }
