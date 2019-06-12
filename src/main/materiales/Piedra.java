@@ -38,4 +38,10 @@ public class Piedra extends Material {
     public Optional<Desgastable> desgastarContra(Metal metal){
         return Optional.of(this);
     }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return true;
+    }
 }

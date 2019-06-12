@@ -3,6 +3,7 @@ package main.materiales;
 import main.estados.EstadoVivo;
 import main.herramientas.Hacha;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Madera extends Material {
@@ -29,6 +30,9 @@ public class Madera extends Material {
         int fuerza = hacha.getFuerza();
         this.reducirDurabilidad(fuerza);
     }*/
+
+
+
     @Override
     public Optional<Desgastable> desgastarContra(Desgastable desgastable){
         return desgastable.desgastarContra(this);
@@ -38,5 +42,21 @@ public class Madera extends Material {
     public Optional<Desgastable> desgastarContra(Hacha hacha){
         return hacha.desgastarContra(this);
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Material material = (Material) o;
+        return Objects.equals(estado, material.estado);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(estado);
+    }
+    }
+
 
 }
