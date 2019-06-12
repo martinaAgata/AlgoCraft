@@ -25,7 +25,7 @@ public class Hacha extends Herramienta {
     private static final int FUERZA_HACHA_METAL = 10;
     private static final double FACTOR_DESGASTE_METAL = 0.5;
 
-    private Hacha(EstrategiaDesgaste estrategia, int durabilidad, int fuerza) {
+    public Hacha(EstrategiaDesgaste estrategia, int durabilidad, int fuerza) {
         this.estrategia = estrategia;
         this.estado = new EstadoVivo(durabilidad);
         this.fuerza = fuerza;
