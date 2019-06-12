@@ -9,9 +9,9 @@ public class Mapa {
      private final int filas;
      private final int columnas;
 
-     public Mapa() {
-         this.filas = 20;
-         this.columnas = 20;
+     public Mapa(int cantidadFilas, int cantidadColumnas) {
+         this.filas = cantidadFilas;
+         this.columnas = cantidadColumnas;
          this.inicializarMapa();
      }
 
