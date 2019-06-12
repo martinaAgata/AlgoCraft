@@ -15,52 +15,36 @@ import static org.junit.Assert.assertThat;
 public class HachaMetalTests {
 
     @Test
-    public void test12HachaMetalSeUsaContraMaderaReduceSuDurabilidad(){
-<<<<<<< HEAD
+    public void test12HachaMetalSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
         Hacha hachaMetal = constructor.construirHachaMetal();
-=======
-        Hacha hachaMetal = ConstructorHacha.construirHachaMetal();
->>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         Madera madera = new Madera();
         hachaMetal.usar(madera);
         assertThat(hachaMetal.getDurabilidad(), is(395));
     }
 
     @Test
-    public void test13HachaMetalSeUsaContraPiedraReduceSuDurabilidad(){
-<<<<<<< HEAD
+    public void test13HachaMetalSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
         Hacha hachaMetal = constructor.construirHachaMetal();
-=======
-        Hacha hachaMetal = ConstructorHacha.construirHachaMetal();
->>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         Piedra piedra = new Piedra();
         hachaMetal.usar(piedra);
         assertThat(hachaMetal.getDurabilidad(), is(395));
     }
 
     @Test
-    public void test14HachaMetalSeUsaContraMetalReduceSuDurabilidad(){
-<<<<<<< HEAD
+    public void test14HachaMetalSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
         Hacha hachaMetal = constructor.construirHachaMetal();
-=======
-        Hacha hachaMetal = ConstructorHacha.construirHachaMetal();
->>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         Metal metal = new Metal();
         hachaMetal.usar(metal);
         assertThat(hachaMetal.getDurabilidad(), is(395));
     }
 
     @Test
-    public void test15HachaMetalSeUsaContraDiamanteReduceSuDurabilidad(){
-<<<<<<< HEAD
+    public void test15HachaMetalSeUsaContraDiamanteReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
         Hacha hachaMetal = constructor.construirHachaMetal();
-=======
-        Hacha hachaMetal = ConstructorHacha.construirHachaMetal();
->>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         Diamante diamante = new Diamante();
         hachaMetal.usar(diamante);
         assertThat(hachaMetal.getDurabilidad(), is(395));
