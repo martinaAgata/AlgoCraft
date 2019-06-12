@@ -27,5 +27,6 @@ public class Mapa {
         int x = (int)(Math.random()*filas);
         int y = (int)(Math.random()*columnas);
         this.casilleros.get(new Ubicacion(x, y)).guardarUbicable(ubicable);
+        // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
 }
