@@ -22,7 +22,7 @@ public class DiamanteTests {
     @Test
     public void testDiamanteNoEsDesgastadoPorHachaMadera() {
         Diamante diamante = new Diamante();
-        Hacha hachaMadera = Hacha.nuevaHachaMadera();
+        Hacha hachaMadera = ConstructorHacha.construirHachaMadera();
         hachaMadera.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -30,7 +30,7 @@ public class DiamanteTests {
     @Test
     public void test03DiamanteNoEsDesgastadoPorHachaPiedra() {
         Diamante diamante = new Diamante();
-        Hacha hachaPiedra= Hacha.nuevaHachaPiedra();
+        Hacha hachaPiedra = ConstructorHacha.construirHachaPiedra();
         hachaPiedra.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -38,7 +38,7 @@ public class DiamanteTests {
     @Test
     public void test04DiamanteNoEsDesgastadoPorHachaMetal() {
         Diamante diamante = new Diamante();
-        Hacha hachaMetal = Hacha.nuevaHachaMetal();
+        Hacha hachaMetal = ConstructorHacha.construirHachaMetal();
         hachaMetal.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -46,7 +46,7 @@ public class DiamanteTests {
     @Test
     public void test05DiamanteNoEsDesgastadoPorPicoMadera() {
         Diamante diamante = new Diamante();
-        Pico picoMadera = Pico.nuevoPicoMadera();
+        Pico picoMadera = ConstructorPico.construirPicoMadera();
         picoMadera.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -54,7 +54,7 @@ public class DiamanteTests {
     @Test
     public void test06DiamanteNoEsDesgastadoPorPicoPiedra(){
         Diamante diamante = new Diamante();
-        Pico picoPiedra = Pico.nuevoPicoPiedra();
+        Pico picoPiedra = ConstructorPico.construirPicoPiedra();
         picoPiedra.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -62,7 +62,7 @@ public class DiamanteTests {
     @Test
     public void test07DiamanteNoEsDesgastadoPorPicoMetal(){
         Diamante diamante = new Diamante();
-        Pico picoMetal = Pico.nuevoPicoMetal();
+        Pico picoMetal = ConstructorPico.construirPicoMetal();
         picoMetal.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
 
@@ -71,7 +71,7 @@ public class DiamanteTests {
     @Test
     public void test08DiamanteEsDesgastadoPorPicoFino(){
         Diamante diamante = new Diamante();
-        PicoFino picoFino = new PicoFino();
+        PicoFino picoFino = ConstructorPicoFino.construirPicoFino();
         picoFino.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 20));
     }
@@ -79,7 +79,7 @@ public class DiamanteTests {
     @Test
     public void test09DiamanteEsDesgastadoPorPicoFinoSeReduceVariasVeces(){
         Diamante diamante = new Diamante();
-        PicoFino picoFino = new PicoFino();
+        PicoFino picoFino = ConstructorPicoFino.construirPicoFino();
         picoFino.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 20));
         picoFino.usar(diamante);
@@ -93,7 +93,7 @@ public class DiamanteTests {
     @Test(expected = IllegalStateException.class)
     public void test10DiamanteEsDesgastadoPorPicoFinoLanzaExcepcionTrasRomperse(){
         Diamante diamante = new Diamante();
-        PicoFino picoFino = new PicoFino();
+        PicoFino picoFino = ConstructorPicoFino.construirPicoFino();
         picoFino.usar(diamante);
         picoFino.usar(diamante);
         picoFino.usar(diamante);
@@ -106,7 +106,7 @@ public class DiamanteTests {
     @Test
     public void test11DiamanteConEstadoMuertoDevuelveDurabilidadCero(){
         Diamante diamante = new Diamante();
-        PicoFino picoFino = new PicoFino();
+        PicoFino picoFino = ConstructorPicoFino.construirPicoFino();
         picoFino.usar(diamante);
         picoFino.usar(diamante);
         picoFino.usar(diamante);

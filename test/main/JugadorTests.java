@@ -21,8 +21,9 @@ public class JugadorTests {
     public void test01JugadorSeInicializaConUnItemEnElInventario(){
         Jugador jugador = new Jugador();
         Herramienta herramienta = jugador.obtenerHerramientaActual();
-        Hacha hacha = Hacha.nuevaHachaMadera();
+        Hacha hacha = ConstructorHacha.construirHachaMadera();
     }
+    
     @Test
     public void test02JugadorSeInicializaConUnHachaDeMadera(){
         Jugador jugador = new Jugador();
