@@ -22,9 +22,14 @@ public class JugadorTests {
     public void test01JugadorSeInicializaConUnItemEnElInventario(){
         Jugador jugador = new Jugador();
         Herramienta herramienta = jugador.obtenerHerramientaActual();
+<<<<<<< HEAD
         ConstructorHacha constructor = new ConstructorHacha();
         Hacha hachaMadera = constructor.construirHachaMadera();
+=======
+        Hacha hacha = ConstructorHacha.construirHachaMadera();
+>>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
     }
+    
     @Test
     public void test02JugadorSeInicializaConUnHachaDeMadera(){
         Jugador jugador = new Jugador();

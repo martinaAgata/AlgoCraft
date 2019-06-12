@@ -2,6 +2,7 @@ package main;
 
 import main.herramientas.ConstructorPico;
 import main.herramientas.Pico;
+import main.herramientas.ConstructorPico;
 import main.materiales.Madera;
 import main.materiales.Metal;
 import main.materiales.Piedra;
@@ -15,20 +16,32 @@ public class PicoPiedraTests {
     private final int FUERZA_PICO_PIEDRA = 4;
     @Test
     public void test01CrearPicoDePiedraConDurabilidad() {
+<<<<<<< HEAD
         ConstructorPico constructor = new ConstructorPico();
         Pico picoPiedra = constructor.construirPicoPiedra();
+=======
+        Pico picoPiedra = ConstructorPico.construirPicoPiedra();
+>>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         assertThat(picoPiedra.getDurabilidad(), is(DURABILIDAD_PICO_PIEDRA));
     }
     @Test
     public void test02CrearPicoDePiedraConFuerza() {
+<<<<<<< HEAD
         ConstructorPico constructor = new ConstructorPico();
         Pico picoPiedra = constructor.construirPicoPiedra();
+=======
+        Pico picoPiedra = ConstructorPico.construirPicoPiedra();
+>>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         assertThat(picoPiedra.getFuerza(), is(FUERZA_PICO_PIEDRA));
     }
     @Test
     public void test03PicoDePiedraSeUsaContraMaderaReduceSuDurabilidad() {
+<<<<<<< HEAD
         ConstructorPico constructor = new ConstructorPico();
         Pico picoPiedra = constructor.construirPicoPiedra();
+=======
+        Pico picoPiedra = ConstructorPico.construirPicoPiedra();
+>>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         Madera madera = new Madera();
         picoPiedra.usar(madera);
         assertThat(picoPiedra.getDurabilidad(), is(DURABILIDAD_PICO_PIEDRA - ((int)(FUERZA_PICO_PIEDRA/1.5))));
@@ -36,8 +49,12 @@ public class PicoPiedraTests {
     }
     @Test
     public void test04PicoDePiedraSeUsaContraPiedraReduceSuDurabilidad() {
+<<<<<<< HEAD
         ConstructorPico constructor = new ConstructorPico();
         Pico picoPiedra = constructor.construirPicoPiedra();
+=======
+        Pico picoPiedra = ConstructorPico.construirPicoPiedra();
+>>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         Piedra piedra = new Piedra();
         picoPiedra.usar(piedra);
         assertThat(picoPiedra.getDurabilidad(), is(DURABILIDAD_PICO_PIEDRA - ((int)(FUERZA_PICO_PIEDRA/1.5))));
@@ -46,8 +63,12 @@ public class PicoPiedraTests {
 
     @Test
     public void test05PicoDePiedraSeUsaContraMetalReduceSuDurabilidad() {
+<<<<<<< HEAD
         ConstructorPico constructor = new ConstructorPico();
         Pico picoPiedra = constructor.construirPicoPiedra();
+=======
+        Pico picoPiedra = ConstructorPico.construirPicoPiedra();
+>>>>>>> a3d961f5c7e117f60d6f0107976ebe64a88fb5a7
         Metal metal = new Metal();
         picoPiedra.usar(metal);
         assertThat(picoPiedra.getDurabilidad(), is(DURABILIDAD_PICO_PIEDRA - ((int)(FUERZA_PICO_PIEDRA/1.5))));
