@@ -32,7 +32,7 @@ public class DesgasteLinealFactorTests {
     public void test02DesgasteLinealFactorDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado() {
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(2/3);
         EstadoVivo estadoVivo = new EstadoVivo(6);
-        assertTrue(desgasteLineal.desgastar(3, estadoVivo) instanceof EstadoVivo);
+        assertTrue(desgasteLineal.desgastar(6, estadoVivo) instanceof EstadoVivo);
         assertTrue(desgasteLineal.desgastar(2, estadoVivo) instanceof EstadoVivo);
         assertFalse(desgasteLineal.desgastar(3, estadoVivo) instanceof EstadoVivo);
     }

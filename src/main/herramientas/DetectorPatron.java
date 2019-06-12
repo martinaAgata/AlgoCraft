@@ -5,6 +5,7 @@ import main.mapa.Mapa;
 import java.util.Optional;
 
 public abstract class DetectorPatron {
+    /*
         private Optional<DetectorPatron> siguiente = Optional.empty();
 
         public DetectorPatron() {
@@ -39,6 +40,6 @@ public abstract class DetectorPatron {
 
     }
 
-
+*/
 }
 
