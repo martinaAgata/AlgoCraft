@@ -1,5 +1,6 @@
 package main;
 
+import main.herramientas.ConstructorHacha;
 import main.herramientas.Hacha;
 import main.herramientas.Herramienta;
 import main.materiales.Madera;
@@ -21,7 +22,8 @@ public class JugadorTests {
     public void test01JugadorSeInicializaConUnItemEnElInventario(){
         Jugador jugador = new Jugador();
         Herramienta herramienta = jugador.obtenerHerramientaActual();
-        Hacha hacha = Hacha.nuevaHachaMadera();
+        ConstructorHacha constructor = new ConstructorHacha();
+        Hacha hachaMadera = constructor.construirHachaMadera();
     }
     @Test
     public void test02JugadorSeInicializaConUnHachaDeMadera(){

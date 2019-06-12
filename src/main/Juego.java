@@ -7,14 +7,17 @@ import main.materiales.Metal;
 import main.materiales.Diamante;
 
 public class Juego {
+    private static final int CANTIDAD_FILAS = 20;
+    private static final int CANTIDAD_COLUMNAS = 20;
     private static final int CANTIDAD_MADERAS = 70;
     private static final int CANTIDAD_PIEDRAS = 50;
     private static final int CANTIDAD_METALES = 35;
     private static final int CANTIDAD_DIAMANTES = 10;
+
     private Mapa mapa;
     private Jugador jugador;
     public Juego() {
-        mapa = new Mapa();
+        mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
         jugador = new Jugador();
         mapa.ubicarEnCasillero(jugador);
         posicionarNMaderas(mapa, CANTIDAD_MADERAS);
