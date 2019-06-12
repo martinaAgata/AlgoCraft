@@ -39,5 +39,5 @@ public abstract class DetectorPatron {
         protected abstract Mapa getMapaPatron();
 
     }
-}
+
 
