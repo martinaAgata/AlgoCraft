@@ -24,24 +24,24 @@ public class Ubicacion {
         return Objects.hash(x, y);
     }
 
-    public derecha() {
+    public Ubicacion derecha() {
         return new Ubicacion(this.x+1, this.y);
     }
-    public izquierda() {
+    public Ubicacion izquierda() {
         return new Ubicacion(this.x-1, this.y);
     }
-    public arriba() {
+    public Ubicacion arriba() {
         return new Ubicacion(this.x, this.y+1);
     }
-    public abajo() {
+    public Ubicacion abajo() {
         return new Ubicacion(this.x, this.y-1);
     }
-    public arribaDerecha() {
+    public Ubicacion arribaDerecha() {
     }
-    public arribaIzquierda() {
+    public Ubicacion arribaIzquierda() {
     }
-    public abajoDerecha() {
+    public Ubicacion abajoDerecha() {
     }
-    public abajoIzquierda() {
+    public Ubicacion abajoIzquierda() {
     }
 }
