@@ -2,7 +2,6 @@ package main;
 
 import main.estrategias.DesgasteLineal;
 import org.junit.Test;
-import sun.security.krb5.internal.crypto.Des;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
