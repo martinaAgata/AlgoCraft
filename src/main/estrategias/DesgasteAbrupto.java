@@ -1,7 +1,7 @@
 package main.estrategias;
 
-import main.Estado;
-import main.EstadoMuerto;
+import main.estados.Estado;
+import main.estados.EstadoMuerto;
 
 public class DesgasteAbrupto implements EstrategiaDesgaste {
 

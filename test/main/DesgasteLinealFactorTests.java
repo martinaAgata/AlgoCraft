@@ -1,5 +1,7 @@
 package main;
 
+import main.estados.EstadoMuerto;
+import main.estados.EstadoVivo;
 import main.estrategias.DesgasteLinealFactor;
 import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import org.junit.Test;

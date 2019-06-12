@@ -1,4 +1,7 @@
-package main;
+package main.estados;
+
+import main.estados.Estado;
+import main.estados.EstadoMuerto;
 
 public class EstadoVivo implements Estado {
 

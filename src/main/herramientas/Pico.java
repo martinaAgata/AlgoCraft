@@ -1,8 +1,6 @@
 package main.herramientas;
 
-import main.EstadoVivo;
-import main.estrategias.DesgasteAbrupto;
-import main.estrategias.DesgasteLinealFactor;
+import main.estados.EstadoVivo;
 import main.estrategias.EstrategiaDesgaste;
 import main.materiales.*;
 

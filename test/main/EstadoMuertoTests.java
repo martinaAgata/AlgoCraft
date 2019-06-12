@@ -1,5 +1,6 @@
 package main;
 
+import main.estados.EstadoMuerto;
 import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import org.junit.Test;
 

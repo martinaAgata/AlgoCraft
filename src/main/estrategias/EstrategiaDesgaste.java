@@ -1,6 +1,6 @@
 package main.estrategias;
 
-import main.Estado;
+import main.estados.Estado;
 
 public interface EstrategiaDesgaste {
 

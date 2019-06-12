@@ -1,10 +1,7 @@
 package main.materiales;
-import main.Estado;
+import main.estados.Estado;
 import main.Ubicable;
-import main.herramientas.Hacha;
 import main.herramientas.Herramienta;
-import main.herramientas.Pico;
-import main.herramientas.PicoFino;
 
 public abstract class Material implements Desgastable, Ubicable {
 

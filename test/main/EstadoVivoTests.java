@@ -1,5 +1,7 @@
 package main;
 
+import main.estados.EstadoMuerto;
+import main.estados.EstadoVivo;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

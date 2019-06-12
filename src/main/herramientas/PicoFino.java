@@ -1,6 +1,6 @@
 package main.herramientas;
 
-import main.EstadoVivo;
+import main.estados.EstadoVivo;
 import main.estrategias.EstrategiaDesgaste;
 import main.materiales.Desgastable;
 import main.materiales.Diamante;

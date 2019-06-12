@@ -1,7 +1,6 @@
 package main.herramientas;
 
-import main.Estado;
-import main.EstadoVivo;
+import main.estados.Estado;
 import main.materiales.*;
 import main.estrategias.EstrategiaDesgaste;
 

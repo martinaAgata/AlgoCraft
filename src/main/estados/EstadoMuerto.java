@@ -1,5 +1,6 @@
-package main;
+package main.estados;
 
+import main.estados.Estado;
 import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 
 public class EstadoMuerto implements Estado {

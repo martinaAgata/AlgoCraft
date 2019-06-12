@@ -1,6 +1,6 @@
 package main.estrategias;
 
-import main.Estado;
+import main.estados.Estado;
 
 public class DesgasteLinealFactor implements EstrategiaDesgaste {
     private double factorDesgaste;

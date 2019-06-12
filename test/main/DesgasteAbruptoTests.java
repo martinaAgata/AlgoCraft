@@ -1,5 +1,7 @@
 package main;
 
+import main.estados.EstadoMuerto;
+import main.estados.EstadoVivo;
 import main.estrategias.DesgasteAbrupto;
 import org.junit.Test;
 

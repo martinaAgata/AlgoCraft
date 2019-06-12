@@ -1,12 +1,9 @@
 package main.herramientas;
 
-import main.EstadoVivo;
-import main.estrategias.DesgasteLinealFactor;
+import main.estados.EstadoVivo;
 import main.estrategias.EstrategiaDesgaste;
 import main.materiales.Desgastable;
 import main.materiales.Madera;
-import main.materiales.Material;
-import main.materiales.Piedra;
 
 import java.util.Optional;
 

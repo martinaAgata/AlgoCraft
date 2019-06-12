@@ -1,6 +1,6 @@
 package main.materiales;
 
-import main.EstadoVivo;
+import main.estados.EstadoVivo;
 import main.herramientas.PicoFino;
 
 import java.util.Optional;
