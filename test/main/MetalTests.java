@@ -1,5 +1,6 @@
 package main;
 
+import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import main.herramientas.*;
 import main.materiales.Material;
 import main.materiales.Metal;
@@ -87,7 +88,7 @@ public class MetalTests {
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 12));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test11MetalEsDesgastadoPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();

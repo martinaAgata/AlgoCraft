@@ -1,12 +1,9 @@
 package main.herramientas;
 
 import main.EstadoVivo;
-import main.estrategias.DesgasteLinealDecimal;
-import main.estrategias.DesgasteLinealFactor;
 import main.estrategias.EstrategiaDesgaste;
 import main.materiales.Desgastable;
 import main.materiales.Diamante;
-import main.materiales.Material;
 
 import java.util.Optional;
 

@@ -1,5 +1,6 @@
 package main;
 
+import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import main.herramientas.*;
 import main.materiales.Madera;
 import org.junit.Test;
@@ -106,7 +107,7 @@ public class MaderaTests {
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 10));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test10MaderaEsDesgastadaPorHachaMaderaLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
@@ -119,7 +120,7 @@ public class MaderaTests {
         hachaMadera.usar(madera);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test11MaderaEsDesgastadaPorHachaPiedraLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
@@ -129,7 +130,7 @@ public class MaderaTests {
         hachaPiedra.usar(madera);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test12MaderaEsDesgastadaPorHachaMetalLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();

@@ -1,5 +1,6 @@
 package main;
 
+import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import main.herramientas.*;
 import main.materiales.Desgastable;
 import main.materiales.Diamante;
@@ -98,7 +99,7 @@ public class DiamanteTests {
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 80));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test10DiamanteEsDesgastadoPorPicoFinoLanzaExcepcionTrasRomperse(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();

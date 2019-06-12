@@ -1,6 +1,6 @@
 package main;
 
-import main.estrategias.DesgasteLineal;
+import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import main.herramientas.*;
 import main.materiales.Piedra;
 import org.junit.Test;
@@ -118,7 +118,7 @@ public class PiedraTests {
         assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 24));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test11PiedraEsDesgastadaPorPicoMaderaLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
@@ -126,7 +126,7 @@ public class PiedraTests {
         for (int i = 0; i < 16; i++){ picoMadera.usar(piedra); }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test12PiedraEsDesgastadaPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
@@ -134,7 +134,7 @@ public class PiedraTests {
         for (int i = 0; i < 9; i++) { picoPiedra.usar(piedra); }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test13PiedraEsDesgastadaPorPicoMetalLanzaExcepcionTrasRomperse() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();

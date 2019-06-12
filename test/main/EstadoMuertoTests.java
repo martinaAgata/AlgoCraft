@@ -1,5 +1,6 @@
 package main;
 
+import main.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,7 +11,7 @@ public class EstadoMuertoTests {
         EstadoMuerto estadoMuerto = new EstadoMuerto();
         assertEquals(estadoMuerto.getDurabilidad(), 0);
     }
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
     public void test02EstadoMuertoDesgastarLanzaError(){
         EstadoMuerto estadoMuerto = new EstadoMuerto();
         estadoMuerto.desgastar(10);
