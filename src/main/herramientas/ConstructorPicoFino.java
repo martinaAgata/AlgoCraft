@@ -10,7 +10,7 @@ public class ConstructorPicoFino {
 
 
     public PicoFino construirPicoFino() {
-        PicoFino picoFino = new picoFino(new DesgasteLinealFactor(FACTOR_DESGASTE), DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        PicoFino picoFino = new PicoFino(new DesgasteLinealFactor(FACTOR_DESGASTE), DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
         return  picoFino;
     }
 
