@@ -10,6 +10,7 @@ import main.materiales.Metal;
 import main.materiales.Piedra;
 import main.patrones.DetectorPatron;
 import main.patrones.DetectorPatronPico;
+import org.junit.Test;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 
 public class DetectorPatronesPico {
+    @Test
     public void testSeCreaUnPicoDeMaderaYSeReconocePatron() {
         Madera madera = new Madera();
         Mapa tableroConPicoMadera = new Mapa(3, 3);
@@ -36,6 +38,7 @@ public class DetectorPatronesPico {
         assertThat(resultado.get(), instanceOf(Pico.class));
     }
 
+    @Test
     public void testSeCreaUnPicoDePiedraYSeReconocePatron(){
         Piedra piedra = new Piedra();
         Mapa tableroConPicoPiedra = new Mapa(3,3);
@@ -54,6 +57,7 @@ public class DetectorPatronesPico {
         assertThat(resultado.get(), instanceOf(Pico.class));
     }
 
+    @Test
     public void testSeCreaUnPicoDeMetalYSeReconocePatron(){
         Metal metal = new Metal();
         Mapa tableroConPicoMetal = new Mapa(3,3);
@@ -72,6 +76,7 @@ public class DetectorPatronesPico {
         assertThat(resultado.get(), instanceOf(Pico.class));
     }
 
+    @Test
     public void testNoSeCreaUnPicoDeMetalYNoSeReconocePatron(){
         Mapa tablero = new Mapa(3,3);
         Metal metal = new Metal();
