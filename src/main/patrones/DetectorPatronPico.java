@@ -1,9 +1,6 @@
 package main.patrones;
 
-import main.ConstructorDeHerramientas;
-import main.herramientas.Hacha;
 import main.herramientas.Pico;
-import main.mapa.Mapa;
 import main.materiales.Material;
 
 import java.lang.reflect.Constructor;

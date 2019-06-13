@@ -1,5 +1,5 @@
 package main.mapa;
-import exceptions.CasilleroVacioException;
+import main.exceptions.CasilleroVacioException;
 import main.Ubicable;
 import main.exceptions.CasilleroEstaOcupadoException;
 
@@ -25,7 +25,11 @@ public class Casillero {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Casillero casillero = (Casillero) o;
-        return Objects.equals(ubicableOptional, casillero.ubicableOptional);
+        if (ubicableOptional.isEmpty() && casillero.ubicableOptional.isEmpty())
+            return true;
+        if (ubicableOptional.isEmpty() || casillero.ubicableOptional.isEmpty())
+            return false;
+        return ubicableOptional.get().equals(casillero.ubicableOptional.get());
     }
 
     @Override

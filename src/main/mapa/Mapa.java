@@ -17,16 +17,16 @@ public class Mapa {
      }
 
      private void inicializarMapa() {
-         for (int i=0; i<=this.filas; i++) {
-             for (int j=0; j<=this.columnas; j++) {
+         for (int i=1; i<=this.filas; i++) {
+             for (int j=1; j<=this.columnas; j++) {
                  this.casilleros.put(new Ubicacion(i, j), new Casillero());
              }
          }
      }
 
     public void ubicarEnCasilleroAleatorio(Ubicable ubicable) {
-        int x = (int)(Math.random()*filas);
-        int y = (int)(Math.random()*columnas);
+        int x = (int)(Math.random()*filas + 1);
+        int y = (int)(Math.random()*columnas + 1);
         this.casilleros.get(new Ubicacion(x, y)).guardarUbicable(ubicable);
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
@@ -35,8 +35,8 @@ public class Mapa {
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
 
-    public Ubicable eliminarDeCasillero(Ubicacion ubicacion) {
-        return (this.casilleros.get(ubicacion).eliminarUbicable());
+    public void eliminarDeCasillero(Ubicacion ubicacion) {
+        this.casilleros.get(ubicacion).eliminarUbicable();
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
 
@@ -45,9 +45,12 @@ public class Mapa {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mapa mapa = (Mapa) o;
-        return filas == mapa.filas &&
-                columnas == mapa.columnas &&
-                Objects.equals(casilleros, mapa.casilleros);
+        if (!(filas == mapa.filas && columnas == mapa.columnas)) return false;
+        for (Ubicacion ubicacion : casilleros.keySet()) {
+            if (!casilleros.get(ubicacion).equals(mapa.casilleros.get(ubicacion)))
+                return false;
+        }
+        return true;
     }
 
     @Override

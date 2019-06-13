@@ -1,6 +1,6 @@
 package main;
 
-import exceptions.CasilleroVacioException;
+import main.exceptions.CasilleroVacioException;
 import main.ObjetoUbicable;
 import main.exceptions.CasilleroEstaOcupadoException;
 import main.mapa.Casillero;

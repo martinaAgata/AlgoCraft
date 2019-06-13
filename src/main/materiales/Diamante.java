@@ -29,8 +29,7 @@ public class Diamante extends Material {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Material material = (Material) o;
-        return Objects.equals(estado, material.estado);
+        return true;
     }
 
     @Override
