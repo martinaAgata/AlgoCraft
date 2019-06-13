@@ -17,16 +17,16 @@ public class Mapa {
      }
 
      private void inicializarMapa() {
-         for (int i=0; i<=this.filas; i++) {
-             for (int j=0; j<=this.columnas; j++) {
+         for (int i=1; i<=this.filas; i++) {
+             for (int j=1; j<=this.columnas; j++) {
                  this.casilleros.put(new Ubicacion(i, j), new Casillero());
              }
          }
      }
 
     public void ubicarEnCasilleroAleatorio(Ubicable ubicable) {
-        int x = (int)(Math.random()*filas);
-        int y = (int)(Math.random()*columnas);
+        int x = (int)(Math.random()*filas + 1);
+        int y = (int)(Math.random()*columnas + 1);
         this.casilleros.get(new Ubicacion(x, y)).guardarUbicable(ubicable);
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
