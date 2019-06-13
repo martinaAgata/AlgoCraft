@@ -37,5 +37,4 @@ public class Diamante extends Material {
     public int hashCode() {
         return Objects.hash(estado);
     }
-    }
 }

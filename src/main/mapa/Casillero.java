@@ -6,14 +6,16 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class Casillero {
+    
     private Optional<Ubicable> ubicableOptional = Optional.empty();
+
     public void guardarUbicable(Ubicable u) {
         if (this.ubicableOptional.isPresent()) { throw new CasilleroEstaOcupadoException("No es posible guardar, el casillero se encuentra ocupado"); }
         this.ubicableOptional = Optional.of(u);
     }
 
     public Ubicable eliminarUbicable() {
-        if (!this.ubicableOptional.isPresent()) { return null; }
+        if (this.ubicableOptional.isEmpty()) { return null; }
         Ubicable ubicable = this.ubicableOptional.get();
         this.ubicableOptional = Optional.empty();
         return ubicable;
