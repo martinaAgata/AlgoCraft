@@ -1,8 +1,6 @@
 package main.patrones;
 
-import main.ConstructorDeHerramientas;
 import main.herramientas.Hacha;
-import main.mapa.Mapa;
 import main.materiales.Material;
 
 public class DetectorPatronHacha extends DetectorPatron {
