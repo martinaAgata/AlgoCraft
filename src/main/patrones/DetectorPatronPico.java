@@ -23,4 +23,9 @@ public class DetectorPatronPico extends DetectorPatron {
     private void crearMapa(Material material) {
         return new PatronPico(material);
     }
+
+    protected Mapa getMapaPatron() {
+        return mapa;
+    }
+
 }
