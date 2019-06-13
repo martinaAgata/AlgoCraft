@@ -5,6 +5,7 @@ import main.herramientas.Herramienta;
 import main.ConstructorDeHerramientas;
 import main.mapa.Mapa;
 
+import java.lang.reflect.Constructor;
 import java.util.Optional;
 
 public abstract class DetectorPatron {

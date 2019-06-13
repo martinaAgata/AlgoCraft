@@ -6,6 +6,8 @@ import main.herramientas.PicoFino;
 import main.mapa.Mapa;
 import main.materiales.Material;
 
+import java.lang.reflect.Constructor;
+
 public class DetectorPatronPicoFino extends DetectorPatron {
     private final Material materialParteSuperior;
     private Patron mapa;

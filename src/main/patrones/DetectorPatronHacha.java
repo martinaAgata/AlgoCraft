@@ -5,6 +5,8 @@ import main.herramientas.Hacha;
 import main.mapa.Mapa;
 import main.materiales.Material;
 
+import java.lang.reflect.Constructor;
+
 public class DetectorPatronHacha extends DetectorPatron {
     private final Material materialParteSuperior;
     private Patron mapa;
