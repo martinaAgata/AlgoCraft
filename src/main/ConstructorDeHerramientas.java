@@ -20,7 +20,6 @@ public class ConstructorDeHerramientas {
     public void insertarMaterial(Material material, Ubicacion ubicacion) {
         this.tablero.ubicarEnCasillero(material, ubicacion);
         this.identificarPatron();
-        //Que this.detectorPatron = new DetectorPatron();hacer en base a si el Patron reconoce o no QUITAR
     }
 
     public Material quitarMaterial(Ubicacion ubicacion) {
