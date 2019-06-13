@@ -22,34 +22,19 @@ public class ConstructorDeHerramientas {
         this.identificarPatron();
         //Que this.detectorPatron = new DetectorPatron();hacer en base a si el Patron reconoce o no QUITAR
     }
-    public Material quitarMaterial(Ubicacion ubicacion) {
-        Material material = this.tablero.eliminarDeCasillero(ubicacion);
-    }
 
     public Material quitarMaterial(Ubicacion ubicacion) {
-        Material material = this.tablero.eliminarDeCasillero(ubicacion);
+        Material material = (Material) this.tablero.eliminarDeCasillero(ubicacion);
         this.identificarPatron();
         return material;
     }
 
-    private void identificarPatron(){
-
-        this.herramientaCreada = this.detectorPatron.compararPatron(this.tablero);
-    }
-
-    public Herramienta crearHerramienta() {
-        if (herramientaCreada.isEmpty()) {
-            throw new NoHayHerramientaParaCrearException("No se puede crear una herramienta con lo dispuesto en el tablero");
-        }
-        return this.herramientaCreada.get();
-    }
-
     private void identificarPatron() {
-        this.herramientaCreada = this.detectorPatron.compararPatron(this.tablero);
+        this.herramientaCreada = this.detectorPatron.resolver(this.tablero);
     }
 
     public Herramienta crearHerramienta() {
-        if(herramientaCreada.isEmpty()) throw new NoHayHerramientaParaCrearException("No se puede crear una herramienta con lo dispuesto en el tablero");
+        if(!herramientaCreada.isPresent()) throw new NoHayHerramientaParaCrearException("No se puede crear una herramienta con lo dispuesto en el tablero");
         return this.herramientaCreada.get();
     }
 }
