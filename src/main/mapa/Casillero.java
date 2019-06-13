@@ -12,6 +12,10 @@ public class Casillero {
         this.ubicableOptional = Optional.of(u);
     }
 
+    public void eliminarUbicable() {
+        if (this.ubicableOptional.isPresent()) { this.ubicableOptional = Optional.empty(); }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

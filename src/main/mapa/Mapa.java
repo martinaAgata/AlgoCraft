@@ -35,6 +35,11 @@ public class Mapa {
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
 
+    public void eliminarDeCasillero(Ubicacion ubicacion) {
+        this.casilleros.get(ubicacion).eliminarUbicable();
+        // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
