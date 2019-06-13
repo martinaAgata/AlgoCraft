@@ -57,6 +57,3 @@ public class Madera extends Material {
         return Objects.hash(estado);
     }
     }
-
-
-}

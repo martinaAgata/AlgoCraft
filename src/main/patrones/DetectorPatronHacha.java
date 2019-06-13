@@ -1,12 +1,10 @@
 package main.patrones;
 
-package main.patrones;
-
 import main.ConstructorDeHerramientas;
 import main.mapa.Mapa;
 import main.materiales.Material;
 
-public class DetectorPatronHacha extends DetectorPatron {
+public class DetectorPatronHacha extends DetectorPatron {/*
     private final Material materialParteSuperior;
     private final Mapa mapa;
 
@@ -24,5 +22,5 @@ public class DetectorPatronHacha extends DetectorPatron {
 
     private void crearMapa(Material material) {
         return new PatronHacha(material);
-    }
+    }*/
 }

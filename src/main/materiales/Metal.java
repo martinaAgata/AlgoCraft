@@ -37,4 +37,4 @@ public class Metal extends Material {
         return Objects.hash(estado);
     }
     }
-}
+

@@ -29,7 +29,7 @@ public class ConstructorDeHerramientas {
     }
 
     private void identificarPatron() {
-        this.herramientaCreada = this.detectorPatron.resolver(this.tablero);
+        /*this.herramientaCreada = this.detectorPatron.resolver(this.tablero);*/
     }
 
     public Herramienta crearHerramienta() {

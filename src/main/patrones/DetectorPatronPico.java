@@ -4,7 +4,7 @@ import main.ConstructorDeHerramientas;
 import main.mapa.Mapa;
 import main.materiales.Material;
 
-public class DetectorPatronPico extends DetectorPatron {
+public class DetectorPatronPico extends DetectorPatron {/*
     private final Material materialParteSuperior;
     private final Mapa mapa;
 
@@ -26,6 +26,6 @@ public class DetectorPatronPico extends DetectorPatron {
 
     protected Mapa getMapaPatron() {
         return mapa;
-    }
+    }*/
 
 }

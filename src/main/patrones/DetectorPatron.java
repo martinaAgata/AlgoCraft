@@ -8,7 +8,7 @@ import main.mapa.Mapa;
 import java.util.Optional;
 
 public abstract class DetectorPatron {
-
+/*
         private ConstructorDeHerramientas constructor;
         private Optional<DetectorPatron> siguiente = Optional.empty();
 
@@ -37,3 +37,5 @@ public abstract class DetectorPatron {
         protected abstract Mapa getMapaPatron();
 
     }
+*/
+}
