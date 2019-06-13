@@ -45,9 +45,12 @@ public class Mapa {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mapa mapa = (Mapa) o;
-        return filas == mapa.filas &&
-                columnas == mapa.columnas &&
-                Objects.equals(casilleros, mapa.casilleros);
+        if (!(filas == mapa.filas && columnas == mapa.columnas)) return false;
+        for (Ubicacion ubicacion : casilleros.keySet()) {
+            if (!casilleros.get(ubicacion).equals(mapa.casilleros.get(ubicacion)))
+                return false;
+        }
+        return true;
     }
 
     @Override
