@@ -2,7 +2,6 @@ package main.patrones;
 
 import main.herramientas.Herramienta;
 
-import main.ConstructorDeHerramientas;
 import main.mapa.Mapa;
 
 import java.util.Optional;
