@@ -1,8 +1,8 @@
 package main.patrones;
 
+import main.ConstructorDeHerramientas;
 import main.mapa.Mapa;
 import main.materiales.Material;
-import main.ConstructorDeHerramientas;
 
 public class DetectorPatronPico extends DetectorPatron {
     private final Material materialParteSuperior;

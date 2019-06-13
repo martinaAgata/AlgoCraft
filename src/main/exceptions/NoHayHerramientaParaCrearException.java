@@ -5,7 +5,11 @@ public class NoHayHerramientaParaCrearException extends RuntimeException {
         super(s);
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
 =======
 }
 >>>>>>> Stashed changes
