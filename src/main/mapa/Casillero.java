@@ -1,4 +1,5 @@
 package main.mapa;
+import exceptions.CasilleroVacioException;
 import main.Ubicable;
 import main.exceptions.CasilleroEstaOcupadoException;
 
@@ -6,7 +7,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class Casillero {
-    
+
     private Optional<Ubicable> ubicableOptional = Optional.empty();
 
     public void guardarUbicable(Ubicable u) {
@@ -14,11 +15,9 @@ public class Casillero {
         this.ubicableOptional = Optional.of(u);
     }
 
-    public Ubicable eliminarUbicable() {
-        if (this.ubicableOptional.isEmpty()) { return null; }
-        Ubicable ubicable = this.ubicableOptional.get();
+    public void eliminarUbicable() {
+        if (this.ubicableOptional.isEmpty()) { throw new CasilleroVacioException("No se puede eliminar nada de un casillero vacio"); }
         this.ubicableOptional = Optional.empty();
-        return ubicable;
     }
 
     @Override
