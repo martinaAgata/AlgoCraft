@@ -41,6 +41,7 @@ public class DetectorPatronesPico {
     @Test
     public void testSeCreaUnPicoDePiedraYSeReconocePatron(){
         Piedra piedra = new Piedra();
+        Madera madera = new Madera();
         Mapa tableroConPicoPiedra = new Mapa(3,3);
         Ubicacion ubicacionA = new Ubicacion(1, 1);
         Ubicacion ubicacionB = new Ubicacion(1, 2);
@@ -50,8 +51,8 @@ public class DetectorPatronesPico {
         tableroConPicoPiedra.ubicarEnCasillero(piedra, ubicacionA);
         tableroConPicoPiedra.ubicarEnCasillero(piedra, ubicacionB);
         tableroConPicoPiedra.ubicarEnCasillero(piedra, ubicacionC);
-        tableroConPicoPiedra.ubicarEnCasillero(piedra, ubicacionD);
-        tableroConPicoPiedra.ubicarEnCasillero(piedra, ubicacionE);
+        tableroConPicoPiedra.ubicarEnCasillero(madera, ubicacionD);
+        tableroConPicoPiedra.ubicarEnCasillero(madera, ubicacionE);
         DetectorPatron dp = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico().construirPicoPiedra());
         Optional<Herramienta> resultado = dp.resolver(tableroConPicoPiedra);
         assertThat(resultado.get(), instanceOf(Pico.class));
@@ -60,6 +61,7 @@ public class DetectorPatronesPico {
     @Test
     public void testSeCreaUnPicoDeMetalYSeReconocePatron(){
         Metal metal = new Metal();
+        Madera madera = new Madera();
         Mapa tableroConPicoMetal = new Mapa(3,3);
         Ubicacion ubicacionA = new Ubicacion(1, 1);
         Ubicacion ubicacionB = new Ubicacion(1, 2);
@@ -69,9 +71,9 @@ public class DetectorPatronesPico {
         tableroConPicoMetal.ubicarEnCasillero(metal, ubicacionA);
         tableroConPicoMetal.ubicarEnCasillero(metal, ubicacionB);
         tableroConPicoMetal.ubicarEnCasillero(metal, ubicacionC);
-        tableroConPicoMetal.ubicarEnCasillero(metal, ubicacionD);
-        tableroConPicoMetal.ubicarEnCasillero(metal, ubicacionE);
-        DetectorPatron dp = new DetectorPatronPico(new Madera(), () -> new ConstructorPico().construirPicoMetal());
+        tableroConPicoMetal.ubicarEnCasillero(madera, ubicacionD);
+        tableroConPicoMetal.ubicarEnCasillero(madera, ubicacionE);
+        DetectorPatron dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().construirPicoMetal());
         Optional<Herramienta> resultado = dp.resolver(tableroConPicoMetal);
         assertThat(resultado.get(), instanceOf(Pico.class));
     }
