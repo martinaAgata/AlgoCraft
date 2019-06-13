@@ -33,6 +33,7 @@ public class ConstructorDeHerramientas {
     }
 
     private void identificarPatron(){
+
         this.herramientaCreada = this.detectorPatron.compararPatron(this.tablero);
     }
 
