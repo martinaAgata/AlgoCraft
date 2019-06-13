@@ -13,10 +13,9 @@ import main.patrones.DetectorPatronPico;
 
 import java.util.Optional;
 
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class DetectorPatronesPico {
     public void testSeCreaUnPicoDeMaderaYSeReconocePatron() {
@@ -82,6 +81,6 @@ public class DetectorPatronesPico {
         tablero.ubicarEnCasillero(metal, ubicacionB);
         DetectorPatron dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().construirPicoMetal());
         Optional<Herramienta> resultado = dp.resolver(tablero);
-        assertThat(resultado.get(), instanceOf(Pico.class));
+        assertThat(resultado.get(), not(instanceOf(Pico.class)));
     }
 }
