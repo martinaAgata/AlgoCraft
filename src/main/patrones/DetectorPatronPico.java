@@ -1,31 +1,33 @@
 package main.patrones;
 
 import main.ConstructorDeHerramientas;
+import main.herramientas.Hacha;
+import main.herramientas.Pico;
 import main.mapa.Mapa;
 import main.materiales.Material;
 
-public class DetectorPatronPico extends DetectorPatron {/*
+public class DetectorPatronPico extends DetectorPatron {
     private final Material materialParteSuperior;
-    private final Mapa mapa;
+    private Patron mapa;
 
-    public DetectorPatronPico(Material material, ConstructorDeHerramientas constructor) {
+    public DetectorPatronPico(Material material, Constructor<Pico> constructor) {
         super(constructor);
         this.materialParteSuperior = material;
-        this.crearMapa();
+        this.crearMapa(material);
     }
 
-    public DetectorPatronPico(Material material, ConstructorDeHerramientas constructor, DetectorPatron siguiente) {
+    public DetectorPatronPico(Material material,Constructor<Pico> constructor, DetectorPatron siguiente) {
         super(constructor, siguiente);
         this.materialParteSuperior = material;
         this.crearMapa(material);
     }
 
     private void crearMapa(Material material) {
-        return new PatronPico(material);
+        this.mapa = new PatronPico(material);
     }
 
-    protected Mapa getMapaPatron() {
+    protected Patron getMapaPatron() {
         return mapa;
-    }*/
+    }
 
 }

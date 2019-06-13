@@ -19,4 +19,8 @@ public abstract class Patron {
         this.tablero.ubicarEnCasillero(material, ubicacionA);
         this.tablero.ubicarEnCasillero(material, ubicacionB);
     }
+
+    public boolean matchea(Mapa mapa) {
+        return this.tablero.equals(mapa);
+    }
 }

@@ -8,15 +8,16 @@ import main.mapa.Mapa;
 import java.util.Optional;
 
 public abstract class DetectorPatron {
-/*
-        private ConstructorDeHerramientas constructor;
+
+        private Constructor constructor;
         private Optional<DetectorPatron> siguiente = Optional.empty();
 
-        public DetectorPatron(ConstructorDeHerramientas constructor) {
+        public DetectorPatron(Constructor constructor) {
             this.constructor = constructor;
         }
 
-        public DetectorPatron(DetectorPatron siguiente) {
+        public DetectorPatron(Constructor constructor, DetectorPatron siguiente) {
+            this(constructor);
             this.siguiente = Optional.of(siguiente);
         }
 
@@ -31,11 +32,8 @@ public abstract class DetectorPatron {
         }
 
         private boolean puedoResolver(Mapa mapa) {
-            return mapa.equals(this.getMapaPatron());
+            return getMapaPatron().matchea(mapa);
         }
 
-        protected abstract Mapa getMapaPatron();
-
-    }
-*/
+        protected abstract Patron getMapaPatron();
 }

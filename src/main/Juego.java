@@ -1,10 +1,16 @@
 package main;
 
+import main.herramientas.ConstructorHacha;
+import main.herramientas.ConstructorPico;
+import main.herramientas.ConstructorPicoFino;
 import main.mapa.Mapa;
-import main.materiales.Madera;
-import main.materiales.Piedra;
-import main.materiales.Metal;
-import main.materiales.Diamante;
+import main.materiales.*;
+import main.patrones.DetectorPatron;
+import main.patrones.DetectorPatronHacha;
+import main.patrones.DetectorPatronPico;
+import main.patrones.DetectorPatronPicoFino;
+
+import java.util.function.Supplier;
 
 public class Juego {
     private static final int CANTIDAD_FILAS = 20;
@@ -16,34 +22,44 @@ public class Juego {
 
     private Mapa mapa;
     private Jugador jugador;
+    private DetectorPatron detectorPatron;
+    private Mapa mapaHerramientas;
+
     public Juego() {
         mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
         jugador = new Jugador();
         mapa.ubicarEnCasilleroAleatorio(jugador);
-        posicionarNMaderas(mapa, CANTIDAD_MADERAS);
-        posicionarNPiedras(mapa, CANTIDAD_PIEDRAS);
-        posicionarNMetales(mapa, CANTIDAD_METALES);
-        posicionarNDiamantes(mapa, CANTIDAD_DIAMANTES);
+        posicionarNMateriales(mapa, CANTIDAD_MADERAS, () -> new Madera());
+        posicionarNMateriales(mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
+        posicionarNMateriales(mapa, CANTIDAD_METALES, () -> new Metal());
+        posicionarNMateriales(mapa, CANTIDAD_DIAMANTES, () -> new Diamante());
+        crearPatrones();
+        crearMapaHerramientas();
     }
 
-    public void posicionarNMaderas(Mapa mapa, int n) {
+    private void posicionarNMateriales(Mapa mapa, int n, Supplier<Material> supplier) {
         for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasilleroAleatorio(new Madera());
+            mapa.ubicarEnCasilleroAleatorio(supplier.get());
         }
     }
-    public void posicionarNPiedras(Mapa mapa, int n) {
-        for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasilleroAleatorio(new Piedra());
-        }
+
+    private void crearPatrones() {
+        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha().construirHachaMadera());
+        dp = new DetectorPatronHacha(new Piedra(), () -> new ConstructorHacha().construirHachaPiedra(), dp);
+        dp = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha().construirHachaMetal(), dp);
+        dp = new DetectorPatronPico(new Madera(), () -> new ConstructorPico().construirPicoMadera(), dp);
+        dp = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico().construirPicoPiedra(), dp);
+        dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().construirPicoMetal(), dp);
+        dp = new DetectorPatronPicoFino(new Piedra(), () -> new ConstructorPicoFino().construirPicoFino(), dp);
+        this.detectorPatron = dp;
     }
-    public void posicionarNMetales(Mapa mapa, int n) {
-        for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasilleroAleatorio(new Metal());
-        }
+
+    private void crearMapaHerramientas () {
+        mapaHerramientas = new Mapa(3,3);
+
     }
-    public void posicionarNDiamantes(Mapa mapa,  int n) {
-        for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasilleroAleatorio(new Diamante());
-        }
+
+    public void jugar() {
+
     }
 }
