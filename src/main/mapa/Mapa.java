@@ -1,6 +1,6 @@
 package main.mapa;
 import main.Ubicable;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -31,6 +31,7 @@ public class Mapa {
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
     public void ubicarEnCasillero(Ubicable ubicable, Ubicacion ubicacion) {
+
         this.casilleros.get(ubicacion).guardarUbicable(ubicable);
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
@@ -40,11 +41,10 @@ public class Mapa {
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Mapa mapa = (Mapa) o;
+
+    public boolean esIgualA(Mapa mapa) {
+        if (this == mapa) return true;
+        if (mapa == null || getClass() != mapa.getClass()) return false;
         if (!(filas == mapa.filas && columnas == mapa.columnas)) return false;
         for (Ubicacion ubicacion : casilleros.keySet()) {
             if (!casilleros.get(ubicacion).equals(mapa.casilleros.get(ubicacion)))
@@ -52,6 +52,8 @@ public class Mapa {
         }
         return true;
     }
+
+    //public boolean esIgualA(Mapa otroMapa) { }
 
     @Override
     public int hashCode() {

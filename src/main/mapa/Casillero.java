@@ -8,17 +8,20 @@ import java.util.Optional;
 
 public class Casillero {
 
-    private Optional<Ubicable> ubicableOptional = Optional.empty();
+    private Ubicable ubicable = new UbicableVacio();
 
-    public void guardarUbicable(Ubicable u) {
+    public void guardarUbicable(Ubicable ubicable) {
         if (this.ubicableOptional.isPresent()) { throw new CasilleroEstaOcupadoException("No es posible guardar, el casillero se encuentra ocupado"); }
+        this.ubicable = ubicable;
         this.ubicableOptional = Optional.of(u);
     }
 
-    public void eliminarUbicable() {
+    public Ubicable eliminarUbicable() {
         if (this.ubicableOptional.isEmpty()) { throw new CasilleroVacioException("No se puede eliminar nada de un casillero vacio"); }
         this.ubicableOptional = Optional.empty();
     }
+
+    esIgualA()
 
     @Override
     public boolean equals(Object o) {

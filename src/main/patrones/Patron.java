@@ -20,6 +20,6 @@ public abstract class Patron {
     }
 
     public boolean matchea(Mapa mapa) {
-        return this.tablero.equals(mapa);
+        return this.tablero.esIgualA(mapa);
     }
 }
