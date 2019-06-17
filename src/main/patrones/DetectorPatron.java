@@ -1,8 +1,8 @@
 package main.patrones;
 
 import main.herramientas.Herramienta;
-
 import main.mapa.Mapa;
+import main.materiales.Material;
 
 import java.lang.reflect.Constructor;
 import java.util.Optional;
@@ -11,6 +11,8 @@ public abstract class DetectorPatron {
 
         private Constructor constructor;
         private Optional<DetectorPatron> siguiente = Optional.empty();
+        protected Patron patron;
+
 
         public DetectorPatron(Constructor constructor) {
             this.constructor = constructor;
@@ -22,7 +24,7 @@ public abstract class DetectorPatron {
         }
 
         public Optional<Herramienta> resolver(Mapa tablero) {
-            if (puedoResolver(tablero)) {
+            if (this.patron.getMapa().esIgualA(tablero)) {
                 return Optional.of(constructor.construir());
             } else if (siguiente.isPresent()) {
                 return siguiente.get().resolver(tablero);
@@ -30,10 +32,4 @@ public abstract class DetectorPatron {
                 return Optional.empty();
             }
         }
-
-        private boolean puedoResolver(Mapa mapa) {
-            return getMapaPatron().matchea(mapa);
-        }
-
-        protected abstract Patron getMapaPatron();
 }

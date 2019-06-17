@@ -2,12 +2,10 @@ package main.patrones;
 
 import main.herramientas.Hacha;
 import main.materiales.Material;
-
 import java.lang.reflect.Constructor;
 
 public class DetectorPatronHacha extends DetectorPatron {
-    private final Material materialParteSuperior;
-    private Patron mapa;
+    private final Material materialParteSuperior; CHEQUEAR SI SE USA
 
     public DetectorPatronHacha(Material material, Constructor<Hacha> constructor) {
         super(constructor);
@@ -22,11 +20,6 @@ public class DetectorPatronHacha extends DetectorPatron {
     }
 
     private void crearMapa(Material material) {
-        this.mapa = new PatronHacha(material);
-    }
-
-    @Override
-    protected Patron getMapaPatron() {
-        return mapa;
+        this.patron = new PatronHacha(material);
     }
 }

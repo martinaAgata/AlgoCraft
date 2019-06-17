@@ -55,8 +55,6 @@ public class Mapa {
 
     //public boolean esIgualA(Mapa otroMapa) { }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(casilleros, filas, columnas);
-    }
+    //@Override
+    //public int hashCode() { return Objects.hash(casilleros, filas, columnas); }
 }

@@ -2,12 +2,10 @@ package main.patrones;
 
 import main.herramientas.PicoFino;
 import main.materiales.Material;
-
 import java.lang.reflect.Constructor;
 
 public class DetectorPatronPicoFino extends DetectorPatron {
     private final Material materialParteSuperior;
-    private Patron mapa;
 
     public DetectorPatronPicoFino(Material material, Constructor<PicoFino> constructor) {
         super(constructor);
@@ -22,11 +20,6 @@ public class DetectorPatronPicoFino extends DetectorPatron {
     }
 
     private void crearMapa(Material material) {
-        this.mapa = new PatronPicoFino(material);
-    }
-
-    @Override
-    protected Patron getMapaPatron() {
-        return mapa;
+        this.patron = new PatronPicoFino(material);
     }
 }

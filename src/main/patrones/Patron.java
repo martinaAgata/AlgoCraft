@@ -12,6 +12,7 @@ public abstract class Patron {
     Madera MATERIAL_MANGO = new Madera();
     Metal MATERIAL_PUNTA_PICO_FINO = new Metal();
     Mapa tablero = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
+
     public void colocarMango(Material material) {
         Ubicacion ubicacionA = new Ubicacion(2, 2);
         Ubicacion ubicacionB = new Ubicacion(3, 2);
@@ -19,7 +20,5 @@ public abstract class Patron {
         this.tablero.ubicarEnCasillero(material, ubicacionB);
     }
 
-    public boolean matchea(Mapa mapa) {
-        return this.tablero.esIgualA(mapa);
-    }
+    public Mapa getMapa() { return this.tablero; }
 }

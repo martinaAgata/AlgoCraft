@@ -2,12 +2,10 @@ package main.patrones;
 
 import main.herramientas.Pico;
 import main.materiales.Material;
-
 import java.lang.reflect.Constructor;
 
 public class DetectorPatronPico extends DetectorPatron {
     private final Material materialParteSuperior;
-    private Patron mapa;
 
     public DetectorPatronPico(Material material, Constructor<Pico> constructor) {
         super(constructor);
@@ -22,11 +20,6 @@ public class DetectorPatronPico extends DetectorPatron {
     }
 
     private void crearMapa(Material material) {
-        this.mapa = new PatronPico(material);
+        this.patron = new PatronPico(material);
     }
-
-    protected Patron getMapaPatron() {
-        return mapa;
-    }
-
 }
