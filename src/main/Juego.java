@@ -11,14 +11,9 @@ import main.patrones.DetectorPatronPico;
 import main.patrones.DetectorPatronPicoFino;
 
 import java.util.function.Supplier;
+import static main.ConstantesJuego.*;
 
 public class Juego {
-    private static final int CANTIDAD_FILAS = 20;
-    private static final int CANTIDAD_COLUMNAS = 20;
-    private static final int CANTIDAD_MADERAS = 70;
-    private static final int CANTIDAD_PIEDRAS = 50;
-    private static final int CANTIDAD_METALES = 35;
-    private static final int CANTIDAD_DIAMANTES = 10;
 
     private Mapa mapa;
     private Jugador jugador;
@@ -44,13 +39,48 @@ public class Juego {
     }
 
     private void crearPatrones() {
-        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha().construirHachaMadera());
-        dp = new DetectorPatronHacha(new Piedra(), () -> new ConstructorHacha().construirHachaPiedra(), dp);
-        dp = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha().construirHachaMetal(), dp);
-        dp = new DetectorPatronPico(new Madera(), () -> new ConstructorPico().construirPicoMadera(), dp);
-        dp = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico().construirPicoPiedra(), dp);
-        dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().construirPicoMetal(), dp);
-        dp = new DetectorPatronPicoFino(new Piedra(), () -> new ConstructorPicoFino().construirPicoFino(), dp);
+        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir());
+        dp = new DetectorPatronHacha(new Piedra(), () -> new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir(), dp);
+        dp = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir(), dp);
+        dp = new DetectorPatronPico(new Madera(), () -> new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir(), dp);
+        dp = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .construir(), dp);
+        dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir(), dp);
+        dp = new DetectorPatronPicoFino(new Piedra(), () -> new ConstructorPicoFino()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir(), dp);
         this.detectorPatron = dp;
     }
 

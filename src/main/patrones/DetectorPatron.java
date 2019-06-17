@@ -1,5 +1,6 @@
 package main.patrones;
 
+import main.herramientas.ConstructorHerramienta;
 import main.herramientas.Herramienta;
 import main.mapa.Mapa;
 import main.materiales.Material;
@@ -9,16 +10,16 @@ import java.util.Optional;
 
 public abstract class DetectorPatron {
 
-        private Constructor constructor;
+        private ConstructorHerramienta constructor;
         private Optional<DetectorPatron> siguiente = Optional.empty();
         protected Patron patron;
 
 
-        public DetectorPatron(Constructor constructor) {
+        public DetectorPatron(ConstructorHerramienta constructor) {
             this.constructor = constructor;
         }
 
-        public DetectorPatron(Constructor constructor, DetectorPatron siguiente) {
+        public DetectorPatron(ConstructorHerramienta constructor, DetectorPatron siguiente) {
             this(constructor);
             this.siguiente = Optional.of(siguiente);
         }
