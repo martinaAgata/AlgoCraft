@@ -19,7 +19,7 @@ public class MaderaTests {
     public void testMaderaEsDesgastadaPorHachaMaderaYReduceSuDurabilidad(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
+        Hacha hachaMadera = constructor.construir();
         hachaMadera.usar(madera);
         assertThat(madera.getDurabilidad(),is(DURABIDAD_INICIAL_MADERA - hachaMadera.getFuerza()));
 
@@ -30,7 +30,7 @@ public class MaderaTests {
     public void test02MaderaEsDesgastadaPorHachaPiedra(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaPiedra= constructor.construirHachaPiedra();
+        Hacha hachaPiedra= constructor.construir();
         hachaPiedra.usar(madera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 5));
     }
@@ -39,7 +39,7 @@ public class MaderaTests {
     public void test03MaderaEsDesgastadaPorHachaMetal(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMetal = constructor.construir();
         Integer durabilidadMadera = madera.getDurabilidad();
         hachaMetal.usar(madera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 10));
@@ -49,7 +49,7 @@ public class MaderaTests {
     public void test04MaderaNoEsDesgastadaPorPicoMadera(){
         Madera madera = new Madera();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoMadera = constructor.construirPicoMadera();
+        Pico picoMadera = constructor.construir();
         picoMadera.usar(madera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA));
     }
@@ -58,7 +58,7 @@ public class MaderaTests {
     public void test05MaderaNoEsDesgastadaPorPicoPiedra(){
         Madera madera = new Madera();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoPiedra = constructor.construirPicoPiedra();
+        Pico picoPiedra = constructor.construir();
         picoPiedra.usar(madera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA));
     }
@@ -67,7 +67,7 @@ public class MaderaTests {
     public void test06MaderaNoEsDesgastadaPorPicoMetal(){
         Madera madera = new Madera();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoMetal = constructor.construirPicoMetal();
+        Pico picoMetal = constructor.construir();
         picoMetal.usar(madera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA));
     }
@@ -76,7 +76,7 @@ public class MaderaTests {
     public void test07MaderaNoEsDesgastadaPorPicoFino(){
         Madera madera = new Madera();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-        PicoFino picoFino = constructor.construirPicoFino();
+        PicoFino picoFino = constructor.construir();
         picoFino.usar(madera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA));
     }
@@ -85,7 +85,7 @@ public class MaderaTests {
     public void test08MaderaEsDesgastadaPorHachaMaderaSeReduceVariasVeces(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
+        Hacha hachaMadera = constructor.construir();
         hachaMadera.usar(madera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 2));
         hachaMadera.usar(madera);
@@ -100,7 +100,7 @@ public class MaderaTests {
     public void test09MaderaEsDesgastadaPorHachaPiedraSeReduceVariasVeces(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaPiedra = constructor.construirHachaPiedra();
+        Hacha hachaPiedra = constructor.construir();
         hachaPiedra.usar(madera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 5));
         hachaPiedra.usar(madera);
@@ -111,7 +111,7 @@ public class MaderaTests {
     public void test10MaderaEsDesgastadaPorHachaMaderaLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
+        Hacha hachaMadera = constructor.construir();
         hachaMadera.usar(madera);
         hachaMadera.usar(madera);
         hachaMadera.usar(madera);
@@ -124,7 +124,7 @@ public class MaderaTests {
     public void test11MaderaEsDesgastadaPorHachaPiedraLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaPiedra = constructor.construirHachaPiedra();
+        Hacha hachaPiedra = constructor.construir();
         hachaPiedra.usar(madera);
         hachaPiedra.usar(madera);
         hachaPiedra.usar(madera);
@@ -134,7 +134,7 @@ public class MaderaTests {
     public void test12MaderaEsDesgastadaPorHachaMetalLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMetal = constructor.construir();
         hachaMetal.usar(madera);
         hachaMetal.usar(madera);
     }
@@ -143,7 +143,7 @@ public class MaderaTests {
     public void test13MaderaConEstadoMuertoDevuelveDurabilidadCero(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
+        Hacha hachaMadera = constructor.construir();
         hachaMadera.usar(madera);
         hachaMadera.usar(madera);
         hachaMadera.usar(madera);
@@ -156,9 +156,9 @@ public class MaderaTests {
     public void test15MaderaEsDesgastadaConHachaMaderaHachaPiedraHachaMetal(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
-        Hacha hachaPiedra = constructor.construirHachaPiedra();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMadera = constructor.construir();
+        Hacha hachaPiedra = constructor.construir();
+        Hacha hachaMetal = constructor.construir();
         Integer durabilidadMadera = madera.getDurabilidad();
         hachaMadera.usar(madera);
         assertThat(madera.getDurabilidad(), is(durabilidadMadera - 2));

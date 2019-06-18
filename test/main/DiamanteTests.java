@@ -24,7 +24,7 @@ public class DiamanteTests {
     public void testDiamanteNoEsDesgastadoPorHachaMadera() {
         Diamante diamante = new Diamante();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
+        Hacha hachaMadera = constructor.construir();
         hachaMadera.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -33,7 +33,7 @@ public class DiamanteTests {
     public void test03DiamanteNoEsDesgastadoPorHachaPiedra() {
         Diamante diamante = new Diamante();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaPiedra= constructor.construirHachaPiedra();
+        Hacha hachaPiedra= constructor.construir();
         hachaPiedra.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -42,7 +42,7 @@ public class DiamanteTests {
     public void test04DiamanteNoEsDesgastadoPorHachaMetal() {
         Diamante diamante = new Diamante();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMetal = constructor.construir();
         hachaMetal.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -51,7 +51,7 @@ public class DiamanteTests {
     public void test05DiamanteNoEsDesgastadoPorPicoMadera() {
         Diamante diamante = new Diamante();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoMadera = constructor.construirPicoMadera();
+        Pico picoMadera = constructor.construir();
         picoMadera.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -60,7 +60,7 @@ public class DiamanteTests {
     public void test06DiamanteNoEsDesgastadoPorPicoPiedra() {
         Diamante diamante = new Diamante();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoPiedra = constructor.construirPicoPiedra();
+        Pico picoPiedra = constructor.construir();
         picoPiedra.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
@@ -69,7 +69,7 @@ public class DiamanteTests {
     public void test07DiamanteNoEsDesgastadoPorPicoMetal(){
         Diamante diamante = new Diamante();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoMetal = constructor.construirPicoMetal();
+        Pico picoMetal = constructor.construir();
         picoMetal.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
 
@@ -79,7 +79,7 @@ public class DiamanteTests {
     public void test08DiamanteEsDesgastadoPorPicoFino(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-        PicoFino picoFino = constructor.construirPicoFino();
+        PicoFino picoFino = constructor.construir();
         picoFino.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 20));
     }
@@ -88,7 +88,7 @@ public class DiamanteTests {
     public void test09DiamanteEsDesgastadoPorPicoFinoSeReduceVariasVeces(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-        PicoFino picoFino = constructor.construirPicoFino();
+        PicoFino picoFino = constructor.construir();
         picoFino.usar(diamante);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 20));
         picoFino.usar(diamante);
@@ -103,7 +103,7 @@ public class DiamanteTests {
     public void test10DiamanteEsDesgastadoPorPicoFinoLanzaExcepcionTrasRomperse(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-        PicoFino picoFino = constructor.construirPicoFino();
+        PicoFino picoFino = constructor.construir();
         picoFino.usar(diamante);
         picoFino.usar(diamante);
         picoFino.usar(diamante);
@@ -117,7 +117,7 @@ public class DiamanteTests {
     public void test11DiamanteConEstadoMuertoDevuelveDurabilidadCero(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-        PicoFino picoFino = constructor.construirPicoFino();
+        PicoFino picoFino = constructor.construir();
         picoFino.usar(diamante);
         picoFino.usar(diamante);
         picoFino.usar(diamante);

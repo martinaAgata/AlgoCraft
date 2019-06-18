@@ -17,7 +17,7 @@ public class HachaMetalTests {
     @Test
     public void test12HachaMetalSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMetal = constructor.construir();
         Madera madera = new Madera();
         hachaMetal.usar(madera);
         assertThat(hachaMetal.getDurabilidad(), is(395));
@@ -26,7 +26,7 @@ public class HachaMetalTests {
     @Test
     public void test13HachaMetalSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMetal = constructor.construir();
         Piedra piedra = new Piedra();
         hachaMetal.usar(piedra);
         assertThat(hachaMetal.getDurabilidad(), is(395));
@@ -35,7 +35,7 @@ public class HachaMetalTests {
     @Test
     public void test14HachaMetalSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMetal = constructor.construir();
         Metal metal = new Metal();
         hachaMetal.usar(metal);
         assertThat(hachaMetal.getDurabilidad(), is(395));
@@ -44,7 +44,7 @@ public class HachaMetalTests {
     @Test
     public void test15HachaMetalSeUsaContraDiamanteReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMetal = constructor.construir();
         Diamante diamante = new Diamante();
         hachaMetal.usar(diamante);
         assertThat(hachaMetal.getDurabilidad(), is(395));

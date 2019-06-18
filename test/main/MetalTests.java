@@ -22,7 +22,7 @@ public class MetalTests {
     public void testMetalNoEsDesgastadoPorHachaMadera() {
         Metal metal = new Metal();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
+        Hacha hachaMadera = constructor.construir();
         hachaMadera.usar(metal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
@@ -30,7 +30,7 @@ public class MetalTests {
     public void test03MetalNoEsDesgastadoPorHachaPiedra() {
         Material metal = new Metal();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaPiedra = constructor.construirHachaPiedra();
+        Hacha hachaPiedra = constructor.construir();
         hachaPiedra.usar(metal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
@@ -38,7 +38,7 @@ public class MetalTests {
     public void test04MetalNoEsDesgastadoPorHachaMetal() {
         Material metal = new Metal();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMetal = constructor.construirHachaMetal();
+        Hacha hachaMetal = constructor.construir();
         hachaMetal.usar(metal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
@@ -46,7 +46,7 @@ public class MetalTests {
     public void test05MetalNoEsDesgastadoPorPicoMadera() {
         Material metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoMadera = constructor.construirPicoMadera();
+        Pico picoMadera = constructor.construir();
         picoMadera.usar(metal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
@@ -54,7 +54,7 @@ public class MetalTests {
     public void test06MetalEsDesgastadoPorPicoPiedra() {
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoPiedra = constructor.construirPicoPiedra();
+        Pico picoPiedra = constructor.construir();
         picoPiedra.usar(metal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 4));
     }
@@ -62,7 +62,7 @@ public class MetalTests {
     public void test07MetalNoEsDesgastadoPorPicoMetal() {
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoMetal = constructor.construirPicoMetal();
+        Pico picoMetal = constructor.construir();
         picoMetal.usar(metal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
@@ -70,7 +70,7 @@ public class MetalTests {
     public void test08MetalNoEsDesgastadoPorPicoFino() {
         Metal metal = new Metal();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-        PicoFino picoFino = constructor.construirPicoFino();
+        PicoFino picoFino = constructor.construir();
         picoFino.usar(metal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
@@ -79,7 +79,7 @@ public class MetalTests {
     public void test09MetalEsDesgastadoPorPicoPiedraSeReduceVariasVeces(){
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoPiedra = constructor.construirPicoPiedra();
+        Pico picoPiedra = constructor.construir();
         picoPiedra.usar(metal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 4));
         picoPiedra.usar(metal);
@@ -92,7 +92,7 @@ public class MetalTests {
     public void test11MetalEsDesgastadoPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
-        Pico picoPiedra = constructor.construirPicoPiedra();
+        Pico picoPiedra = constructor.construir();
         for (int i = 0; i < 14; i++) { picoPiedra.usar(metal); }
     }
 }

@@ -23,7 +23,7 @@ public class JugadorTests {
         Jugador jugador = new Jugador();
         Herramienta herramienta = jugador.obtenerHerramientaActual();
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
+        Hacha hachaMadera = constructor.construir();
     }
     
     @Test

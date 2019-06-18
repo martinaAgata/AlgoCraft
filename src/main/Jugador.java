@@ -12,7 +12,7 @@ public class Jugador implements Ubicable {
 
     public Jugador() {
         ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construirHachaMadera();
+        Hacha hachaMadera = constructor.construir();
         this.herramientaActual = hachaMadera;
     }
 
@@ -23,36 +23,19 @@ public class Jugador implements Ubicable {
     }
 
     public void moverseALaDerecha(Mapa mapa) {
-        this.ubicacion = ubicacion.derecha();
+        this.ubicacion = ubicacion.getUbicacionDerecha();
         mapa.ubicarEnCasillero(this, ubicacion);
     }
     public void moverseALaIzquierda(Mapa mapa) {
-        this.ubicacion = ubicacion.izquierda();
+        this.ubicacion = ubicacion.getUbicacionIzquierda();
         mapa.ubicarEnCasillero(this, ubicacion);
     }
     public void moverseArriba(Mapa mapa) {
-        this.ubicacion = ubicacion.arriba();
+        this.ubicacion = ubicacion.getUbicacionArriba();
         mapa.ubicarEnCasillero(this, ubicacion);
     }
     public void moverseAbajo(Mapa mapa) {
-        this.ubicacion = ubicacion.abajo();
+        this.ubicacion = ubicacion.getUbicacionAbajo();
         mapa.ubicarEnCasillero(this, ubicacion);
     }
-    public void moverseArribaDerecha(Mapa mapa) {
-        this.ubicacion = ubicacion.arribaDerecha();
-        mapa.ubicarEnCasillero(this, ubicacion);
-    }
-    public void moverseArribaIzquierda(Mapa mapa) {
-        this.ubicacion = ubicacion.arribaIzquierda();
-        mapa.ubicarEnCasillero(this, ubicacion);
-    }
-    public void moverseAbajoDerecha(Mapa mapa) {
-        this.ubicacion = ubicacion.abajoDerecha();
-        mapa.ubicarEnCasillero(this, ubicacion);
-    }
-    public void moverseAbajoIzquierda(Mapa mapa) {
-        this.ubicacion = ubicacion.abajoIzquierda();
-        mapa.ubicarEnCasillero(this, ubicacion);
-    }
-
 }

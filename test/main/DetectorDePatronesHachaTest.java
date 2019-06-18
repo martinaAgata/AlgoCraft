@@ -33,7 +33,7 @@ public class DetectorDePatronesHachaTest {
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionC);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
-        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha().construirHachaMadera());
+        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha().construir());
         Optional<Herramienta> resultado = dp.resolver(tableroConHachaMadera);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
@@ -54,7 +54,7 @@ public class DetectorDePatronesHachaTest {
         tableroConHachaMadera.ubicarEnCasillero(piedra, ubicacionC);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
-        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha().construirHachaMadera());
+        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha().construir());
         Optional<Herramienta> resultado = dp.resolver(tableroConHachaMadera);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
@@ -75,7 +75,7 @@ public class DetectorDePatronesHachaTest {
         tableroConHachaMetal.ubicarEnCasillero(metal, ubicacionC);
         tableroConHachaMetal.ubicarEnCasillero(madera, ubicacionD);
         tableroConHachaMetal.ubicarEnCasillero(madera, ubicacionE);
-        DetectorPatron dp = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha().construirHachaMetal());
+        DetectorPatron dp = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha().construir());
         Optional<Herramienta> resultado = dp.resolver(tableroConHachaMetal);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
