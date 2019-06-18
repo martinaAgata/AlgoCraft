@@ -13,27 +13,21 @@ public class Metal extends Material {
         this.estado = new EstadoVivo(DURABILIDAD_METAL);
     }
 
-/*    @Override
-    public void desgastar(PicoPiedra pico) {
-        int fuerza = pico.getFuerza();
-        this.reducirDurabilidad(fuerza);
-    }*/
+    /*    @Override
+        public void desgastar(PicoPiedra pico) {
+            int fuerza = pico.getFuerza();
+            this.reducirDurabilidad(fuerza);
+        }*/
     @Override
     public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
     @Override
     public Optional<Desgastable> desgastarContra(Pico pico){ return pico.desgastarContra(this);}
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean esIgualA(Metal m) {
+        if (this == m) return true;
+        if (m == null || getClass() != m.getClass()) return false;
         return true;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(estado);
-    }
-    }
+}
 

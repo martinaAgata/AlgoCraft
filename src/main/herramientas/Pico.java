@@ -15,10 +15,6 @@ public class Pico extends Herramienta {
         this.material = material;
     }
 
-    /*@Override
-    public void desgastarMaterial(Material material){
-        material.desgastarCon(this);
-    }*/
     @Override
     public Optional<Desgastable> desgastarContra(Desgastable desgastable){
         return desgastable.desgastarContra(this);
@@ -38,6 +34,4 @@ public class Pico extends Herramienta {
         return Optional.empty();
     }
 
-    //@Override
-    //public void desgastarPiedra(Piedra piedra) { this.material.desgastarPiedra(piedra, fuerza); }
 }

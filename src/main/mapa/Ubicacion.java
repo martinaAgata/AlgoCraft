@@ -22,20 +22,16 @@ public class Ubicacion {
     @Override
     public int hashCode() { return Objects.hash(x, y); }
 
-    public Ubicacion derecha() {
+    public Ubicacion getUbicacionDerecha() {
         return new Ubicacion(this.x+1, this.y);
     }
-    public Ubicacion izquierda() {
+    public Ubicacion getUbicacionIzquierda() {
         return new Ubicacion(this.x-1, this.y);
     }
-    public Ubicacion arriba() {
+    public Ubicacion getUbicacionArriba() {
         return new Ubicacion(this.x, this.y+1);
     }
-    public Ubicacion abajo() {
+    public Ubicacion getUbicacionAbajo() {
         return new Ubicacion(this.x, this.y-1);
     }
-    public Ubicacion arribaDerecha() { return this.arriba().derecha(); }
-    public Ubicacion arribaIzquierda() { return this.arriba().izquierda(); }
-    public Ubicacion abajoDerecha() { return this.abajo().derecha(); }
-    public Ubicacion abajoIzquierda() { return this.abajo().izquierda(); }
 }

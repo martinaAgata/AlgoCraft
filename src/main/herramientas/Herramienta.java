@@ -28,12 +28,4 @@ public abstract class Herramienta implements Desgastable{
         this.desgastarMaterial(material.desgastarCon(this));
     }
 
-/*    public void desgastarMaterial(Piedra piedra) { }
-
-    public void desgastarMaterial(Metal metal) { }
-
-    public void desgastarMaterial(Madera madera) { }
-
-    public void desgastarMaterial(Diamante diamante) { }*/
-
 }

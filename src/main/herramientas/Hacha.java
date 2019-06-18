@@ -26,7 +26,4 @@ public class Hacha extends Herramienta {
         return Optional.empty();
     }
 
-    /*public void desgastarMaterial(Madera madera) {
-        madera.reducirDurabilidad(this.fuerza);
-    }*/
 }

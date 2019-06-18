@@ -39,9 +39,9 @@ public class Piedra extends Material {
         return Optional.of(this);
     }
 
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean esIgualA(Piedra p) {
+        if (this == p) return true;
+        if (p == null || getClass() != p.getClass()) return false;
         return true;
     }
 }

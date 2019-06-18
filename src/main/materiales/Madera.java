@@ -9,6 +9,7 @@ import java.util.Optional;
 public class Madera extends Material {
 
     public static final int DURABILIDAD_MADERA = 10;
+
     public Madera() {
         this.estado = new EstadoVivo(DURABILIDAD_MADERA);
     }
@@ -32,27 +33,20 @@ public class Madera extends Material {
     }*/
 
 
-
     @Override
-    public Optional<Desgastable> desgastarContra(Desgastable desgastable){
+    public Optional<Desgastable> desgastarContra(Desgastable desgastable) {
         return desgastable.desgastarContra(this);
     }
 
     @Override
-    public Optional<Desgastable> desgastarContra(Hacha hacha){
+    public Optional<Desgastable> desgastarContra(Hacha hacha) {
         return hacha.desgastarContra(this);
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean esIgualA(Madera m) {
+        if (this == m) return true;
+        if (m == null || getClass() != m.getClass()) return false;
         return true;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(estado);
-    }
-    }
+}
