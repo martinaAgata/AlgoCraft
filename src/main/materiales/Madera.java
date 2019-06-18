@@ -1,9 +1,9 @@
 package main.materiales;
 
+import main.Ubicable;
 import main.estados.EstadoVivo;
 import main.herramientas.Hacha;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class Madera extends Material {
@@ -44,9 +44,10 @@ public class Madera extends Material {
     }
 
 
-    public boolean esIgualA(Madera m) {
-        if (this == m) return true;
-        if (m == null || getClass() != m.getClass()) return false;
+    public boolean esIgualAUbicable(Ubicable ubicable) {
+        if(this.getClass() != ubicable.getClass()) return false;
+        Madera madera = (Madera) ubicable;
+        if(this.getDurabilidad() != madera.getDurabilidad()) return false;
         return true;
     }
 }

@@ -7,6 +7,8 @@ import main.materiales.Madera;
 import main.materiales.Metal;
 import main.materiales.Piedra;
 import org.junit.Test;
+
+import static main.ConstantesJuego.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -14,6 +16,11 @@ public class PicoMaderaTests {
     @Test
     public void test01CrearPicoDeMaderaConDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
         assertThat(picoMadera.getDurabilidad(), is(100));
     }
@@ -21,6 +28,11 @@ public class PicoMaderaTests {
     @Test
     public void test02CrearPicoDeMaderaConFuerza() {
         ConstructorPico constructor = new ConstructorPico();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
         assertThat(picoMadera.getFuerza() , is(2));
     }
@@ -28,6 +40,11 @@ public class PicoMaderaTests {
     @Test
     public void test03PicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
         Madera madera = new Madera();
         picoMadera.usar(madera);
@@ -36,6 +53,11 @@ public class PicoMaderaTests {
     @Test
     public void test04PicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
         Piedra piedra = new Piedra();
         picoMadera.usar(piedra);
@@ -46,6 +68,11 @@ public class PicoMaderaTests {
     @Test
     public void test05PicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
         Metal metal = new Metal();
         picoMadera.usar(metal);

@@ -14,4 +14,5 @@ public abstract class Material implements Desgastable, Ubicable {
     public int getDurabilidad() {
         return this.estado.getDurabilidad();
     }
+
 }

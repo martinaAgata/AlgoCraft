@@ -14,11 +14,12 @@ import org.junit.Test;
 
 import java.util.Optional;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 
-public class DetectorPatronesPico {
+public class DetectorPatronesPicoTest {
     @Test
     public void testSeCreaUnPicoDeMaderaYSeReconocePatron() {
         Madera madera = new Madera();
@@ -88,6 +89,7 @@ public class DetectorPatronesPico {
         tablero.ubicarEnCasillero(metal, ubicacionB);
         DetectorPatron dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().construir());
         Optional<Herramienta> resultado = dp.resolver(tablero);
-        assertThat(resultado.get(), not(instanceOf(Pico.class)));
+        assertFalse(resultado.isPresent());
+        //assertThat(resultado.get(), not(instanceOf(Pico.class)));
     }
 }

@@ -1,5 +1,6 @@
 package main.materiales;
 
+import main.Ubicable;
 import main.estados.EstadoVivo;
 import main.herramientas.Pico;
 
@@ -39,9 +40,10 @@ public class Piedra extends Material {
         return Optional.of(this);
     }
 
-    public boolean esIgualA(Piedra p) {
-        if (this == p) return true;
-        if (p == null || getClass() != p.getClass()) return false;
+    public boolean esIgualAUbicable(Ubicable ubicable) {
+        if(this.getClass() != ubicable.getClass()) return false;
+        Piedra piedra = (Piedra) ubicable;
+        if(this.getDurabilidad() != piedra.getDurabilidad()) return false;
         return true;
     }
 }

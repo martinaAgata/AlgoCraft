@@ -47,7 +47,7 @@ public class Mapa {
         if (mapa == null || getClass() != mapa.getClass()) return false;
         if (!(filas == mapa.filas && columnas == mapa.columnas)) return false;
         for (Ubicacion ubicacion : casilleros.keySet()) {
-            if (!casilleros.get(ubicacion).equals(mapa.casilleros.get(ubicacion)))
+            if (!casilleros.get(ubicacion).esIgualA(mapa.casilleros.get(ubicacion)))
                 return false;
         }
         return true;

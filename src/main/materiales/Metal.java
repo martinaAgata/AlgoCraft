@@ -1,9 +1,9 @@
 package main.materiales;
 
+import main.Ubicable;
 import main.estados.EstadoVivo;
 import main.herramientas.Pico;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class Metal extends Material {
@@ -24,9 +24,10 @@ public class Metal extends Material {
     public Optional<Desgastable> desgastarContra(Pico pico){ return pico.desgastarContra(this);}
 
 
-    public boolean esIgualA(Metal m) {
-        if (this == m) return true;
-        if (m == null || getClass() != m.getClass()) return false;
+    public boolean esIgualAUbicable(Ubicable ubicable) {
+        if(this.getClass() != ubicable.getClass()) return false;
+        Metal metal = (Metal) ubicable;
+        if(this.getDurabilidad() != metal.getDurabilidad()) return false;
         return true;
     }
 }

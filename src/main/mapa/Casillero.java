@@ -2,8 +2,6 @@ package main.mapa;
 import main.exceptions.CasilleroVacioException;
 import main.Ubicable;
 import main.exceptions.CasilleroEstaOcupadoException;
-import java.util.Objects;
-import java.util.Optional;
 
 public class Casillero {
 
@@ -27,7 +25,7 @@ public class Casillero {
             return true;
         if (this.ubicable == null || c.ubicable == null)
             return false;
-        return this.ubicable.equals(c.ubicable);
+        return this.ubicable.esIgualAUbicable(c.ubicable);
     }
 
 }

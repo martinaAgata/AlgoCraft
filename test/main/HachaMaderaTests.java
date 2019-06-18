@@ -9,6 +9,7 @@ import main.materiales.Metal;
 import main.materiales.Piedra;
 import org.junit.Test;
 
+import static main.ConstantesJuego.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -18,6 +19,11 @@ public class HachaMaderaTests {
     @Test
     public void test01HachaMaderaSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
+                constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
         Madera madera = new Madera();
         hachaMadera.usar(madera);
@@ -27,6 +33,11 @@ public class HachaMaderaTests {
     @Test
     public void test05HachaMaderaSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
+                constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
         Piedra piedra = new Piedra();
         hachaMadera.usar(piedra);
@@ -36,6 +47,11 @@ public class HachaMaderaTests {
     @Test
     public void test06HachaMaderaSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
+                constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
         Metal metal = new Metal();
         hachaMadera.usar(metal);
@@ -45,6 +61,11 @@ public class HachaMaderaTests {
     @Test
     public void test04HachaMaderaSeUsaContraDiamanteReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
+                constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
         Diamante diamante = new Diamante();
         hachaMadera.usar(diamante);
@@ -54,6 +75,11 @@ public class HachaMaderaTests {
     @Test
     public void test05HachaMaderaSeUsaContraMaderaReduceSuDurabilidadDeADos() {
         ConstructorHacha constructor = new ConstructorHacha();
+                constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
         Madera madera = new Madera();
         Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
@@ -68,6 +94,11 @@ public class HachaMaderaTests {
     @Test
     public void test06HachaMaderaSeUsaContraPiedraReduceSuDurabilidadDeADos() {
         ConstructorHacha constructor = new ConstructorHacha();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
         Piedra piedra = new Piedra();
         Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
@@ -82,6 +113,11 @@ public class HachaMaderaTests {
     @Test
     public void test07HachaMaderaSeUsaContraMetalReduceSuDurabilidadDeADos() {
         ConstructorHacha constructor = new ConstructorHacha();
+                constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
         Metal metal = new Metal();
         Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();
@@ -96,6 +132,11 @@ public class HachaMaderaTests {
     @Test
     public void test08HachaMaderaSeUsaContraDiamanteReduceSuDurabilidadDeADos() {
         ConstructorHacha constructor = new ConstructorHacha();
+                constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
         Diamante diamante = new Diamante();
         Integer durabilidadHachaMadera = hachaMadera.getDurabilidad();

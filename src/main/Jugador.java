@@ -38,4 +38,12 @@ public class Jugador implements Ubicable {
         this.ubicacion = ubicacion.getUbicacionAbajo();
         mapa.ubicarEnCasillero(this, ubicacion);
     }
+
+    @Override
+    public boolean esIgualAUbicable(Ubicable ubicable) {
+        if(this.getClass() != ubicable.getClass()) return false;
+        Jugador unJugador = (Jugador) ubicable;
+        if(this.herramientaActual != unJugador.obtenerHerramientaActual()) return false;
+        return true;
+    }
 }

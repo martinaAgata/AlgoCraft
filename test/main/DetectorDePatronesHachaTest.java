@@ -15,6 +15,7 @@ import org.junit.Test;
 import java.util.Optional;
 
 import static junit.framework.TestCase.assertTrue;
+import static main.ConstantesJuego.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 
@@ -33,7 +34,12 @@ public class DetectorDePatronesHachaTest {
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionC);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
-        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha().construir());
+        DetectorPatron dp = new DetectorPatronHacha(new Madera(),() -> new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir());
         Optional<Herramienta> resultado = dp.resolver(tableroConHachaMadera);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
@@ -54,7 +60,12 @@ public class DetectorDePatronesHachaTest {
         tableroConHachaMadera.ubicarEnCasillero(piedra, ubicacionC);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
-        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha().construir());
+        DetectorPatron dp = new DetectorPatronHacha(new Piedra(),() -> new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir());
         Optional<Herramienta> resultado = dp.resolver(tableroConHachaMadera);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
@@ -75,7 +86,12 @@ public class DetectorDePatronesHachaTest {
         tableroConHachaMetal.ubicarEnCasillero(metal, ubicacionC);
         tableroConHachaMetal.ubicarEnCasillero(madera, ubicacionD);
         tableroConHachaMetal.ubicarEnCasillero(madera, ubicacionE);
-        DetectorPatron dp = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha().construir());
+        DetectorPatron dp = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir());
         Optional<Herramienta> resultado = dp.resolver(tableroConHachaMetal);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
