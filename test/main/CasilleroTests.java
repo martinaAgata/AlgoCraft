@@ -39,6 +39,7 @@ public class CasilleroTests {
     public void testEliminarUbicableEnCasilleroOcupadoNoLanzaExcepcion(){
         Casillero casillero = new Casillero();
         ObjetoUbicable objetoUbicable = new ObjetoUbicable();
+
         casillero.guardarUbicable(objetoUbicable);
         casillero.eliminarUbicable();
     }
