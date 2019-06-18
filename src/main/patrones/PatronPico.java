@@ -16,8 +16,8 @@ public class PatronPico extends Patron {
 
     public void colocarCabeza(Material material) {
         Ubicacion ubicacionA = new Ubicacion(1, 1);
-        Ubicacion ubicacionB = new Ubicacion(1, 2);
-        Ubicacion ubicacionC = new Ubicacion(1, 3);
+        Ubicacion ubicacionB = new Ubicacion(2, 1);
+        Ubicacion ubicacionC = new Ubicacion(3, 1);
         this.tablero.ubicarEnCasillero(material, ubicacionA);
         this.tablero.ubicarEnCasillero(material, ubicacionB);
         this.tablero.ubicarEnCasillero(material, ubicacionC);

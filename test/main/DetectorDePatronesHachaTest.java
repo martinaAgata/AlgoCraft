@@ -28,7 +28,7 @@ public class DetectorDePatronesHachaTest {
         Ubicacion ubicacionB = new Ubicacion(1, 1);
         Ubicacion ubicacionC = new Ubicacion(1, 2);
         Ubicacion ubicacionD = new Ubicacion(2, 2);
-        Ubicacion ubicacionE = new Ubicacion(3, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionA);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionB);
         tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionC);
@@ -54,7 +54,7 @@ public class DetectorDePatronesHachaTest {
         Ubicacion ubicacionB = new Ubicacion(1, 1);
         Ubicacion ubicacionC = new Ubicacion(1, 2);
         Ubicacion ubicacionD = new Ubicacion(2, 2);
-        Ubicacion ubicacionE = new Ubicacion(3, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
         tableroConHachaMadera.ubicarEnCasillero(piedra, ubicacionA);
         tableroConHachaMadera.ubicarEnCasillero(piedra, ubicacionB);
         tableroConHachaMadera.ubicarEnCasillero(piedra, ubicacionC);
@@ -80,7 +80,7 @@ public class DetectorDePatronesHachaTest {
         Ubicacion ubicacionB = new Ubicacion(1, 1);
         Ubicacion ubicacionC = new Ubicacion(1, 2);
         Ubicacion ubicacionD = new Ubicacion(2, 2);
-        Ubicacion ubicacionE = new Ubicacion(3, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
         tableroConHachaMetal.ubicarEnCasillero(metal, ubicacionA);
         tableroConHachaMetal.ubicarEnCasillero(metal, ubicacionB);
         tableroConHachaMetal.ubicarEnCasillero(metal, ubicacionC);
