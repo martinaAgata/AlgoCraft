@@ -1,11 +1,10 @@
 package main;
 
-import main.herramientas.ConstructorHacha;
-import main.herramientas.Hacha;
-import main.herramientas.Herramienta;
+import main.herramientas.*;
 import main.materiales.Madera;
 import org.junit.Test;
 
+import static main.ConstantesJuego.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -20,16 +19,22 @@ public class JugadorTests {
     */
     @Test
     public void test01JugadorSeInicializaConUnItemEnElInventario(){
-        Jugador jugador = new Jugador();
-        Herramienta herramienta = jugador.obtenerHerramientaActual();
-        ConstructorHacha constructor = new ConstructorHacha();
-        Hacha hachaMadera = constructor.construir();
+        ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
+        constructor.conMaterial(new Madera()).conDesgaste(DESGASTE_HACHA_MADERA)
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
+        Jugador jugador = new Jugador(constructor.construir());
+        //Terminar
     }
     
     @Test
     public void test02JugadorSeInicializaConUnHachaDeMadera(){
-        Jugador jugador = new Jugador();
-        Madera madera = new Madera();
-        Integer durabilidadMadera = madera.getDurabilidad();
+        ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
+        constructor.conMaterial(new Madera()).conDesgaste(DESGASTE_HACHA_MADERA)
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
+        Hacha hachaInicial = (Hacha) constructor.construir();
+        Jugador jugador = new Jugador(hachaInicial);
+        assertThat(jugador.obtenerHerramientaActual(), is(hachaInicial));
     }
 }

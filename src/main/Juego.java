@@ -1,8 +1,10 @@
 package main;
 
 import main.estrategias.EstrategiaDesgaste;
+import main.exceptions.NoHayHerramientaParaCrearException;
 import main.herramientas.*;
 import main.mapa.Mapa;
+import main.mapa.Ubicacion;
 import main.materiales.*;
 import main.patrones.DetectorPatron;
 import main.patrones.DetectorPatronHacha;
@@ -11,6 +13,7 @@ import main.patrones.DetectorPatronPicoFino;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.function.Supplier;
 import static main.ConstantesJuego.*;
 
@@ -22,16 +25,26 @@ public class Juego {
     private Mapa mapaHerramientas;
     private HashMap<Material, ArrayList<Material>> inventarioMateriales;
     private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas;
+    private Optional<Herramienta> herramientaCreada;
 
     public Juego() {
         mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
-        jugador = new Jugador();
+        ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
+        Hacha hachaInicial = (Hacha) constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        jugador = new Jugador(hachaInicial);
+        herramientaCreada = Optional.empty();
         mapa.ubicarEnCasilleroAleatorio(jugador);
         posicionarNMateriales(mapa, CANTIDAD_MADERAS, () -> new Madera());
         posicionarNMateriales(mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
         posicionarNMateriales(mapa, CANTIDAD_METALES, () -> new Metal());
         posicionarNMateriales(mapa, CANTIDAD_DIAMANTES, () -> new Diamante());
         inicializarInventarios();
+        inventarioHerramientas.get(hachaInicial).add(hachaInicial);
         crearPatrones();
         crearMapaHerramientas();
     }
@@ -132,6 +145,25 @@ public class Juego {
     private void crearMapaHerramientas () {
         mapaHerramientas = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
 
+    }
+
+    private void detectarHerramientaMapaHerramientas(){
+        this.herramientaCreada = this.detectorPatron.resolver(this.mapaHerramientas);
+    }
+
+    public void ubicarMaterialMapaHerramientas(Ubicacion ubicacion, Material material){
+        this.mapaHerramientas.ubicarEnCasillero(material, ubicacion);
+        detectarHerramientaMapaHerramientas();
+    }
+
+    public void quitarMaterialMapaHerramientas(Ubicacion ubicacion){
+        this.mapaHerramientas.eliminarDeCasillero(ubicacion);
+        detectarHerramientaMapaHerramientas();
+    }
+
+    public void forjarHerramientaCreada(){
+        if (this.herramientaCreada.isEmpty()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
+        //Eliminar cosas del inventario y agregar herramienta al inventario.
     }
 
     public void jugar() {

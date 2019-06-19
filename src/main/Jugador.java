@@ -13,16 +13,16 @@ public class Jugador implements Ubicable {
     private Herramienta herramientaActual;
     private Ubicacion ubicacion;
 
-    public Jugador() {
-        ConstructorHacha constructor = new ConstructorHacha();
+    public Jugador(Herramienta herramientaInicial) {
+        /*ConstructorHacha constructor = new ConstructorHacha();
         Herramienta hachaMadera = constructor
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
-                .construir();
+                .construir();*/
 
-        this.herramientaActual = hachaMadera;
+        this.herramientaActual = herramientaInicial;
     }
 
 
