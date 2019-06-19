@@ -1,8 +1,8 @@
 package interfaz;
 
 import javafx.scene.layout.*;
-import main.Juego;
-import main.mapa.Mapa;
+import modelo.juego.Juego;
+import modelo.mapa.Mapa;
 
 public class Contenedor extends GridPane {
 

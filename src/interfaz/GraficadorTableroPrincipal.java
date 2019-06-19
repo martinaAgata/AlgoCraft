@@ -1,16 +1,15 @@
 package interfaz;
 
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.shape.DrawMode;
 import javafx.scene.shape.Rectangle;
-import main.Juego;
-import main.Ubicable;
-import main.mapa.Mapa;
+import modelo.juego.Juego;
+import modelo.mapa.Mapa;
+import modelo.mapa.Ubicacion;
+import modelo.materiales.Material;
+
+import java.util.HashMap;
 
 public class GraficadorTableroPrincipal {
-/*
     private final Juego juego;
     private static final int TAM_BOTON = 30;
 
@@ -25,12 +24,21 @@ public class GraficadorTableroPrincipal {
         int filas = mapa.obtenerCantidadFilas();
         int columnas = mapa.obtenerCantidadColumnas();
 
-        for (int x=0; x<filas; x++) {
-            for (int y=0; y<columnas; y++) {
-                Ubicable ubicable = mapa.obtenerCasillero(x,y).obtenerUbicable();
-                Button casillero = new Button("");
+        for (int x = 0; x < filas; x++) {
+            for (int y = 0; y < columnas; y++) {
+                Material material = (Material)mapa.obtenerCasillero(new Ubicacion(x, y)).obtenerUbicable();
                 Rectangle r = new Rectangle();
+                // DIBUJAR Y COLOCAR UBICABLE
+                dibujarMaterial(r, material);
             }
         }
-    }*/
+    }
+
+    public void dibujarMaterial(Rectangle rectangle, Material material) {
+        if (material == null) Image pasto = new Image(); // aca va una imagen que represente celda vacia
+        HashMap<Material, String> imgSources = new HashMap();
+        imgSources.put(,);
+
+        }
+    }
 }
