@@ -4,6 +4,7 @@ import main.Ubicable;
 import main.estados.EstadoVivo;
 import main.herramientas.Pico;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Metal extends Material {
@@ -28,6 +29,18 @@ public class Metal extends Material {
         if(this.getClass() != ubicable.getClass()) return false;
         Metal metal = (Metal) ubicable;
         if(this.getDurabilidad() != metal.getDurabilidad()) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getClass());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (this.getClass() != obj.getClass()) return false;
         return true;
     }
 }

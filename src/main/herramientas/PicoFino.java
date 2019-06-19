@@ -5,6 +5,7 @@ import main.estrategias.EstrategiaDesgaste;
 import main.materiales.Desgastable;
 import main.materiales.Diamante;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class PicoFino extends Herramienta {
@@ -33,4 +34,18 @@ public class PicoFino extends Herramienta {
         diamante.reducirDurabilidad(this.fuerza);
     }
 
+    @Override
+    public int hashCode() {
+        //Verificar que esto no rompa el inventario QUITAR
+        return Objects.hash(this.getClass(),this.estrategia.getClass(),this.fuerza);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (this.getClass() != obj.getClass()) return false;
+        PicoFino unPico = (PicoFino) obj;
+        if (this.getDurabilidad() != unPico.getDurabilidad() || this.getFuerza() != unPico.getFuerza()) return false;
+        return true;
+    }
 }

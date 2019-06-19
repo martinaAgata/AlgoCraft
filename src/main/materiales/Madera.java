@@ -4,6 +4,7 @@ import main.Ubicable;
 import main.estados.EstadoVivo;
 import main.herramientas.Hacha;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Madera extends Material {
@@ -48,6 +49,18 @@ public class Madera extends Material {
         if(this.getClass() != ubicable.getClass()) return false;
         Madera madera = (Madera) ubicable;
         if(this.getDurabilidad() != madera.getDurabilidad()) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getClass());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (this.getClass() != obj.getClass()) return false;
         return true;
     }
 }

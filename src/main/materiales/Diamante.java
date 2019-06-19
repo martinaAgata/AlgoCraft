@@ -4,6 +4,7 @@ import main.Ubicable;
 import main.estados.EstadoVivo;
 import main.herramientas.PicoFino;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Diamante extends Material {
@@ -29,6 +30,20 @@ public class Diamante extends Material {
         if(this.getClass() != ubicable.getClass()) return false;
         Diamante diamante = (Diamante) ubicable;
         if(this.getDurabilidad() != diamante.getDurabilidad()) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getClass());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (this.getClass() != obj.getClass()) return false;
+        /*Diamante diamante = (Diamante) obj;
+        if (this.getDurabilidad() != diamante.getDurabilidad()) return false;*/
         return true;
     }
 }

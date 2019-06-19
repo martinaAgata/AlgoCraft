@@ -1,5 +1,6 @@
 package main;
 
+import main.estrategias.EstrategiaDesgaste;
 import main.herramientas.*;
 import main.mapa.Mapa;
 import main.materiales.*;
@@ -19,9 +20,8 @@ public class Juego {
     private Jugador jugador;
     private DetectorPatron detectorPatron;
     private Mapa mapaHerramientas;
-    private Mapa tableroCrafteo;
     private HashMap<Material, ArrayList<Material>> inventarioMateriales;
-    private HashMap<Herramienta, HashMap<Material, ArrayList<Herramienta>>> inventarioHerramientas;
+    private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas;
 
     public Juego() {
         mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
@@ -31,26 +31,46 @@ public class Juego {
         posicionarNMateriales(mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
         posicionarNMateriales(mapa, CANTIDAD_METALES, () -> new Metal());
         posicionarNMateriales(mapa, CANTIDAD_DIAMANTES, () -> new Diamante());
-        tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_CRAFTEO, CANTIDAD_COLUMNAS_TABLERO_CRAFTEO);
         inicializarInventarios();
         crearPatrones();
         crearMapaHerramientas();
     }
-    
+
     private void inicializarInventarios(){
         inventarioMateriales = new HashMap<>();
-        inventarioMateriales.put(new Madera(), new ArrayList());
-        inventarioMateriales.put(new Metal(), new ArrayList());
-        inventarioMateriales.put(new Piedra(), new ArrayList());
-        inventarioMateriales.put(new Diamante(), new ArrayList());
+        inventarioMateriales.put(new Madera(), new ArrayList<>());
+        inventarioMateriales.put(new Metal(), new ArrayList<>());
+        inventarioMateriales.put(new Piedra(), new ArrayList<>());
+        inventarioMateriales.put(new Diamante(), new ArrayList<>());
 
         inventarioHerramientas = new HashMap<>();
-        HashMap<Material, ArrayList<Herramienta>> subtiposArmas = new HashMap<>();
+        /*HashMap<Material, ArrayList<Herramienta>> subtiposArmas = new HashMap<>();
         subtiposArmas.put(new Madera(), new ArrayList<>());
         subtiposArmas.put(new Metal(), new ArrayList<>());
-        subtiposArmas.put(new Piedra(), new ArrayList<>());
-        ConstructorHerramienta constructor = new ConstructorHacha();
-        inventarioHerramientas.put(constructor.construir(), new HashMap<>());
+        subtiposArmas.put(new Piedra(), new ArrayList<>());*/
+        agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Madera(),
+                DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
+        agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Piedra(),
+                DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, DESGASTE_HACHA_PIEDRA);
+        agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Metal(),
+                DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, DESGASTE_HACHA_METAL);
+        agregarHerramientaAinventarioHerramientas(new ConstructorPico(), new Madera(),
+                DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, DESGASTE_PICO_MADERA);
+        agregarHerramientaAinventarioHerramientas(new ConstructorPico(), new Piedra(),
+                DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, DESGASTE_PICO_PIEDRA);
+        agregarHerramientaAinventarioHerramientas(new ConstructorPico(), new Metal(),
+                DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, DESGASTE_PICO_METAL);
+        agregarHerramientaAinventarioHerramientas(new ConstructorPicoFino(), new Metal(),
+                DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO, DESGASTE_PICO_FINO);
+
+    }
+
+    private void agregarHerramientaAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
+                                                           Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste){
+        constructor.conMaterial(material).conDurabilidad(durabilidad)
+                .conDesgaste(desgaste)
+                .conFuerza(fuerza);
+        inventarioHerramientas.put(constructor.construir(), new ArrayList<>());
     }
 
     public Mapa obtenerMapa() {
@@ -110,7 +130,7 @@ public class Juego {
     }
 
     private void crearMapaHerramientas () {
-        mapaHerramientas = new Mapa(3,3);
+        mapaHerramientas = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
 
     }
 

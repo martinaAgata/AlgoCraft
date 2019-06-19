@@ -6,6 +6,7 @@ import main.materiales.Desgastable;
 import main.materiales.Madera;
 import main.materiales.Material;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Hacha extends Herramienta {
@@ -26,6 +27,21 @@ public class Hacha extends Herramienta {
     public Optional<Desgastable> desgastarContra(Madera madera){
         madera.reducirDurabilidad(this.fuerza);
         return Optional.empty();
+    }
+
+    @Override
+    public int hashCode() {
+        //Verificar que esto no rompa el inventario QUITAR
+        return Objects.hash(this.getClass(),this.estrategia.getClass(),this.material.getClass(),this.fuerza);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (this.getClass() != obj.getClass()) return false;
+        Hacha unHacha = (Hacha) obj;
+        if (this.getDurabilidad() != unHacha.getDurabilidad() || this.getFuerza() != unHacha.getFuerza()) return false;
+        return true;
     }
 
 }
