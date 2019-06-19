@@ -6,7 +6,7 @@ import main.Ubicable;
 import main.mapa.Mapa;
 
 public class GraficadorTableroPrincipal {
-
+/*
     private final Juego juego;
     private static final int TAM_BOTON = 30;
 
@@ -27,5 +27,5 @@ public class GraficadorTableroPrincipal {
                 Button casillero = new Button("");
             }
         }
-    }
+    }*/
 }

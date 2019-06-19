@@ -39,8 +39,8 @@ public class Mapa {
         return this.casilleros.get(ubicacion);
      }
 
-    public void eliminarDeCasillero(Ubicacion ubicacion) {
-        this.casilleros.get(ubicacion).eliminarUbicable();
+    public Ubicable eliminarDeCasillero(Ubicacion ubicacion) {
+        return (this.casilleros.get(ubicacion).eliminarUbicable());
     }
 
     public boolean esIgualA(Mapa mapa) {
