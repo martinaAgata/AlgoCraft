@@ -7,6 +7,10 @@ public class Casillero {
 
     private Ubicable ubicable = null;
 
+    public Ubicable obtenerUbicable() {
+        return this.ubicable;
+    }
+
     public void guardarUbicable(Ubicable ubicable) {
         if (this.ubicable != null) { throw new CasilleroEstaOcupadoException("No es posible guardar, el casillero se encuentra ocupado"); }
         this.ubicable = ubicable;

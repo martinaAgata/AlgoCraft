@@ -37,6 +37,7 @@ public class Juego {
         crearMapaHerramientas();
     }
 
+<<<<<<< HEAD
     private void inicializarInventarios(){
         inventarioMateriales = new HashMap<>();
         inventarioMateriales.put(new Madera(), new ArrayList());
@@ -52,6 +53,12 @@ public class Juego {
         ConstructorHerramienta constructor = new ConstructorHacha();
         inventarioHerramientas.put(constructor.construir(), new HashMap<>());
     }
+=======
+    public Mapa obtenerMapa() {
+        return this.mapa;
+    }
+
+>>>>>>> cf8b4cd8175639a05003db136acbb46e78ca22be
     private void posicionarNMateriales(Mapa mapa, int n, Supplier<Material> supplier) {
         for (int i=0; i<=n; i++) {
             mapa.ubicarEnCasilleroAleatorio(supplier.get());
