@@ -1,8 +1,6 @@
 package main;
 
-import main.herramientas.ConstructorHacha;
-import main.herramientas.ConstructorPico;
-import main.herramientas.ConstructorPicoFino;
+import main.herramientas.*;
 import main.mapa.Mapa;
 import main.materiales.*;
 import main.patrones.DetectorPatron;
@@ -10,6 +8,8 @@ import main.patrones.DetectorPatronHacha;
 import main.patrones.DetectorPatronPico;
 import main.patrones.DetectorPatronPicoFino;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.function.Supplier;
 import static main.ConstantesJuego.*;
 
@@ -19,6 +19,9 @@ public class Juego {
     private Jugador jugador;
     private DetectorPatron detectorPatron;
     private Mapa mapaHerramientas;
+    private Mapa tableroCrafteo;
+    private HashMap<Material, ArrayList<Material>> inventarioMateriales;
+    private HashMap<Herramienta, HashMap<Material, ArrayList<Herramienta>>> inventarioHerramientas;
 
     public Juego() {
         mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
@@ -28,10 +31,27 @@ public class Juego {
         posicionarNMateriales(mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
         posicionarNMateriales(mapa, CANTIDAD_METALES, () -> new Metal());
         posicionarNMateriales(mapa, CANTIDAD_DIAMANTES, () -> new Diamante());
+        tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_CRAFTEO, CANTIDAD_COLUMNAS_TABLERO_CRAFTEO);
+        inicializarInventarios();
         crearPatrones();
         crearMapaHerramientas();
     }
 
+    private void inicializarInventarios(){
+        inventarioMateriales = new HashMap<>();
+        inventarioMateriales.put(new Madera(), new ArrayList());
+        inventarioMateriales.put(new Metal(), new ArrayList());
+        inventarioMateriales.put(new Piedra(), new ArrayList());
+        inventarioMateriales.put(new Diamante(), new ArrayList());
+
+        inventarioHerramientas = new HashMap<>();
+        HashMap<Material, ArrayList<Herramienta>> subtiposArmas = new HashMap<>();
+        subtiposArmas.put(new Madera(), new ArrayList<>());
+        subtiposArmas.put(new Metal(), new ArrayList<>());
+        subtiposArmas.put(new Piedra(), new ArrayList<>());
+        ConstructorHerramienta constructor = new ConstructorHacha();
+        inventarioHerramientas.put(constructor.construir(), new HashMap<>());
+    }
     private void posicionarNMateriales(Mapa mapa, int n, Supplier<Material> supplier) {
         for (int i=0; i<=n; i++) {
             mapa.ubicarEnCasilleroAleatorio(supplier.get());
