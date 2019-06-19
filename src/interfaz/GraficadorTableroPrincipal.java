@@ -1,6 +1,10 @@
 package interfaz;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.DrawMode;
+import javafx.scene.shape.Rectangle;
 import main.Juego;
 import main.Ubicable;
 import main.mapa.Mapa;
@@ -25,6 +29,7 @@ public class GraficadorTableroPrincipal {
             for (int y=0; y<columnas; y++) {
                 Ubicable ubicable = mapa.obtenerCasillero(x,y).obtenerUbicable();
                 Button casillero = new Button("");
+                Rectangle r = new Rectangle();
             }
         }
     }*/

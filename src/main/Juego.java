@@ -1,6 +1,7 @@
 package main;
 
 import main.estrategias.EstrategiaDesgaste;
+import main.exceptions.CasilleroVacioException;
 import main.exceptions.NoHayHerramientaParaCrearException;
 import main.herramientas.*;
 import main.mapa.Mapa;
@@ -163,7 +164,17 @@ public class Juego {
 
     public void forjarHerramientaCreada(){
         if (this.herramientaCreada.isEmpty()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
-        //Eliminar cosas del inventario y agregar herramienta al inventario.
+        //Eliminar materiales del inventario
+        for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x ++){
+            for (int y=1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++){
+                try{
+                    Material eliminar = (Material) this.mapaHerramientas.eliminarDeCasillero(new Ubicacion(x,y));
+                    this.inventarioMateriales.get(eliminar).remove(eliminar);
+                }catch (CasilleroVacioException casilleroVacio){/*Hacer nada*/}
+            }
+        }
+        //Agregar al inventario
+        inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
     }
 
     public void jugar() {
