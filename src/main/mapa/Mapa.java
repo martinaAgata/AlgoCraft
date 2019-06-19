@@ -7,28 +7,27 @@ import java.util.Objects;
 
 public class Mapa {
      private Map<Ubicacion, Casillero> casilleros = new HashMap<>();
-     private final int filas;
-     private final int columnas;
+     private final int cantidadFilas;
+     private final int cantidadColumnas;
 
      public Mapa(int cantidadFilas, int cantidadColumnas) {
-         this.filas = cantidadFilas;
-         this.columnas = cantidadColumnas;
+         this.cantidadFilas = cantidadFilas;
+         this.cantidadColumnas = cantidadColumnas;
          this.inicializarMapa();
      }
 
      private void inicializarMapa() {
-         for (int i=1; i<=this.filas; i++) {
-             for (int j=1; j<=this.columnas; j++) {
+         for (int i=1; i<=this.cantidadFilas; i++) {
+             for (int j=1; j<=this.cantidadColumnas; j++) {
                  this.casilleros.put(new Ubicacion(i, j), new Casillero());
              }
          }
      }
 
     public void ubicarEnCasilleroAleatorio(Ubicable ubicable) {
-        int x = (int)(Math.random()*filas + 1);
-        int y = (int)(Math.random()*columnas + 1);
+        int x = (int)(Math.random()*cantidadFilas + 1);
+        int y = (int)(Math.random()*cantidadColumnas + 1);
         this.casilleros.get(new Ubicacion(x, y)).guardarUbicable(ubicable);
-        // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
     public void ubicarEnCasillero(Ubicable ubicable, Ubicacion ubicacion) {
 
@@ -36,16 +35,18 @@ public class Mapa {
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
 
+    public Casillero obtenerCasillero(Ubicacion ubicacion) {
+        return this.casilleros.get(ubicacion);
+     }
+
     public void eliminarDeCasillero(Ubicacion ubicacion) {
         this.casilleros.get(ubicacion).eliminarUbicable();
-        // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
-
 
     public boolean esIgualA(Mapa mapa) {
         if (this == mapa) return true;
         if (mapa == null || getClass() != mapa.getClass()) return false;
-        if (!(filas == mapa.filas && columnas == mapa.columnas)) return false;
+        if (!(cantidadFilas == mapa.cantidadFilas && cantidadColumnas == mapa.cantidadColumnas)) return false;
         for (Ubicacion ubicacion : casilleros.keySet()) {
             if (!casilleros.get(ubicacion).esIgualA(mapa.casilleros.get(ubicacion)))
                 return false;
@@ -53,8 +54,11 @@ public class Mapa {
         return true;
     }
 
-    //public boolean esIgualA(Mapa otroMapa) { }
+    public int obtenerCantidadFilas() {
+         return cantidadFilas;
+    }
 
-    //@Override
-    //public int hashCode() { return Objects.hash(casilleros, filas, columnas); }
+    public int obtenerCantidadColumnas() {
+         return cantidadColumnas;
+    }
 }

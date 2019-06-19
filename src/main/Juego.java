@@ -32,6 +32,10 @@ public class Juego {
         crearMapaHerramientas();
     }
 
+    public Mapa obtenerMapa() {
+        return this.mapa;
+    }
+
     private void posicionarNMateriales(Mapa mapa, int n, Supplier<Material> supplier) {
         for (int i=0; i<=n; i++) {
             mapa.ubicarEnCasilleroAleatorio(supplier.get());
