@@ -23,45 +23,54 @@ public class Juego {
     private Mapa mapa;
     private Jugador jugador;
     private DetectorPatron detectorPatron;
-    private Mapa mapaHerramientas;
-    private HashMap<Material, ArrayList<Material>> inventarioMateriales;
+    private Mapa tableroCrafteo;
+    private HashMap<Material, Integer> inventarioMateriales;
     private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas;
     private Optional<Herramienta> herramientaCreada;
 
     public Juego() {
-        mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
-        ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
-        Hacha hachaInicial = (Hacha) constructor
+        inicializarJuego();
+
+    }
+
+    public void inicializarJugador() {
+        Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        jugador = new Jugador(hachaInicial);
-        herramientaCreada = Optional.empty();
-        mapa.ubicarEnCasilleroAleatorio(jugador);
-        posicionarNMateriales(mapa, CANTIDAD_MADERAS, () -> new Madera());
-        posicionarNMateriales(mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
-        posicionarNMateriales(mapa, CANTIDAD_METALES, () -> new Metal());
-        posicionarNMateriales(mapa, CANTIDAD_DIAMANTES, () -> new Diamante());
-        inicializarInventarios();
+        this.mapa.ubicarEnCasilleroAleatorio(jugador);
+        this.jugador = new Jugador(hachaInicial);
         inventarioHerramientas.get(hachaInicial).add(hachaInicial);
-        crearPatrones();
-        crearMapaHerramientas();
     }
 
-    private void inicializarInventarios(){
-        inventarioMateriales = new HashMap<>();
-        inventarioMateriales.put(new Madera(), new ArrayList<>());
-        inventarioMateriales.put(new Metal(), new ArrayList<>());
-        inventarioMateriales.put(new Piedra(), new ArrayList<>());
-        inventarioMateriales.put(new Diamante(), new ArrayList<>());
+    public void inicializarJuego(){ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
+        this.mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
 
-        inventarioHerramientas = new HashMap<>();
-        /*HashMap<Material, ArrayList<Herramienta>> subtiposArmas = new HashMap<>();
-        subtiposArmas.put(new Madera(), new ArrayList<>());
-        subtiposArmas.put(new Metal(), new ArrayList<>());
-        subtiposArmas.put(new Piedra(), new ArrayList<>());*/
+        inicializarJugador();
+        inicializarInventarioMaterial();
+        inicializarInventarioHerramienta();
+        posicionarNMateriales(this.mapa, CANTIDAD_MADERAS, () -> new Madera());
+        posicionarNMateriales(this.mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
+        posicionarNMateriales(this.mapa, CANTIDAD_METALES, () -> new Metal());
+        posicionarNMateriales(this.mapa, CANTIDAD_DIAMANTES, () -> new Diamante());
+        inicializarPatrones();
+        this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
+
+    }
+
+    private void inicializarInventarioMaterial() {
+        this.inventarioMateriales = new HashMap<>();
+        inventarioMateriales.put(new Madera(), 0);
+        inventarioMateriales.put(new Metal(), 0);
+        inventarioMateriales.put(new Piedra(), 0);
+        inventarioMateriales.put(new Diamante(), 0);
+    }
+
+     private void inicializarInventarioHerramienta() {
+        this.inventarioHerramientas = new HashMap<>();
+
         agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Madera(),
                 DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
         agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Piedra(),
@@ -97,7 +106,7 @@ public class Juego {
         }
     }
 
-    private void crearPatrones() {
+    private void inicializarPatrones() {
         DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha()
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
@@ -143,34 +152,31 @@ public class Juego {
         this.detectorPatron = dp;
     }
 
-    private void crearMapaHerramientas () {
-        mapaHerramientas = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
 
+    private void detectarHerramientatableroCrafteo() {
+        this.herramientaCreada = this.detectorPatron.resolver(this.tableroCrafteo);
     }
 
-    private void detectarHerramientaMapaHerramientas(){
-        this.herramientaCreada = this.detectorPatron.resolver(this.mapaHerramientas);
+    public void ubicarMaterialTableroCrafteo(Ubicacion ubicacion, Material material) {
+        this.tableroCrafteo.ubicarEnCasillero(material, ubicacion);
+        detectarHerramientatableroCrafteo();
     }
 
-    public void ubicarMaterialMapaHerramientas(Ubicacion ubicacion, Material material){
-        this.mapaHerramientas.ubicarEnCasillero(material, ubicacion);
-        detectarHerramientaMapaHerramientas();
+    public void quitarMaterialTableroCrafteo(Ubicacion ubicacion) {
+        this.tableroCrafteo.eliminarDeCasillero(ubicacion);
+        detectarHerramientatableroCrafteo();
     }
 
-    public void quitarMaterialMapaHerramientas(Ubicacion ubicacion){
-        this.mapaHerramientas.eliminarDeCasillero(ubicacion);
-        detectarHerramientaMapaHerramientas();
-    }
-
-    public void forjarHerramientaCreada(){
+    public void forjarHerramientaCreada() {
         if (this.herramientaCreada.isEmpty()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
         //Eliminar materiales del inventario
-        for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x ++){
-            for (int y=1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++){
-                try{
-                    Material eliminar = (Material) this.mapaHerramientas.eliminarDeCasillero(new Ubicacion(x,y));
-                    this.inventarioMateriales.get(eliminar).remove(eliminar);
-                }catch (CasilleroVacioException casilleroVacio){/*Hacer nada*/}
+        for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
+            for (int y=1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++) {
+                try {
+                    Material eliminar = (Material) this.tableroCrafteo.eliminarDeCasillero(new Ubicacion(x,y));
+
+                    this.inventarioMateriales.put(eliminar, this.inventarioMateriales.get(eliminar) - 1);
+                } catch (CasilleroVacioException casilleroVacio){/*Hacer nada*/}
             }
         }
         //Agregar al inventario
