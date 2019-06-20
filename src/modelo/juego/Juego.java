@@ -25,7 +25,7 @@ public class Juego {
     private DetectorPatron detectorPatron;
     private Mapa tableroCrafteo;
     private HashMap<Material, Integer> inventarioMateriales;
-    private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas;
+    private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas  = new HashMap<>();;
     private Optional<Herramienta> herramientaCreada;
 
 /*
@@ -42,8 +42,8 @@ public class Juego {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        this.mapa.ubicarEnCasillero(jugador, new Ubicacion(1,6));
         this.jugador = new Jugador(hachaInicial);
+        this.mapa.ubicarEnCasillero(jugador, new Ubicacion(1,6));
         inventarioHerramientas.get(hachaInicial).add(hachaInicial);
     }
 
@@ -67,7 +67,7 @@ public class Juego {
 
     }
 */
-    private void inicializarInventarioMaterial() {
+    public void inicializarInventarioMaterial() {
         this.inventarioMateriales = new HashMap<>();
         inventarioMateriales.put(new Madera(), 0);
         inventarioMateriales.put(new Metal(), 0);
@@ -75,9 +75,7 @@ public class Juego {
         inventarioMateriales.put(new Diamante(), 0);
     }
 
-     private void inicializarInventarioHerramienta() {
-        this.inventarioHerramientas = new HashMap<>();
-
+     public void inicializarInventarioHerramienta() {
         agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Madera(),
                 DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
         agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Piedra(),

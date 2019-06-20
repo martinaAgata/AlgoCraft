@@ -1,16 +1,12 @@
 package modelo;
 
-import modelo.herramientas.ConstructorHacha;
-import modelo.herramientas.Hacha;
-import modelo.herramientas.Herramienta;
+import modelo.estrategias.EstrategiaDesgaste;
+import modelo.herramientas.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
-import modelo.materiales.Diamante;
-import modelo.materiales.Madera;
-import modelo.materiales.Metal;
-import modelo.materiales.Piedra;
+import modelo.materiales.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,6 +28,7 @@ public class JuegoTests {
     Mapa mapaTest;
     Jugador jugadorTest = new Jugador(hachaMaderaTest);
     private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientasTest;
+
 
 
     public void inicializarMapaTestConMateriales() {
@@ -59,6 +56,20 @@ public class JuegoTests {
         }
     }
 
+    private void agregarHerramientaAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
+                                                           Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste){
+        constructor.conMaterial(material).conDurabilidad(durabilidad)
+                .conDesgaste(desgaste)
+                .conFuerza(fuerza);
+        inventarioHerramientasTest.put(constructor.construir(), new ArrayList<>());
+    }
+
+    private void inicializarInventarioHerramientaTest() {
+        agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Madera(),
+                DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
+    }
+
+
     public void inicializarMapaTestConJugador(){
             Hacha hachaInicial = (Hacha) new ConstructorHacha()
                     .conMaterial(new Madera())
@@ -71,11 +82,10 @@ public class JuegoTests {
             inventarioHerramientasTest.get(hachaInicial).add(hachaInicial);
         }
 
-
     @Before
     public void setup() {
           mapaTest = new Mapa(20, 20);
-
+          inventarioHerramientasTest = new HashMap<>();
     }
 
     @Test
@@ -90,8 +100,10 @@ public class JuegoTests {
 
     @Test
     public void testSeCreaElJuegoConElJugadorDondeCorresponde() {
+        inicializarInventarioHerramientaTest();
         inicializarMapaTestConJugador();
         Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
         juego.inicializarJugador();
         Mapa mapaJuego = juego.obtenerMapa();
         assertTrue(mapaJuego.esIgualA(mapaTest));

@@ -19,7 +19,6 @@ public class Jugador implements Ubicable {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-
         this.herramientaActual = herramientaInicial;
     }
 
@@ -50,9 +49,6 @@ public class Jugador implements Ubicable {
 
     @Override
     public boolean esIgualAUbicable(Ubicable ubicable) {
-        if(this.getClass() != ubicable.getClass()) return false;
-        Jugador unJugador = (Jugador) ubicable;
-        if(this.herramientaActual != unJugador.obtenerHerramientaActual()) return false;
-        return true;
+        return this.getClass() == ubicable.getClass();
     }
 }

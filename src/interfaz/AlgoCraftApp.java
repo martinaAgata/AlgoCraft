@@ -1,4 +1,4 @@
-package interfaz;
+/*package interfaz;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -27,3 +27,4 @@ public class AlgoCraftApp extends Application {
         stage.show();
     }
 }
+*/
