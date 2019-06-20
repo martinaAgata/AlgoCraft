@@ -18,7 +18,7 @@ public class PicoFinoTests {
     private final int FUERZA_PICO_FINO = 20;
 
     @Test
-    public void test01CrearPicoFinoConDurabilidad() {
+    public void testCrearPicoFinoConDurabilidad() {
         ConstructorPicoFino constructor = new ConstructorPicoFino();
         constructor
                 .conMaterial(new Metal())
@@ -29,7 +29,7 @@ public class PicoFinoTests {
         assertThat(picoFino.getDurabilidad(), is(1000));
     }
     @Test
-    public void test02CrearPicoFinoConFuerza() {
+    public void testCrearPicoFinoConFuerza() {
         ConstructorPicoFino constructor = new ConstructorPicoFino();
                 constructor
                 .conMaterial(new Metal())
@@ -40,7 +40,7 @@ public class PicoFinoTests {
         assertThat(picoFino.getFuerza(), is(20));
     }
     @Test
-    public void test03PicoFinoSeUsaContraDiamanteYSeReduceSuDurabilidad(){
+    public void testPicoFinoSeUsaContraDiamanteYSeReduceSuDurabilidad(){
         ConstructorPicoFino constructor = new ConstructorPicoFino();
                 constructor
                 .conMaterial(new Metal())
@@ -54,7 +54,7 @@ public class PicoFinoTests {
     }
 
     @Test
-    public void test04PicoFinoSeUsaContraMaderaYNoReduceSuDurabilidad(){
+    public void testPicoFinoSeUsaContraMaderaYNoReduceSuDurabilidad(){
         ConstructorPicoFino constructor = new ConstructorPicoFino();
                 constructor
                 .conMaterial(new Metal())
@@ -68,7 +68,7 @@ public class PicoFinoTests {
     }
 
     @Test
-    public void test05PicoFinoSeUsaContraMetalYNoReduceSuDurabilidad(){
+    public void testPicoFinoSeUsaContraMetalYNoReduceSuDurabilidad(){
         ConstructorPicoFino constructor = new ConstructorPicoFino();
                 constructor
                 .conMaterial(new Metal())
@@ -82,7 +82,7 @@ public class PicoFinoTests {
     }
 
     @Test
-    public void test06PicoFinoSeUsaContraPiedraYNoReduceSuDurabilidad(){
+    public void testPicoFinoSeUsaContraPiedraYNoReduceSuDurabilidad(){
         ConstructorPicoFino constructor = new ConstructorPicoFino();
                 constructor
                 .conMaterial(new Metal())

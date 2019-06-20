@@ -18,7 +18,7 @@ public class HachaPiedraTests {
     private final int FUERZA_HACHA_PIEDRA = 5;
 
     @Test
-    public void test08HachaPiedraSeUsaContraMaderaReduceSuDurabilidad() {
+    public void testHachaPiedraSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
                 .conMaterial(new Piedra())
@@ -32,7 +32,7 @@ public class HachaPiedraTests {
     }
 
     @Test
-    public void test09HachaPiedraSeUsaContraPiedraReduceSuDurabilidad() {
+    public void testHachaPiedraSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Piedra())
@@ -46,7 +46,7 @@ public class HachaPiedraTests {
     }
 
     @Test
-    public void test10HachaPiedraSeUsaContraMetalReduceSuDurabilidad() {
+    public void testHachaPiedraSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Piedra())
@@ -60,7 +60,7 @@ public class HachaPiedraTests {
     }
 
     @Test
-    public void test11HachaPiedraSeUsaContraDiamanteReduceSuDurabilidad() {
+    public void testHachaPiedraSeUsaContraDiamanteReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Piedra())
@@ -74,7 +74,7 @@ public class HachaPiedraTests {
     }
 
     @Test
-    public void test05SeUsaContraMaderaReduceSuDurabilidadDeManeraCorrecta() {
+    public void testSeUsaContraMaderaReduceSuDurabilidadDeManeraCorrecta() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Piedra())
@@ -89,7 +89,7 @@ public class HachaPiedraTests {
     }
 
     @Test
-    public void test06HachaPiedraSeUsaContraPiedraReduceSuDurabilidadDeManeraCorrecta() {
+    public void testHachaPiedraSeUsaContraPiedraReduceSuDurabilidadDeManeraCorrecta() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Piedra())
@@ -104,7 +104,7 @@ public class HachaPiedraTests {
     }
 
     @Test
-    public void test07HachaPiedraSeUsaContraMetalReduceSuDurabilidadDeManeraCorrecta() {
+    public void testHachaPiedraSeUsaContraMetalReduceSuDurabilidadDeManeraCorrecta() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Piedra())
@@ -119,7 +119,7 @@ public class HachaPiedraTests {
     }
 
     @Test
-    public void test08HachaPiedraSeUsaContraDiamanteReduceSuDurabilidadDeManeraCorrecta() {
+    public void testHachaPiedraSeUsaContraDiamanteReduceSuDurabilidadDeManeraCorrecta() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Piedra())

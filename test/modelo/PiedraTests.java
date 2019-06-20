@@ -16,12 +16,12 @@ public class PiedraTests {
     public static final int DURABILIDAD_INICIAL_PIEDRA = 30;
 
     @Test
-    public void test01CrearPiedra() {
+    public void testCrearPiedra() {
         Piedra piedra = new Piedra();
         assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA));
     }
     @Test
-    public void test02PiedraNoEsDesgastadaPorHachaMadera() {
+    public void testPiedraNoEsDesgastadaPorHachaMadera() {
         Piedra piedra = new Piedra();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -34,7 +34,7 @@ public class PiedraTests {
         assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA));
     }
     @Test
-    public void test03PiedraNoEsDesgastadaPorHachaPiedra() {
+    public void testPiedraNoEsDesgastadaPorHachaPiedra() {
         Piedra piedra = new Piedra();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -48,7 +48,7 @@ public class PiedraTests {
 
     }
     @Test
-    public void test04PiedraNoEsDesgastadaPorHachaMetal() {
+    public void testPiedraNoEsDesgastadaPorHachaMetal() {
         Piedra piedra = new Piedra();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -62,7 +62,7 @@ public class PiedraTests {
 
     }
     @Test
-    public void test05PiedraEsDesgastadaPorPicoMadera() {
+    public void testPiedraEsDesgastadaPorPicoMadera() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -76,7 +76,7 @@ public class PiedraTests {
 
     }
     @Test
-    public void test06PiedraEsDesgastadaPorPicoPiedra() {
+    public void testPiedraEsDesgastadaPorPicoPiedra() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -90,7 +90,7 @@ public class PiedraTests {
 
     }
     @Test
-    public void test07PiedraEsDesgastadaPorPicoMetal() {
+    public void testPiedraEsDesgastadaPorPicoMetal() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -104,7 +104,7 @@ public class PiedraTests {
     }
 
     @Test
-    public void test08PiedraNoEsDesgastadaPorPicoFino() {
+    public void testPiedraNoEsDesgastadaPorPicoFino() {
         Piedra piedra = new Piedra();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
         constructor
@@ -118,7 +118,7 @@ public class PiedraTests {
     }
 
     @Test
-    public void test08PiedraEsDesgastadaPorPicoMaderaSeReduceVariasVeces() {
+    public void testPiedraEsDesgastadaPorPicoMaderaSeReduceVariasVeces() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -138,7 +138,7 @@ public class PiedraTests {
     }
 
     @Test
-    public void test09PiedraEsDesgastadaPorPicoPiedraSeReduceVariasVeces() {
+    public void testPiedraEsDesgastadaPorPicoPiedraSeReduceVariasVeces() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -156,7 +156,7 @@ public class PiedraTests {
     }
 
     @Test
-    public void test10PiedraEsDesgastadaPorPicoMetalSeReduceVariasVeces() {
+    public void testPiedraEsDesgastadaPorPicoMetalSeReduceVariasVeces() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -172,7 +172,7 @@ public class PiedraTests {
     }
 
     @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test11PiedraEsDesgastadaPorPicoMaderaLanzaExcepcionTrasRomperse(){
+    public void testPiedraEsDesgastadaPorPicoMaderaLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -185,7 +185,7 @@ public class PiedraTests {
     }
 
     @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test12PiedraEsDesgastadaPorPicoPiedraLanzaExcepcionTrasRomperse(){
+    public void testPiedraEsDesgastadaPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -198,7 +198,7 @@ public class PiedraTests {
     }
 
     @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test13PiedraEsDesgastadaPorPicoMetalLanzaExcepcionTrasRomperse() {
+    public void testPiedraEsDesgastadaPorPicoMetalLanzaExcepcionTrasRomperse() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -214,7 +214,7 @@ public class PiedraTests {
     }
 
     @Test
-    public void test14PiedraConEstadoMuertoDevuelveDurabilidadCero() {
+    public void testPiedraConEstadoMuertoDevuelveDurabilidadCero() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -228,7 +228,7 @@ public class PiedraTests {
     }
 
     @Test
-    public void test15PiedraEsDesgastadaConPicoMaderaPicoPiedraPicoMetal() {
+    public void testPiedraEsDesgastadaConPicoMaderaPicoPiedraPicoMetal() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor

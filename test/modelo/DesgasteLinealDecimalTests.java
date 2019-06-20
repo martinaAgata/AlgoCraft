@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 public class DesgasteLinealDecimalTests {
     @Test
-    public void test01DesgasteLinealDecimalDesgastaEstadoVivoSegunFuerzaDivididaPorUnDecimo(){
+    public void testDesgasteLinealDecimalDesgastaEstadoVivoSegunFuerzaDivididaPorUnDecimo(){
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(0.1);
         EstadoVivo estadoVivo = new EstadoVivo(100);
         Integer durabilidadEstado = estadoVivo.getDurabilidad();
@@ -27,7 +27,7 @@ public class DesgasteLinealDecimalTests {
     }
 
     @Test
-    public void test02DesgasteLinealDecimalDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado(){
+    public void testDesgasteLinealDecimalDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado(){
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(0.1);
         EstadoVivo estadoVivo = new EstadoVivo(10);
         assertTrue(desgasteLineal.desgastar(30, estadoVivo) instanceof EstadoVivo);
@@ -36,7 +36,7 @@ public class DesgasteLinealDecimalTests {
     }
 
     @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test03DesgasteLinealFactorLanzaExcepcionAlDesgastarEstadoMuerto(){
+    public void testDesgasteLinealFactorLanzaExcepcionAlDesgastarEstadoMuerto(){
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(0.1);
         EstadoMuerto estadoMuerto = new EstadoMuerto();
         desgasteLineal.desgastar(1, estadoMuerto);

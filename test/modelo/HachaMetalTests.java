@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 public class HachaMetalTests {
 
     @Test
-    public void test12HachaMetalSeUsaContraMaderaReduceSuDurabilidad() {
+    public void testHachaMetalSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
                 .conMaterial(new Metal())
@@ -29,7 +29,7 @@ public class HachaMetalTests {
     }
 
     @Test
-    public void test13HachaMetalSeUsaContraPiedraReduceSuDurabilidad() {
+    public void testHachaMetalSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Metal())
@@ -43,7 +43,7 @@ public class HachaMetalTests {
     }
 
     @Test
-    public void test14HachaMetalSeUsaContraMetalReduceSuDurabilidad() {
+    public void testHachaMetalSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Metal())
@@ -57,7 +57,7 @@ public class HachaMetalTests {
     }
 
     @Test
-    public void test15HachaMetalSeUsaContraDiamanteReduceSuDurabilidad() {
+    public void testHachaMetalSeUsaContraDiamanteReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Metal())

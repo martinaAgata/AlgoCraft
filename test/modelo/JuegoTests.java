@@ -109,7 +109,17 @@ public class JuegoTests {
 
     }
 
+   /* @Test
+    public void testSeDetectaHerramientaDelTableroCrafteo(){
+        Juego juego = new Juego();
+        juego.inicializarPatrones();
+
+    }
+
     @Test
-    public void test(){}
+    public void testSeUbicaCorrectamenteMaterialEnTableroCrafteo(){
+        Juego juego = new Juego();
+    }
+*/
 
 }

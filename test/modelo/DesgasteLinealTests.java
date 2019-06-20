@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class DesgasteLinealTests {
     @Test
-    public void test01DesgasteLinealDesgastaEstadoVivoSegunFuerza(){
+    public void testDesgasteLinealDesgastaEstadoVivoSegunFuerza(){
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(1);
         EstadoVivo estadoVivo = new EstadoVivo(10);
         Integer durabilidadEstado = estadoVivo.getDurabilidad();
@@ -25,7 +25,7 @@ public class DesgasteLinealTests {
     }
 
     @Test
-    public void test02DesgasteLinealDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado(){
+    public void testDesgasteLinealDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado(){
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(1);
         EstadoVivo estadoVivo = new EstadoVivo(3);
         assertTrue(desgasteLineal.desgastar(1, estadoVivo) instanceof EstadoVivo);
@@ -34,7 +34,7 @@ public class DesgasteLinealTests {
     }
 
     @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test03DesgasteLinealLanzaExcepcionAlDesgastarEstadoMuerto(){
+    public void testDesgasteLinealLanzaExcepcionAlDesgastarEstadoMuerto(){
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(1);
         EstadoMuerto estadoMuerto = new EstadoMuerto();
         desgasteLineal.desgastar(1, estadoMuerto);

@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class HachaMaderaTests {
 
     @Test
-    public void test01HachaMaderaSeUsaContraMaderaReduceSuDurabilidad() {
+    public void testHachaMaderaSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Madera())
@@ -30,7 +30,7 @@ public class HachaMaderaTests {
     }
 
     @Test
-    public void test05HachaMaderaSeUsaContraPiedraReduceSuDurabilidad() {
+    public void testHachaMaderaSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Madera())
@@ -44,7 +44,7 @@ public class HachaMaderaTests {
    }
 
     @Test
-    public void test06HachaMaderaSeUsaContraMetalReduceSuDurabilidad() {
+    public void testHachaMaderaSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Madera())
@@ -58,7 +58,7 @@ public class HachaMaderaTests {
     }
 
     @Test
-    public void test04HachaMaderaSeUsaContraDiamanteReduceSuDurabilidad() {
+    public void testHachaMaderaSeUsaContraDiamanteReduceSuDurabilidad() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Madera())
@@ -72,7 +72,7 @@ public class HachaMaderaTests {
     }
 
     @Test
-    public void test05HachaMaderaSeUsaContraMaderaReduceSuDurabilidadDeADos() {
+    public void testHachaMaderaSeUsaContraMaderaReduceSuDurabilidadDeADos() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Madera())
@@ -91,7 +91,7 @@ public class HachaMaderaTests {
     }
 
     @Test
-    public void test06HachaMaderaSeUsaContraPiedraReduceSuDurabilidadDeADos() {
+    public void testHachaMaderaSeUsaContraPiedraReduceSuDurabilidadDeADos() {
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
                 .conMaterial(new Madera())
@@ -110,7 +110,7 @@ public class HachaMaderaTests {
     }
 
     @Test
-    public void test07HachaMaderaSeUsaContraMetalReduceSuDurabilidadDeADos() {
+    public void testHachaMaderaSeUsaContraMetalReduceSuDurabilidadDeADos() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Madera())
@@ -129,7 +129,7 @@ public class HachaMaderaTests {
     }
 
     @Test
-    public void test08HachaMaderaSeUsaContraDiamanteReduceSuDurabilidadDeADos() {
+    public void testHachaMaderaSeUsaContraDiamanteReduceSuDurabilidadDeADos() {
         ConstructorHacha constructor = new ConstructorHacha();
                 constructor
                 .conMaterial(new Madera())

@@ -26,7 +26,7 @@ public class PicoMetalTests {
         assertThat(picoMetal.getDurabilidad(), is(DURABILIDAD_PICO_METAL));
     }
     @Test
-    public void test01CrearPicoDeMetalConFuerza() {
+    public void testCrearPicoDeMetalConFuerza() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Metal())
@@ -37,7 +37,7 @@ public class PicoMetalTests {
         assertThat(picoMetal.getFuerza(), is(FUERZA_PICO_METAL));
     }
     @Test
-    public void test02PicoDeMetalSeUsaContraMaderaReduceSuDurabilidad() {
+    public void testPicoDeMetalSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Metal())
@@ -50,7 +50,7 @@ public class PicoMetalTests {
         assertThat(picoMetal.getDurabilidad(), is (DURABILIDAD_PICO_METAL));
     }
     @Test
-    public void test03PicoDeMetalSeUsaContraPiedraReduceSuDurabilidad() {
+    public void testPicoDeMetalSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Metal())
@@ -63,7 +63,7 @@ public class PicoMetalTests {
         assertThat(picoMetal.getDurabilidad(), is (DURABILIDAD_PICO_METAL));
     }
     @Test
-    public void test04PicoDeMetalSeUsaContraMetalReduceSuDurabilidad() {
+    public void testPicoDeMetalSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Metal())

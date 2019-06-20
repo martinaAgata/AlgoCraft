@@ -34,7 +34,7 @@ public class MaderaTests {
     // probar que el reducir durabilidad tambien funciona bien
 
     @Test
-    public void test02MaderaEsDesgastadaPorHachaPiedra(){
+    public void testMaderaEsDesgastadaPorHachaPiedra(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -48,7 +48,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test03MaderaEsDesgastadaPorHachaMetal(){
+    public void testMaderaEsDesgastadaPorHachaMetal(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -63,7 +63,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test04MaderaNoEsDesgastadaPorPicoMadera(){
+    public void testMaderaNoEsDesgastadaPorPicoMadera(){
         Madera madera = new Madera();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -77,7 +77,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test05MaderaNoEsDesgastadaPorPicoPiedra(){
+    public void testMaderaNoEsDesgastadaPorPicoPiedra(){
         Madera madera = new Madera();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -91,7 +91,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test06MaderaNoEsDesgastadaPorPicoMetal(){
+    public void testMaderaNoEsDesgastadaPorPicoMetal(){
         Madera madera = new Madera();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -105,7 +105,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test07MaderaNoEsDesgastadaPorPicoFino(){
+    public void testMaderaNoEsDesgastadaPorPicoFino(){
         Madera madera = new Madera();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
         constructor
@@ -119,7 +119,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test08MaderaEsDesgastadaPorHachaMaderaSeReduceVariasVeces(){
+    public void testMaderaEsDesgastadaPorHachaMaderaSeReduceVariasVeces(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -139,7 +139,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test09MaderaEsDesgastadaPorHachaPiedraSeReduceVariasVeces(){
+    public void testMaderaEsDesgastadaPorHachaPiedraSeReduceVariasVeces(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -155,7 +155,7 @@ public class MaderaTests {
     }
 
     @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test10MaderaEsDesgastadaPorHachaMaderaLanzaExcepcionTrasRomperse(){
+    public void testMaderaEsDesgastadaPorHachaMaderaLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -173,7 +173,7 @@ public class MaderaTests {
     }
 
     @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test11MaderaEsDesgastadaPorHachaPiedraLanzaExcepcionTrasRomperse(){
+    public void testMaderaEsDesgastadaPorHachaPiedraLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -188,7 +188,7 @@ public class MaderaTests {
     }
 
     @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test12MaderaEsDesgastadaPorHachaMetalLanzaExcepcionTrasRomperse(){
+    public void testMaderaEsDesgastadaPorHachaMetalLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -202,7 +202,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test13MaderaConEstadoMuertoDevuelveDurabilidadCero(){
+    public void testMaderaConEstadoMuertoDevuelveDurabilidadCero(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -220,7 +220,7 @@ public class MaderaTests {
     }
 
     @Test
-    public void test15MaderaEsDesgastadaConHachaMaderaHachaPiedraHachaMetal(){
+    public void testMaderaEsDesgastadaConHachaMaderaHachaPiedraHachaMetal(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor

@@ -24,7 +24,7 @@ public class JugadorTests {
     por todos los casilleros vacíos (es decir, sin ningún material).
     */
     @Test
-    public void test01JugadorSeInicializaConUnItemEnElInventario() {
+    public void testJugadorSeInicializaConUnItemEnElInventario() {
         ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
         constructor.conMaterial(new Madera()).conDesgaste(DESGASTE_HACHA_MADERA)
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
@@ -34,7 +34,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void test02JugadorSeInicializaConUnHachaDeMadera() {
+    public void testJugadorSeInicializaConUnHachaDeMadera() {
         ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
         constructor.conMaterial(new Madera()).conDesgaste(DESGASTE_HACHA_MADERA)
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
@@ -44,7 +44,7 @@ public class JugadorTests {
         assertThat(jugador.obtenerHerramientaActual(), is(hachaInicial));
     }
     @Test
-    public void test03JugadorPuedeMoverseEnMapaNuevoHaciaArribaLuegoAbajo(){
+    public void testJugadorPuedeMoverseEnMapaNuevoHaciaArribaLuegoAbajo(){
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
@@ -63,7 +63,7 @@ public class JugadorTests {
     /*el jugador se inicializa en la posicion (1,6)*/
 
     @Test
-    public void test04JugadorPuedeMoverseHaciaLaDerechaEnJuegoInicializado() {
+    public void testJugadorPuedeMoverseHaciaLaDerechaEnJuegoInicializado() {
         Juego juego = new Juego();
         juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
@@ -72,7 +72,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void test05JugadorPuedeMoverseHaciaArribaEnJuegoInicializado() {
+    public void testJugadorPuedeMoverseHaciaArribaEnJuegoInicializado() {
         Juego juego = new Juego();
         juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
@@ -81,7 +81,7 @@ public class JugadorTests {
     }
 
     @Test (expected = CasilleroEstaOcupadoException.class)
-    public void test06JugadorMoverseHaciaAbajoTresVecesEnJuegoInicializadoLanzaException() {
+    public void testJugadorMoverseHaciaAbajoTresVecesEnJuegoInicializadoLanzaException() {
         Juego juego = new Juego();
         juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
@@ -92,7 +92,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void test07JugadorSeMueveArribaYEstaEnLaPosicionEsperada(){
+    public void testJugadorSeMueveArribaYEstaEnLaPosicionEsperada(){
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
@@ -111,7 +111,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void test08JugadorSeMuevAbajoYEstaEnLaPosicionEsperada(){
+    public void testJugadorSeMuevAbajoYEstaEnLaPosicionEsperada(){
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
@@ -130,7 +130,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void test09JugadorSeMueveDerechaYEstaEnLaPosicionEsperada(){
+    public void testJugadorSeMueveDerechaYEstaEnLaPosicionEsperada(){
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
@@ -149,7 +149,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void test10JugadorSeMueveIzquierdaYEstaEnLaPosicionEsperada(){
+    public void testJugadorSeMueveIzquierdaYEstaEnLaPosicionEsperada(){
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())

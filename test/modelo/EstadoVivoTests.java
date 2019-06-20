@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 public class EstadoVivoTests {
     @Test
-    public void test01EstadoVivoSeInicializaCorrectamente(){
+    public void testEstadoVivoSeInicializaCorrectamente(){
         EstadoVivo estadoVivo = new EstadoVivo(100);
         assertThat(estadoVivo.getDurabilidad(), is(100));
         estadoVivo = new EstadoVivo(12395346);
@@ -20,7 +20,7 @@ public class EstadoVivoTests {
     }
 
     @Test
-    public void test02EstadoVivoDesgastaDurabilidadSegunValorRecibido(){
+    public void testEstadoVivoDesgastaDurabilidadSegunValorRecibido(){
         Integer durabilidadInicial = 100;
         EstadoVivo estadoVivo = new EstadoVivo(durabilidadInicial);
         estadoVivo.desgastar(10);
@@ -32,7 +32,7 @@ public class EstadoVivoTests {
     }
 
     @Test
-    public void test03EstadoVivoDevueleveEstadoVivoConDurabilidadMayorACero(){
+    public void testEstadoVivoDevueleveEstadoVivoConDurabilidadMayorACero(){
         EstadoVivo estadoVivo = new EstadoVivo(100);
         assertTrue((estadoVivo.desgastar(10)) instanceof EstadoVivo);//Revisar si hace lo correcto QUITAR
         assertTrue((estadoVivo.desgastar(30)) instanceof EstadoVivo);
@@ -40,7 +40,7 @@ public class EstadoVivoTests {
     }
 
     @Test
-    public void test04EstadoVivoDevueleveEstadoMuertoConDurabilidadMenorIgualACero(){
+    public void testEstadoVivoDevueleveEstadoMuertoConDurabilidadMenorIgualACero(){
         EstadoVivo estadoVivo = new EstadoVivo(100);
         assertTrue(estadoVivo.desgastar(100) instanceof EstadoMuerto);
         estadoVivo = new EstadoVivo(100);

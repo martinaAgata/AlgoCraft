@@ -35,7 +35,7 @@ public class DiamanteTests {
     }
 
     @Test
-    public void test03DiamanteNoEsDesgastadoPorHachaPiedra() {
+    public void testDiamanteNoEsDesgastadoPorHachaPiedra() {
         Diamante diamante = new Diamante();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -49,7 +49,7 @@ public class DiamanteTests {
     }
 
     @Test
-    public void test04DiamanteNoEsDesgastadoPorHachaMetal() {
+    public void testDiamanteNoEsDesgastadoPorHachaMetal() {
         Diamante diamante = new Diamante();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -63,7 +63,7 @@ public class DiamanteTests {
     }
 
     @Test
-    public void test05DiamanteNoEsDesgastadoPorPicoMadera() {
+    public void testDiamanteNoEsDesgastadoPorPicoMadera() {
         Diamante diamante = new Diamante();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -77,7 +77,7 @@ public class DiamanteTests {
     }
 
     @Test
-    public void test06DiamanteNoEsDesgastadoPorPicoPiedra() {
+    public void testDiamanteNoEsDesgastadoPorPicoPiedra() {
         Diamante diamante = new Diamante();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -91,7 +91,7 @@ public class DiamanteTests {
     }
 
     @Test
-    public void test07DiamanteNoEsDesgastadoPorPicoMetal(){
+    public void testDiamanteNoEsDesgastadoPorPicoMetal(){
         Diamante diamante = new Diamante();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -106,7 +106,7 @@ public class DiamanteTests {
     }
 
     @Test
-    public void test08DiamanteEsDesgastadoPorPicoFino(){
+    public void testDiamanteEsDesgastadoPorPicoFino(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
         constructor
@@ -120,7 +120,7 @@ public class DiamanteTests {
     }
 
     @Test
-    public void test09DiamanteEsDesgastadoPorPicoFinoSeReduceVariasVeces(){
+    public void testDiamanteEsDesgastadoPorPicoFinoSeReduceVariasVeces(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
         constructor
@@ -140,7 +140,7 @@ public class DiamanteTests {
     }
 
     @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test10DiamanteEsDesgastadoPorPicoFinoLanzaExcepcionTrasRomperse(){
+    public void testDiamanteEsDesgastadoPorPicoFinoLanzaExcepcionTrasRomperse(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
         constructor
@@ -159,7 +159,7 @@ public class DiamanteTests {
     }
 
     @Test
-    public void test11DiamanteConEstadoMuertoDevuelveDurabilidadCero(){
+    public void testDiamanteConEstadoMuertoDevuelveDurabilidadCero(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
         constructor

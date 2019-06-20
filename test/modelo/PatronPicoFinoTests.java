@@ -18,15 +18,15 @@ public class PatronPicoFinoTests {
         // Piedra | Madera |         2
         //        | Madera |         3
 
-        Mapa tableroPicoFinco = new Mapa(3,3);
-        tableroPicoFinco.ubicarEnCasillero((new Metal()),(new Ubicacion(1,1)));
-        tableroPicoFinco.ubicarEnCasillero((new Metal()),(new Ubicacion(2,1)));
-        tableroPicoFinco.ubicarEnCasillero((new Metal()),(new Ubicacion(3,1)));
-        tableroPicoFinco.ubicarEnCasillero(new Piedra(), new Ubicacion(1,2));
-        tableroPicoFinco.ubicarEnCasillero((new Madera()),(new Ubicacion(2,2)));
-        tableroPicoFinco.ubicarEnCasillero((new Madera()),(new Ubicacion(2,3)));
+        Mapa tableroPicoFino = new Mapa(3,3);
+        tableroPicoFino.ubicarEnCasillero((new Metal()),(new Ubicacion(1,1)));
+        tableroPicoFino.ubicarEnCasillero((new Metal()),(new Ubicacion(2,1)));
+        tableroPicoFino.ubicarEnCasillero((new Metal()),(new Ubicacion(3,1)));
+        tableroPicoFino.ubicarEnCasillero(new Piedra(), new Ubicacion(1,2));
+        tableroPicoFino.ubicarEnCasillero((new Madera()),(new Ubicacion(2,2)));
+        tableroPicoFino.ubicarEnCasillero((new Madera()),(new Ubicacion(2,3)));
         PatronPicoFino patronPicoFino = new PatronPicoFino((new Metal()));
-        assertTrue(tableroPicoFinco.esIgualA(patronPicoFino.getMapa()));
+        assertTrue(tableroPicoFino.esIgualA(patronPicoFino.getMapa()));
 
     }
 }

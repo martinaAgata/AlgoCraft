@@ -35,7 +35,7 @@ public class MetalTests {
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
-    public void test03MetalNoEsDesgastadoPorHachaPiedra() {
+    public void testMetalNoEsDesgastadoPorHachaPiedra() {
         Material metal = new Metal();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -48,7 +48,7 @@ public class MetalTests {
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
-    public void test04MetalNoEsDesgastadoPorHachaMetal() {
+    public void testMetalNoEsDesgastadoPorHachaMetal() {
         Material metal = new Metal();
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
@@ -61,7 +61,7 @@ public class MetalTests {
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
-    public void test05MetalNoEsDesgastadoPorPicoMadera() {
+    public void testMetalNoEsDesgastadoPorPicoMadera() {
         Material metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -74,7 +74,7 @@ public class MetalTests {
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
-    public void test06MetalEsDesgastadoPorPicoPiedra() {
+    public void testMetalEsDesgastadoPorPicoPiedra() {
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -87,7 +87,7 @@ public class MetalTests {
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 4));
     }
     @Test
-    public void test07MetalNoEsDesgastadoPorPicoMetal() {
+    public void testMetalNoEsDesgastadoPorPicoMetal() {
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -100,7 +100,7 @@ public class MetalTests {
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
-    public void test08MetalNoEsDesgastadoPorPicoFino() {
+    public void testMetalNoEsDesgastadoPorPicoFino() {
         Metal metal = new Metal();
         ConstructorPicoFino constructor = new ConstructorPicoFino();
         constructor
@@ -114,7 +114,7 @@ public class MetalTests {
     }
 
     @Test
-    public void test09MetalEsDesgastadoPorPicoPiedraSeReduceVariasVeces(){
+    public void testMetalEsDesgastadoPorPicoPiedraSeReduceVariasVeces(){
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -132,7 +132,7 @@ public class MetalTests {
     }
 
     @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void test11MetalEsDesgastadoPorPicoPiedraLanzaExcepcionTrasRomperse(){
+    public void testMetalEsDesgastadoPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();
         constructor
