@@ -16,7 +16,7 @@ public class PicoPiedraTests {
     private final int DURABILIDAD_PICO_PIEDRA = 200;
     private final int FUERZA_PICO_PIEDRA = 4;
     @Test
-    public void test01CrearPicoDePiedraConDurabilidad() {
+    public void testCrearPicoDePiedraConDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Piedra())
@@ -27,7 +27,7 @@ public class PicoPiedraTests {
         assertThat(picoPiedra.getDurabilidad(), is(DURABILIDAD_PICO_PIEDRA));
     }
     @Test
-    public void test02CrearPicoDePiedraConFuerza() {
+    public void testCrearPicoDePiedraConFuerza() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Piedra())
@@ -38,7 +38,7 @@ public class PicoPiedraTests {
         assertThat(picoPiedra.getFuerza(), is(FUERZA_PICO_PIEDRA));
     }
     @Test
-    public void test03PicoDePiedraSeUsaContraMaderaReduceSuDurabilidad() {
+    public void testPicoDePiedraSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Piedra())
@@ -52,7 +52,7 @@ public class PicoPiedraTests {
 
     }
     @Test
-    public void test04PicoDePiedraSeUsaContraPiedraReduceSuDurabilidad() {
+    public void testPicoDePiedraSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Piedra())
@@ -67,7 +67,7 @@ public class PicoPiedraTests {
     }
 
     @Test
-    public void test05PicoDePiedraSeUsaContraMetalReduceSuDurabilidad() {
+    public void testPicoDePiedraSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Piedra())

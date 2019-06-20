@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
 
 public class PicoMaderaTests {
     @Test
-    public void test01CrearPicoDeMaderaConDurabilidad() {
+    public void testCrearPicoDeMaderaConDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Madera())
@@ -25,7 +25,7 @@ public class PicoMaderaTests {
     }
 
     @Test
-    public void test02CrearPicoDeMaderaConFuerza() {
+    public void testCrearPicoDeMaderaConFuerza() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Madera())
@@ -37,7 +37,7 @@ public class PicoMaderaTests {
     }
 
     @Test
-    public void test03PicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
+    public void testPicoDeMaderaSeUsaContraMaderaReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Madera())
@@ -50,7 +50,7 @@ public class PicoMaderaTests {
         assertThat(picoMadera.getDurabilidad(), is (98));
     }
     @Test
-    public void test04PicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
+    public void testPicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Madera())
@@ -65,7 +65,7 @@ public class PicoMaderaTests {
 
     }
     @Test
-    public void test05PicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
+    public void testPicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Madera())
