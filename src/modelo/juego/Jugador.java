@@ -31,20 +31,33 @@ public class Jugador implements Ubicable {
     }
 
     public void moverseALaDerecha(Mapa mapa) {
+        Ubicacion ubicacionJugador = ubicacion;
         this.ubicacion = ubicacion.getUbicacionDerecha();
         mapa.ubicarEnCasillero(this, ubicacion);
+        mapa.eliminarDeCasillero(ubicacionJugador);
+
     }
+
     public void moverseALaIzquierda(Mapa mapa) {
+        Ubicacion ubicacionJugador = ubicacion;
         this.ubicacion = ubicacion.getUbicacionIzquierda();
         mapa.ubicarEnCasillero(this, ubicacion);
+        mapa.eliminarDeCasillero(ubicacionJugador);
     }
+
     public void moverseArriba(Mapa mapa) {
+        Ubicacion ubicacionJugador = ubicacion;
         this.ubicacion = ubicacion.getUbicacionArriba();
         mapa.ubicarEnCasillero(this, ubicacion);
+        mapa.eliminarDeCasillero(ubicacionJugador);
     }
+
     public void moverseAbajo(Mapa mapa) {
+        Ubicacion ubicacionJugador = ubicacion;
         this.ubicacion = ubicacion.getUbicacionAbajo();
         mapa.ubicarEnCasillero(this, ubicacion);
+        mapa.eliminarDeCasillero(ubicacionJugador);
+
     }
 
     @Override

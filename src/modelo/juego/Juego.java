@@ -43,8 +43,10 @@ public class Juego {
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
         this.jugador = new Jugador(hachaInicial);
-        this.mapa.ubicarEnCasillero(jugador, new Ubicacion(1,6));
-        inventarioHerramientas.get(hachaInicial).add(hachaInicial);
+        Ubicacion ubicacionJugador = new Ubicacion(1,6);
+        this.mapa.ubicarEnCasillero(jugador, ubicacionJugador);
+        this.jugador.setUbicacion(ubicacionJugador);
+        //   inventarioHerramientas.get(hachaInicial).add(hachaInicial); ESTO DA NULL EXCEPTION POINTER!!
     }
 
     /*
@@ -103,6 +105,10 @@ public class Juego {
 
     public Mapa obtenerMapa() {
         return this.mapa;
+    }
+
+    public Jugador obtenerJugador(){
+        return this.jugador;
     }
 
 
