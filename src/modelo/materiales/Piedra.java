@@ -42,10 +42,12 @@ public class Piedra extends Material {
     }
 
     public boolean esIgualAUbicable(Ubicable ubicable) {
-        if(this.getClass() != ubicable.getClass()) return false;
+       /* if(this.getClass() != ubicable.getClass()) return false;
         Piedra piedra = (Piedra) ubicable;
         if(this.getDurabilidad() != piedra.getDurabilidad()) return false;
         return true;
+        */
+        return(this.getClass() == ubicable.getClass());
     }
 
     @Override

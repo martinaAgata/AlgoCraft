@@ -26,11 +26,14 @@ public class Diamante extends Material {
     public Optional<Desgastable> desgastarContra(PicoFino pico){ return pico.desgastarContra(this); }
 
 
-    public boolean esIgualAUbicable(Ubicable ubicable) {
+    public boolean esIgualAUbicable(Ubicable ubicable) {/*
         if(this.getClass() != ubicable.getClass()) return false;
         Diamante diamante = (Diamante) ubicable;
         if(this.getDurabilidad() != diamante.getDurabilidad()) return false;
         return true;
+        */
+        return (this.getClass() == ubicable.getClass());
+
     }
 
     @Override

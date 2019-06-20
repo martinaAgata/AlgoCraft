@@ -46,10 +46,12 @@ public class Madera extends Material {
 
 
     public boolean esIgualAUbicable(Ubicable ubicable) {
-        if(this.getClass() != ubicable.getClass()) return false;
+       /* if(this.getClass() != ubicable.getClass()) return false;
         Madera madera = (Madera) ubicable;
         if(this.getDurabilidad() != madera.getDurabilidad()) return false;
         return true;
+        */
+        return (this.getClass() == ubicable.getClass());
     }
 
     @Override

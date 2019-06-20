@@ -26,10 +26,9 @@ public class Metal extends Material {
 
 
     public boolean esIgualAUbicable(Ubicable ubicable) {
-        if(this.getClass() != ubicable.getClass()) return false;
-        Metal metal = (Metal) ubicable;
-        if(this.getDurabilidad() != metal.getDurabilidad()) return false;
-        return true;
+        return (this.getClass() == ubicable.getClass());
+        // aca sacamos lo de ver si las durabilidades coinciden
+        //xq los materiales estan nuevos cuando inicializo el juego
     }
 
     @Override

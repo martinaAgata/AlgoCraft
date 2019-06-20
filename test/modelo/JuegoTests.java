@@ -32,30 +32,29 @@ public class JuegoTests {
 
 
     public void inicializarMapaTestConMateriales() {
-        for (int i = 1; i <= 5; i++) {
-            for (int j = 1; j <= 5; j++) {
-                mapaTest.ubicarEnCasillero(new Madera(), new Ubicacion(i, j));
+        for (int i = 1; i <= 3; i++) {
+            for (int j = 1; j <= 3; j++) {
+                mapaTest.ubicarEnCasillero(new Madera(),new Ubicacion(i, j));
             }
         }
-        for (int i = 6; i <= 10; i++) {
-            for (int j = 6; j <= 10; j++) {
-                mapaTest.ubicarEnCasillero(new Piedra(), new Ubicacion(i, j));
-            }
-        }
-
-        for (int i = 11; i <= 15; i++) {
-            for (int j = 11; j <= 15; j++) {
-                mapaTest.ubicarEnCasillero(new Metal(), new Ubicacion(i, j));
+        for (int i = 4; i <= 7; i++) {
+            for (int j = 4; j <= 7; j++) {
+                mapaTest.ubicarEnCasillero(new Piedra(),new Ubicacion(i, j));
             }
         }
 
-        for (int i = 16; i <= 20; i++) {
-            for (int j = 16; j <= 20; j++) {
-                mapaTest.ubicarEnCasillero(new Diamante(), new Ubicacion(i, j));
+        for (int i = 8; i <= 9; i++) {
+            for (int j = 8; j <= 9; j++) {
+                mapaTest.ubicarEnCasillero(new Metal(),new Ubicacion(i, j));
+            }
+        }
+
+        for (int i = 10; i <= 10; i++) {
+            for (int j = 10; j <= 10; j++) {
+                mapaTest.ubicarEnCasillero(new Diamante(),new Ubicacion(i, j));
             }
         }
     }
-
     private void agregarHerramientaAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
                                                            Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste){
         constructor.conMaterial(material).conDurabilidad(durabilidad)
@@ -84,7 +83,7 @@ public class JuegoTests {
 
     @Before
     public void setup() {
-          mapaTest = new Mapa(20, 20);
+          mapaTest = new Mapa(10, 10);
           inventarioHerramientasTest = new HashMap<>();
     }
 

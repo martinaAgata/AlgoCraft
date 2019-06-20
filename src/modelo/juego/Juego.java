@@ -210,25 +210,25 @@ public class Juego {
 
 
     public void inicializarMapaConMateriales() {
-        for (int i = 1; i <= 5; i++) {
-            for (int j = 1; j <= 5; j++) {
+        for (int i = 1; i <= 3; i++) {
+            for (int j = 1; j <= 3; j++) {
                 this.mapa.ubicarEnCasillero(new Madera(),new Ubicacion(i, j));
             }
         }
-        for (int i = 6; i <= 10; i++) {
-            for (int j = 6; j <= 10; j++) {
+        for (int i = 4; i <= 7; i++) {
+            for (int j = 4; j <= 7; j++) {
                 this.mapa.ubicarEnCasillero(new Piedra(),new Ubicacion(i, j));
             }
         }
 
-        for (int i = 11; i <= 15; i++) {
-            for (int j = 11; j <= 15; j++) {
+        for (int i = 8; i <= 9; i++) {
+            for (int j = 8; j <= 9; j++) {
                 this.mapa.ubicarEnCasillero(new Metal(),new Ubicacion(i, j));
             }
         }
 
-        for (int i = 16; i <= 20; i++) {
-            for (int j = 16; j <= 20; j++) {
+        for (int i = 10; i <= 10; i++) {
+            for (int j = 10; j <= 10; j++) {
                 this.mapa.ubicarEnCasillero(new Diamante(),new Ubicacion(i, j));
             }
         }
