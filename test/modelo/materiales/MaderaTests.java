@@ -1,4 +1,4 @@
-package modelo;
+package modelo.materiales;
 
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import modelo.herramientas.*;

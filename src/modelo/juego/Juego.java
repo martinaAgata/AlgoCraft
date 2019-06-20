@@ -23,7 +23,7 @@ public class Juego {
     private Mapa mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
     private Jugador jugador;
     private DetectorPatron detectorPatron;
-    private Mapa tableroCrafteo;
+    private Mapa tableroCrafteo = new Mapa(3,3);
     private HashMap<Material, Integer> inventarioMateriales;
     private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas  = new HashMap<>();;
     private Optional<Herramienta> herramientaCreada;
@@ -188,7 +188,9 @@ public class Juego {
         detectarHerramientatableroCrafteo();
     }
 
-    public void forjarHerramientaCreada() {
+    public void crearHerramienta() {
+        //ya tenes cosas en el mapa carfteo y decis crear herramienta
+        detectarHerramientatableroCrafteo();
         if (this.herramientaCreada.isEmpty()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
         //Eliminar materiales del inventario
         for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
@@ -200,6 +202,8 @@ public class Juego {
                 } catch (CasilleroVacioException casilleroVacio){/*Hacer nada*/}
             }
         }
+
+
         //Agregar al inventario
         inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
     }

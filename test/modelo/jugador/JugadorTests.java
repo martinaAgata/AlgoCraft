@@ -1,4 +1,4 @@
-package modelo;
+package modelo.jugador;
 
 import modelo.exceptions.CasilleroEstaOcupadoException;
 import modelo.herramientas.*;

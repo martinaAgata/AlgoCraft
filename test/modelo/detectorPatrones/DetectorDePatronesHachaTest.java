@@ -1,4 +1,4 @@
-package modelo;
+package modelo.detectorPatrones;
 
 import modelo.herramientas.ConstructorHacha;
 import modelo.herramientas.Hacha;

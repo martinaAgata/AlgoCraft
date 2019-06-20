@@ -1,4 +1,4 @@
-package modelo;
+package modelo.detectorPatrones;
 
 import modelo.herramientas.ConstructorPico;
 import modelo.herramientas.Herramienta;

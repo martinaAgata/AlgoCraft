@@ -1,4 +1,4 @@
-package modelo;
+package modelo.mapa;
 
 import modelo.exceptions.CasilleroVacioException;
 import modelo.juego.ObjetoUbicable;

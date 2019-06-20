@@ -1,4 +1,4 @@
-package modelo;
+package modelo.herramientas;
 
 import modelo.herramientas.ConstructorHacha;
 import modelo.herramientas.Hacha;

@@ -1,4 +1,4 @@
-package modelo;
+package modelo.juego;
 
 import modelo.estrategias.EstrategiaDesgaste;
 import modelo.herramientas.*;

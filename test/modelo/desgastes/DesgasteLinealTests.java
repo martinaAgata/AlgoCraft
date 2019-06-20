@@ -1,4 +1,4 @@
-package modelo;
+package modelo.desgastes;
 
 import modelo.estados.EstadoMuerto;
 import modelo.estados.EstadoVivo;

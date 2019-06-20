@@ -1,4 +1,4 @@
-package modelo;
+package modelo.estado;
 
 import modelo.estados.EstadoMuerto;
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;

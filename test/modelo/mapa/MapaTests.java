@@ -1,4 +1,4 @@
-package modelo;
+package modelo.mapa;
 
 import modelo.exceptions.CasilleroEstaOcupadoException;
 import modelo.exceptions.CasilleroVacioException;

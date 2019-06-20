@@ -1,4 +1,4 @@
-package modelo;
+package modelo.patrones;
 
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
