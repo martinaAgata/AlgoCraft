@@ -12,6 +12,7 @@ import org.junit.Test;
 import static modelo.juego.ConstantesJuego.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class JugadorTests {
 
@@ -43,7 +44,7 @@ public class JugadorTests {
         assertThat(jugador.obtenerHerramientaActual(), is(hachaInicial));
     }
     @Test
-    public void test04JugadorPuedeMoverseEnMapaNuevoHaciaArribaLuegoAbajo(){
+    public void test03JugadorPuedeMoverseEnMapaNuevoHaciaArribaLuegoAbajo(){
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
@@ -62,7 +63,7 @@ public class JugadorTests {
     /*el jugador se inicializa en la posicion (1,6)*/
 
     @Test
-    public void test03JugadorPuedeMoverseHaciaLaDerechaEnJuegoInicializado() {
+    public void test04JugadorPuedeMoverseHaciaLaDerechaEnJuegoInicializado() {
         Juego juego = new Juego();
         juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
@@ -71,7 +72,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void test03JugadorPuedeMoverseHaciaArribaEnJuegoInicializado() {
+    public void test05JugadorPuedeMoverseHaciaArribaEnJuegoInicializado() {
         Juego juego = new Juego();
         juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
@@ -79,24 +80,101 @@ public class JugadorTests {
         jugador.moverseArriba(juego.obtenerMapa());
     }
 
-    @Test //(expected = CasilleroEstaOcupadoException.class)
-    public void test03JugadorMoverseHaciaAbajoEnJuegoInicializadoLanzaException() {
+    @Test (expected = CasilleroEstaOcupadoException.class)
+    public void test06JugadorMoverseHaciaAbajoTresVecesEnJuegoInicializadoLanzaException() {
         Juego juego = new Juego();
         juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
     }
 
+    @Test
+    public void test07JugadorSeMueveArribaYEstaEnLaPosicionEsperada(){
+        Mapa mapa = new Mapa(10,10);
+        Hacha hachaInicial = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Jugador jugador = new Jugador(hachaInicial);
+        Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
+        jugador.setUbicacion(ubicacionInicialJugador);
+        mapa.ubicarEnCasillero(jugador,ubicacionInicialJugador);
+        jugador.moverseArriba(mapa);
+        Ubicacion ubicacionEsperada = ubicacionInicialJugador.getUbicacionArriba();
+        assertTrue(ubicacionEsperada.equals(jugador.obtenerUbicacion()));
+
+    }
+
+    @Test
+    public void test08JugadorSeMuevAbajoYEstaEnLaPosicionEsperada(){
+        Mapa mapa = new Mapa(10,10);
+        Hacha hachaInicial = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Jugador jugador = new Jugador(hachaInicial);
+        Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
+        jugador.setUbicacion(ubicacionInicialJugador);
+        mapa.ubicarEnCasillero(jugador,ubicacionInicialJugador);
+        jugador.moverseAbajo(mapa);
+        Ubicacion ubicacionEsperada = ubicacionInicialJugador.getUbicacionAbajo();
+        assertTrue(ubicacionEsperada.equals(jugador.obtenerUbicacion()));
+
+    }
+
+    @Test
+    public void test09JugadorSeMueveDerechaYEstaEnLaPosicionEsperada(){
+        Mapa mapa = new Mapa(10,10);
+        Hacha hachaInicial = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Jugador jugador = new Jugador(hachaInicial);
+        Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
+        jugador.setUbicacion(ubicacionInicialJugador);
+        mapa.ubicarEnCasillero(jugador,ubicacionInicialJugador);
+        jugador.moverseALaDerecha(mapa);
+        Ubicacion ubicacionEsperada = ubicacionInicialJugador.getUbicacionDerecha();
+        assertTrue(ubicacionEsperada.equals(jugador.obtenerUbicacion()));
+
+    }
+
+    @Test
+    public void test10JugadorSeMueveIzquierdaYEstaEnLaPosicionEsperada(){
+        Mapa mapa = new Mapa(10,10);
+        Hacha hachaInicial = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Jugador jugador = new Jugador(hachaInicial);
+        Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
+        jugador.setUbicacion(ubicacionInicialJugador);
+        mapa.ubicarEnCasillero(jugador,ubicacionInicialJugador);
+        jugador.moverseALaIzquierda(mapa);
+        Ubicacion ubicacionEsperada = ubicacionInicialJugador.getUbicacionIzquierda();
+        assertTrue(ubicacionEsperada.equals(jugador.obtenerUbicacion()));
+
+    }
+
+
  /*    @Test (expected = Exception.class)
-     void test03JugadorNoPuedeMoverseHaciaLaIzquierdaEnJuegoInicializado() { //limite izquierdo del mapa
+     void test11JugadorNoPuedeMoverseHaciaLaIzquierdaEnJuegoInicializado() { //limite izquierdo del mapa
         Juego juego = new Juego();
         juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseALaIzquierda(juego.obtenerMapa());
     }*/
-
-
 
 }

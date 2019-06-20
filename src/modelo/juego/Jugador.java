@@ -60,6 +60,10 @@ public class Jugador implements Ubicable {
 
     }
 
+    public Ubicacion obtenerUbicacion(){
+        return ubicacion;
+    }
+
     @Override
     public boolean esIgualAUbicable(Ubicable ubicable) {
         return this.getClass() == ubicable.getClass();
