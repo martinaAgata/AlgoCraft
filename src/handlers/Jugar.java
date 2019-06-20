@@ -1,6 +1,7 @@
 package handlers;
 
-import interfaz.ContenedorTablero;
+import interfaz.PantallaPrincipal;
+import interfaz.Tablero;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -16,8 +17,8 @@ public class Jugar implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        ContenedorTablero contenedor = new ContenedorTablero();
-        Scene escenaJuego = new Scene(contenedor);
+        PantallaPrincipal pantalla = new PantallaPrincipal();
+        Scene escenaJuego = new Scene(pantalla);
         this.stage.setScene(escenaJuego);
     }
 }

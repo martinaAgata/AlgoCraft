@@ -14,28 +14,22 @@ public class Inicio extends HBox {
     private static final String RUTA_IMG_INICIAL = "file:src/imagenes/inicio.jpg";
 
     public Inicio(Stage stage) {
-        super();
 
         Jugar jugarHandler = new Jugar(stage);
-        Button botonJugar = new Button("Jugar");
+        Button botonJugar = new Button("Jugar"); // agregar boton salir
         botonJugar.setOnAction(jugarHandler);
-        // agregar boton salir
 
         HBox hbJugar = new HBox();
         hbJugar.getChildren().addAll(botonJugar);
         hbJugar.setAlignment(Pos.CENTER);
 
-        final Image imagenInicial = new Image(RUTA_IMG_INICIAL);
-        final ImageView iv1 = new ImageView();
-        iv1.setImage(imagenInicial);
-        stage.getIcons().add(imagenInicial);
+        ImageView iv1 = new ImageView(new Image(RUTA_IMG_INICIAL));
+        stage.getIcons().add(new Image(RUTA_IMG_INICIAL));
 
-        StackPane stackPane = new StackPane();
+        StackPane stackPane = new StackPane(); // para superponer la img y el boton
         stackPane.getChildren().addAll(iv1, hbJugar);
 
-        HBox root = new HBox();
-        root.getChildren().add(stackPane);
-        this.getChildren().addAll(root);
+        this.getChildren().addAll(stackPane);
     }
 
 }

@@ -7,12 +7,14 @@ import javafx.stage.Stage;
 
 public class AlgoCraftApp extends Application {
     private Inicio inicio;
+    private static final int ANCHO = 564;
+    private static final int ALTO = 564;
 
     @Override
     public void start(Stage stage) {
         stage.setTitle("AlgoCraft");
         inicio = new Inicio(stage);
-        Scene scene = new Scene(inicio, 564, 564, Color.BLACK ); // no hardcodear estos nums
+        Scene scene = new Scene(inicio, ANCHO, ALTO, Color.BLACK );
         stage.setScene(scene);
         stage.show();
     }
