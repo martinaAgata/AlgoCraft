@@ -51,11 +51,17 @@ public class Juego {
     public void inicializarJuego(){
         this.mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
 
+<<<<<<< Updated upstream
         //inicializarJugador();
         inicializarMapaConMateriales();
         inicializarInventarioMaterial();
         inicializarInventarioHerramienta();
 
+=======
+        inicializarInventarioMaterial();
+        inicializarInventarioHerramienta();
+        inicializarJugador();
+>>>>>>> Stashed changes
         posicionarNMateriales(this.mapa, CANTIDAD_MADERAS, () -> new Madera());
         posicionarNMateriales(this.mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
         posicionarNMateriales(this.mapa, CANTIDAD_METALES, () -> new Metal());
