@@ -2,6 +2,7 @@ package modelo;
 
 import modelo.exceptions.CasilleroEstaOcupadoException;
 import modelo.exceptions.CasilleroVacioException;
+import modelo.juego.Jugador;
 import modelo.juego.ObjetoUbicable;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
