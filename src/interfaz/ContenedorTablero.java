@@ -25,7 +25,6 @@ public class ContenedorTablero extends GridPane {
         crearContenidoTablero();
     }
     private void crearContenidoTablero() {
-        //this.grid.setGridLinesVisible(true);
         this.grid.setHgap(5);
         this.grid.setVgap(5);
         this.grid.setPrefSize(600, 600);
