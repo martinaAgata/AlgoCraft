@@ -35,7 +35,7 @@ public class DetectorPatronesPicoTest {
         tableroConPicoMadera.ubicarEnCasillero(madera, ubicacionD);
         tableroConPicoMadera.ubicarEnCasillero(madera, ubicacionE);
         DetectorPatron dp = new DetectorPatronPico(new Madera(), () -> new ConstructorPico().construir());
-        Optional<Herramienta> resultado = dp.resolver(tableroConPicoMadera);
+        Optional<Herramienta> resultado = dp.resolverPatron(tableroConPicoMadera);
         assertThat(resultado.get(), instanceOf(Pico.class));
     }
 
@@ -55,7 +55,7 @@ public class DetectorPatronesPicoTest {
         tableroConPicoPiedra.ubicarEnCasillero(madera, ubicacionD);
         tableroConPicoPiedra.ubicarEnCasillero(madera, ubicacionE);
         DetectorPatron dp = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico().construir());
-        Optional<Herramienta> resultado = dp.resolver(tableroConPicoPiedra);
+        Optional<Herramienta> resultado = dp.resolverPatron(tableroConPicoPiedra);
         assertThat(resultado.get(), instanceOf(Pico.class));
     }
 
@@ -75,7 +75,7 @@ public class DetectorPatronesPicoTest {
         tableroConPicoMetal.ubicarEnCasillero(madera, ubicacionD);
         tableroConPicoMetal.ubicarEnCasillero(madera, ubicacionE);
         DetectorPatron dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().construir());
-        Optional<Herramienta> resultado = dp.resolver(tableroConPicoMetal);
+        Optional<Herramienta> resultado = dp.resolverPatron(tableroConPicoMetal);
         assertThat(resultado.get(), instanceOf(Pico.class));
     }
 
@@ -88,7 +88,7 @@ public class DetectorPatronesPicoTest {
         tablero.ubicarEnCasillero(metal, ubicacionA);
         tablero.ubicarEnCasillero(metal, ubicacionB);
         DetectorPatron dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().construir());
-        Optional<Herramienta> resultado = dp.resolver(tablero);
+        Optional<Herramienta> resultado = dp.resolverPatron(tablero);
         assertFalse(resultado.isPresent());
         //assertThat(resultado.get(), not(instanceOf(Pico.class)));
     }

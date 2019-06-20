@@ -39,7 +39,7 @@ public class MapaTests {
         Mapa otroMapa = new Mapa(8,10);
         assertFalse(mapa.esIgualA(otroMapa));
     }
-
+/*
     @Test
     public void testMapaEsIgualAMapaVacioConMismoTamanioEsFalse(){
         Mapa mapa = new Mapa(10,10);
@@ -55,7 +55,7 @@ public class MapaTests {
         Mapa otroMapa = new Mapa(8,10);
         assertFalse(mapa.esIgualA(otroMapa));
     }
-
+*/
     @Test
     public void testMapaEsIgualAMapaConDiferentesCasillerosOcupadosConMismoTamanioEsFalse(){
         Mapa mapa = new Mapa(10,10);

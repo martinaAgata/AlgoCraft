@@ -1,4 +1,4 @@
-package interfaz;
+/*package interfaz;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -40,3 +40,4 @@ public class GraficadorTableroPrincipal {
         }
     }
 }
+*/

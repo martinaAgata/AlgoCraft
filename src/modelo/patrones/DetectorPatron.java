@@ -22,11 +22,11 @@ public abstract class DetectorPatron {
             this.siguiente = Optional.of(siguiente);
         }
 
-        public Optional<Herramienta> resolver(Mapa tablero) {
+        public Optional<Herramienta> resolverPatron(Mapa tablero) {
             if (this.patron.getMapa().esIgualA(tablero)) {
                 return Optional.of(constructor.construir());
             } else if (siguiente.isPresent()) {
-                return siguiente.get().resolver(tablero);
+                return siguiente.get().resolverPatron(tablero);
             } else {
                 return Optional.empty();
             }

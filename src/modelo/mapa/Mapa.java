@@ -1,5 +1,9 @@
 package modelo.mapa;
 import modelo.juego.Ubicable;
+import modelo.materiales.Diamante;
+import modelo.materiales.Madera;
+import modelo.materiales.Metal;
+import modelo.materiales.Piedra;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,17 +26,21 @@ public class Mapa {
              }
          }
      }
-
+/*
     public void ubicarEnCasilleroAleatorio(Ubicable ubicable) {
         int x = (int)(Math.random()*cantidadFilas + 1);
         int y = (int)(Math.random()*cantidadColumnas + 1);
         this.casilleros.get(new Ubicacion(x, y)).guardarUbicable(ubicable);
     }
+*/
+
     public void ubicarEnCasillero(Ubicable ubicable, Ubicacion ubicacion) {
 
         this.casilleros.get(ubicacion).guardarUbicable(ubicable);
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
+
+
 
     public Casillero obtenerCasillero(Ubicacion ubicacion) {
         return this.casilleros.get(ubicacion);

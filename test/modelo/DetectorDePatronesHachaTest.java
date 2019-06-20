@@ -40,7 +40,7 @@ public class DetectorDePatronesHachaTest {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir());
-        Optional<Herramienta> resultado = dp.resolver(tableroConHachaMadera);
+        Optional<Herramienta> resultado = dp.resolverPatron(tableroConHachaMadera);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
     }
@@ -66,7 +66,7 @@ public class DetectorDePatronesHachaTest {
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA)
                 .construir());
-        Optional<Herramienta> resultado = dp.resolver(tableroConHachaMadera);
+        Optional<Herramienta> resultado = dp.resolverPatron(tableroConHachaMadera);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
     }
@@ -92,7 +92,7 @@ public class DetectorDePatronesHachaTest {
                 .conDesgaste(DESGASTE_HACHA_METAL)
                 .conFuerza(FUERZA_HACHA_METAL)
                 .construir());
-        Optional<Herramienta> resultado = dp.resolver(tableroConHachaMetal);
+        Optional<Herramienta> resultado = dp.resolverPatron(tableroConHachaMetal);
         assertTrue(resultado.isPresent());
         assertThat(resultado.get(), instanceOf(Hacha.class));
     }

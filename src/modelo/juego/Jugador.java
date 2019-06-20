@@ -1,7 +1,10 @@
 package modelo.juego;
+import modelo.herramientas.ConstructorHacha;
 import modelo.herramientas.Herramienta;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
+import modelo.materiales.Madera;
+import static modelo.juego.ConstantesJuego.*;
 
 public class Jugador implements Ubicable {
 
@@ -9,13 +12,13 @@ public class Jugador implements Ubicable {
     private Ubicacion ubicacion;
 
     public Jugador(Herramienta herramientaInicial) {
-        /*ConstructorHacha constructor = new ConstructorHacha();
+        ConstructorHacha constructor = new ConstructorHacha();
         Herramienta hachaMadera = constructor
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
-                .construir();*/
+                .construir();
 
         this.herramientaActual = herramientaInicial;
     }
