@@ -34,8 +34,8 @@ public class Tablero extends HBox {
         this.grid.setPrefSize(600, 600);
         Ubicable ubicable;
         Image img;
-        for (int y=0; y<this.alto; y++) {
-            for (int x=0; x<this.ancho; x++) {
+        for (int y=1; y<=this.alto; y++) {
+            for (int x=1; x<=this.ancho; x++) {
                 ubicable = this.mapa.obtenerCasillero(new Ubicacion(x,y)).obtenerUbicable();
                 if(ubicable == null) img = contenedorImagenes.get("");
                 else img = contenedorImagenes.get(ubicable.getClass().getName());

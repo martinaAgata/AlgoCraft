@@ -25,7 +25,7 @@ public class Juego {
     private DetectorPatron detectorPatron;
     private Mapa tableroCrafteo = new Mapa(3,3);
     private HashMap<Material, Integer> inventarioMateriales;
-    private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas  = new HashMap<>();;
+    private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas  = new HashMap<>();
     private Optional<Herramienta> herramientaCreada;
 
 /*
