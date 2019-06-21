@@ -12,12 +12,12 @@ import java.util.HashMap;
 
 public class PantallaPrincipal extends HBox {
 
-    private static final String RUTA_IMG_MADERA = "file:src/imagenes/madera.jpg";
-    private static final String RUTA_IMG_PIEDRA = "file:src/imagenes/piedra.jpg";
-    private static final String RUTA_IMG_METAL = "file:src/imagenes/metal.jpg";
+    private static final String RUTA_IMG_MADERA = "file:src/imagenes/madera.png";
+    private static final String RUTA_IMG_PIEDRA = "file:src/imagenes/piedra.png";
+    private static final String RUTA_IMG_METAL = "file:src/imagenes/metal.png";
     private static final String RUTA_IMG_PASTO = "file:src/imagenes/pasto.jpg";
-    private static final String RUTA_IMG_DIAMANTE = "file:src/imagenes/diamante.jpg";
-    private static final String RUTA_IMG_JUGADOR = "file:src/imagenes/jugador.jpg";
+    private static final String RUTA_IMG_DIAMANTE = "file:src/imagenes/diamante.png";
+    private static final String RUTA_IMG_JUGADOR = "file:src/imagenes/jugador.png";
     private Tablero tablero;
     private HashMap<String, Image> contenedorImagenes;
 
@@ -31,10 +31,10 @@ public class PantallaPrincipal extends HBox {
 
     private void inicializarContenedorImagenes() {
         this.contenedorImagenes = new HashMap<>();
-        this.contenedorImagenes.put(Madera.class.getName(), new Image(RUTA_IMG_MADERA));
-        this.contenedorImagenes.put(Piedra.class.getName(), new Image(RUTA_IMG_PIEDRA));
-        this.contenedorImagenes.put(Metal.class.getName(), new Image(RUTA_IMG_METAL));
-        this.contenedorImagenes.put(Diamante.class.getClass().getName(), new Image(RUTA_IMG_DIAMANTE));
+        this.contenedorImagenes.put((new Madera()).getClass().getName(), new Image(RUTA_IMG_MADERA));
+        this.contenedorImagenes.put((new Piedra()).getClass().getName(), new Image(RUTA_IMG_PIEDRA));
+        this.contenedorImagenes.put((new Metal()).getClass().getName(), new Image(RUTA_IMG_METAL));
+        this.contenedorImagenes.put((new Diamante()).getClass().getName(), new Image(RUTA_IMG_DIAMANTE));
         this.contenedorImagenes.put(new Jugador(null).getClass().getName(), new Image(RUTA_IMG_JUGADOR));
         this.contenedorImagenes.put("", new Image(RUTA_IMG_PASTO));
     }

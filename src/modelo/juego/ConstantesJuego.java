@@ -6,8 +6,8 @@ import modelo.estrategias.EstrategiaDesgaste;
 
 public class ConstantesJuego {
 
-    public static final int CANTIDAD_FILAS = 15;
-    public static final int CANTIDAD_COLUMNAS = 15;
+    public static final int CANTIDAD_FILAS = 14;
+    public static final int CANTIDAD_COLUMNAS = 14;
     public static final int CANTIDAD_MADERAS = 70;
     public static final int CANTIDAD_PIEDRAS = 50;
     public static final int hbJugar_METALES = 35;

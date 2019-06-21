@@ -1,3 +1,3 @@
 package modelo.mapaCrafteo;
 
-public class MapaCrafteoTests {
+public class MapaCrafteoTests {}

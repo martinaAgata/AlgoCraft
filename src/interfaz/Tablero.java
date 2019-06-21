@@ -12,8 +12,7 @@ import modelo.mapa.Ubicacion;
 import java.util.HashMap;
 
 public class Tablero extends HBox {
-    private static final String RUTA_IMG_PASTO = "file:src/imagenes/pasto.jpg";
-    private final GridPane grid = new GridPane(); //borrar esto en todos lados, reemplazar por this
+    private final GridPane grid = new GridPane();
     private Juego juego;
     private final Mapa mapa;
     private final int alto, ancho;
@@ -21,6 +20,7 @@ public class Tablero extends HBox {
 
     public Tablero(HashMap<String,Image> contenedorImagenes) {
         this.juego = new Juego();
+        this.juego.inicializarJuego();
         this.mapa = juego.obtenerMapa();
         this.alto = juego.obtenerMapa().obtenerCantidadFilas();
         this.ancho = juego.obtenerMapa().obtenerCantidadColumnas();
@@ -33,17 +33,17 @@ public class Tablero extends HBox {
         this.grid.setVgap(5);
         this.grid.setPrefSize(600, 600);
         Ubicable ubicable;
-        Image img;
         for (int y=1; y<=this.alto; y++) {
             for (int x=1; x<=this.ancho; x++) {
                 ubicable = this.mapa.obtenerCasillero(new Ubicacion(x,y)).obtenerUbicable();
+                Image img;
                 if(ubicable == null) img = contenedorImagenes.get("");
                 else img = contenedorImagenes.get(ubicable.getClass().getName());
 
                 ImageView imgV = new ImageView(img);
                 imgV.setFitHeight(40);
                 imgV.setFitWidth(40);
-                this.grid.add(imgV, x, y);
+                this.grid.add(imgV, y, x);
             }
         }
         this.grid.setAlignment(Pos.CENTER);
