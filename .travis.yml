@@ -2,11 +2,11 @@ language: java
 jdk:
   - openjdk11
 
-before_install:
-  - cd java
-<!-- install: ant -->
+install: 
+  - ant deps
 
-script: ant integracion-continua
+script: 
+  - ant integracion-continua
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
