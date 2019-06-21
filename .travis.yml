@@ -2,8 +2,8 @@ language: java
 jdk:
   - openjdk11
 
-install: 
-  - ant deps
+before_install:
+  - sudo apt-get install ant
 
 script: 
   - ant integracion-continua
