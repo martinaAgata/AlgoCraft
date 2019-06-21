@@ -1,3 +1,5 @@
+package modelo.detectorPatrones;
+
 import modelo.herramientas.*;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
@@ -6,7 +8,6 @@ import modelo.materiales.Metal;
 import modelo.materiales.Piedra;
 import modelo.patrones.DetectorPatron;
 import modelo.patrones.DetectorPatronPicoFino;
-import modelo.patrones.PatronPicoFino;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -14,14 +15,13 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 
-class DetectorPatronPicoFinoTest {
+public class DetectorPatronPicoFinoTest {
 
     //    1        2       3
     //  Metal | Metal  | Metal   1
     // Piedra | Madera |         2
     //        | Madera |         3
 
-    public class DetectorPatronesPicoTest {
         @Test
         public void testSeCreaUnPicoFinoYSeReconocePatron() {
             Madera madera = new Madera();
@@ -36,5 +36,4 @@ class DetectorPatronPicoFinoTest {
             Optional<Herramienta> resultado = dp.resolverPatron(tableroPicoFino);
             assertThat(resultado.get(), instanceOf(PicoFino.class));
         }
-}
 }
