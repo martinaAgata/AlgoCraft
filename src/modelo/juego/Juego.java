@@ -49,29 +49,20 @@ public class Juego {
         //   inventarioHerramientas.get(hachaInicial).add(hachaInicial); ESTO DA NULL EXCEPTION POINTER!!
     }
 
-    /*
-    public void inicializarJuego(){
-        this.mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
 
-<<<<<<< Updated upstream
-        //inicializarJugador();
+    public void inicializarJuego(){
+        inicializarJugador();
         inicializarMapaConMateriales();
         inicializarInventarioMaterial();
         inicializarInventarioHerramienta();
-
-=======
-        inicializarInventarioMaterial();
-        inicializarInventarioHerramienta();
-        inicializarJugador();
->>>>>>> Stashed changes
+        inicializarPatrones();
+        this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
+    }
+/*
         posicionarNMateriales(this.mapa, CANTIDAD_MADERAS, () -> new Madera());
         posicionarNMateriales(this.mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
         posicionarNMateriales(this.mapa, CANTIDAD_METALES, () -> new Metal());
         posicionarNMateriales(this.mapa, CANTIDAD_DIAMANTES, () -> new Diamante());
-
-
-        inicializarPatrones();
-        this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
 
     }
 */
