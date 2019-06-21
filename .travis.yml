@@ -4,6 +4,7 @@ jdk:
 
 before_install:
   - sudo apt-get install ant
+  - sudo apt-get install ant-optional
 
 script: 
   - ant integracion-continua
