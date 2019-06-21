@@ -179,6 +179,10 @@ public class Juego {
         detectarHerramientatableroCrafteo();
     }
 
+    public Mapa obtenerTableroCrafteo(){
+        return this.tableroCrafteo;
+    }
+
     public void crearHerramienta() {
         //ya tenes cosas en el mapa carfteo y decis crear herramienta
         detectarHerramientatableroCrafteo();
