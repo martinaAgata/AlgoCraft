@@ -6,8 +6,7 @@ import modelo.estrategias.DesgasteAbrupto;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class DesgasteAbruptoTests {
 
@@ -15,9 +14,9 @@ public class DesgasteAbruptoTests {
     public void testDesgastadorAbruptoSeInicializaCorrectamente(){
         DesgasteAbrupto desgasteAbrupto = new DesgasteAbrupto();
         EstadoVivo estadoVivo = new EstadoVivo(10);
-        assertTrue(desgasteAbrupto.desgastar(0, estadoVivo) instanceof EstadoVivo);
+        assertThat(desgasteAbrupto.desgastar(0, estadoVivo), is(estadoVivo));
         EstadoMuerto estadoMuerto = new EstadoMuerto();
-        assertTrue(desgasteAbrupto.desgastar(0, estadoMuerto) instanceof EstadoMuerto);
+        assertThat(desgasteAbrupto.desgastar(0, estadoMuerto), is(estadoMuerto));
     }
 
     @Test
@@ -28,10 +27,11 @@ public class DesgasteAbruptoTests {
     }
 
     @Test
-    public void testDesgastadorAbruptoDevuelveEstadoMuertoLuegoDeDiezDesgastes(){
+    public void testDesgastadorAbruptoNoDevuelveEstadoVivoLuegoDeDiezDesgastes(){
         DesgasteAbrupto desgasteAbrupto = new DesgasteAbrupto();
         EstadoVivo estadoVivo = new EstadoVivo(10);
         for(int i=0; i<10; i++) desgasteAbrupto.desgastar(1,estadoVivo);
-        assertTrue(desgasteAbrupto.desgastar(1, estadoVivo) instanceof  EstadoMuerto);
+        //assertThat(desgasteAbrupto.desgastar(1, estadoVivo), );
+        assertNotEquals(estadoVivo, desgasteAbrupto.desgastar(1, estadoVivo).getClass());
     }
 }

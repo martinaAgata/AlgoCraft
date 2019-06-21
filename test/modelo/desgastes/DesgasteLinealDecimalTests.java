@@ -8,8 +8,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class DesgasteLinealDecimalTests {
     @Test
@@ -30,9 +29,9 @@ public class DesgasteLinealDecimalTests {
     public void testDesgasteLinealDecimalDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado(){
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(0.1);
         EstadoVivo estadoVivo = new EstadoVivo(10);
-        assertTrue(desgasteLineal.desgastar(30, estadoVivo) instanceof EstadoVivo);
-        assertTrue(desgasteLineal.desgastar(60, estadoVivo) instanceof EstadoVivo);
-        assertFalse(desgasteLineal.desgastar(120, estadoVivo) instanceof EstadoVivo);
+        assertThat(desgasteLineal.desgastar(30, estadoVivo), is(estadoVivo));
+        assertThat(desgasteLineal.desgastar(60, estadoVivo), is(estadoVivo));
+        assertNotEquals(estadoVivo, desgasteLineal.desgastar(120, estadoVivo));
     }
 
     @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)

@@ -28,9 +28,9 @@ public class DesgasteLinealMitadTests {
     public void testDesgasteLinealMitadDevuelveEstadoVivoHastaQueNoHayaDurabilidadDeEstado(){
         DesgasteLinealFactor desgasteLinealMitad = new DesgasteLinealFactor(0.5);
         EstadoVivo estadoVivo = new EstadoVivo(8);
-        assertTrue(desgasteLinealMitad.desgastar(8, estadoVivo) instanceof EstadoVivo);
-        assertTrue(desgasteLinealMitad.desgastar(4, estadoVivo) instanceof EstadoVivo);
-        assertFalse(desgasteLinealMitad.desgastar(8, estadoVivo) instanceof EstadoVivo);
+        assertThat(desgasteLinealMitad.desgastar(8, estadoVivo), is(estadoVivo));
+        assertThat(desgasteLinealMitad.desgastar(4, estadoVivo), is(estadoVivo));
+        assertNotEquals(estadoVivo, desgasteLinealMitad.desgastar(8, estadoVivo));
     }
 
     @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)

@@ -5,8 +5,7 @@ import modelo.estados.EstadoVivo;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class EstadoVivoTests {
     @Test
@@ -34,28 +33,18 @@ public class EstadoVivoTests {
     @Test
     public void testEstadoVivoDevueleveEstadoVivoConDurabilidadMayorACero(){
         EstadoVivo estadoVivo = new EstadoVivo(100);
-        assertTrue((estadoVivo.desgastar(10)) instanceof EstadoVivo);//Revisar si hace lo correcto QUITAR
-        assertTrue((estadoVivo.desgastar(30)) instanceof EstadoVivo);
-        assertTrue((estadoVivo.desgastar(50)) instanceof EstadoVivo);
+        //assertTrue((estadoVivo.desgastar(10)) instanceof EstadoVivo);
+        assertThat(estadoVivo.desgastar(10), is(estadoVivo));
+        assertThat(estadoVivo.desgastar(30), is(estadoVivo));
+        assertThat(estadoVivo.desgastar(50), is(estadoVivo));
     }
 
     @Test
     public void testEstadoVivoDevueleveEstadoMuertoConDurabilidadMenorIgualACero(){
         EstadoVivo estadoVivo = new EstadoVivo(100);
-        assertTrue(estadoVivo.desgastar(100) instanceof EstadoMuerto);
+        assertNotEquals(estadoVivo, estadoVivo.desgastar(100));
         estadoVivo = new EstadoVivo(100);
-        assertTrue(estadoVivo.desgastar(120) instanceof EstadoMuerto);
+        assertNotEquals(estadoVivo, estadoVivo.desgastar(120));
     }
 
-/*    @Test
-    public void test05EstadoVivoSePuedeUsarSiempreDevuelveTrue(){
-        EstadoVivo estadoVivo = new EstadoVivo(100);
-        assertTrue(estadoVivo.sePuedeUsar());
-        estadoVivo.desgastar(10);
-        assertTrue(estadoVivo.sePuedeUsar());
-        estadoVivo.desgastar(90);
-        assertTrue(estadoVivo.sePuedeUsar());
-        estadoVivo.desgastar(1000);
-        assertTrue(estadoVivo.sePuedeUsar());
-    }*/
 }

@@ -181,7 +181,7 @@ public class Juego {
 
     public void crearHerramienta() {
         //ya tenes cosas en el mapa carfteo y decis crear herramienta
-        detectarHerramientatableroCrafteo();
+        //detectarHerramientatableroCrafteo();
         if (this.herramientaCreada.isEmpty()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
         //Eliminar materiales del inventario
         for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
