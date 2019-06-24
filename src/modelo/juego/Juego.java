@@ -20,21 +20,26 @@ import static modelo.juego.ConstantesJuego.*;
 
 public class Juego {
 
-    private Mapa mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
+    private Mapa mapa;
     private Jugador jugador;
     private DetectorPatron detectorPatron;
-    private Mapa tableroCrafteo = new Mapa(3,3);
+    private Mapa tableroCrafteo;
     private HashMap<Material, Integer> inventarioMateriales;
-    private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas  = new HashMap<>();
+    private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas;
     private Optional<Herramienta> herramientaCreada;
 
-/*
+
     public Juego() {
-        inicializarJuego();
-
+        this.mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
+        this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
+        this.inventarioHerramientas = new HashMap<>();
+        this.inventarioMateriales = new HashMap<>();
+        //inicializarJuego();
     }
-*/
 
+    /*
+        Pre: Se debe tener inicializado el inventarioHerramientas.
+     */
     public void inicializarJugador() {
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
@@ -46,17 +51,16 @@ public class Juego {
         Ubicacion ubicacionJugador = new Ubicacion(1,6);
         this.mapa.ubicarEnCasillero(jugador, ubicacionJugador);
         this.jugador.setUbicacion(ubicacionJugador);
-        //   inventarioHerramientas.get(hachaInicial).add(hachaInicial); ESTO DA NULL EXCEPTION POINTER!!
+        inventarioHerramientas.get(hachaInicial).add(hachaInicial);
     }
 
 
     public void inicializarJuego(){
-        inicializarJugador();
-        inicializarMapaConMateriales();
         inicializarInventarioMaterial();
         inicializarInventarioHerramienta();
+        inicializarJugador();
+        inicializarMapaConMateriales();
         inicializarPatrones();
-        this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
     }
 /*
         posicionarNMateriales(this.mapa, CANTIDAD_MADERAS, () -> new Madera());
@@ -67,7 +71,7 @@ public class Juego {
     }
 */
     public void inicializarInventarioMaterial() {
-        this.inventarioMateriales = new HashMap<>();
+        //this.inventarioMateriales = new HashMap<>();
         inventarioMateriales.put(new Madera(), 0);
         inventarioMateriales.put(new Metal(), 0);
         inventarioMateriales.put(new Piedra(), 0);
@@ -119,49 +123,49 @@ public class Juego {
 
 
     private void inicializarPatrones() {
-        DetectorPatron dp = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha()
+        DetectorPatron dpHachaMadera = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha()
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir());
-        dp = new DetectorPatronHacha(new Piedra(), () -> new ConstructorHacha()
+        DetectorPatron dPHachaPiedra = new DetectorPatronHacha(new Piedra(), () -> new ConstructorHacha()
                 .conMaterial(new Piedra())
                 .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA)
-                .construir(), dp);
-        dp = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha()
+                .construir(), dpHachaMadera);
+        DetectorPatron dPHachaMetal = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha()
                 .conMaterial(new Metal())
                 .conDurabilidad(DURABILIDAD_HACHA_METAL)
                 .conDesgaste(DESGASTE_HACHA_METAL)
                 .conFuerza(FUERZA_HACHA_METAL)
-                .construir(), dp);
-        dp = new DetectorPatronPico(new Madera(), () -> new ConstructorPico()
+                .construir(), dPHachaPiedra);
+        DetectorPatron dPPicoMadera = new DetectorPatronPico(new Madera(), () -> new ConstructorPico()
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_PICO_MADERA)
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA)
-                .construir(), dp);
-        dp = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico()
+                .construir(), dPHachaMetal);
+        DetectorPatron dPPicoPiedra = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico()
                 .conMaterial(new Piedra())
                 .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
                 .conFuerza(FUERZA_PICO_PIEDRA)
                 .conDesgaste(DESGASTE_PICO_PIEDRA)
-                .construir(), dp);
-        dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico()
+                .construir(), dPPicoMadera);
+        DetectorPatron dPPicoMetal = new DetectorPatronPico(new Metal(), () -> new ConstructorPico()
                 .conMaterial(new Metal())
                 .conDurabilidad(DURABILIDAD_PICO_METAL)
                 .conDesgaste(DESGASTE_PICO_METAL)
                 .conFuerza(FUERZA_PICO_METAL)
-                .construir(), dp);
-        dp = new DetectorPatronPicoFino(new Piedra(), () -> new ConstructorPicoFino()
+                .construir(), dPPicoPiedra);
+        DetectorPatron dPicoFino = new DetectorPatronPicoFino(new Piedra(), () -> new ConstructorPicoFino()
                 .conMaterial(new Piedra())
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO)
-                .construir(), dp);
-        this.detectorPatron = dp;
+                .construir(), dPPicoMetal);
+        this.detectorPatron = dPicoFino;
     }
 
 
@@ -197,7 +201,6 @@ public class Juego {
                 } catch (CasilleroVacioException casilleroVacio){/*Hacer nada*/}
             }
         }
-
 
         //Agregar al inventario
         inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());

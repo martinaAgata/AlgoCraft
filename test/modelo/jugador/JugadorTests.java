@@ -65,8 +65,9 @@ public class JugadorTests {
     @Test
     public void testJugadorPuedeMoverseHaciaLaDerechaEnJuegoInicializado() {
         Juego juego = new Juego();
-        juego.inicializarJugador();
-        juego.inicializarMapaConMateriales();
+        juego.inicializarJuego();
+        //juego.inicializarJugador();
+        //juego.inicializarMapaConMateriales();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseALaDerecha(juego.obtenerMapa());
     }
@@ -74,8 +75,9 @@ public class JugadorTests {
     @Test
     public void testJugadorPuedeMoverseHaciaArribaEnJuegoInicializado() {
         Juego juego = new Juego();
-        juego.inicializarJugador();
-        juego.inicializarMapaConMateriales();
+        juego.inicializarJuego();
+        //juego.inicializarJugador();
+        //juego.inicializarMapaConMateriales();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseArriba(juego.obtenerMapa());
     }
@@ -83,8 +85,9 @@ public class JugadorTests {
     @Test (expected = CasilleroEstaOcupadoException.class)
     public void testJugadorMoverseHaciaAbajoTresVecesEnJuegoInicializadoLanzaException() {
         Juego juego = new Juego();
-        juego.inicializarJugador();
-        juego.inicializarMapaConMateriales();
+        juego.inicializarJuego();
+        //juego.inicializarJugador();
+        //juego.inicializarMapaConMateriales();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());

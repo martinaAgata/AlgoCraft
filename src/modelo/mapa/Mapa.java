@@ -35,7 +35,6 @@ public class Mapa {
 */
 
     public void ubicarEnCasillero(Ubicable ubicable, Ubicacion ubicacion) {
-
         this.casilleros.get(ubicacion).guardarUbicable(ubicable);
         // este get() devuelve una instancia de Casillero (esa guarda el Ubicable)
     }
@@ -55,8 +54,7 @@ public class Mapa {
         if (mapa == null || getClass() != mapa.getClass()) return false;
         if (!(cantidadFilas == mapa.cantidadFilas && cantidadColumnas == mapa.cantidadColumnas)) return false;
         for (Ubicacion ubicacion : casilleros.keySet()) {
-            if (!casilleros.get(ubicacion).esIgualA(mapa.casilleros.get(ubicacion)))
-                return false;
+            if (!casilleros.get(ubicacion).esIgualA(mapa.casilleros.get(ubicacion))) return false;
         }
         return true;
     }
