@@ -44,24 +44,31 @@ public class Inventario extends VBox {
         ImageView hachaMadera = new ImageView(new Image(RUTA_IMG_HACHA_MADERA));
         hachaMadera.setFitHeight(40);
         hachaMadera.setFitWidth(40);
+        hachaMadera.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
         ImageView hachaPiedra = new ImageView(new Image(RUTA_IMG_HACHA_PIEDRA));
         hachaPiedra.setFitHeight(40);
         hachaPiedra.setFitWidth(40);
+        hachaPiedra.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
         ImageView hachaMetal = new ImageView(new Image(RUTA_IMG_HACHA_METAL));
         hachaMetal.setFitHeight(40);
         hachaMetal.setFitWidth(40);
+        hachaMetal.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
         ImageView picoMadera = new ImageView(new Image(RUTA_IMG_PICO_MADERA));
         picoMadera.setFitHeight(40);
         picoMadera.setFitWidth(40);
+        picoMadera.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
         ImageView picoPiedra = new ImageView(new Image(RUTA_IMG_PICO_PIEDRA));
         picoPiedra.setFitHeight(40);
         picoPiedra.setFitWidth(40);
+        picoPiedra.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
         ImageView picoMetal = new ImageView(new Image(RUTA_IMG_PICO_METAL));
         picoMetal.setFitHeight(40);
         picoMetal.setFitWidth(40);
+        picoMetal.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
         ImageView picoFino = new ImageView(new Image(RUTA_IMG_PICO_FINO));
         picoFino.setFitHeight(40);
         picoFino.setFitWidth(40);
+        picoFino.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
         this.hboxHerramientas.getChildren().addAll(hachaMadera, hachaPiedra, hachaMetal, picoMadera, picoPiedra, picoMetal, picoFino);
     }
 }

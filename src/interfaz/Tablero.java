@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import modelo.juego.Juego;
+import modelo.juego.NullUbicable;
 import modelo.juego.Ubicable;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
@@ -42,6 +43,12 @@ public class Tablero extends VBox {
                 ImageView imgV = new ImageView(img);
                 imgV.setFitHeight(40);
                 imgV.setFitWidth(40);
+                if(ubicable.getClass() != NullUbicable.class) {
+                    imgV.setOnMouseClicked((e) -> {
+                        //Desgaste material contra herramienta
+                        System.out.println("Se cliqueo un material");
+                    });
+                }
                 this.grid.add(imgV, y, x);
             }
         }

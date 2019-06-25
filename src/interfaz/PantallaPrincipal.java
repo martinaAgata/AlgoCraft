@@ -3,9 +3,7 @@ package interfaz;
 import static interfaz.ConstantesInterfaz.*;
 
 import interfaz.handlers.Mover;
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import modelo.juego.Jugador;
 import modelo.juego.NullUbicable;
@@ -19,7 +17,7 @@ import java.util.HashMap;
 public class PantallaPrincipal extends VBox {
     private Tablero tablero;
     private HashMap<String, Image> contenedorImagenes;
-    private Inventario inventarioMateriales;
+    private Inventario inventarios;
     private Mover moverHandler;
 
     public PantallaPrincipal() {
@@ -28,10 +26,10 @@ public class PantallaPrincipal extends VBox {
         this.inicializarContenedorImagenes();
         this.tablero = new Tablero(this.contenedorImagenes);
         this.tablero.setPrefSize(480,480);
-        this.inventarioMateriales = new Inventario();
-        this.tablero.getChildren().add(inventarioMateriales);
+        this.inventarios = new Inventario();
+        this.tablero.getChildren().add(inventarios);
         this.getChildren().addAll(tablero);
-    };
+    }
 
     private void inicializarContenedorImagenes() {
         this.contenedorImagenes = new HashMap<>();
