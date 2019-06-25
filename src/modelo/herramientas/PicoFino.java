@@ -21,18 +21,16 @@ public class PicoFino extends Herramienta {
     }
 
     @Override
-    public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
+    public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);
+    }
 
     @Override
     public Optional<Desgastable> desgastarContra(Diamante diamante) {
-        //if(diamante == null) return null;
-        this.desgastarMaterial(diamante);
+        diamante.reducirDurabilidad(this.fuerza);
         return Optional.empty();
+
     }
 
-    public void desgastarMaterial(Diamante diamante) {
-        diamante.reducirDurabilidad(this.fuerza);
-    }
 
     @Override
     public int hashCode() {

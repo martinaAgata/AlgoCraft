@@ -24,8 +24,5 @@ public abstract class Herramienta implements Desgastable{
         return fuerza;
     }
 
-    protected void desgastarMaterial(Material material){
-        this.desgastarMaterial(material.desgastarCon(this));
-    }
 
 }
