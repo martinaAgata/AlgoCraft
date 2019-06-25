@@ -7,16 +7,21 @@ import javafx.scene.layout.*;
 import static interfaz.ConstantesInterfaz.*;
 
 public class Inventario extends VBox {
-    private HBox hbox = new HBox(10);
+    private HBox hboxMateriales;
+    private HBox hboxHerramientas;
 
     public Inventario() {
-        this.crearInventario();
-        this.getChildren().add(this.hbox);
+        hboxHerramientas = new HBox(10);
+        hboxMateriales = new HBox(10);
+        this.crearInventarioMateriales();
+        this.crearInventarioHerramientas();
+        this.getChildren().add(this.hboxMateriales);
+        this.getChildren().add(this.hboxHerramientas);
     }
-    private void crearInventario() {
-        this.hbox.setAlignment(Pos.CENTER);
+    private void crearInventarioMateriales() {
+        this.hboxMateriales.setAlignment(Pos.CENTER);
         this.setPrefWidth(480);
-        this.hbox.setSpacing(5);
+        this.hboxMateriales.setSpacing(5);
         ImageView madera = new ImageView(new Image(RUTA_IMG_MADERA));
         madera.setFitHeight(40);
         madera.setFitWidth(40);
@@ -29,6 +34,34 @@ public class Inventario extends VBox {
         ImageView diamante = new ImageView(new Image(RUTA_IMG_DIAMANTE));
         diamante.setFitHeight(40);
         diamante.setFitWidth(40);
-        this.hbox.getChildren().addAll(madera, piedra, metal, diamante);
+        this.hboxMateriales.getChildren().addAll(madera, piedra, metal, diamante);
+    }
+
+    private void crearInventarioHerramientas(){
+        this.hboxHerramientas.setAlignment(Pos.CENTER);
+        this.setPrefWidth(480);
+        this.hboxHerramientas.setSpacing(7);
+        ImageView hachaMadera = new ImageView(new Image(RUTA_IMG_HACHA_MADERA));
+        hachaMadera.setFitHeight(40);
+        hachaMadera.setFitWidth(40);
+        ImageView hachaPiedra = new ImageView(new Image(RUTA_IMG_HACHA_PIEDRA));
+        hachaPiedra.setFitHeight(40);
+        hachaPiedra.setFitWidth(40);
+        ImageView hachaMetal = new ImageView(new Image(RUTA_IMG_HACHA_METAL));
+        hachaMetal.setFitHeight(40);
+        hachaMetal.setFitWidth(40);
+        ImageView picoMadera = new ImageView(new Image(RUTA_IMG_PICO_MADERA));
+        picoMadera.setFitHeight(40);
+        picoMadera.setFitWidth(40);
+        ImageView picoPiedra = new ImageView(new Image(RUTA_IMG_PICO_PIEDRA));
+        picoPiedra.setFitHeight(40);
+        picoPiedra.setFitWidth(40);
+        ImageView picoMetal = new ImageView(new Image(RUTA_IMG_PICO_METAL));
+        picoMetal.setFitHeight(40);
+        picoMetal.setFitWidth(40);
+        ImageView picoFino = new ImageView(new Image(RUTA_IMG_PICO_FINO));
+        picoFino.setFitHeight(40);
+        picoFino.setFitWidth(40);
+        this.hboxHerramientas.getChildren().addAll(hachaMadera, hachaPiedra, hachaMetal, picoMadera, picoPiedra, picoMetal, picoFino);
     }
 }
