@@ -10,7 +10,7 @@ script:
   - ant integracion-continua
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -t 44f412c8-8886-4469-a20c-3758baac0c1c
 
 notifications:
   email:
