@@ -6,7 +6,7 @@ import modelo.mapa.Ubicacion;
 import modelo.materiales.Madera;
 import static modelo.juego.ConstantesJuego.*;
 
-public class Jugador implements Ubicable {
+public class Jugador extends Ubicable {
 
     private Herramienta herramientaActual;
     private Ubicacion ubicacion;

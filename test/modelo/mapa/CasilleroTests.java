@@ -1,9 +1,8 @@
 package modelo.mapa;
 
-import modelo.exceptions.CasilleroVacioException;
+import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
 import modelo.juego.ObjetoUbicable;
-import modelo.exceptions.CasilleroEstaOcupadoException;
-import modelo.mapa.Casillero;
+import modelo.exceptions.NoSePuedeUbicarPorqueEstaOcupadoException;
 
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ public class CasilleroTests {
         casillero.guardarUbicable(o);
     }
 
-    @Test (expected = CasilleroEstaOcupadoException.class)
+    @Test (expected = NoSePuedeUbicarPorqueEstaOcupadoException.class)
     public void testGuardarUbicableEnCasilleroLlenoLanzaException(){
         Casillero casillero = new Casillero();
         ObjetoUbicable objetoUbicable1 = new ObjetoUbicable();
@@ -25,7 +24,7 @@ public class CasilleroTests {
         casillero.guardarUbicable(objetoUbicable2);
     }
 
-    @Test (expected = CasilleroVacioException.class)
+    @Test (expected = NoSePuedeEliminarPorqueEstaVacioException.class)
     public void testEliminarUbicableEnCasilleroLanzaExcepcion(){
         Casillero casillero = new Casillero();
         casillero.eliminarUbicable();

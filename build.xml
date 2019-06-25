@@ -199,7 +199,7 @@
 	</target>
 
 
-		<target name="empaquetar.con.imagenes" depends="compilar.paquete">
+		<target name="empaquetar.con.interfaz.imagenes" depends="compilar.paquete">
 			<copydir src="src/gui/imagess"
 				dest="${build}/classes/gui/imagess"
 				includes="**/*.png"/>

@@ -1,7 +1,6 @@
-package handlers;
+package interfaz.handlers;
 
 import interfaz.PantallaPrincipal;
-import interfaz.Tablero;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;

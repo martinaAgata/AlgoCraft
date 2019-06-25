@@ -11,7 +11,7 @@ import modelo.mapa.Ubicacion;
 
 import java.util.HashMap;
 
-public class Tablero extends HBox {
+public class Tablero extends VBox {
     private final GridPane grid = new GridPane();
     private Juego juego;
     private final Mapa mapa;
@@ -19,33 +19,32 @@ public class Tablero extends HBox {
     private final HashMap<String,Image> contenedorImagenes;
 
     public Tablero(HashMap<String,Image> contenedorImagenes) {
+        this.setPrefSize(480, 480);
+        this.setSpacing(5);
+        this.grid.setHgap(5);
+        this.grid.setVgap(5);
+        this.grid.setPrefSize(600, 600);
+        this.grid.setAlignment(Pos.CENTER);
         this.juego = new Juego();
         this.juego.inicializarJuego();
         this.mapa = juego.obtenerMapa();
         this.alto = juego.obtenerMapa().obtenerCantidadFilas();
         this.ancho = juego.obtenerMapa().obtenerCantidadColumnas();
         this.contenedorImagenes = contenedorImagenes;
-        crearContenidoTablero();
-        this.getChildren().addAll(this.grid);
+        this.actualizarTablero();
     }
-    private void crearContenidoTablero() {
-        this.grid.setHgap(5);
-        this.grid.setVgap(5);
-        this.grid.setPrefSize(600, 600);
+    public void actualizarTablero() {
         Ubicable ubicable;
         for (int y=1; y<=this.alto; y++) {
             for (int x=1; x<=this.ancho; x++) {
                 ubicable = this.mapa.obtenerCasillero(new Ubicacion(x,y)).obtenerUbicable();
-                Image img;
-                if(ubicable == null) img = contenedorImagenes.get("");
-                else img = contenedorImagenes.get(ubicable.getClass().getName());
-
+                Image img = contenedorImagenes.get(ubicable.getClass().getName());
                 ImageView imgV = new ImageView(img);
                 imgV.setFitHeight(40);
                 imgV.setFitWidth(40);
                 this.grid.add(imgV, y, x);
             }
         }
-        this.grid.setAlignment(Pos.CENTER);
+        this.getChildren().addAll(this.grid);
     }
 }

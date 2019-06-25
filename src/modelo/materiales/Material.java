@@ -1,9 +1,9 @@
 package modelo.materiales;
 import modelo.estados.Estado;
-import modelo.juego.Ubicable;
 import modelo.herramientas.Herramienta;
+import modelo.juego.Ubicable;
 
-public abstract class Material implements Desgastable, Ubicable {
+public abstract class Material extends Ubicable implements Desgastable {
 
     protected Estado estado;
 

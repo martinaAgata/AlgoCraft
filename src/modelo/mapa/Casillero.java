@@ -1,25 +1,23 @@
 package modelo.mapa;
-import modelo.exceptions.CasilleroVacioException;
+
+import modelo.juego.NullUbicable;
 import modelo.juego.Ubicable;
-import modelo.exceptions.CasilleroEstaOcupadoException;
 
 public class Casillero {
 
-    private Ubicable ubicable = null;
+    private Ubicable ubicable = new NullUbicable();
 
     public Ubicable obtenerUbicable() {
         return this.ubicable;
     }
 
     public void guardarUbicable(Ubicable ubicable) {
-        if (this.ubicable != null) { throw new CasilleroEstaOcupadoException("No es posible guardar, el casillero se encuentra ocupado"); }
-        this.ubicable = ubicable;
+        this.ubicable = this.ubicable.guardarUbicable(ubicable);
     }
 
     public Ubicable eliminarUbicable() {
-        if (this.ubicable == null) { throw new CasilleroVacioException("No se puede eliminar nada de un casillero vacio"); }
         Ubicable eliminado = this.ubicable;
-        this.ubicable = null;
+        this.ubicable = this.ubicable.eliminarUbicable();
         return eliminado;
     }
 
@@ -31,5 +29,4 @@ public class Casillero {
             return false;
         return this.ubicable.esIgualAUbicable(c.ubicable);
     }
-
 }

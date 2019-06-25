@@ -1,9 +1,14 @@
 package modelo.juego;
 
-public class ObjetoUbicable implements Ubicable {
+import modelo.exceptions.NoSePuedeUbicarPorqueEstaOcupadoException;
+
+public class ObjetoUbicable extends Ubicable {
     @Override
-    public boolean esIgualAUbicable(Ubicable ubicable) {
-        if(this.getClass() == ubicable.getClass()) return true;
-        return false;
+    public Ubicable guardarUbicable(Ubicable otroUbicable) {
+        throw new NoSePuedeUbicarPorqueEstaOcupadoException("No se puede guardar en este casillero ya que se encuentra ocupado");
+    }
+    @Override
+    public Ubicable eliminarUbicable() {
+        return new NullUbicable();
     }
 }

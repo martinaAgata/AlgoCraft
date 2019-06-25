@@ -1,31 +1,35 @@
 package interfaz;
 
+import static interfaz.ConstantesInterfaz.*;
+
+import interfaz.handlers.Mover;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import modelo.juego.Jugador;
+import modelo.juego.NullUbicable;
 import modelo.materiales.Diamante;
 import modelo.materiales.Madera;
 import modelo.materiales.Metal;
 import modelo.materiales.Piedra;
-
 import java.util.HashMap;
 
-public class PantallaPrincipal extends HBox {
 
-    private static final String RUTA_IMG_MADERA = "file:src/imagenes/madera.png";
-    private static final String RUTA_IMG_PIEDRA = "file:src/imagenes/piedra.png";
-    private static final String RUTA_IMG_METAL = "file:src/imagenes/metal.png";
-    private static final String RUTA_IMG_PASTO = "file:src/imagenes/pasto.jpg";
-    private static final String RUTA_IMG_DIAMANTE = "file:src/imagenes/diamante.png";
-    private static final String RUTA_IMG_JUGADOR = "file:src/imagenes/jugador.png";
+public class PantallaPrincipal extends VBox {
     private Tablero tablero;
     private HashMap<String, Image> contenedorImagenes;
-
+    private Inventario inventarioMateriales;
+    private Mover moverHandler;
 
     public PantallaPrincipal() {
         super();
+        this.setPrefSize(480,480);
         this.inicializarContenedorImagenes();
         this.tablero = new Tablero(this.contenedorImagenes);
+        this.tablero.setPrefSize(480,480);
+        this.inventarioMateriales = new Inventario();
+        this.tablero.getChildren().add(inventarioMateriales);
         this.getChildren().addAll(tablero);
     };
 
@@ -36,7 +40,7 @@ public class PantallaPrincipal extends HBox {
         this.contenedorImagenes.put((new Metal()).getClass().getName(), new Image(RUTA_IMG_METAL));
         this.contenedorImagenes.put((new Diamante()).getClass().getName(), new Image(RUTA_IMG_DIAMANTE));
         this.contenedorImagenes.put(new Jugador(null).getClass().getName(), new Image(RUTA_IMG_JUGADOR));
-        this.contenedorImagenes.put("", new Image(RUTA_IMG_PASTO));
+        this.contenedorImagenes.put(new NullUbicable().getClass().getName(), new Image(RUTA_IMG_PASTO));
     }
 
 }

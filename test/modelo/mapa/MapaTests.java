@@ -1,18 +1,15 @@
 package modelo.mapa;
 
-import modelo.exceptions.CasilleroEstaOcupadoException;
-import modelo.exceptions.CasilleroVacioException;
-import modelo.juego.Jugador;
+import modelo.exceptions.NoSePuedeUbicarPorqueEstaOcupadoException;
+import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
 import modelo.juego.ObjetoUbicable;
-import modelo.mapa.Mapa;
-import modelo.mapa.Ubicacion;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
 public class MapaTests {
-    @Test (expected = CasilleroEstaOcupadoException.class)
+    @Test (expected = NoSePuedeUbicarPorqueEstaOcupadoException.class)
     public void testMapaUbicarEnUnCasilleroOcupadoLanzaExcepcion(){
         Mapa mapa = new Mapa(10,10);
         Ubicacion ubicacion = new Ubicacion(4,4);
@@ -21,7 +18,7 @@ public class MapaTests {
 
     }
 
-    @Test (expected = CasilleroVacioException.class)
+    @Test (expected = NoSePuedeEliminarPorqueEstaVacioException.class)
     public void testMapaEliminarDeCasilleroVacioLAnzaExcepcion(){
         Mapa mapa = new Mapa(10,10);
         mapa.eliminarDeCasillero(new Ubicacion(4,4));

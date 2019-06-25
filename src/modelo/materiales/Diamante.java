@@ -1,8 +1,8 @@
 package modelo.materiales;
 
-import modelo.juego.Ubicable;
 import modelo.estados.EstadoVivo;
 import modelo.herramientas.PicoFino;
+import modelo.juego.Ubicable;
 
 import java.util.Objects;
 import java.util.Optional;

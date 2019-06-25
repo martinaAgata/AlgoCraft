@@ -1,7 +1,7 @@
 package modelo.juego;
 
 import modelo.estrategias.EstrategiaDesgaste;
-import modelo.exceptions.CasilleroVacioException;
+import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
 import modelo.exceptions.NoHayHerramientaParaCrearException;
 import modelo.herramientas.*;
 import modelo.mapa.Mapa;
@@ -15,7 +15,7 @@ import modelo.patrones.DetectorPatronPicoFino;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
-import java.util.function.Supplier;
+
 import static modelo.juego.ConstantesJuego.*;
 
 public class Juego {
@@ -190,7 +190,7 @@ public class Juego {
     public void crearHerramienta() {
         //ya tenes cosas en el mapa carfteo y decis crear herramienta
         //detectarHerramientatableroCrafteo();
-        if (this.herramientaCreada.isEmpty()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
+        if (!this.herramientaCreada.isPresent()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
         //Eliminar materiales del inventario
         for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
             for (int y=1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++) {
@@ -198,7 +198,7 @@ public class Juego {
                     Material eliminar = (Material) this.tableroCrafteo.eliminarDeCasillero(new Ubicacion(x,y));
 
                     this.inventarioMateriales.put(eliminar, this.inventarioMateriales.get(eliminar) - 1);
-                } catch (CasilleroVacioException casilleroVacio){/*Hacer nada*/}
+                } catch (NoSePuedeEliminarPorqueEstaVacioException casilleroVacio){/*Hacer nada*/}
             }
         }
 

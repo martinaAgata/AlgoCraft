@@ -1,6 +1,6 @@
 package modelo.jugador;
 
-import modelo.exceptions.CasilleroEstaOcupadoException;
+import modelo.exceptions.NoSePuedeUbicarPorqueEstaOcupadoException;
 import modelo.herramientas.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
@@ -82,7 +82,7 @@ public class JugadorTests {
         jugador.moverseArriba(juego.obtenerMapa());
     }
 
-    @Test (expected = CasilleroEstaOcupadoException.class)
+    @Test (expected = NoSePuedeUbicarPorqueEstaOcupadoException.class)
     public void testJugadorMoverseHaciaAbajoTresVecesEnJuegoInicializadoLanzaException() {
         Juego juego = new Juego();
         juego.inicializarJuego();
