@@ -10,6 +10,7 @@ coverage:
     - "src/handlers/**"
     - "src/interfaz/**"
     - "src/modelo/exceptions/**"
+    - "src/imagenes/**"
   status:
     project: yes
     patch: yes
