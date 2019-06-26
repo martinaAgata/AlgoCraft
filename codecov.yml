@@ -26,4 +26,4 @@ comment:
   
   
   ignore:
-    - "src/interfaz/"
+    - "src/interfaz/*"
