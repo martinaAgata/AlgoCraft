@@ -1,6 +1,7 @@
 package modelo.materiales;
 import modelo.estados.Estado;
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.NoSePuedeDesgastarUnElementoConEstadoMuertoException;
 import modelo.herramientas.Herramienta;
 import modelo.juego.ObjetoUbicable;
 import modelo.juego.Ubicable;
@@ -14,11 +15,11 @@ public abstract class Material extends ObjetoUbicable implements Desgastable {
     public Material desgastarCon(Herramienta herramienta){ return this; }
 
     public void reducirDurabilidad(int fuerza) {
-        if(estado.getDurabilidad() == 0) {
-            casillero.eliminarUbicable();
-            return;
+        try {
+            this.estado = this.estado.desgastar(fuerza);
+        } catch(NoSePuedeDesgastarUnElementoConEstadoMuertoException e) {
+            this.casillero.eliminarUbicable();
         }
-        estado = estado.desgastar(fuerza);
     }
 
     public int getDurabilidad() {

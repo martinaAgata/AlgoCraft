@@ -18,7 +18,7 @@ public abstract class Herramienta implements Desgastable{
         try {
             this.estado = estrategia.desgastar(fuerza, estado);
         } catch (NoSePuedeDesgastarUnElementoConEstadoMuertoException e) {
-            throw new HerramientaRotaNoPuedeDesgastarseException("No puede desgastarse una herramienta rota");
+            throw new HerramientaRotaNoPuedeDesgastarseException("La herramienta se ha roto y ya no puede usarse");
         }
     }
 
