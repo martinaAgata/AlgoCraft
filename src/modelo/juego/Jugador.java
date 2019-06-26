@@ -1,10 +1,13 @@
 package modelo.juego;
+import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
+import modelo.exceptions.NoSePuedeUbicarPorqueEstaOcupadoException;
 import modelo.herramientas.ConstructorHacha;
-import modelo.herramientas.ConstructorHerramienta;
 import modelo.herramientas.Herramienta;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
 import modelo.materiales.Madera;
+import modelo.materiales.Material;
+
 import static modelo.juego.ConstantesJuego.*;
 
 public class Jugador extends Ubicable {
@@ -23,8 +26,6 @@ public class Jugador extends Ubicable {
         this.herramientaActual = herramientaInicial;
     }
 
-
-
     public void setUbicacion(Ubicacion u) { this.ubicacion = u; }
 
     public Herramienta obtenerHerramientaActual() {
@@ -32,33 +33,47 @@ public class Jugador extends Ubicable {
     }
 
     public void moverseALaDerecha(Mapa mapa) {
-        Ubicacion ubicacionJugador = ubicacion;
-        this.ubicacion = ubicacion.getUbicacionDerecha();
-        mapa.ubicarEnCasillero(this, ubicacion);
-        mapa.eliminarDeCasillero(ubicacionJugador);
-
+        Ubicacion ubicacionDerecha = ubicacion;
+        try {
+            mapa.ubicarEnCasillero(this, ubicacion);
+            mapa.eliminarDeCasillero(this.ubicacion);
+        } catch (NoSePuedeUbicarPorqueEstaOcupadoException e) {
+            Material material = (Material) mapa.obtenerCasillero(ubicacionDerecha).obtenerUbicable();
+            this.herramientaActual.usar(material);
+        } catch (NoExisteNingunCasilleroParaLaUbicacionDadaException e) {}
     }
 
     public void moverseALaIzquierda(Mapa mapa) {
-        Ubicacion ubicacionJugador = ubicacion;
-        this.ubicacion = ubicacion.getUbicacionIzquierda();
-        mapa.ubicarEnCasillero(this, ubicacion);
-        mapa.eliminarDeCasillero(ubicacionJugador);
+        Ubicacion ubicacionIzquierda = ubicacion.getUbicacionIzquierda();
+        try {
+            mapa.ubicarEnCasillero(this, ubicacion);
+            mapa.eliminarDeCasillero(this.ubicacion);
+        } catch (NoSePuedeUbicarPorqueEstaOcupadoException e) {
+            Material material = (Material) mapa.obtenerCasillero(ubicacionIzquierda).obtenerUbicable();
+            this.herramientaActual.usar(material);
+        } catch (NoExisteNingunCasilleroParaLaUbicacionDadaException e) {}
     }
 
     public void moverseArriba(Mapa mapa) {
-        Ubicacion ubicacionJugador = ubicacion;
-        this.ubicacion = ubicacion.getUbicacionArriba();
-        mapa.ubicarEnCasillero(this, ubicacion);
-        mapa.eliminarDeCasillero(ubicacionJugador);
+        Ubicacion ubicacionArriba = ubicacion.getUbicacionArriba();
+        try {
+            mapa.ubicarEnCasillero(this, ubicacion);
+            mapa.eliminarDeCasillero(this.ubicacion);
+        } catch (NoSePuedeUbicarPorqueEstaOcupadoException e) {
+            Material material = (Material) mapa.obtenerCasillero(ubicacionArriba).obtenerUbicable();
+            this.herramientaActual.usar(material);
+        } catch (NoExisteNingunCasilleroParaLaUbicacionDadaException e) {}
     }
 
     public void moverseAbajo(Mapa mapa) {
-        Ubicacion ubicacionJugador = ubicacion;
-        this.ubicacion = ubicacion.getUbicacionAbajo();
-        mapa.ubicarEnCasillero(this, ubicacion);
-        mapa.eliminarDeCasillero(ubicacionJugador);
-
+        Ubicacion ubicacionAbajo = ubicacion.getUbicacionAbajo();
+        try {
+            mapa.ubicarEnCasillero(this, ubicacion);
+            mapa.eliminarDeCasillero(this.ubicacion);
+        } catch (NoSePuedeUbicarPorqueEstaOcupadoException e) {
+            Material material = (Material) mapa.obtenerCasillero(ubicacionAbajo).obtenerUbicable();
+            this.herramientaActual.usar(material);
+        } catch (NoExisteNingunCasilleroParaLaUbicacionDadaException e) {}
     }
 
     public Ubicacion obtenerUbicacion(){

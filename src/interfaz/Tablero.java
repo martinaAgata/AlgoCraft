@@ -1,11 +1,9 @@
 package interfaz;
 
 import interfaz.handlers.DesgastarMaterialHandler;
-import interfaz.handlers.Mover;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import modelo.juego.Juego;
 import modelo.juego.NullUbicable;
@@ -22,39 +20,33 @@ public class Tablero extends VBox {
     private final int alto, ancho;
     private final HashMap<String,Image> contenedorImagenes;
 
-    public Tablero(HashMap<String,Image> contenedorImagenes) {
+    public Tablero(HashMap<String,Image> contenedorImagenes, Juego juego) {
+        this.juego = juego;
         this.setPrefSize(480, 480);
         this.setSpacing(5);
         this.grid.setHgap(5);
         this.grid.setVgap(5);
         this.grid.setPrefSize(600, 600);
         this.grid.setAlignment(Pos.CENTER);
-        this.juego = new Juego();
         this.juego.inicializarJuego();
         this.mapa = juego.obtenerMapa();
         this.alto = juego.obtenerMapa().obtenerCantidadFilas();
         this.ancho = juego.obtenerMapa().obtenerCantidadColumnas();
         this.contenedorImagenes = contenedorImagenes;
-        this.actualizarTablero(true);
+        this.actualizarTablero();
+        this.getChildren().addAll(this.grid);
     }
-    public void actualizarTablero(Boolean primeraVez) {
+    public void actualizarTablero() {
         Ubicable ubicable;
-        for (int y=1; y<=this.alto; y++) {
-            for (int x=1; x<=this.ancho; x++) {
+        for (int x=1; x<=this.alto; x++) {
+            for (int y=1; y<=this.ancho; y++) {
                 ubicable = this.mapa.obtenerCasillero(new Ubicacion(x,y)).obtenerUbicable();
                 Image img = contenedorImagenes.get(ubicable.getClass().getName());
                 ImageView imgV = new ImageView(img);
                 imgV.setFitHeight(40);
                 imgV.setFitWidth(40);
-                if(ubicable.getClass() != NullUbicable.class) imgV.setOnMouseClicked(new DesgastarMaterialHandler());
-                this.grid.add(imgV, x, y);
+                this.grid.add(imgV, y, x);
             }
         }
-        if(primeraVez) this.getChildren().addAll(this.grid);
-        else this.getChildren().set(0, this.grid);
-    }
-
-    public Juego obtenerJuego(){
-        return this.juego;
     }
 }

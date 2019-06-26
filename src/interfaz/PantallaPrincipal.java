@@ -3,8 +3,10 @@ package interfaz;
 import static interfaz.ConstantesInterfaz.*;
 
 import interfaz.handlers.Mover;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import modelo.juego.Juego;
 import modelo.juego.Jugador;
 import modelo.juego.NullUbicable;
 import modelo.materiales.Diamante;
@@ -19,12 +21,14 @@ public class PantallaPrincipal extends VBox {
     private HashMap<String, Image> contenedorImagenes;
     private Inventario inventarios;
     private Mover moverHandler;
+    private Juego juego;
 
     public PantallaPrincipal() {
         super();
         this.setPrefSize(480,480);
         this.inicializarContenedorImagenes();
-        this.tablero = new Tablero(this.contenedorImagenes);
+        this.juego = new Juego();
+        this.tablero = new Tablero(this.contenedorImagenes, this.juego);
         this.tablero.setPrefSize(480,480);
         this.inventarios = new Inventario();
         this.tablero.getChildren().add(inventarios);
@@ -45,4 +49,9 @@ public class PantallaPrincipal extends VBox {
         this.contenedorImagenes.put(new NullUbicable().getClass().getName(), new Image(RUTA_IMG_PASTO));
     }
 
+    public Scene getEscena() {
+        Scene escenaJuego = new Scene(this);
+        escenaJuego.setOnKeyPressed(new Mover(this.tablero, this.juego.obtenerMapa(), this.juego.obtenerJugador()));
+        return escenaJuego;
+    }
 }
