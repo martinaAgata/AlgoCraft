@@ -31,6 +31,10 @@ public class PantallaPrincipal extends VBox {
         this.getChildren().addAll(tablero);
     }
 
+    public Tablero obtenerTablero(){
+        return tablero;
+    }
+
     private void inicializarContenedorImagenes() {
         this.contenedorImagenes = new HashMap<>();
         this.contenedorImagenes.put((new Madera()).getClass().getName(), new Image(RUTA_IMG_MADERA_CON_PASTO));
