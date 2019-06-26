@@ -60,7 +60,7 @@ public class ConstantesJuego {
     /*----- PicoMetal -----*/
     public static final int DURABILIDAD_PICO_METAL = 400;
     public static final int FUERZA_PICO_METAL = 12;
-    public static final EstrategiaDesgaste DESGASTE_PICO_METAL =new DesgasteAbrupto();
+    public static final EstrategiaDesgaste DESGASTE_PICO_METAL = new DesgasteAbrupto();
 
     /*----- PicoFino -----*/
     public static final int DURABILIDAD_PICO_FINO = 1000;
