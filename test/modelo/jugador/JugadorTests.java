@@ -1,5 +1,6 @@
 package modelo.jugador;
 
+import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
 import modelo.exceptions.NoSePuedeUbicarPorqueEstaOcupadoException;
 import modelo.herramientas.*;
 import modelo.juego.Juego;
@@ -72,12 +73,10 @@ public class JugadorTests {
         jugador.moverseALaDerecha(juego.obtenerMapa());
     }
 
-    @Test
-    public void testJugadorPuedeMoverseHaciaArribaEnJuegoInicializado() {
+    @Test (expected = NoExisteNingunCasilleroParaLaUbicacionDadaException.class)
+    public void testJugadorNoPuedeMoverseHaciaArribaEnJuegoInicializado() {
         Juego juego = new Juego();
         juego.inicializarJuego();
-        //juego.inicializarJugador();
-        //juego.inicializarMapaConMateriales();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseArriba(juego.obtenerMapa());
     }
@@ -85,13 +84,14 @@ public class JugadorTests {
     @Test (expected = NoSePuedeUbicarPorqueEstaOcupadoException.class)
     public void testJugadorMoverseHaciaAbajoTresVecesEnJuegoInicializadoLanzaException() {
         Juego juego = new Juego();
-        juego.inicializarJuego();
-        //juego.inicializarJugador();
-        //juego.inicializarMapaConMateriales();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
+
     }
 
     @Test

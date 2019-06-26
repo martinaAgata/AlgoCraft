@@ -29,12 +29,13 @@ public class Juego {
     private Optional<Herramienta> herramientaCreada;
 
 
+    //NO ESTAMOS LLAMANDO INICIALIZAR JUEGO CUANDO CREO EL JUEGO
+
     public Juego() {
         this.mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
         this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
         this.inventarioHerramientas = new HashMap<>();
         this.inventarioMateriales = new HashMap<>();
-        inicializarJuego();
     }
 
     /*

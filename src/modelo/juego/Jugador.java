@@ -1,5 +1,6 @@
 package modelo.juego;
 import modelo.herramientas.ConstructorHacha;
+import modelo.herramientas.ConstructorHerramienta;
 import modelo.herramientas.Herramienta;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;

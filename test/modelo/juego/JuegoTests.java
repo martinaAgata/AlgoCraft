@@ -62,6 +62,7 @@ public class JuegoTests {
             }
         }
     }
+
     private void agregarHerramientaAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
                                                            Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste){
         constructor.conMaterial(material).conDurabilidad(durabilidad)
@@ -90,7 +91,7 @@ public class JuegoTests {
 
     @Before
     public void setup() {
-          mapaTest = new Mapa(14, 14);
+          mapaTest = new Mapa(12, 12);
           inventarioHerramientasTest = new HashMap<>();
     }
 
