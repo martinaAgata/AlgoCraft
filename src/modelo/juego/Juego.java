@@ -122,7 +122,7 @@ public class Juego {
 
 
     private void inicializarPatrones() {
-        DetectorPatron dpHachaMadera = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha()
+        DetectorPatron dPHachaMadera = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha()
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conDesgaste(DESGASTE_HACHA_MADERA)
@@ -133,7 +133,7 @@ public class Juego {
                 .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA)
-                .construir(), dpHachaMadera);
+                .construir(), dPHachaMadera);
         DetectorPatron dPHachaMetal = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha()
                 .conMaterial(new Metal())
                 .conDurabilidad(DURABILIDAD_HACHA_METAL)
@@ -158,13 +158,13 @@ public class Juego {
                 .conDesgaste(DESGASTE_PICO_METAL)
                 .conFuerza(FUERZA_PICO_METAL)
                 .construir(), dPPicoPiedra);
-        DetectorPatron dPicoFino = new DetectorPatronPicoFino(new Piedra(), () -> new ConstructorPicoFino()
+        DetectorPatron dPPicoFino = new DetectorPatronPicoFino(new Piedra(), () -> new ConstructorPicoFino()
                 .conMaterial(new Piedra())
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO)
                 .construir(), dPPicoMetal);
-        this.detectorPatron = dPicoFino;
+        this.detectorPatron = dPPicoFino;
     }
 
 
@@ -206,6 +206,9 @@ public class Juego {
     }
 
     public void jugar() {
+
+
+
 
     }
 
