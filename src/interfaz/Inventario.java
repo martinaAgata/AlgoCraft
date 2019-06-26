@@ -1,5 +1,6 @@
 package interfaz;
 
+import interfaz.handlers.ElegirHerramientaHandler;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -44,31 +45,31 @@ public class Inventario extends VBox {
         ImageView hachaMadera = new ImageView(new Image(RUTA_IMG_HACHA_MADERA));
         hachaMadera.setFitHeight(40);
         hachaMadera.setFitWidth(40);
-        hachaMadera.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
+        hachaMadera.setOnMouseClicked(new ElegirHerramientaHandler());
         ImageView hachaPiedra = new ImageView(new Image(RUTA_IMG_HACHA_PIEDRA));
         hachaPiedra.setFitHeight(40);
         hachaPiedra.setFitWidth(40);
-        hachaPiedra.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
+        hachaPiedra.setOnMouseClicked(new ElegirHerramientaHandler());
         ImageView hachaMetal = new ImageView(new Image(RUTA_IMG_HACHA_METAL));
         hachaMetal.setFitHeight(40);
         hachaMetal.setFitWidth(40);
-        hachaMetal.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
+        hachaMetal.setOnMouseClicked(new ElegirHerramientaHandler());
         ImageView picoMadera = new ImageView(new Image(RUTA_IMG_PICO_MADERA));
         picoMadera.setFitHeight(40);
         picoMadera.setFitWidth(40);
-        picoMadera.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
+        picoMadera.setOnMouseClicked(new ElegirHerramientaHandler());
         ImageView picoPiedra = new ImageView(new Image(RUTA_IMG_PICO_PIEDRA));
         picoPiedra.setFitHeight(40);
         picoPiedra.setFitWidth(40);
-        picoPiedra.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
+        picoPiedra.setOnMouseClicked(new ElegirHerramientaHandler());
         ImageView picoMetal = new ImageView(new Image(RUTA_IMG_PICO_METAL));
         picoMetal.setFitHeight(40);
         picoMetal.setFitWidth(40);
-        picoMetal.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
+        picoMetal.setOnMouseClicked(new ElegirHerramientaHandler());
         ImageView picoFino = new ImageView(new Image(RUTA_IMG_PICO_FINO));
         picoFino.setFitHeight(40);
         picoFino.setFitWidth(40);
-        picoFino.setOnMouseClicked((e) ->{ /*Elegir herramienta?*/System.out.println("Es una herramienta");});
+        picoFino.setOnMouseClicked(new ElegirHerramientaHandler());
         this.hboxHerramientas.getChildren().addAll(hachaMadera, hachaPiedra, hachaMetal, picoMadera, picoPiedra, picoMetal, picoFino);
     }
 }

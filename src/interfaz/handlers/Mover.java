@@ -2,11 +2,14 @@ package interfaz.handlers;
 
 import interfaz.Tablero;
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
 import modelo.juego.Jugador;
 import modelo.mapa.Mapa;
 import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
 import modelo.exceptions.NoSePuedeUbicarPorqueEstaOcupadoException;
+import javafx.scene.input.KeyEvent;
+
+
+import static javafx.scene.input.KeyCode.*;
 
 public class Mover implements EventHandler<KeyEvent> {
 
@@ -16,23 +19,31 @@ public class Mover implements EventHandler<KeyEvent> {
     public Mover(Tablero tablero, Mapa mapa, Jugador jugador) {
         this.mapa = mapa;
         this.jugador = jugador;
-        tablero.actualizarTablero();
+        //tablero.actualizarTablero();
     }
 
     @Override
     public void handle(KeyEvent event) {
-        switch (event.getCode()) { // atajar excepciones
-            case W:
-                jugador.moverseArriba(this.mapa);
+        switch (event.getCharacter().toLowerCase()) { // atajar excepciones
+            case "w":
+                //jugador.moverseArriba(this.mapa);
+                System.out.println("Arriba");
                 break;
-            case S:
-                jugador.moverseAbajo(this.mapa);
+            case "s":
+                //jugador.moverseAbajo(this.mapa);
+                System.out.println("Abajo");
                 break;
-            case D:
-                jugador.moverseALaDerecha(this.mapa);
+            case "d":
+                //jugador.moverseALaDerecha(this.mapa);
+                System.out.println("Derecha");
                 break;
-            case I:
-                jugador.moverseALaIzquierda(this.mapa);
+            case "a":
+                //jugador.moverseALaIzquierda(this.mapa);
+                System.out.println("Izquierda");
+                break;
+            case "c":
+                //Abrir Inventario
+                System.out.println("Crafteo");
                 break;
         }
     }

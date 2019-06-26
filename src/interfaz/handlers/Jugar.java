@@ -2,6 +2,7 @@ package interfaz.handlers;
 
 import interfaz.PantallaPrincipal;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

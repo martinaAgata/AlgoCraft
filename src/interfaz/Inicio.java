@@ -1,20 +1,25 @@
 package interfaz;
 
+import interfaz.handlers.Mover;
 import interfaz.handlers.Salir;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import interfaz.handlers.Jugar;
+import modelo.juego.Juego;
+
 import static interfaz.ConstantesInterfaz.RUTA_IMG_INICIAL;
 
 
 public class Inicio extends HBox {
 
     public Inicio(Stage stage) {
-
+        Mover moverJugador = new Mover(null, null, null);
         this.setPrefSize(600, 600);
         Jugar jugarHandler = new Jugar(stage);
         Button botonJugar = new Button("Jugar");
@@ -35,6 +40,9 @@ public class Inicio extends HBox {
         stackPane.getChildren().addAll(iv1, vbox);
 
         this.getChildren().addAll(stackPane);
+        stage.addEventHandler(KeyEvent.KEY_TYPED,moverJugador);
+        //Para que Mover actue en el mapa tiene que ser agregado al stage, pero x su constructor necesita que le pasen el tablero
+        //Y no es accesible desde aca.
     }
 
 }

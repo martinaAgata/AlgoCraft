@@ -34,7 +34,7 @@ public class Juego {
         this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
         this.inventarioHerramientas = new HashMap<>();
         this.inventarioMateriales = new HashMap<>();
-        //inicializarJuego();
+        inicializarJuego();
     }
 
     /*

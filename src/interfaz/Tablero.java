@@ -1,8 +1,11 @@
 package interfaz;
 
+import interfaz.handlers.DesgastarMaterialHandler;
+import interfaz.handlers.Mover;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import modelo.juego.Juego;
 import modelo.juego.NullUbicable;
@@ -43,12 +46,7 @@ public class Tablero extends VBox {
                 ImageView imgV = new ImageView(img);
                 imgV.setFitHeight(40);
                 imgV.setFitWidth(40);
-                if(ubicable.getClass() != NullUbicable.class) {
-                    imgV.setOnMouseClicked((e) -> {
-                        //Desgaste material contra herramienta
-                        System.out.println("Se cliqueo un material");
-                    });
-                }
+                if(ubicable.getClass() != NullUbicable.class) imgV.setOnMouseClicked(new DesgastarMaterialHandler());
                 this.grid.add(imgV, y, x);
             }
         }
