@@ -10,7 +10,8 @@ public class DesgasteAbrupto implements EstrategiaDesgaste {
     @Override
     public Estado desgastar(int fuerza, Estado estado) {
         cantidadUsos++;
-        if (cantidadUsos > 10) return new EstadoMuerto();
+        estado.desgastar(0);
+        if (cantidadUsos >= 10) return new EstadoMuerto();
         else return estado;
     }
 }

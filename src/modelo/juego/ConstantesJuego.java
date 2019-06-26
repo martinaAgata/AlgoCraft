@@ -7,11 +7,7 @@ import modelo.estrategias.EstrategiaDesgaste;
 public class ConstantesJuego {
 
     public static final int CANTIDAD_FILAS = 12; // modifique
-    public static final int CANTIDAD_COLUMNAS = 12;/*
-    public static final int CANTIDAD_MADERAS = 70;
-    public static final int CANTIDAD_PIEDRAS = 50;
-    public static final int hbJugar_METALES = 35;
-    public static final int CANTIDAD_DIAMANTES = 10;*/
+    public static final int CANTIDAD_COLUMNAS = 12;
     public static final int CANTIDAD_FILAS_TABLERO_HERRAMIENTAS = 3;
     public static final int CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS = 3;
 
