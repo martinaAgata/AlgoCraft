@@ -3,34 +3,19 @@ package modelo.materiales;
 import modelo.estados.EstadoVivo;
 import modelo.herramientas.Pico;
 import modelo.juego.Ubicable;
+import modelo.mapa.Casillero;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public class Piedra extends Material {
+import static modelo.juego.ConstantesJuego.DURABILIDAD_PIEDRA;
 
-    public static final int DURABILIDAD_PIEDRA = 30;
-    public Piedra() {
+public class Piedra extends Material {
+    public Piedra(Casillero casillero) {
+        this.casillero = casillero;
         this.estado = new EstadoVivo(DURABILIDAD_PIEDRA);
     }
 
-/*    @Override
-    public void desgastar(PicoMadera pico) {
-        int fuerza = pico.getFuerza();
-        this.reducirDurabilidad(fuerza);
-    }
-
-    @Override
-    public void desgastar(PicoMetal pico) {
-        int fuerza = pico.getFuerza();
-        this.reducirDurabilidad(fuerza);
-    }
-
-    @Override
-    public void desgastar(PicoPiedra pico) {
-        int fuerza = pico.getFuerza();
-        this.reducirDurabilidad(fuerza);
-    }*/
 
     @Override
     public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
@@ -42,11 +27,6 @@ public class Piedra extends Material {
     }
 
     public boolean esIgualAUbicable(Ubicable ubicable) {
-       /* if(this.getClass() != ubicable.getClass()) return false;
-        Piedra piedra = (Piedra) ubicable;
-        if(this.getDurabilidad() != piedra.getDurabilidad()) return false;
-        return true;
-        */
         return(this.getClass() == ubicable.getClass());
     }
 

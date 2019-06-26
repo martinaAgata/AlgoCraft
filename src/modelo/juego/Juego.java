@@ -43,7 +43,7 @@ public class Juego {
      */
     public void inicializarJugador() {
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
-                .conMaterial(new Madera())
+                .conMaterial(new Madera(null))
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
@@ -64,34 +64,34 @@ public class Juego {
         inicializarPatrones();
     }
     /*
-            posicionarNMateriales(this.mapa, CANTIDAD_MADERAS, () -> new Madera());
-            posicionarNMateriales(this.mapa, CANTIDAD_PIEDRAS, () -> new Piedra());
-            posicionarNMateriales(this.mapa, CANTIDAD_METALES, () -> new Metal());
-            posicionarNMateriales(this.mapa, CANTIDAD_DIAMANTES, () -> new Diamante());
+            posicionarNMateriales(this.mapa, CANTIDAD_MADERAS, () -> new Madera(null));
+            posicionarNMateriales(this.mapa, CANTIDAD_PIEDRAS, () -> new Piedra(null));
+            posicionarNMateriales(this.mapa, CANTIDAD_METALES, () -> new Metal(null));
+            posicionarNMateriales(this.mapa, CANTIDAD_DIAMANTES, () -> new Diamante(null));
         }
     */
     public void inicializarInventarioMaterial() {
         //this.inventarioMateriales = new HashMap<>();
-        inventarioMateriales.put(new Madera(), 0);
-        inventarioMateriales.put(new Metal(), 0);
-        inventarioMateriales.put(new Piedra(), 0);
-        inventarioMateriales.put(new Diamante(), 0);
+        inventarioMateriales.put(new Madera(null), 0);
+        inventarioMateriales.put(new Metal(null), 0);
+        inventarioMateriales.put(new Piedra(null), 0);
+        inventarioMateriales.put(new Diamante(null), 0);
     }
 
     public void inicializarInventarioHerramienta() {
-        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Madera(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Madera(null),
                 DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
-        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Piedra(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Piedra(null),
                 DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, DESGASTE_HACHA_PIEDRA);
-        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Metal(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Metal(null),
                 DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, DESGASTE_HACHA_METAL);
-        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Madera(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Madera(null),
                 DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, DESGASTE_PICO_MADERA);
-        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Piedra(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Piedra(null),
                 DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, DESGASTE_PICO_PIEDRA);
-        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Metal(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Metal(null),
                 DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, DESGASTE_PICO_METAL);
-        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPicoFino(), new Metal(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPicoFino(), new Metal(null),
                 DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO, DESGASTE_PICO_FINO);
 
     }
@@ -113,54 +113,45 @@ public class Juego {
     }
 
 
-/*
-    private void posicionarNMateriales(Mapa mapa, int n, Supplier<Material> supplier) {
-        for (int i=0; i<=n; i++) {
-            mapa.ubicarEnCasilleroAleatorio(supplier.get());
-        }
-    }
-*/
-
-
     private void inicializarPatrones() {
-        DetectorPatron dPHachaMadera = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha()
-                .conMaterial(new Madera())
+        DetectorPatron dPHachaMadera = new DetectorPatronHacha(new Madera(null), () -> new ConstructorHacha()
+                .conMaterial(new Madera(null))
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir());
-        DetectorPatron dPHachaPiedra = new DetectorPatronHacha(new Piedra(), () -> new ConstructorHacha()
-                .conMaterial(new Piedra())
+        DetectorPatron dPHachaPiedra = new DetectorPatronHacha(new Piedra(null), () -> new ConstructorHacha()
+                .conMaterial(new Piedra(null))
                 .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA)
                 .construir(), dPHachaMadera);
-        DetectorPatron dPHachaMetal = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha()
-                .conMaterial(new Metal())
+        DetectorPatron dPHachaMetal = new DetectorPatronHacha(new Metal(null), () -> new ConstructorHacha()
+                .conMaterial(new Metal(null))
                 .conDurabilidad(DURABILIDAD_HACHA_METAL)
                 .conDesgaste(DESGASTE_HACHA_METAL)
                 .conFuerza(FUERZA_HACHA_METAL)
                 .construir(), dPHachaPiedra);
-        DetectorPatron dPPicoMadera = new DetectorPatronPico(new Madera(), () -> new ConstructorPico()
-                .conMaterial(new Madera())
+        DetectorPatron dPPicoMadera = new DetectorPatronPico(new Madera(null), () -> new ConstructorPico()
+                .conMaterial(new Madera(null))
                 .conDurabilidad(DURABILIDAD_PICO_MADERA)
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA)
                 .construir(), dPHachaMetal);
-        DetectorPatron dPPicoPiedra = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico()
-                .conMaterial(new Piedra())
+        DetectorPatron dPPicoPiedra = new DetectorPatronPico(new Piedra(null), () -> new ConstructorPico()
+                .conMaterial(new Piedra(null))
                 .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
                 .conFuerza(FUERZA_PICO_PIEDRA)
                 .conDesgaste(DESGASTE_PICO_PIEDRA)
                 .construir(), dPPicoMadera);
-        DetectorPatron dPPicoMetal = new DetectorPatronPico(new Metal(), () -> new ConstructorPico()
-                .conMaterial(new Metal())
+        DetectorPatron dPPicoMetal = new DetectorPatronPico(new Metal(null), () -> new ConstructorPico()
+                .conMaterial(new Metal(null))
                 .conDurabilidad(DURABILIDAD_PICO_METAL)
                 .conDesgaste(DESGASTE_PICO_METAL)
                 .conFuerza(FUERZA_PICO_METAL)
                 .construir(), dPPicoPiedra);
-        DetectorPatron dPPicoFino = new DetectorPatronPicoFino(new Piedra(), () -> new ConstructorPicoFino()
-                .conMaterial(new Piedra())
+        DetectorPatron dPPicoFino = new DetectorPatronPicoFino(new Piedra(null), () -> new ConstructorPicoFino()
+                .conMaterial(new Piedra(null))
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO)
@@ -244,24 +235,28 @@ public class Juego {
     public void inicializarMapaConMateriales() {
         for (int i = 1; i <= 3; i++) {
             for (int j = 1; j <= 3; j++) {
-                this.mapa.ubicarEnCasillero(new Madera(),new Ubicacion(i, j));
+                Ubicacion ubicacion = new Ubicacion(i,j);
+                this.mapa.ubicarEnCasillero(new Madera(this.mapa.obtenerCasillero(ubicacion)), ubicacion);
             }
         }
         for (int i = 4; i <= 7; i++) {
             for (int j = 4; j <= 7; j++) {
-                this.mapa.ubicarEnCasillero(new Piedra(),new Ubicacion(i, j));
+                Ubicacion ubicacion = new Ubicacion(i,j);
+                this.mapa.ubicarEnCasillero(new Piedra(this.mapa.obtenerCasillero(ubicacion)), ubicacion);
             }
         }
 
         for (int i = 8; i <= 9; i++) {
             for (int j = 8; j <= 9; j++) {
-                this.mapa.ubicarEnCasillero(new Metal(),new Ubicacion(i, j));
+                Ubicacion ubicacion = new Ubicacion(i,j);
+                this.mapa.ubicarEnCasillero(new Metal(this.mapa.obtenerCasillero(ubicacion)), ubicacion);
             }
         }
 
         for (int i = 10; i <= 10; i++) {
             for (int j = 10; j <= 10; j++) {
-                this.mapa.ubicarEnCasillero(new Diamante(),new Ubicacion(i, j));
+                Ubicacion ubicacion = new Ubicacion(i,j);
+                this.mapa.ubicarEnCasillero(new Diamante(this.mapa.obtenerCasillero(ubicacion)), ubicacion);
             }
         }
     }

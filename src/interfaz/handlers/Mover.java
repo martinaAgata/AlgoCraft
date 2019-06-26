@@ -6,7 +6,6 @@ import javafx.scene.input.KeyCode;
 import modelo.juego.Jugador;
 import modelo.mapa.Mapa;
 import javafx.scene.input.KeyEvent;
-import modelo.mapa.Ubicacion;
 
 public class Mover implements EventHandler<KeyEvent> {
 
@@ -22,7 +21,6 @@ public class Mover implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent event) {
-        Ubicacion ubicacion = jugador.obtenerUbicacion();
         if(event.getCode() == KeyCode.W) jugador.moverseArriba(this.mapa);
         if(event.getCode() == KeyCode.D) jugador.moverseALaDerecha(this.mapa);
         if(event.getCode() == KeyCode.A) jugador.moverseALaIzquierda(this.mapa);

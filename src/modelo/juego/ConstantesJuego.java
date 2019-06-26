@@ -6,11 +6,16 @@ import modelo.estrategias.EstrategiaDesgaste;
 
 public class ConstantesJuego {
 
-    public static final int CANTIDAD_FILAS = 12; // modifique
+    public static final int CANTIDAD_FILAS = 12;
     public static final int CANTIDAD_COLUMNAS = 12;
     public static final int CANTIDAD_FILAS_TABLERO_HERRAMIENTAS = 3;
     public static final int CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS = 3;
 
+    /*----- Durabilidades Materiales -----*/
+    public static final int DURABILIDAD_MADERA = 10;
+    public static final int DURABILIDAD_PIEDRA = 30;
+    public static final int DURABILIDAD_METAL = 50;
+    public static final int DURABILIDAD_DIAMANTE = 100;
 
     /*----- Hacha Madera -----*/
     public static final int DURABILIDAD_HACHA_MADERA = 100;
@@ -23,6 +28,7 @@ public class ConstantesJuego {
     public static final int FUERZA_HACHA_PIEDRA = 5;
     public static final double FACTOR_DESGASTE_HACHA_PIEDRA = 1;
     public static final EstrategiaDesgaste DESGASTE_HACHA_PIEDRA = new DesgasteLinealFactor(FACTOR_DESGASTE_HACHA_PIEDRA);
+
     /*----- Hacha Metal -----*/
     public static final int DURABILIDAD_HACHA_METAL = 400;
     public static final int FUERZA_HACHA_METAL = 10;
@@ -34,6 +40,7 @@ public class ConstantesJuego {
     public static final int DURABILIDAD_PICO_MADERA = 100;
     public static final int FUERZA_PICO_MADERA = 2;
     public static final EstrategiaDesgaste DESGASTE_PICO_MADERA =new DesgasteLinealFactor(FACTOR_DESGASTE_PICO_MADERA);
+
     /*----- PicoPiedra -----*/
     public static final double FACTOR_DESGASTE_PICO_PIEDRA = (1 / 1.5);
     public static final int DURABILIDAD_PICO_PIEDRA = 200;
@@ -45,7 +52,7 @@ public class ConstantesJuego {
     public static final int FUERZA_PICO_METAL = 12;
     public static final EstrategiaDesgaste DESGASTE_PICO_METAL =new DesgasteAbrupto();
 
-
+    /*----- PicoFino -----*/
     public static final int DURABILIDAD_PICO_FINO = 1000;
     public static final int FUERZA_PICO_FINO = 20;
     public static final double FACTOR_DESGASTE_PICO_FINO = 0.1;

@@ -3,22 +3,21 @@ package modelo.materiales;
 import modelo.estados.EstadoVivo;
 import modelo.herramientas.PicoFino;
 import modelo.juego.Ubicable;
+import modelo.mapa.Casillero;
+import modelo.mapa.Mapa;
 
 import java.util.Objects;
 import java.util.Optional;
 
+import static modelo.juego.ConstantesJuego.DURABILIDAD_DIAMANTE;
+
 public class Diamante extends Material {
 
-    public static final int DURABILIDAD_DIAMANTE = 100;
-    public Diamante() {
+    public Diamante(Casillero casillero) {
+        this.casillero = casillero;
         this.estado = new EstadoVivo(DURABILIDAD_DIAMANTE);
     }
 
-/*    @Override
-    public void desgastar(PicoFino pico) {
-        int fuerza = pico.getFuerza();
-        this.reducirDurabilidad(fuerza);
-    }*/
 
     @Override
     public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
@@ -26,12 +25,7 @@ public class Diamante extends Material {
     public Optional<Desgastable> desgastarContra(PicoFino pico){ return pico.desgastarContra(this); }
 
 
-    public boolean esIgualAUbicable(Ubicable ubicable) {/*
-        if(this.getClass() != ubicable.getClass()) return false;
-        Diamante diamante = (Diamante) ubicable;
-        if(this.getDurabilidad() != diamante.getDurabilidad()) return false;
-        return true;
-        */
+    public boolean esIgualAUbicable(Ubicable ubicable) {
         return (this.getClass() == ubicable.getClass());
 
     }
@@ -45,8 +39,6 @@ public class Diamante extends Material {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (this.getClass() != obj.getClass()) return false;
-        /*Diamante diamante = (Diamante) obj;
-        if (this.getDurabilidad() != diamante.getDurabilidad()) return false;*/
         return true;
     }
 }

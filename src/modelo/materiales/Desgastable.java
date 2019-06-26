@@ -27,7 +27,6 @@ public interface Desgastable {
     default Optional<Desgastable> desgastarContra(Metal metal) {
         return Optional.empty();
     }
-    default Optional<Desgastable> desgastarContra(Diamante diamante) {
-        return Optional.empty();
+    default Optional<Desgastable> desgastarContra(Diamante diamante) { return Optional.empty();
     }
 }

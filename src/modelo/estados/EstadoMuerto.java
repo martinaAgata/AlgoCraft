@@ -1,14 +1,12 @@
 package modelo.estados;
 
-import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.NoSePuedeDesgastarUnElementoConEstadoMuertoException;
 
 public class EstadoMuerto implements Estado {
 
     public Estado desgastar(int fuerza) {
-        throw new HerramientaRotaNoPuedeDesgastarseException("No puede desgastarse una herramienta rota");
+        throw new NoSePuedeDesgastarUnElementoConEstadoMuertoException("No puede desgastarse un elemento con estado muerto");
     }
 
-    public int getDurabilidad() {
-        return 0; // Ver si devolver una excepcion
-    }
+    public int getDurabilidad() { return 0; }
 }

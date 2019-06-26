@@ -41,10 +41,10 @@ public class PantallaPrincipal extends VBox {
 
     private void inicializarContenedorImagenes() {
         this.contenedorImagenes = new HashMap<>();
-        this.contenedorImagenes.put((new Madera()).getClass().getName(), new Image(RUTA_IMG_MADERA_CON_PASTO));
-        this.contenedorImagenes.put((new Piedra()).getClass().getName(), new Image(RUTA_IMG_PIEDRA_CON_PASTO));
-        this.contenedorImagenes.put((new Metal()).getClass().getName(), new Image(RUTA_IMG_METAL_CON_PASTO));
-        this.contenedorImagenes.put((new Diamante()).getClass().getName(), new Image(RUTA_IMG_DIAMANTE_CON_PASTO));
+        this.contenedorImagenes.put((new Madera(null)).getClass().getName(), new Image(RUTA_IMG_MADERA_CON_PASTO));
+        this.contenedorImagenes.put((new Piedra(null)).getClass().getName(), new Image(RUTA_IMG_PIEDRA_CON_PASTO));
+        this.contenedorImagenes.put((new Metal(null)).getClass().getName(), new Image(RUTA_IMG_METAL_CON_PASTO));
+        this.contenedorImagenes.put((new Diamante(null)).getClass().getName(), new Image(RUTA_IMG_DIAMANTE_CON_PASTO));
         this.contenedorImagenes.put(new Jugador(null).getClass().getName(), new Image(RUTA_IMG_JUGADOR));
         this.contenedorImagenes.put(new NullUbicable().getClass().getName(), new Image(RUTA_IMG_PASTO));
     }

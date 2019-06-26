@@ -3,22 +3,20 @@ package modelo.materiales;
 import modelo.estados.EstadoVivo;
 import modelo.herramientas.Pico;
 import modelo.juego.Ubicable;
+import modelo.mapa.Casillero;
 
 import java.util.Objects;
 import java.util.Optional;
 
+import static modelo.juego.ConstantesJuego.DURABILIDAD_METAL;
+
 public class Metal extends Material {
 
-    public static final int DURABILIDAD_METAL = 50;
-    public Metal() {
+    public Metal(Casillero casillero) {
+        this.casillero = casillero;
         this.estado = new EstadoVivo(DURABILIDAD_METAL);
     }
 
-    /*    @Override
-        public void desgastar(PicoPiedra pico) {
-            int fuerza = pico.getFuerza();
-            this.reducirDurabilidad(fuerza);
-        }*/
     @Override
     public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}
     @Override
@@ -27,8 +25,6 @@ public class Metal extends Material {
 
     public boolean esIgualAUbicable(Ubicable ubicable) {
         return (this.getClass() == ubicable.getClass());
-        // aca sacamos lo de ver si las durabilidades coinciden
-        //xq los materiales estan nuevos cuando inicializo el juego
     }
 
     @Override
