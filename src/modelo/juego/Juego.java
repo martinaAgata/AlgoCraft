@@ -79,24 +79,24 @@ public class Juego {
     }
 
     public void inicializarInventarioHerramienta() {
-        agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Madera(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Madera(),
                 DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
-        agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Piedra(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Piedra(),
                 DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, DESGASTE_HACHA_PIEDRA);
-        agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Metal(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorHacha(), new Metal(),
                 DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, DESGASTE_HACHA_METAL);
-        agregarHerramientaAinventarioHerramientas(new ConstructorPico(), new Madera(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Madera(),
                 DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, DESGASTE_PICO_MADERA);
-        agregarHerramientaAinventarioHerramientas(new ConstructorPico(), new Piedra(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Piedra(),
                 DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, DESGASTE_PICO_PIEDRA);
-        agregarHerramientaAinventarioHerramientas(new ConstructorPico(), new Metal(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPico(), new Metal(),
                 DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, DESGASTE_PICO_METAL);
-        agregarHerramientaAinventarioHerramientas(new ConstructorPicoFino(), new Metal(),
+        agregarListaDeHerramientasAinventarioHerramientas(new ConstructorPicoFino(), new Metal(),
                 DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO, DESGASTE_PICO_FINO);
 
     }
 
-    private void agregarHerramientaAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
+    private void agregarListaDeHerramientasAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
                                                            Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste){
         constructor.conMaterial(material).conDurabilidad(durabilidad)
                 .conDesgaste(desgaste)
@@ -187,7 +187,32 @@ public class Juego {
         return this.tableroCrafteo;
     }
 
+    private void agregarHerramientaAlInventario(){
+        inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
+    }
+
+    private void eliminarMaterialesDelInventario(){
+        for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
+            for (int y=1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++) {
+                try {
+                    Material eliminar = (Material) this.tableroCrafteo.eliminarDeCasillero(new Ubicacion(x,y));
+
+                    this.inventarioMateriales.put(eliminar, this.inventarioMateriales.get(eliminar) - 1);
+                } catch (NoSePuedeEliminarPorqueEstaVacioException casilleroVacio){/*Hacer nada*/}
+            }
+        }
+    }
+
     public void crearHerramienta() {
+        //ya tenes cosas en el mapa carfteo y decis crear herramienta
+        //detectarHerramientatableroCrafteo();
+        if (!this.herramientaCreada.isPresent()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
+        eliminarMaterialesDelInventario();
+        agregarHerramientaAlInventario();
+    }
+
+
+   /* public void crearHerramienta() {
         //ya tenes cosas en el mapa carfteo y decis crear herramienta
         //detectarHerramientatableroCrafteo();
         if (!this.herramientaCreada.isPresent()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
@@ -198,13 +223,15 @@ public class Juego {
                     Material eliminar = (Material) this.tableroCrafteo.eliminarDeCasillero(new Ubicacion(x,y));
 
                     this.inventarioMateriales.put(eliminar, this.inventarioMateriales.get(eliminar) - 1);
-                } catch (NoSePuedeEliminarPorqueEstaVacioException casilleroVacio){/*Hacer nada*/}
+                } catch (NoSePuedeEliminarPorqueEstaVacioException casilleroVacio){//Hacer nada}
             }
         }
 
         //Agregar al inventario
         inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
     }
+*/
+
 
     public void jugar() {
 
