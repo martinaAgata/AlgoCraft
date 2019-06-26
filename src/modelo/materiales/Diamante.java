@@ -32,13 +32,12 @@ public class Diamante extends Material {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(this.getClass());
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (this.getClass() != obj.getClass()) return false;
-        return true;
+        return (this.getClass() == obj.getClass());
     }
 }
