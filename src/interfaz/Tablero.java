@@ -35,9 +35,9 @@ public class Tablero extends VBox {
         this.alto = juego.obtenerMapa().obtenerCantidadFilas();
         this.ancho = juego.obtenerMapa().obtenerCantidadColumnas();
         this.contenedorImagenes = contenedorImagenes;
-        this.actualizarTablero();
+        this.actualizarTablero(true);
     }
-    public void actualizarTablero() {
+    public void actualizarTablero(Boolean primeraVez) {
         Ubicable ubicable;
         for (int y=1; y<=this.alto; y++) {
             for (int x=1; x<=this.ancho; x++) {
@@ -47,9 +47,14 @@ public class Tablero extends VBox {
                 imgV.setFitHeight(40);
                 imgV.setFitWidth(40);
                 if(ubicable.getClass() != NullUbicable.class) imgV.setOnMouseClicked(new DesgastarMaterialHandler());
-                this.grid.add(imgV, y, x);
+                this.grid.add(imgV, x, y);
             }
         }
-        this.getChildren().addAll(this.grid);
+        if(primeraVez) this.getChildren().addAll(this.grid);
+        else this.getChildren().set(0, this.grid);
+    }
+
+    public Juego obtenerJuego(){
+        return this.juego;
     }
 }

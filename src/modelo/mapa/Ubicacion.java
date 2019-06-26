@@ -3,7 +3,7 @@ package modelo.mapa;
 import java.util.Objects;
 
 public class Ubicacion {
-   public final int x, y;
+   private final int x, y;
 
     public Ubicacion(int x, int y) {
         this.x = x;
@@ -31,5 +31,8 @@ public class Ubicacion {
     public Ubicacion getUbicacionArriba() {
         return new Ubicacion(this.x-1, this.y);
     }
-    public Ubicacion getUbicacionAbajo() { return new Ubicacion(this.x+1, this.y); }
+    public Ubicacion getUbicacionAbajo() {
+        return new Ubicacion(this.x+1, this.y);
+    }
+
 }

@@ -15,36 +15,36 @@ public class Mover implements EventHandler<KeyEvent> {
 
     private final Jugador jugador;
     private Mapa mapa;
+    private Tablero tablero;
 
     public Mover(Tablero tablero, Mapa mapa, Jugador jugador) {
         this.mapa = mapa;
         this.jugador = jugador;
+        this.tablero = tablero;
         //tablero.actualizarTablero();
     }
 
     @Override
     public void handle(KeyEvent event) {
-        switch (event.getCharacter().toLowerCase()) { // atajar excepciones
-            case "w":
-                //jugador.moverseArriba(this.mapa);
-                System.out.println("Arriba");
-                break;
-            case "s":
-                //jugador.moverseAbajo(this.mapa);
-                System.out.println("Abajo");
-                break;
-            case "d":
-                //jugador.moverseALaDerecha(this.mapa);
-                System.out.println("Derecha");
-                break;
-            case "a":
-                //jugador.moverseALaIzquierda(this.mapa);
-                System.out.println("Izquierda");
-                break;
-            case "c":
-                //Abrir Inventario
-                System.out.println("Crafteo");
-                break;
-        }
+    try {
+            switch (event.getCharacter().toLowerCase()) { // atajar excepciones
+                case "w":
+                    jugador.moverseArriba(this.mapa);
+                    break;
+                case "s":
+                    jugador.moverseAbajo(this.mapa);
+                    break;
+                case "d":
+                    jugador.moverseALaDerecha(this.mapa);
+                    break;
+                case "a":
+                    jugador.moverseALaIzquierda(this.mapa);
+                    break;
+                case "c":
+                    //Abrir Inventario
+                    break;
+            }
+            tablero.actualizarTablero(false);
+        }catch (Exception e){};
     }
 }

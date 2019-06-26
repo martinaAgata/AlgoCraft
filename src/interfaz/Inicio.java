@@ -19,7 +19,6 @@ import static interfaz.ConstantesInterfaz.RUTA_IMG_INICIAL;
 public class Inicio extends HBox {
 
     public Inicio(Stage stage) {
-        Mover moverJugador = new Mover(null, null, null);
         this.setPrefSize(600, 600);
         Jugar jugarHandler = new Jugar(stage);
         Button botonJugar = new Button("Jugar");
@@ -40,9 +39,6 @@ public class Inicio extends HBox {
         stackPane.getChildren().addAll(iv1, vbox);
 
         this.getChildren().addAll(stackPane);
-        stage.addEventHandler(KeyEvent.KEY_TYPED,moverJugador);
-        //Para que Mover actue en el mapa tiene que ser agregado al stage, pero x su constructor necesita que le pasen el tablero
-        //Y no es accesible desde aca.
     }
 
 }
