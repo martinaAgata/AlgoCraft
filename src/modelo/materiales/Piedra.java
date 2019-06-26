@@ -11,7 +11,7 @@ import java.util.Optional;
 import static modelo.juego.ConstantesJuego.DURABILIDAD_PIEDRA;
 
 public class Piedra extends Material {
-    public Piedra(Casillero casillero) {
+    public Piedra() {
         this.casillero = casillero;
         this.estado = new EstadoVivo(DURABILIDAD_PIEDRA);
     }

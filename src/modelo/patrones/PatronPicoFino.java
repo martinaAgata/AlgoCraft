@@ -5,7 +5,7 @@ import modelo.materiales.Material;
 import modelo.materiales.Piedra;
 
 public class PatronPicoFino extends Patron {
-    Piedra MATERIAL_PUNTA_PICO_FINO = new Piedra(null);
+    Piedra MATERIAL_PUNTA_PICO_FINO = new Piedra();
     public PatronPicoFino(Material material) {
         this.inicializarPatron(material);
     }

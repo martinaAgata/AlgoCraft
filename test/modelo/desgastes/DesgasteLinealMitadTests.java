@@ -4,6 +4,7 @@ import modelo.estados.EstadoMuerto;
 import modelo.estados.EstadoVivo;
 import modelo.estrategias.DesgasteLinealFactor;
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.NoSePuedeDesgastarUnElementoConEstadoMuertoException;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -33,7 +34,7 @@ public class DesgasteLinealMitadTests {
         assertNotEquals(estadoVivo, desgasteLinealMitad.desgastar(8, estadoVivo));
     }
 
-    @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test (expected = NoSePuedeDesgastarUnElementoConEstadoMuertoException.class)
     public void testDesgasteLinealMitadLanzaExcepcionAlDesgastarEstadoMuerto(){
         DesgasteLinealFactor desgasteLinealMitad = new DesgasteLinealFactor(0.5);
         EstadoMuerto estadoMuerto = new EstadoMuerto();

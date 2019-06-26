@@ -1,6 +1,7 @@
 package modelo.materiales;
 
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.herramientas.*;
 import modelo.materiales.Madera;
 import modelo.materiales.Material;
@@ -19,7 +20,7 @@ public class MetalTests {
     @Test
     public void testSeCreaMetalConDurabilidadCorrespondiente() {
         Metal metal = new Metal();
-        assertThat(metal.getDurabilidad(), is(Metal.DURABILIDAD_METAL));
+        assertThat(metal.getDurabilidad(), is(DURABILIDAD_METAL));
     }
     @Test
     public void testMetalNoEsDesgastadoPorHachaMadera() {
@@ -131,7 +132,7 @@ public class MetalTests {
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 12));
     }
 
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = MaterialSeHaGastadoException.class)
     public void testMetalEsDesgastadoPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Metal metal = new Metal();
         ConstructorPico constructor = new ConstructorPico();

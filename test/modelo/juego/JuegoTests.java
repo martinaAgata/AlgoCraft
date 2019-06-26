@@ -33,7 +33,7 @@ public class JuegoTests {
             .conFuerza(FUERZA_HACHA_MADERA)
             .construir();
     Mapa mapaTest;
-    Jugador jugadorTest = new Jugador(hachaMaderaTest);
+    Jugador jugadorTest = new Jugador(hachaMaderaTest, null);
     private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientasTest;
 
 
@@ -85,7 +85,7 @@ public class JuegoTests {
                     .conFuerza(FUERZA_HACHA_MADERA)
                     .construir();
             mapaTest.ubicarEnCasillero(jugadorTest, new Ubicacion(1,6));
-            jugadorTest = new Jugador(hachaInicial);
+            jugadorTest = new Jugador(hachaInicial, null);
             inventarioHerramientasTest.get(hachaInicial).add(hachaInicial);
         }
 

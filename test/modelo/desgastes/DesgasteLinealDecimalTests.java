@@ -4,6 +4,7 @@ import modelo.estados.EstadoMuerto;
 import modelo.estados.EstadoVivo;
 import modelo.estrategias.DesgasteLinealFactor;
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.NoSePuedeDesgastarUnElementoConEstadoMuertoException;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
@@ -34,7 +35,7 @@ public class DesgasteLinealDecimalTests {
         assertNotEquals(estadoVivo, desgasteLineal.desgastar(120, estadoVivo));
     }
 
-    @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test (expected = NoSePuedeDesgastarUnElementoConEstadoMuertoException.class)
     public void testDesgasteLinealFactorLanzaExcepcionAlDesgastarEstadoMuerto(){
         DesgasteLinealFactor desgasteLineal = new DesgasteLinealFactor(0.1);
         EstadoMuerto estadoMuerto = new EstadoMuerto();

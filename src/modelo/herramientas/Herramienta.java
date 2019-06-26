@@ -14,12 +14,12 @@ public abstract class Herramienta implements Desgastable{
     protected Material material;
 
     public void usar(Material material) {
-        this.desgastarContra(material);
         try {
             this.estado = estrategia.desgastar(fuerza, estado);
         } catch (NoSePuedeDesgastarUnElementoConEstadoMuertoException e) {
             throw new HerramientaRotaNoPuedeDesgastarseException("La herramienta se ha roto y ya no puede usarse");
         }
+        this.desgastarContra(material);
     }
 
     public int getDurabilidad() {

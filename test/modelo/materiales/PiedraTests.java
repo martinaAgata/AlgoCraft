@@ -1,6 +1,7 @@
 package modelo.materiales;
 
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.herramientas.*;
 import modelo.materiales.Madera;
 import modelo.materiales.Metal;
@@ -171,7 +172,7 @@ public class PiedraTests {
         assertThat(piedra.getDurabilidad(), is(DURABILIDAD_INICIAL_PIEDRA - 24));
     }
 
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = MaterialSeHaGastadoException.class)
     public void testPiedraEsDesgastadaPorPicoMaderaLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
@@ -184,7 +185,7 @@ public class PiedraTests {
         for (int i = 0; i < 16; i++){ picoMadera.usar(piedra); }
     }
 
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = MaterialSeHaGastadoException.class)
     public void testPiedraEsDesgastadaPorPicoPiedraLanzaExcepcionTrasRomperse(){
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
@@ -197,7 +198,7 @@ public class PiedraTests {
         for (int i = 0; i < 9; i++) { picoPiedra.usar(piedra); }
     }
 
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = MaterialSeHaGastadoException.class)
     public void testPiedraEsDesgastadaPorPicoMetalLanzaExcepcionTrasRomperse() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();

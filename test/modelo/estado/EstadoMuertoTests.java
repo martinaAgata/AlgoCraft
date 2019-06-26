@@ -2,6 +2,7 @@ package modelo.estado;
 
 import modelo.estados.EstadoMuerto;
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.NoSePuedeDesgastarUnElementoConEstadoMuertoException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,7 +13,7 @@ public class EstadoMuertoTests {
         EstadoMuerto estadoMuerto = new EstadoMuerto();
         assertEquals(estadoMuerto.getDurabilidad(), 0);
     }
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = NoSePuedeDesgastarUnElementoConEstadoMuertoException.class)
     public void testEstadoMuertoDesgastarLanzaError(){
         EstadoMuerto estadoMuerto = new EstadoMuerto();
         estadoMuerto.desgastar(10);

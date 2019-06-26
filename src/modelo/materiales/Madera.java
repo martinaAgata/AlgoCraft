@@ -12,7 +12,7 @@ import static modelo.juego.ConstantesJuego.DURABILIDAD_MADERA;
 
 public class Madera extends Material {
 
-    public Madera(Casillero casillero) {
+    public Madera() {
         this.casillero = casillero;
         this.estado = new EstadoVivo(DURABILIDAD_MADERA);
     }

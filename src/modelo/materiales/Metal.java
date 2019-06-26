@@ -12,7 +12,7 @@ import static modelo.juego.ConstantesJuego.DURABILIDAD_METAL;
 
 public class Metal extends Material {
 
-    public Metal(Casillero casillero) {
+    public Metal() {
         this.casillero = casillero;
         this.estado = new EstadoVivo(DURABILIDAD_METAL);
     }

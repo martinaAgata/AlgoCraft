@@ -3,6 +3,10 @@ package modelo.juego;
 import modelo.estrategias.DesgasteAbrupto;
 import modelo.estrategias.DesgasteLinealFactor;
 import modelo.estrategias.EstrategiaDesgaste;
+import modelo.materiales.Diamante;
+import modelo.materiales.Madera;
+import modelo.materiales.Metal;
+import modelo.materiales.Piedra;
 
 public class ConstantesJuego {
 
@@ -10,6 +14,12 @@ public class ConstantesJuego {
     public static final int CANTIDAD_COLUMNAS = 12;
     public static final int CANTIDAD_FILAS_TABLERO_HERRAMIENTAS = 3;
     public static final int CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS = 3;
+
+    /*----- Cantidades de materiales en tablero -----*/
+    public static final int CANTIDAD_MADERAS = 9;
+    public static final int CANTIDAD_PIEDRAS = 16;
+    public static final int CANTIDAD_METALES = 4;
+    public static final int CANTIDAD_DIAMANTES = 1;
 
     /*----- Durabilidades Materiales -----*/
     public static final int DURABILIDAD_MADERA = 10;

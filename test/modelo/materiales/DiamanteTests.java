@@ -1,6 +1,7 @@
 package modelo.materiales;
 
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.herramientas.*;
 import modelo.materiales.*;
 import org.junit.Test;
@@ -139,7 +140,7 @@ public class DiamanteTests {
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 80));
     }
 
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = MaterialSeHaGastadoException.class)
     public void testDiamanteEsDesgastadoPorPicoFinoLanzaExcepcionTrasRomperse(){
         Diamante diamante = new Diamante();
         ConstructorPicoFino constructor = new ConstructorPicoFino();

@@ -1,6 +1,7 @@
 package modelo.materiales;
 
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.herramientas.*;
 import modelo.materiales.Madera;
 import modelo.materiales.Metal;
@@ -154,7 +155,7 @@ public class MaderaTests {
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 10));
     }
 
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = MaterialSeHaGastadoException.class)
     public void testMaderaEsDesgastadaPorHachaMaderaLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
@@ -172,7 +173,7 @@ public class MaderaTests {
         hachaMadera.usar(madera);
     }
 
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = MaterialSeHaGastadoException.class)
     public void testMaderaEsDesgastadaPorHachaPiedraLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
@@ -187,7 +188,7 @@ public class MaderaTests {
         hachaPiedra.usar(madera);
     }
 
-    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    @Test(expected = MaterialSeHaGastadoException.class)
     public void testMaderaEsDesgastadaPorHachaMetalLanzaExcepcionTrasRomperse(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();

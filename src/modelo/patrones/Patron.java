@@ -8,7 +8,7 @@ import modelo.materiales.Material;
 public abstract class Patron {
     private static final int CANTIDAD_FILAS = 3;
     private static final int CANTIDAD_COLUMNAS = 3;
-    Madera MATERIAL_MANGO = new Madera(null);
+    Madera MATERIAL_MANGO = new Madera();
     Mapa tablero = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
 
     public void colocarMango(Material material) {

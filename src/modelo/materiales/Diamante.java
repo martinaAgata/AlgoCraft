@@ -13,7 +13,7 @@ import static modelo.juego.ConstantesJuego.DURABILIDAD_DIAMANTE;
 
 public class Diamante extends Material {
 
-    public Diamante(Casillero casillero) {
+    public Diamante() {
         this.casillero = casillero;
         this.estado = new EstadoVivo(DURABILIDAD_DIAMANTE);
     }
