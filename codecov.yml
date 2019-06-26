@@ -1,8 +1,9 @@
 codecov:
-  ignore:
-    - "src/interfaz/*"
   notify:
     require_ci_to_pass: yes
+
+ignore:
+    - "src/interfaz/**"
 
 coverage:
   precision: 2
