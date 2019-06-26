@@ -27,4 +27,5 @@ parsers:
 
 comment:
   layout: "header, diff"
-behavior: default
+  behavior: default
+  require_changes: no
