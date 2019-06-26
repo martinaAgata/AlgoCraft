@@ -6,8 +6,6 @@ coverage:
   precision: 2
   round: down
   range: "70...100"
-  ignore:
-    - "src/interfaz/**"
   status:
     project: yes
     patch: yes
@@ -25,3 +23,7 @@ comment:
   layout: "header, diff"
   behavior: default
   require_changes: no
+  
+  
+  ignore:
+    - "src/interfaz/"
