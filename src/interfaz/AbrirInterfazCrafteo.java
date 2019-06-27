@@ -1,6 +1,7 @@
 package interfaz;
 
 import interfaz.handlers.CraftearHerramientaHandle;
+import interfaz.handlers.SalirCrafteoHandler;
 import interfaz.handlers.SeleccionarMaterialCrafteoHandler;
 import interfaz.handlers.UbicarMaterialCrafteoHandler;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import modelo.herramientas.Hacha;
+import modelo.herramientas.Herramienta;
+import modelo.herramientas.Pico;
+import modelo.herramientas.PicoFino;
 import modelo.juego.NullUbicable;
 import modelo.mapa.Casillero;
 import modelo.mapa.Mapa;
@@ -22,6 +27,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static interfaz.ConstantesInterfaz.*;
+import static modelo.juego.ConstantesJuego.*;
 
 
 public class AbrirInterfazCrafteo {
@@ -31,14 +37,17 @@ public class AbrirInterfazCrafteo {
     private HBox inventarioMateriales;
     private ImageView herramientaCrafteable;
     private HashMap<String, Image> imagenPorMaterial;
+    private HashMap<Herramienta, Image> imagenPorHerramienta;
 
     public AbrirInterfazCrafteo(){
         this.imagenPorMaterial = new HashMap<>();
         this.cargarimagenPorMaterial();
+        this.imagenPorHerramienta = new HashMap<>();
+        this.cargarImagenPorHerramienta();
 
     }
 
-    public void iniciar(SeleccionarMaterialCrafteoHandler seleccionarHandler, UbicarMaterialCrafteoHandler ubicarHandler, CraftearHerramientaHandle craftHandle) {
+    public void iniciar(SeleccionarMaterialCrafteoHandler seleccionarHandler, UbicarMaterialCrafteoHandler ubicarHandler, CraftearHerramientaHandle craftHandle, SalirCrafteoHandler salirHandler) {
         ventanaEmergente = new Stage();
         ventanaEmergente.setTitle("Mesa de Crafteo");
         FXMLLoader loader = new FXMLLoader();
@@ -56,10 +65,11 @@ public class AbrirInterfazCrafteo {
         this.tableroGrid = (GridPane) tableroCraft.getChildren().get(1);
         inicializarGridPanetablero(ubicarHandler);
         this.inventarioMateriales = (HBox) tableroCraft.getChildren().get(2);
-        testearInventarioHBox(seleccionarHandler);
+        //testearInventarioHBox(seleccionarHandler);
         this.herramientaCrafteable = (ImageView) tableroCraft.getChildren().get(3);
         this.herramientaCrafteable.setOnMouseClicked(craftHandle);
         Scene scene = new Scene(tableroCraft, tableroCraft.getMaxWidth(), tableroCraft.getMaxHeight());
+        ventanaEmergente.setOnCloseRequest(salirHandler);
         ventanaEmergente.setScene(scene);
         ventanaEmergente.show();
     }
@@ -74,7 +84,7 @@ public class AbrirInterfazCrafteo {
                 imgV.setFitWidth((tableroGrid.getColumnConstraints().get(0).getPrefWidth()-linesGap));
                 imgV.setFitHeight((tableroGrid.getRowConstraints().get(0).getPrefHeight()-linesGap));
                 imgV.setOnMouseClicked(ubicarHandler/*EventHandler para colocar el material donde corresponde*/);
-                tableroGrid.add(imgV,y,x);
+                tableroGrid.add(imgV,x,y);
             }
         }
     }
@@ -104,6 +114,17 @@ public class AbrirInterfazCrafteo {
 
     }
 
+    private void cargarImagenPorHerramienta(){
+        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera()), new Image(RUTA_IMG_HACHA_MADERA, 45, 45, false, true));
+        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra()), new Image(RUTA_IMG_HACHA_PIEDRA, 45, 45, false, true));
+        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal()), new Image(RUTA_IMG_HACHA_METAL, 45, 45, false, true));
+        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera()), new Image(RUTA_IMG_PICO_MADERA, 45, 45, false, true));
+        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra()), new Image(RUTA_IMG_PICO_PIEDRA, 45, 45, false, true));
+        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal()), new Image(RUTA_IMG_PICO_METAL, 45, 45, false, true));
+        this.imagenPorHerramienta.put(new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO), new Image(RUTA_IMG_PICO_FINO, 45, 45, false, true));
+
+    }
+
     public void actualizarTableroCrafteoGrid(Mapa tableroCrafteo, UbicarMaterialCrafteoHandler ubicarHandler){
         ImageView imgV;
         for(int x=0; x < tableroCrafteo.obtenerCantidadFilas(); x++){
@@ -113,7 +134,7 @@ public class AbrirInterfazCrafteo {
                 imgV.setFitWidth((tableroGrid.getColumnConstraints().get(0).getPrefWidth()-10));
                 imgV.setFitHeight((tableroGrid.getRowConstraints().get(0).getPrefHeight()-10));
                 imgV.setOnMouseClicked(ubicarHandler);
-                this.tableroGrid.add(imgV,y,x);
+                this.tableroGrid.add(imgV,x,y);
             }
         }
 
@@ -129,6 +150,13 @@ public class AbrirInterfazCrafteo {
             imgV.setOnMouseClicked(seleccionarHandler/*EventHandler para seleccionar el material a colocar*/);
             if(inventarioMaterialesJugador.get(material) > 0) this.inventarioMateriales.getChildren().add(imgV);
         }
+    }
+
+    public void actualizarHerramientaCrafteable(Herramienta herramienta){
+        Image imgHerramienta;
+        if(herramienta == null) imgHerramienta = new Image(RUTA_IMG_EMPTY_CRAFT_SPACE);
+        else imgHerramienta = this.imagenPorHerramienta.get(herramienta);
+        this.herramientaCrafteable.setImage(imgHerramienta);
     }
 
 

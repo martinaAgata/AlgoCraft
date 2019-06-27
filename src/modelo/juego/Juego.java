@@ -156,7 +156,7 @@ public class Juego {
                 .construir(), dPPicoMetal);
         this.detectorPatron = dPPicoFino;
     }
-    
+
     private void detectarHerramientatableroCrafteo() {
         this.herramientaCreada = this.detectorPatron.resolverPatron(this.tableroCrafteo);
     }
@@ -263,6 +263,10 @@ public class Juego {
 
     public Jugador obtenerJugador(){
         return this.jugador;
+    }
+    public Herramienta obtenerHerramientaCrafteable(){
+        if (this.herramientaCreada.isPresent()) return this.herramientaCreada.get();
+        return null;
     }
 
 }

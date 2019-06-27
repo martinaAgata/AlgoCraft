@@ -31,7 +31,7 @@ public class Hacha extends Herramienta {
     @Override
     public int hashCode() {
         //Verificar que esto no rompa el inventario QUITAR
-        return Objects.hash(this.getClass(),this.estrategia.getClass(),this.material.getClass(),this.fuerza);
+        return Objects.hash(this.getClass(),this.material.getClass());
     }
 
     @Override

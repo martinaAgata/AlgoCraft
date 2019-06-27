@@ -28,7 +28,7 @@ public class PicoFino extends Herramienta {
     @Override
     public int hashCode() {
         //Verificar que esto no rompa el inventario QUITAR
-        return Objects.hash(this.getClass(),this.estrategia.getClass(),this.fuerza);
+        return Objects.hash(this.getClass());
     }
 
     @Override

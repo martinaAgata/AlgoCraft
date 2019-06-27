@@ -13,5 +13,6 @@ public class CraftearHerramientaHandle implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         System.out.println("CraftearHerramienta");
+        this.craftController.crearHerramientaCrafteada();
     }
 }
