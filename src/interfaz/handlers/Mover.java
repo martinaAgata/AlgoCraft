@@ -7,7 +7,7 @@ import modelo.juego.Jugador;
 import modelo.mapa.Mapa;
 import javafx.scene.input.KeyEvent;
 
-public class Mover implements EventHandler<KeyEvent> {
+public class Mover {
 
     private final Jugador jugador;
     private Mapa mapa;
@@ -19,12 +19,11 @@ public class Mover implements EventHandler<KeyEvent> {
         this.tablero = tablero;
     }
 
-    @Override
-    public void handle(KeyEvent event) {
-        if(event.getCode() == KeyCode.W) jugador.moverseArriba(this.mapa);
-        if(event.getCode() == KeyCode.D) jugador.moverseALaDerecha(this.mapa);
-        if(event.getCode() == KeyCode.A) jugador.moverseALaIzquierda(this.mapa);
-        if(event.getCode() == KeyCode.S) jugador.moverseAbajo(this.mapa);
+    public void moverseHacia(KeyCode keyPressed) {
+        if(keyPressed == KeyCode.W) jugador.moverseArriba(this.mapa);
+        if(keyPressed == KeyCode.D) jugador.moverseALaDerecha(this.mapa);
+        if(keyPressed == KeyCode.A) jugador.moverseALaIzquierda(this.mapa);
+        if(keyPressed == KeyCode.S) jugador.moverseAbajo(this.mapa);
         this.tablero.actualizarTablero();
     }
 }

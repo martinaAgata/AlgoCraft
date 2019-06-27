@@ -2,6 +2,7 @@ package interfaz;
 
 import static interfaz.ConstantesInterfaz.*;
 
+import interfaz.handlers.EntradaTecladoHandler;
 import interfaz.handlers.Mover;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -51,7 +52,7 @@ public class PantallaPrincipal extends VBox {
 
     public Scene getEscena() {
         Scene escenaJuego = new Scene(this);
-        escenaJuego.setOnKeyPressed(new Mover(this.tablero, this.juego.obtenerMapa(), this.juego.obtenerJugador()));
+        escenaJuego.setOnKeyPressed(new EntradaTecladoHandler(this.tablero, this.juego.obtenerMapa(), this.juego.obtenerJugador()));
         return escenaJuego;
     }
 }
