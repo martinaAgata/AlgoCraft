@@ -7,8 +7,8 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.control.Label;
 import modelo.herramientas.Herramienta;
-import modelo.materiales.Madera;
-import modelo.materiales.Material;
+import modelo.materiales.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -43,7 +43,7 @@ public class Inventario extends VBox {
         imgMadera.setFitWidth(40);
         Label contadorMadera = new Label();
         contadorMadera.setFont(new Font(20));
-        Integer cantidadMaderas = this.inventarioMateriales.get(new Madera());;
+        Integer cantidadMaderas = this.inventarioMateriales.get(new Madera());
         contadorMadera.setText("" + cantidadMaderas);
         contadorMadera.setGraphic(imgMadera);
 
@@ -53,7 +53,8 @@ public class Inventario extends VBox {
         imgPiedra.setFitWidth(40);
         Label contadorPiedra = new Label();
         contadorPiedra.setFont(new Font(20));
-        contadorPiedra.setText("2" /*+ variable*/);
+        Integer cantidadPiedras = this.inventarioMateriales.get(new Piedra());
+        contadorPiedra.setText("" + cantidadPiedras);
         contadorPiedra.setGraphic(imgPiedra);
 
         /*----- Contador Metal -----*/
@@ -62,7 +63,8 @@ public class Inventario extends VBox {
         imgMetal.setFitWidth(40);
         Label contadorMetal = new Label();
         contadorMetal.setFont(new Font(20));
-        contadorMetal.setText("3" /*+ variable*/);
+        Integer cantidadMetales = this.inventarioMateriales.get(new Metal());
+        contadorMetal.setText("" + cantidadMetales);
         contadorMetal.setGraphic(imgMetal);
 
         /*----- Contador Diamante -----*/
@@ -71,7 +73,8 @@ public class Inventario extends VBox {
         imgDiamante.setFitWidth(40);
         Label contadorDiamante = new Label();
         contadorDiamante.setFont(new Font(20));
-        contadorDiamante.setText("4" /*+ variable*/);
+        Integer cantidadDiamante = this.inventarioMateriales.get(new Diamante());
+        contadorDiamante.setText("" + cantidadDiamante);
         contadorDiamante.setGraphic(imgDiamante);
 
         this.hboxMateriales.getChildren().addAll(contadorMadera, contadorPiedra, contadorMetal, contadorDiamante);

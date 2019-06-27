@@ -13,9 +13,9 @@ import modelo.patrones.DetectorPatron;
 import modelo.patrones.DetectorPatronHacha;
 import modelo.patrones.DetectorPatronPico;
 import modelo.patrones.DetectorPatronPicoFino;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import static modelo.juego.ConstantesJuego.*;
@@ -45,11 +45,9 @@ public class Juego {
         this.inventarioMaterialesJugador = new HashMap<>();
     }
 
-    public void actualizarInventarioTablero() {
-        inventarioTablero.put(madera, CANTIDAD_MADERAS - inventarioMaterialesJugador.get(madera));
-        inventarioTablero.put(piedra, CANTIDAD_MADERAS - inventarioMaterialesJugador.get(piedra));
-        inventarioTablero.put(metal, CANTIDAD_MADERAS - inventarioMaterialesJugador.get(metal));
-        inventarioTablero.put(diamante, CANTIDAD_MADERAS - inventarioMaterialesJugador.get(diamante));
+    public void actualizarInventarios(Ubicable ubicable) {
+        inventarioTablero.put((Material)ubicable, inventarioTablero.get(ubicable)-1);
+        inventarioMaterialesJugador.put((Material) ubicable, inventarioMaterialesJugador.get(ubicable)+1);
     }
 
     public void inicializarInventarioTablero() {
@@ -113,15 +111,6 @@ public class Juego {
         inventarioHerramientas.put(constructor.construir(), new ArrayList<>());
     }
 
-    public Mapa obtenerMapa() {
-        return this.mapa;
-    }
-
-    public Jugador obtenerJugador(){
-        return this.jugador;
-    }
-
-
     private void inicializarPatrones() {
         DetectorPatron dPHachaMadera = new DetectorPatronHacha(madera, () -> new ConstructorHacha()
                 .conMaterial(madera)
@@ -168,7 +157,6 @@ public class Juego {
         this.detectorPatron = dPPicoFino;
     }
 
-
     private void detectarHerramientatableroCrafteo() {
         this.herramientaCreada = this.detectorPatron.resolverPatron(this.tableroCrafteo);
     }
@@ -183,11 +171,11 @@ public class Juego {
         detectarHerramientatableroCrafteo();
     }
 
-    public Mapa obtenerTableroCrafteo(){
-        return this.tableroCrafteo;
-    }
+    public Mapa obtenerTableroCrafteo(){ return this.tableroCrafteo; }
 
     public HashMap<Material, Integer> obtenerInventarioMaterialesJugador(){ return this.inventarioMaterialesJugador; }
+
+    public HashMap<Material, Integer> obtenerInventarioTablero(){ return this.inventarioTablero; }
 
     public HashMap<Herramienta, ArrayList<Herramienta>> obtenerInventarioHerramientas(){ return this.inventarioHerramientas; }
 
@@ -214,7 +202,6 @@ public class Juego {
         agregarHerramientaAlInventario();
     }
 
-
    /* public void crearHerramienta() {
         //ya tenes cosas en el mapa carfteo y decis crear herramienta
         //detectarHerramientatableroCrafteo();
@@ -235,7 +222,7 @@ public class Juego {
     } */
 
     public void inicializarMapaConMateriales() {
-        ObservadorUbicable observadorMateriales = new ObservadorUbicableImpl(this.mapa);
+        ObservadorUbicable observadorMateriales = new ObservadorUbicableImpl(this);
         this.inicializarInventarioTablero();
         for (int i=1; i<=3; i++) {
             for (int j=1; j<=3; j++) {
@@ -264,13 +251,18 @@ public class Juego {
             }
         }
 
-        for (int i=10; i<=10; i++) {
-            for (int j=10; j<=10; j++) {
-                Ubicacion ubicacion = new Ubicacion(i,j);
-                Diamante diamante = new Diamante(ubicacion, Optional.of(observadorMateriales));
-                inventarioTablero.put(diamante, inventarioTablero.get(diamante)+1);
-                this.mapa.ubicarEnCasillero(diamante, ubicacion);
-            }
-        }
+        Ubicacion ubicacion = new Ubicacion(10,10);
+        Diamante diamante = new Diamante(ubicacion, Optional.of(observadorMateriales));
+        inventarioTablero.put(diamante, inventarioTablero.get(diamante)+1);
+        this.mapa.ubicarEnCasillero(diamante, ubicacion);
     }
+
+    public Mapa obtenerMapa() {
+        return this.mapa;
+    }
+
+    public Jugador obtenerJugador(){
+        return this.jugador;
+    }
+
 }

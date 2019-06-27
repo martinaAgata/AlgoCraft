@@ -31,7 +31,8 @@ public class PantallaPrincipal extends VBox {
         this.juego = new Juego();
         this.tablero = new Tablero(this.contenedorImagenes, this.juego);
         this.tablero.setPrefSize(480,480);
-        this.inventarios = new Inventario(this.juego.obtenerInventarioMaterialesJugador(), this.juego.obtenerInventarioHerramientas());
+        this.inventarios = new Inventario(this.juego.obtenerInventarioMaterialesJugador(),
+                                          this.juego.obtenerInventarioHerramientas());
         this.tablero.getChildren().add(inventarios);
         this.getChildren().addAll(tablero);
     }

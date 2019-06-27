@@ -2,7 +2,6 @@ package modelo.mapa;
 
 import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
 import modelo.juego.Ubicable;
-
 import java.util.HashMap;
 import java.util.Map;
 
