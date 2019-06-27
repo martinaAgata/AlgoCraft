@@ -3,10 +3,17 @@ package modelo.materiales;
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.herramientas.*;
+import modelo.mapa.Ubicacion;
 import modelo.materiales.Madera;
 import modelo.materiales.Metal;
 import modelo.materiales.Piedra;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.lang.ref.Reference;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import static modelo.juego.ConstantesJuego.*;
 
@@ -18,16 +25,22 @@ public class MaderaTests {
 
     private static final int DURABIDAD_INICIAL_MADERA = 10;
 
-    @Test
-    public void testMaderaEsDesgastadaPorHachaMaderaYReduceSuDurabilidad(){
-        Madera madera = new Madera();
+    private Hacha hachaMadera;
+
+    @Before
+    public void setUp() {
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA);
-        Hacha hachaMadera = constructor.construir();
+        hachaMadera = constructor.construir();
+    }
+
+    @Test
+    public void testMaderaEsDesgastadaPorHachaMaderaYReduceSuDurabilidad(){
+        Madera madera = new Madera();
         hachaMadera.usar(madera);
         assertThat(madera.getDurabilidad(),is(DURABIDAD_INICIAL_MADERA - hachaMadera.getFuerza()));
 
@@ -171,6 +184,23 @@ public class MaderaTests {
         hachaMadera.usar(madera);
         hachaMadera.usar(madera);
         hachaMadera.usar(madera);
+    }
+
+    @Test
+    public void testMaderaAlMorirLlamaAObservador() {
+        List<Ubicacion> ubicaciones = new ArrayList<>();
+        Madera madera = new Madera(new Ubicacion(3,3), Optional.of(ubicable -> ubicaciones.add(ubicable.getUbicacion())));
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        hachaMadera.usar(madera);
+        // Aun no se llama al observador
+        assertThat(ubicaciones.size(), is(0));
+        hachaMadera.usar(madera);
+        // Ahora que ya se murio la madera, llama al observador, y lo hizo una sola vez
+        assertThat(ubicaciones.size(), is(1));
+        // Llamo con la misma madera en la misma ubicacion
+        assertThat(ubicaciones.get(0), is(new Ubicacion(3, 3)));
     }
 
     @Test(expected = MaterialSeHaGastadoException.class)

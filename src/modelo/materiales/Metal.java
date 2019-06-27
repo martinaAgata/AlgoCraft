@@ -4,6 +4,8 @@ import modelo.estados.EstadoVivo;
 import modelo.herramientas.Pico;
 import modelo.juego.Ubicable;
 import modelo.mapa.Casillero;
+import modelo.mapa.ObservadorUbicable;
+import modelo.mapa.Ubicacion;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -12,9 +14,15 @@ import static modelo.juego.ConstantesJuego.DURABILIDAD_METAL;
 
 public class Metal extends Material {
 
+    public Metal(Ubicacion ubicacion, Optional<ObservadorUbicable> observadorUbicable) {
+        super(ubicacion);
+        this.estado = new EstadoVivo(DURABILIDAD_METAL,
+                () -> observadorUbicable.ifPresent(observador -> observador.ubicableMuerto(this))
+        );
+    }
+
     public Metal() {
-        this.casillero = casillero;
-        this.estado = new EstadoVivo(DURABILIDAD_METAL);
+        this(null, Optional.empty());
     }
 
     @Override

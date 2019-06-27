@@ -5,6 +5,8 @@ import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
 import modelo.exceptions.NoHayHerramientaParaCrearException;
 import modelo.herramientas.*;
 import modelo.mapa.Mapa;
+import modelo.mapa.ObservadorUbicable;
+import modelo.mapa.ObservadorUbicableImpl;
 import modelo.mapa.Ubicacion;
 import modelo.materiales.*;
 import modelo.patrones.DetectorPatron;
@@ -67,10 +69,9 @@ public class Juego {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        this.jugador = new Jugador(hachaInicial, this.inventarioMaterialesJugador);
         Ubicacion ubicacionJugador = new Ubicacion(1,6);
+        this.jugador = new Jugador(hachaInicial, this.inventarioMaterialesJugador, ubicacionJugador);
         this.mapa.ubicarEnCasillero(jugador, ubicacionJugador);
-        this.jugador.setUbicacion(ubicacionJugador);
         inventarioHerramientas.get(hachaInicial).add(hachaInicial);
     }
 
@@ -236,11 +237,12 @@ public class Juego {
 
 
     public void inicializarMapaConMateriales() {
+        ObservadorUbicable observadorMateriales = new ObservadorUbicableImpl(this.mapa);
         this.inicializarInventarioTablero();
         for (int i=1; i<=3; i++) {
             for (int j=1; j<=3; j++) {
                 Ubicacion ubicacion = new Ubicacion(i,j);
-                Madera madera = new Madera();
+                Madera madera = new Madera(ubicacion, Optional.of(observadorMateriales));
                 inventarioTablero.put(madera, inventarioTablero.get(madera)+1);
                 this.mapa.ubicarEnCasillero(madera, ubicacion);
             }
@@ -249,7 +251,7 @@ public class Juego {
         for (int i=4; i<=7; i++) {
             for (int j=4; j<=7; j++) {
                 Ubicacion ubicacion = new Ubicacion(i,j);
-                Piedra piedra = new Piedra();
+                Piedra piedra = new Piedra(ubicacion, Optional.of(observadorMateriales));
                 inventarioTablero.put(piedra, inventarioTablero.get(piedra)+1);
                 this.mapa.ubicarEnCasillero(piedra, ubicacion);
             }
@@ -258,7 +260,7 @@ public class Juego {
         for (int i=8; i<=9; i++) {
             for (int j=8; j<=9; j++) {
                 Ubicacion ubicacion = new Ubicacion(i,j);
-                Metal metal = new Metal();
+                Metal metal = new Metal(ubicacion, Optional.of(observadorMateriales));
                 inventarioTablero.put(metal, inventarioTablero.get(metal)+1);
                 this.mapa.ubicarEnCasillero(metal, ubicacion);
             }
@@ -267,7 +269,7 @@ public class Juego {
         for (int i=10; i<=10; i++) {
             for (int j=10; j<=10; j++) {
                 Ubicacion ubicacion = new Ubicacion(i,j);
-                Diamante diamante = new Diamante();
+                Diamante diamante = new Diamante(ubicacion, Optional.of(observadorMateriales));
                 inventarioTablero.put(diamante, inventarioTablero.get(diamante)+1);
                 this.mapa.ubicarEnCasillero(diamante, ubicacion);
             }

@@ -45,8 +45,8 @@ public class PantallaPrincipal extends VBox {
         this.contenedorImagenes.put((new Piedra()).getClass().getName(), new Image(RUTA_IMG_PIEDRA_CON_PASTO));
         this.contenedorImagenes.put((new Metal()).getClass().getName(), new Image(RUTA_IMG_METAL_CON_PASTO));
         this.contenedorImagenes.put((new Diamante()).getClass().getName(), new Image(RUTA_IMG_DIAMANTE_CON_PASTO));
-        this.contenedorImagenes.put(new Jugador(null,null).getClass().getName(), new Image(RUTA_IMG_JUGADOR));
-        this.contenedorImagenes.put(new NullUbicable().getClass().getName(), new Image(RUTA_IMG_PASTO));
+        this.contenedorImagenes.put(new Jugador(null,null,null).getClass().getName(), new Image(RUTA_IMG_JUGADOR));
+        this.contenedorImagenes.put(new NullUbicable(null).getClass().getName(), new Image(RUTA_IMG_PASTO));
     }
 
     public Scene getEscena() {

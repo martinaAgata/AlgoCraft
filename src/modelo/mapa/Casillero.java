@@ -5,7 +5,7 @@ import modelo.juego.Ubicable;
 
 public class Casillero {
 
-    private Ubicable ubicable = new NullUbicable();
+    private Ubicable ubicable = new NullUbicable(null);
 
     public Ubicable obtenerUbicable() {
         return this.ubicable;

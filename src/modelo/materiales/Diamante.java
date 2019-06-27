@@ -5,6 +5,8 @@ import modelo.herramientas.PicoFino;
 import modelo.juego.Ubicable;
 import modelo.mapa.Casillero;
 import modelo.mapa.Mapa;
+import modelo.mapa.ObservadorUbicable;
+import modelo.mapa.Ubicacion;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -13,11 +15,16 @@ import static modelo.juego.ConstantesJuego.DURABILIDAD_DIAMANTE;
 
 public class Diamante extends Material {
 
-    public Diamante() {
-        this.casillero = casillero;
-        this.estado = new EstadoVivo(DURABILIDAD_DIAMANTE);
+    public Diamante(Ubicacion ubicacion, Optional<ObservadorUbicable> observadorUbicable) {
+        super(ubicacion);
+        this.estado = new EstadoVivo(DURABILIDAD_DIAMANTE,
+                () -> observadorUbicable.ifPresent(observador -> observador.ubicableMuerto(this))
+        );
     }
 
+    public Diamante() {
+        this(null, Optional.empty());
+    }
 
     @Override
     public Optional<Desgastable> desgastarContra(Desgastable desgastable){ return desgastable.desgastarContra(this);}

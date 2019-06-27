@@ -4,6 +4,8 @@ import modelo.estados.EstadoVivo;
 import modelo.herramientas.Pico;
 import modelo.juego.Ubicable;
 import modelo.mapa.Casillero;
+import modelo.mapa.ObservadorUbicable;
+import modelo.mapa.Ubicacion;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -11,9 +13,16 @@ import java.util.Optional;
 import static modelo.juego.ConstantesJuego.DURABILIDAD_PIEDRA;
 
 public class Piedra extends Material {
+
+    public Piedra(Ubicacion ubicacion, Optional<ObservadorUbicable> observadorUbicable) {
+        super(ubicacion);
+        this.estado = new EstadoVivo(DURABILIDAD_PIEDRA,
+                () -> observadorUbicable.ifPresent(observador -> observador.ubicableMuerto(this))
+        );
+    }
+
     public Piedra() {
-        this.casillero = casillero;
-        this.estado = new EstadoVivo(DURABILIDAD_PIEDRA);
+        this(null, Optional.empty());
     }
 
 

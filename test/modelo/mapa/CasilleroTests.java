@@ -11,16 +11,16 @@ public class CasilleroTests {
     @Test
     public void testGuardarUbicableEnCasilleroVacioNoLanzaExcepcion(){
         Casillero casillero = new Casillero();
-        ObjetoUbicable o = new ObjetoUbicable();
+        ObjetoUbicable o = new ObjetoUbicable(null);
         casillero.guardarUbicable(o);
     }
 
     @Test (expected = NoSePuedeUbicarPorqueEstaOcupadoException.class)
     public void testGuardarUbicableEnCasilleroLlenoLanzaException(){
         Casillero casillero = new Casillero();
-        ObjetoUbicable objetoUbicable1 = new ObjetoUbicable();
+        ObjetoUbicable objetoUbicable1 = new ObjetoUbicable(null);
         casillero.guardarUbicable(objetoUbicable1);
-        ObjetoUbicable objetoUbicable2 = new ObjetoUbicable();
+        ObjetoUbicable objetoUbicable2 = new ObjetoUbicable(null);
         casillero.guardarUbicable(objetoUbicable2);
     }
 
@@ -33,7 +33,7 @@ public class CasilleroTests {
     @Test
     public void testEliminarUbicableEnCasilleroOcupadoNoLanzaExcepcion(){
         Casillero casillero = new Casillero();
-        ObjetoUbicable objetoUbicable = new ObjetoUbicable();
+        ObjetoUbicable objetoUbicable = new ObjetoUbicable(null);
 
         casillero.guardarUbicable(objetoUbicable);
         casillero.eliminarUbicable();

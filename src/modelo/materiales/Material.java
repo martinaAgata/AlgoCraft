@@ -5,13 +5,18 @@ import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.exceptions.NoSePuedeDesgastarUnElementoConEstadoMuertoException;
 import modelo.herramientas.Herramienta;
 import modelo.juego.ObjetoUbicable;
-import modelo.juego.Ubicable;
-import modelo.mapa.Casillero;
+import modelo.mapa.ObservadorUbicable;
+import modelo.mapa.Ubicacion;
+
+import java.util.Optional;
 
 public abstract class Material extends ObjetoUbicable implements Desgastable {
 
     protected Estado estado;
-    protected Casillero casillero;
+
+    public Material(Ubicacion ubicacion) {
+        super(ubicacion);
+    }
 
     public Material desgastarCon(Herramienta herramienta){ return this; }
 

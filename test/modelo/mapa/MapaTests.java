@@ -13,8 +13,8 @@ public class MapaTests {
     public void testMapaUbicarEnUnCasilleroOcupadoLanzaExcepcion(){
         Mapa mapa = new Mapa(10,10);
         Ubicacion ubicacion = new Ubicacion(4,4);
-        mapa.ubicarEnCasillero(new ObjetoUbicable(), ubicacion);
-        mapa.ubicarEnCasillero(new ObjetoUbicable(), ubicacion);
+        mapa.ubicarEnCasillero(new ObjetoUbicable(null), ubicacion);
+        mapa.ubicarEnCasillero(new ObjetoUbicable(null), ubicacion);
 
     }
 
@@ -57,9 +57,9 @@ public class MapaTests {
     @Test
     public void testMapaEsIgualAMapaConDiferentesCasillerosOcupadosConMismoTamanioEsFalse(){
         Mapa mapa = new Mapa(10,10);
-        mapa.ubicarEnCasillero(new ObjetoUbicable(), new Ubicacion(4,4));
+        mapa.ubicarEnCasillero(new ObjetoUbicable(null), new Ubicacion(4,4));
         Mapa otroMapa = new Mapa(10,10);
-        otroMapa.ubicarEnCasillero(new ObjetoUbicable(), new Ubicacion(4,3));
+        otroMapa.ubicarEnCasillero(new ObjetoUbicable(null), new Ubicacion(4,3));
         assertFalse(mapa.esIgualA(otroMapa));
     }
 
