@@ -9,12 +9,10 @@ import javafx.scene.layout.GridPane;
 import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
 import modelo.exceptions.NoHayHerramientaParaCrearException;
 import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
-import modelo.herramientas.Herramienta;
 import modelo.juego.Juego;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
 import modelo.materiales.Material;
-import sun.rmi.server.InactiveGroupException;
 
 import java.util.HashMap;
 
