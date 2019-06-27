@@ -14,7 +14,7 @@ public abstract class Material extends ObjetoUbicable implements Desgastable {
         super(ubicacion);
     }
 
-    public Material desgastarCon(Herramienta herramienta){ return this; }
+    //public Material desgastarCon(Herramienta herramienta){ return this; }
 
     public void reducirDurabilidad(int fuerza) {
         try {

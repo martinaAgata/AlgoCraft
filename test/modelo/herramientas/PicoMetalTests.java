@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class PicoMetalTests {
 
@@ -87,31 +88,9 @@ public class PicoMetalTests {
         assertThat(picoMetal.getDurabilidad(), is (DURABILIDAD_PICO_METAL));
     }
 
-    @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void testPicoDeMetalSeUsaContraMetal10VecesYSeRompe() {
-        ConstructorPico constructor = new ConstructorPico();
-        constructor
-                .conMaterial(new Metal())
-                .conDurabilidad(DURABILIDAD_PICO_METAL)
-                .conDesgaste(desgastePicoMetal)
-                .conFuerza(FUERZA_PICO_METAL);
-        Pico picoMetal = constructor.construir();
-        Metal metal = new Metal();
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-        picoMetal.usar(metal);
-    }
 
     @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)
-    public void testPicoDeMetalSeUsaContraMadera10VecesYSeRompe() {
+    public void testPicoDeMetalNoSePuedeUsarRoto() {
         ConstructorPico constructor = new ConstructorPico();
         constructor
                 .conMaterial(new Metal())
@@ -120,17 +99,9 @@ public class PicoMetalTests {
                 .conFuerza(FUERZA_PICO_METAL);
         Pico picoMetal = constructor.construir();
         Madera madera = new Madera();
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
-        picoMetal.usar(madera);
+        for (int i =0; i<11; i++){
+            picoMetal.usar(madera);
+        }
     }
 
     @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)
@@ -166,17 +137,9 @@ public class PicoMetalTests {
                 .conFuerza(FUERZA_PICO_METAL);
         Pico picoMetal = constructor.construir();
         Diamante diamante = new Diamante();
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
-        picoMetal.usar(diamante);
+        for(int i = 0; i<11;i++){
+            picoMetal.usar(diamante);
+        }
     }
 
 }

@@ -32,7 +32,7 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
-        hachaMadera.usar(metal);
+        metal.desgastarContra(hachaMadera);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
@@ -45,7 +45,7 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA);
         Hacha hachaPiedra = constructor.construir();
-        hachaPiedra.usar(metal);
+        metal.desgastarContra(hachaPiedra);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
@@ -58,7 +58,7 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_HACHA_METAL)
                 .conFuerza(FUERZA_HACHA_METAL);
         Hacha hachaMetal = constructor.construir();
-        hachaMetal.usar(metal);
+        metal.desgastarContra(hachaMetal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
@@ -71,7 +71,7 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
-        picoMadera.usar(metal);
+        metal.desgastarContra(picoMadera);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
@@ -84,7 +84,7 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_PICO_PIEDRA)
                 .conFuerza(FUERZA_PICO_PIEDRA);
         Pico picoPiedra = constructor.construir();
-        picoPiedra.usar(metal);
+        metal.desgastarContra(picoPiedra);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 4));
     }
     @Test
@@ -97,7 +97,7 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_PICO_METAL)
                 .conFuerza(FUERZA_PICO_METAL);
         Pico picoMetal = constructor.construir();
-        picoMetal.usar(metal);
+        metal.desgastarContra(picoMetal);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
     @Test
@@ -110,7 +110,7 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO);
         PicoFino picoFino = constructor.construir();
-        picoFino.usar(metal);
+        metal.desgastarContra(picoFino);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL));
     }
 
@@ -124,11 +124,11 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_PICO_PIEDRA)
                 .conFuerza(FUERZA_PICO_PIEDRA);
         Pico picoPiedra = constructor.construir();
-        picoPiedra.usar(metal);
+        metal.desgastarContra(picoPiedra);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 4));
-        picoPiedra.usar(metal);
+        metal.desgastarContra(picoPiedra);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 8));
-        picoPiedra.usar(metal);
+        metal.desgastarContra(picoPiedra);
         assertThat(metal.getDurabilidad(), is(DURABILIDAD_INICIAL_METAL - 12));
     }
 
@@ -142,6 +142,6 @@ public class MetalTests {
                 .conDesgaste(DESGASTE_PICO_PIEDRA)
                 .conFuerza(FUERZA_PICO_PIEDRA);
         Pico picoPiedra = constructor.construir();
-        for (int i = 0; i < 14; i++) { picoPiedra.usar(metal); }
+        for (int i = 0; i < 14; i++) { metal.desgastarContra(picoPiedra); }
     }
 }

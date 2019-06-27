@@ -31,7 +31,7 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaMadera = constructor.construir();
-        hachaMadera.usar(diamante);
+        diamante.desgastarContra(hachaMadera);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
@@ -45,7 +45,7 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA);
         Hacha hachaPiedra= constructor.construir();
-        hachaPiedra.usar(diamante);
+        diamante.desgastarContra(hachaPiedra);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
@@ -59,7 +59,7 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_HACHA_METAL)
                 .conFuerza(FUERZA_HACHA_METAL);
         Hacha hachaMetal = constructor.construir();
-        hachaMetal.usar(diamante);
+        diamante.desgastarContra(hachaMetal);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
@@ -73,7 +73,7 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
-        picoMadera.usar(diamante);
+        diamante.desgastarContra(picoMadera);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
@@ -87,7 +87,7 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_PICO_PIEDRA)
                 .conFuerza(FUERZA_PICO_PIEDRA);
         Pico picoPiedra = constructor.construir();
-        picoPiedra.usar(diamante);
+        diamante.desgastarContra(picoPiedra);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
     }
 
@@ -101,7 +101,7 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_PICO_METAL)
                 .conFuerza(FUERZA_PICO_METAL);
         Pico picoMetal = constructor.construir();
-        picoMetal.usar(diamante);
+        diamante.desgastarContra(picoMetal);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE));
 
     }
@@ -116,7 +116,7 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO);
         PicoFino picoFino = constructor.construir();
-        picoFino.usar(diamante);
+        diamante.desgastarContra(picoFino);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 20));
     }
 
@@ -130,13 +130,13 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO);
         PicoFino picoFino = constructor.construir();
-        picoFino.usar(diamante);
+        diamante.desgastarContra(picoFino);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 20));
-        picoFino.usar(diamante);
+        diamante.desgastarContra(picoFino);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 40));
-        picoFino.usar(diamante);
+        diamante.desgastarContra(picoFino);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 60));
-        picoFino.usar(diamante);
+        diamante.desgastarContra(picoFino);
         assertThat(diamante.getDurabilidad(), is(DURABILIDAD_INICIAL_DIAMANTE - 80));
     }
 
@@ -150,12 +150,9 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO);
         PicoFino picoFino = constructor.construir();
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
+        for(int i = 0; i<7; i++){
+            diamante.desgastarContra(picoFino);
+        }
         assertThat(diamante.getDurabilidad(), is(0));
     }
 
@@ -169,11 +166,11 @@ public class DiamanteTests {
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO);
         PicoFino picoFino = constructor.construir();
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
-        picoFino.usar(diamante);
+        try{
+            for(int i = 0; i<6; i++){
+                diamante.desgastarContra(picoFino);
+            }
+        }catch(MaterialSeHaGastadoException e){}
         assertThat(diamante.getDurabilidad(), is(0));
     }
     

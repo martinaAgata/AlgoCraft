@@ -1,5 +1,6 @@
 package modelo.herramientas;
 
+import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import modelo.herramientas.ConstructorHacha;
 import modelo.herramientas.Hacha;
 import modelo.materiales.Diamante;
@@ -145,5 +146,22 @@ public class HachaMaderaTests {
         assertThat(hachaMadera.getDurabilidad(), is(durabilidadHachaMadera - 4));
         hachaMadera.usar(diamante);
         assertThat(hachaMadera.getDurabilidad(), is(durabilidadHachaMadera - 6));
+    }
+
+    @Test (expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    public void testHachaMaderaNoPuedeUsarseRota(){
+        Piedra piedra = new Piedra();
+        ConstructorHacha constructor = new ConstructorHacha();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA);
+
+        Hacha hachaMadera = constructor.construir();
+        for (int i = 0; i < 51; i++){
+            hachaMadera.usar(piedra);
+        }
+
     }
 }

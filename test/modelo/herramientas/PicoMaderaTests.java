@@ -1,5 +1,6 @@
 package modelo.herramientas;
 
+import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import modelo.herramientas.ConstructorPico;
 import modelo.herramientas.Pico;
 import modelo.materiales.Madera;
@@ -33,7 +34,7 @@ public class PicoMaderaTests {
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
-        assertThat(picoMadera.getFuerza() , is(2));
+        assertThat(picoMadera.getFuerza(), is(2));
     }
 
     @Test
@@ -47,8 +48,9 @@ public class PicoMaderaTests {
         Pico picoMadera = constructor.construir();
         Madera madera = new Madera();
         picoMadera.usar(madera);
-        assertThat(picoMadera.getDurabilidad(), is (98));
+        assertThat(picoMadera.getDurabilidad(), is(98));
     }
+
     @Test
     public void testPicoDeMaderaSeUsaContraPiedraReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
@@ -60,10 +62,11 @@ public class PicoMaderaTests {
         Pico picoMadera = constructor.construir();
         Piedra piedra = new Piedra();
         picoMadera.usar(piedra);
-        assertThat(picoMadera.getDurabilidad(), is (98));
+        assertThat(picoMadera.getDurabilidad(), is(98));
 
 
     }
+
     @Test
     public void testPicoDeMaderaSeUsaContraMetalReduceSuDurabilidad() {
         ConstructorPico constructor = new ConstructorPico();
@@ -75,7 +78,41 @@ public class PicoMaderaTests {
         Pico picoMadera = constructor.construir();
         Metal metal = new Metal();
         picoMadera.usar(metal);
-        assertThat(picoMadera.getDurabilidad(), is (98));
+        assertThat(picoMadera.getDurabilidad(), is(98));
 
+    }
+
+    @Test
+    public void testPicoDeMaderaSeUsaContraMetalReduceSuDurabilidadDeADos() {
+        ConstructorPico constructor = new ConstructorPico();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA);
+        Pico picoMadera = constructor.construir();
+        Metal metal = new Metal();
+        picoMadera.usar(metal);
+        assertThat(picoMadera.getDurabilidad(), is(DURABILIDAD_PICO_MADERA - 2));
+        picoMadera.usar(metal);
+        assertThat(picoMadera.getDurabilidad(), is(DURABILIDAD_PICO_MADERA - 4));
+        picoMadera.usar(metal);
+        assertThat(picoMadera.getDurabilidad(), is(DURABILIDAD_PICO_MADERA - 6));
+    }
+
+
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    public void testPicoDeMaderaNoSePuedeUsarRoto() {
+        ConstructorPico constructor = new ConstructorPico();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA);
+        Pico picoMadera = constructor.construir();
+        Metal metal = new Metal();
+        for (int i = 0; i < 51; i++) {
+            picoMadera.usar(metal);
+        }
     }
 }
