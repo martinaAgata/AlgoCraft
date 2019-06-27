@@ -7,12 +7,14 @@ import interfaz.handlers.UbicarMaterialCrafteoHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
+import modelo.exceptions.NoHayHerramientaParaCrearException;
 import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
 import modelo.herramientas.Herramienta;
 import modelo.juego.Juego;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
 import modelo.materiales.Material;
+import sun.rmi.server.InactiveGroupException;
 
 import java.util.HashMap;
 
@@ -25,6 +27,7 @@ public class CrafteoController {
     private SalirCrafteoHandler salirHandler;
     private ImageViewMaterial imgVM;
     private HashMap<Material, String> rutasMateriales;
+    private HashMap<Material, Integer> inventarioMaterialJugadorCopy;
     public CrafteoController(Juego juego){
         this.juego = juego;
         this.interfazCrafteo = new AbrirInterfazCrafteo();
@@ -37,6 +40,7 @@ public class CrafteoController {
     public void iniciarInterfaz(){
         this.interfazCrafteo.iniciar(this.selecMaterial, this.ubicarMaterial, this.craftearHandle, this.salirHandler);
         this.interfazCrafteo.actualizarInventarioHbox(this.juego.obtenerInventarioMaterialesJugador(), this.selecMaterial);
+        this.inventarioMaterialJugadorCopy = (HashMap<Material, Integer>) this.juego.obtenerInventarioMaterialesJugador().clone();
     }
 
     public void vaciarMatrizCrafteo(){
@@ -57,18 +61,26 @@ public class CrafteoController {
     }
 
     public void setearMaterial(ImageView imgView){
+
+
         int x = GridPane.getColumnIndex(imgView);
         int y = GridPane.getRowIndex(imgView);
         x++;    y++; //Correcion de posicion x empezar desde 0.
-        try { this.juego.ubicarMaterialTableroCrafteo(new Ubicacion(x, y), this.imgVM.getMaterial()); }
+        try {
+            this.juego.ubicarMaterialTableroCrafteo(new Ubicacion(x, y), this.imgVM.getMaterial());
+            Integer cantMaterial = this.inventarioMaterialJugadorCopy.get(imgVM.getMaterial());
+            if(cantMaterial > 0)this.inventarioMaterialJugadorCopy.put(imgVM.getMaterial(), cantMaterial - 1);
+        }
         catch (NullPointerException nException) {return;}
         this.interfazCrafteo.actualizarTableroCrafteoGrid(this.juego.obtenerTableroCrafteo(), this.ubicarMaterial);
-        this.imgVM = null;
         this.interfazCrafteo.actualizarHerramientaCrafteable(this.juego.obtenerHerramientaCrafteable());
+        this.interfazCrafteo.actualizarInventarioHbox(this.inventarioMaterialJugadorCopy, this.selecMaterial);
+        this.imgVM = null;
     }
 
     public void crearHerramientaCrafteada(){
-        this.juego.crearHerramienta();
+        try { this.juego.crearHerramienta(); }
+        catch (NoHayHerramientaParaCrearException e) { return; }
         this.vaciarMatrizCrafteo();
         this.interfazCrafteo.actualizarHerramientaCrafteable(null);
         this.interfazCrafteo.actualizarInventarioHbox(this.juego.obtenerInventarioMaterialesJugador(), this.selecMaterial);

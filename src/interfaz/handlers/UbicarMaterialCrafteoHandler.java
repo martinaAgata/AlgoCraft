@@ -13,7 +13,6 @@ public class UbicarMaterialCrafteoHandler implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-        System.out.println("UbicarMaterial");
         ImageView imgV = (ImageView) event.getSource();
         this.craftController.setearMaterial(imgV);
     }

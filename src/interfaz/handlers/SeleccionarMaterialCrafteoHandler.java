@@ -16,7 +16,6 @@ public class SeleccionarMaterialCrafteoHandler implements EventHandler<MouseEven
 
     @Override
     public void handle(MouseEvent event) {
-        System.out.println("SeleccionarMaterial");
         ImageViewMaterial imgV = (ImageViewMaterial) event.getSource();
         this.craftController.colocarMaterial(imgV);
     }

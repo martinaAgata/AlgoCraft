@@ -5,12 +5,16 @@ import interfaz.handlers.SalirCrafteoHandler;
 import interfaz.handlers.SeleccionarMaterialCrafteoHandler;
 import interfaz.handlers.UbicarMaterialCrafteoHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.herramientas.Hacha;
 import modelo.herramientas.Herramienta;
@@ -31,6 +35,8 @@ import static modelo.juego.ConstantesJuego.*;
 
 
 public class AbrirInterfazCrafteo {
+    private final double EMPTY_SQUARE_WIDTH = 45;
+    private final double EMPTY_SQUARE_HEIGHT = 45;
     private Stage ventanaEmergente;
     private AnchorPane tableroCraft;
     private GridPane tableroGrid;
@@ -98,7 +104,7 @@ public class AbrirInterfazCrafteo {
         rutasMateriales.add(RUTA_IMG_PIEDRA);
         rutasMateriales.add(RUTA_IMG_METAL);
         for (String path : rutasMateriales) {
-            imgV = new ImageViewMaterial(new Image(path,45,45,false,true));
+            imgV = new ImageViewMaterial(new Image(path,EMPTY_SQUARE_WIDTH,EMPTY_SQUARE_HEIGHT,false,true));
             imgV.setOnMouseClicked(seleccionarHandler/*EventHandler para seleccionar el material a colocar*/);
             imgV.setMaterial(new Madera());
             inventarioMateriales.getChildren().add(imgV);
@@ -106,22 +112,22 @@ public class AbrirInterfazCrafteo {
     }
 
     private void cargarimagenPorMaterial(){
-        this.imagenPorMaterial.put((new Madera()).getClass().getName(), new Image(RUTA_IMG_MADERA, 45, 45, false, true));
-        this.imagenPorMaterial.put((new Piedra()).getClass().getName(), new Image(RUTA_IMG_PIEDRA, 45, 45, false, true));
-        this.imagenPorMaterial.put((new Metal()).getClass().getName(), new Image(RUTA_IMG_METAL, 45, 45, false, true));
-        this.imagenPorMaterial.put((new Diamante()).getClass().getName(), new Image(RUTA_IMG_DIAMANTE, 45, 45, false, true));
-        this.imagenPorMaterial.put((new NullUbicable(null)).getClass().getName(), new Image(RUTA_IMG_EMPTY_CRAFT_SPACE, 45, 45, false, true));
+        this.imagenPorMaterial.put((new Madera()).getClass().getName(), new Image(RUTA_IMG_MADERA, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorMaterial.put((new Piedra()).getClass().getName(), new Image(RUTA_IMG_PIEDRA, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorMaterial.put((new Metal()).getClass().getName(), new Image(RUTA_IMG_METAL, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorMaterial.put((new Diamante()).getClass().getName(), new Image(RUTA_IMG_DIAMANTE, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorMaterial.put((new NullUbicable(null)).getClass().getName(), new Image(RUTA_IMG_EMPTY_CRAFT_SPACE, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
 
     }
 
     private void cargarImagenPorHerramienta(){
-        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera()), new Image(RUTA_IMG_HACHA_MADERA, 45, 45, false, true));
-        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra()), new Image(RUTA_IMG_HACHA_PIEDRA, 45, 45, false, true));
-        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal()), new Image(RUTA_IMG_HACHA_METAL, 45, 45, false, true));
-        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera()), new Image(RUTA_IMG_PICO_MADERA, 45, 45, false, true));
-        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra()), new Image(RUTA_IMG_PICO_PIEDRA, 45, 45, false, true));
-        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal()), new Image(RUTA_IMG_PICO_METAL, 45, 45, false, true));
-        this.imagenPorHerramienta.put(new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO), new Image(RUTA_IMG_PICO_FINO, 45, 45, false, true));
+        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera()), new Image(RUTA_IMG_HACHA_MADERA, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra()), new Image(RUTA_IMG_HACHA_PIEDRA, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal()), new Image(RUTA_IMG_HACHA_METAL, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera()), new Image(RUTA_IMG_PICO_MADERA, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra()), new Image(RUTA_IMG_PICO_PIEDRA, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal()), new Image(RUTA_IMG_PICO_METAL, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
+        this.imagenPorHerramienta.put(new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO), new Image(RUTA_IMG_PICO_FINO, EMPTY_SQUARE_WIDTH, EMPTY_SQUARE_HEIGHT, false, true));
 
     }
 
@@ -141,14 +147,27 @@ public class AbrirInterfazCrafteo {
     }
 
     public void actualizarInventarioHbox(HashMap<Material, Integer> inventarioMaterialesJugador, SeleccionarMaterialCrafteoHandler seleccionarHandler){
+        this.inventarioMateriales.getChildren().remove(0, this.inventarioMateriales.getChildren().size());
         Set<Material> materiales = inventarioMaterialesJugador.keySet();
         inventarioMateriales.setSpacing(14);
+        StackPane imgAndCounterContainer;
         ImageViewMaterial imgV;
         for(Material material : materiales){
+            if(inventarioMaterialesJugador.get(material) <= 0) continue;
+            imgAndCounterContainer = new StackPane();
+            imgAndCounterContainer.setPrefWidth(EMPTY_SQUARE_WIDTH);
+            imgAndCounterContainer.setPrefHeight(EMPTY_SQUARE_HEIGHT);
             imgV = new ImageViewMaterial(this.imagenPorMaterial.get(material.getClass().getName()));
             imgV.setMaterial(material);
             imgV.setOnMouseClicked(seleccionarHandler/*EventHandler para seleccionar el material a colocar*/);
-            if(inventarioMaterialesJugador.get(material) > 0) this.inventarioMateriales.getChildren().add(imgV);
+            Label cantMaterial = new Label();
+            cantMaterial.setFont(new Font(15));
+            cantMaterial.setText(inventarioMaterialesJugador.get(material).toString());
+            imgAndCounterContainer.getChildren().add(imgV);
+            imgAndCounterContainer.getChildren().add(cantMaterial);
+            imgAndCounterContainer.setAlignment(Pos.TOP_CENTER);
+            imgAndCounterContainer.setAlignment(cantMaterial, Pos.TOP_RIGHT);
+            this.inventarioMateriales.getChildren().add(imgAndCounterContainer);
         }
     }
 
