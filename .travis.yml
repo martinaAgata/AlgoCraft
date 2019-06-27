@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - openjdk11
+  - oraclejdk8
 
 before_install:
   - sudo apt-get install ant
