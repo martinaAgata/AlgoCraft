@@ -53,7 +53,8 @@ public class PantallaPrincipal extends VBox {
 
     public Scene getEscena() {
         Scene escenaJuego = new Scene(this);
-        escenaJuego.setOnKeyPressed(new EntradaTecladoHandler(this.tablero, this.juego.obtenerMapa(), this.juego.obtenerJugador()));
+        escenaJuego.setOnKeyPressed(new EntradaTecladoHandler(this.tablero, this.juego.obtenerMapa(),
+                                this.juego.obtenerJugador(), this.inventarios));
         return escenaJuego;
     }
 }

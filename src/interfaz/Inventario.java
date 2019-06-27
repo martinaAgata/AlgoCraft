@@ -21,6 +21,16 @@ public class Inventario extends VBox {
     private HashMap<Material, Integer> inventarioMateriales;
     private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas;
 
+    private Integer cantidadMaderas;
+    private Integer cantidadPiedras;
+    private Integer cantidadMetales;
+    private Integer cantidadDiamantes;
+
+    public static final Madera madera = new Madera();
+    public static final Piedra piedra = new Piedra();
+    public static final Metal metal = new Metal();
+    public static final Diamante diamante = new Diamante();
+
     public Inventario(HashMap<Material, Integer> inventarioMateriales,
                       HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas) {
         this.inventarioMateriales = inventarioMateriales;
@@ -32,6 +42,14 @@ public class Inventario extends VBox {
         this.getChildren().add(this.hboxMateriales);
         this.getChildren().add(this.hboxHerramientas);
     }
+
+    public void actualizarInventario() {
+        this.cantidadMaderas = this.inventarioMateriales.get(madera);
+        this.cantidadPiedras = this.inventarioMateriales.get(piedra);
+        this.cantidadMetales = this.inventarioMateriales.get(metal);
+        this.cantidadDiamantes = this.inventarioMateriales.get(diamante);
+    }
+
     private void crearInventarioMateriales() {
         this.hboxMateriales.setAlignment(CENTER);
         this.setPrefWidth(480);
@@ -43,7 +61,7 @@ public class Inventario extends VBox {
         imgMadera.setFitWidth(40);
         Label contadorMadera = new Label();
         contadorMadera.setFont(new Font(20));
-        Integer cantidadMaderas = this.inventarioMateriales.get(new Madera());
+        cantidadMaderas = this.inventarioMateriales.get(new Madera());
         contadorMadera.setText("" + cantidadMaderas);
         contadorMadera.setGraphic(imgMadera);
 
@@ -53,7 +71,7 @@ public class Inventario extends VBox {
         imgPiedra.setFitWidth(40);
         Label contadorPiedra = new Label();
         contadorPiedra.setFont(new Font(20));
-        Integer cantidadPiedras = this.inventarioMateriales.get(new Piedra());
+        cantidadPiedras = this.inventarioMateriales.get(new Piedra());
         contadorPiedra.setText("" + cantidadPiedras);
         contadorPiedra.setGraphic(imgPiedra);
 
@@ -63,7 +81,7 @@ public class Inventario extends VBox {
         imgMetal.setFitWidth(40);
         Label contadorMetal = new Label();
         contadorMetal.setFont(new Font(20));
-        Integer cantidadMetales = this.inventarioMateriales.get(new Metal());
+        cantidadMetales = this.inventarioMateriales.get(new Metal());
         contadorMetal.setText("" + cantidadMetales);
         contadorMetal.setGraphic(imgMetal);
 
@@ -73,8 +91,8 @@ public class Inventario extends VBox {
         imgDiamante.setFitWidth(40);
         Label contadorDiamante = new Label();
         contadorDiamante.setFont(new Font(20));
-        Integer cantidadDiamante = this.inventarioMateriales.get(new Diamante());
-        contadorDiamante.setText("" + cantidadDiamante);
+        cantidadDiamantes = this.inventarioMateriales.get(new Diamante());
+        contadorDiamante.setText("" + cantidadDiamantes);
         contadorDiamante.setGraphic(imgDiamante);
 
         this.hboxMateriales.getChildren().addAll(contadorMadera, contadorPiedra, contadorMetal, contadorDiamante);

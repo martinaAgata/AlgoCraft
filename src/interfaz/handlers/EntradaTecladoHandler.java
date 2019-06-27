@@ -1,6 +1,7 @@
 package interfaz.handlers;
 
 import interfaz.AbrirInterfazCrafteo;
+import interfaz.Inventario;
 import interfaz.Tablero;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -12,8 +13,8 @@ public class EntradaTecladoHandler implements EventHandler<KeyEvent> {
     private Mover moverJugador;
     private AbrirInterfazCrafteo interfazCrafteo;
 
-    public EntradaTecladoHandler(Tablero tablero, Mapa mapa, Jugador jugador){
-        this.moverJugador = new Mover(tablero, mapa, jugador);
+    public EntradaTecladoHandler(Tablero tablero, Mapa mapa, Jugador jugador, Inventario inventario){
+        this.moverJugador = new Mover(tablero, mapa, jugador, inventario);
         this.interfazCrafteo = new AbrirInterfazCrafteo(tablero);
     }
 
