@@ -15,7 +15,6 @@ import modelo.patrones.DetectorPatronPico;
 import modelo.patrones.DetectorPatronPicoFino;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 
 import static modelo.juego.ConstantesJuego.*;
@@ -39,15 +38,15 @@ public class Juego {
 
     public Juego() { // ver lo del booleano para inicializar
         this.mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
-        this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS,CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
+        this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS, CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
         this.inventarioHerramientas = new HashMap<>();
         this.inventarioTablero = new HashMap<>();
         this.inventarioMaterialesJugador = new HashMap<>();
     }
 
     public void actualizarInventarios(Ubicable ubicable) {
-        inventarioTablero.put((Material)ubicable, inventarioTablero.get(ubicable)-1);
-        inventarioMaterialesJugador.put((Material) ubicable, inventarioMaterialesJugador.get(ubicable)+1);
+        inventarioTablero.put((Material) ubicable, inventarioTablero.get(ubicable) - 1);
+        inventarioMaterialesJugador.put((Material) ubicable, inventarioMaterialesJugador.get(ubicable) + 1);
     }
 
     public void inicializarInventarioTablero() {
@@ -65,13 +64,13 @@ public class Juego {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        Ubicacion ubicacionJugador = new Ubicacion(1,6);
+        Ubicacion ubicacionJugador = new Ubicacion(1, 6);
         this.jugador = new Jugador(hachaInicial, this.inventarioMaterialesJugador, ubicacionJugador);
         this.mapa.ubicarEnCasillero(jugador, ubicacionJugador);
         inventarioHerramientas.get(hachaInicial).add(hachaInicial);
     }
 
-    public void inicializarJuego(){
+    public void inicializarJuego() {
         inicializarInventarioMaterial();
         inicializarInventarioHerramienta();
         inicializarJugador();
@@ -104,7 +103,7 @@ public class Juego {
     }
 
     private void agregarListaDeHerramientasAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
-        Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste) {
+                                                                   Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste) {
         constructor.conMaterial(material).conDurabilidad(durabilidad)
                 .conDesgaste(desgaste)
                 .conFuerza(fuerza);
@@ -171,25 +170,33 @@ public class Juego {
         detectarHerramientatableroCrafteo();
     }
 
-    public Mapa obtenerTableroCrafteo(){ return this.tableroCrafteo; }
+    public Mapa obtenerTableroCrafteo() {
+        return this.tableroCrafteo;
+    }
 
-    public HashMap<Material, Integer> obtenerInventarioMaterialesJugador(){ return this.inventarioMaterialesJugador; }
+    public HashMap<Material, Integer> obtenerInventarioMaterialesJugador() {
+        return this.inventarioMaterialesJugador;
+    }
 
-    public HashMap<Material, Integer> obtenerInventarioTablero(){ return this.inventarioTablero; }
+    public HashMap<Material, Integer> obtenerInventarioTablero() {
+        return this.inventarioTablero;
+    }
 
-    public HashMap<Herramienta, ArrayList<Herramienta>> obtenerInventarioHerramientas(){ return this.inventarioHerramientas; }
+    public HashMap<Herramienta, ArrayList<Herramienta>> obtenerInventarioHerramientas() {
+        return this.inventarioHerramientas;
+    }
 
-    private void agregarHerramientaAlInventario(){
+    private void agregarHerramientaAlInventario() {
         inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
     }
 
-    private void eliminarMaterialesDelInventario(){
-        for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
-            for (int y=1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++) {
+    private void eliminarMaterialesDelInventario() {
+        for (int x = 1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
+            for (int y = 1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++) {
                 try {
-                    Material eliminar = (Material) this.tableroCrafteo.eliminarDeCasillero(new Ubicacion(x,y));
+                    Material eliminar = (Material) this.tableroCrafteo.eliminarDeCasillero(new Ubicacion(x, y));
                     this.inventarioMaterialesJugador.put(eliminar, this.inventarioMaterialesJugador.get(eliminar) - 1);
-                } catch (NoSePuedeEliminarPorqueEstaVacioException casilleroVacio){/*Hacer nada*/}
+                } catch (NoSePuedeEliminarPorqueEstaVacioException casilleroVacio) {/*Hacer nada*/}
             }
         }
     }
@@ -197,7 +204,8 @@ public class Juego {
     public void crearHerramienta() {
         //ya tenes cosas en el mapa carfteo y decis crear herramienta
         //detectarHerramientatableroCrafteo();
-        if (!this.herramientaCreada.isPresent()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
+        if (!this.herramientaCreada.isPresent())
+            throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
         eliminarMaterialesDelInventario();
         agregarHerramientaAlInventario();
     }
@@ -224,36 +232,36 @@ public class Juego {
     public void inicializarMapaConMateriales() {
         ObservadorUbicable observadorMateriales = new ObservadorUbicableImpl(this);
         this.inicializarInventarioTablero();
-        for (int i=1; i<=3; i++) {
-            for (int j=1; j<=3; j++) {
-                Ubicacion ubicacion = new Ubicacion(i,j);
+        for (int i = 1; i <= 3; i++) {
+            for (int j = 1; j <= 3; j++) {
+                Ubicacion ubicacion = new Ubicacion(i, j);
                 Madera madera = new Madera(ubicacion, Optional.of(observadorMateriales));
-                inventarioTablero.put(madera, inventarioTablero.get(madera)+1);
+                inventarioTablero.put(madera, inventarioTablero.get(madera) + 1);
                 this.mapa.ubicarEnCasillero(madera, ubicacion);
             }
         }
 
-        for (int i=4; i<=7; i++) {
-            for (int j=4; j<=7; j++) {
-                Ubicacion ubicacion = new Ubicacion(i,j);
+        for (int i = 4; i <= 7; i++) {
+            for (int j = 4; j <= 7; j++) {
+                Ubicacion ubicacion = new Ubicacion(i, j);
                 Piedra piedra = new Piedra(ubicacion, Optional.of(observadorMateriales));
-                inventarioTablero.put(piedra, inventarioTablero.get(piedra)+1);
+                inventarioTablero.put(piedra, inventarioTablero.get(piedra) + 1);
                 this.mapa.ubicarEnCasillero(piedra, ubicacion);
             }
         }
 
-        for (int i=8; i<=9; i++) {
-            for (int j=8; j<=9; j++) {
-                Ubicacion ubicacion = new Ubicacion(i,j);
+        for (int i = 8; i <= 9; i++) {
+            for (int j = 8; j <= 9; j++) {
+                Ubicacion ubicacion = new Ubicacion(i, j);
                 Metal metal = new Metal(ubicacion, Optional.of(observadorMateriales));
-                inventarioTablero.put(metal, inventarioTablero.get(metal)+1);
+                inventarioTablero.put(metal, inventarioTablero.get(metal) + 1);
                 this.mapa.ubicarEnCasillero(metal, ubicacion);
             }
         }
 
-        Ubicacion ubicacion = new Ubicacion(10,10);
+        Ubicacion ubicacion = new Ubicacion(10, 10);
         Diamante diamante = new Diamante(ubicacion, Optional.of(observadorMateriales));
-        inventarioTablero.put(diamante, inventarioTablero.get(diamante)+1);
+        inventarioTablero.put(diamante, inventarioTablero.get(diamante) + 1);
         this.mapa.ubicarEnCasillero(diamante, ubicacion);
     }
 
@@ -261,7 +269,7 @@ public class Juego {
         return this.mapa;
     }
 
-    public Jugador obtenerJugador(){
+    public Jugador obtenerJugador() {
         return this.jugador;
     }
     public Herramienta obtenerHerramientaCrafteable(){

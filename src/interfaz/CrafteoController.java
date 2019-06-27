@@ -25,6 +25,7 @@ public class CrafteoController {
     private SalirCrafteoHandler salirHandler;
     private ImageViewMaterial imgVM;
     private HashMap<Material, String> rutasMateriales;
+
     public CrafteoController(Juego juego){
         this.juego = juego;
         this.interfazCrafteo = new AbrirInterfazCrafteo();
