@@ -189,7 +189,9 @@ public class Juego {
         return this.tableroCrafteo;
     }
 
-    public HashMap<Material, Integer> obtenerInventarioMaterialesJugador(){ return inventarioMaterialesJugador; }
+    public HashMap<Material, Integer> obtenerInventarioMaterialesJugador(){ return this.inventarioMaterialesJugador; }
+
+    public HashMap<Herramienta, ArrayList<Herramienta>> obtenerInventarioHerramientas(){ return this.inventarioHerramientas; }
 
     private void agregarHerramientaAlInventario(){
         inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
