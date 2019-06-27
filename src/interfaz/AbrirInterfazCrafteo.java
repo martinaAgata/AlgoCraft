@@ -12,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelo.juego.Juego;
 
-import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class AbrirInterfazCrafteo {
         FileInputStream fxmlStream;
         AnchorPane tableroCraft;
         try{
-            fxmlStream = new FileInputStream("/home/jenko/Documents/GitHub/AlgoCraft/src/interfaz/tableroCraft.fxml");//Cambiar x path correspondiente
+            fxmlStream = new FileInputStream("src/interfaz/tableroCraft.fxml");//Cambiar x path correspondiente
             tableroCraft = (AnchorPane) loader.load(fxmlStream);}
         catch (IOException IOExp){
             System.err.println("Error en la ruta de carga de tableroCraft.fxml");
@@ -51,6 +50,7 @@ public class AbrirInterfazCrafteo {
         HBox inventarioMateriales = (HBox) tableroCraft.getChildren().get(2);
         inicializarInventarioHBox(inventarioMateriales);
         ImageView herrambientaCrafteable = (ImageView) tableroCraft.getChildren().get(3);
+        herrambientaCrafteable.setOnMouseClicked(event -> {System.out.print("herramientaCreada");});
         Scene scene = new Scene(tableroCraft, tableroCraft.getMaxWidth(), tableroCraft.getMaxHeight());
         ventanaEmergente.setScene(scene);
         ventanaEmergente.show();
