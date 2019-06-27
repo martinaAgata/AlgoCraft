@@ -1,6 +1,7 @@
 package interfaz.handlers;
 
 import interfaz.AbrirInterfazCrafteo;
+import interfaz.CrafteoController;
 import interfaz.Tablero;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -10,16 +11,16 @@ import modelo.mapa.Mapa;
 
 public class EntradaTecladoHandler implements EventHandler<KeyEvent> {
     private Mover moverJugador;
-    private AbrirInterfazCrafteo interfazCrafteo;
+    private CrafteoController crafteoController;
 
     public EntradaTecladoHandler(Tablero tablero, Mapa mapa, Jugador jugador){
         this.moverJugador = new Mover(tablero, mapa, jugador);
-        this.interfazCrafteo = new AbrirInterfazCrafteo(tablero);
+        this.crafteoController = new CrafteoController(tablero.obtenerJuego());
     }
 
     @Override
     public void handle(KeyEvent key) {
-        if(key.getCode() == KeyCode.C) this.interfazCrafteo.iniciar();
+        if(key.getCode() == KeyCode.C) this.crafteoController.iniciarInterfaz();
         this.moverJugador.moverseHacia(key.getCode());
     }
 }

@@ -50,5 +50,7 @@ public class Tablero extends VBox {
         }
     }
 
+    public Juego obtenerJuego(){ return this.juego; }
+
 
 }
