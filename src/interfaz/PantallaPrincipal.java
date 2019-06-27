@@ -31,7 +31,8 @@ public class PantallaPrincipal extends VBox {
         this.juego = new Juego();
         this.tablero = new Tablero(this.contenedorImagenes, this.juego);
         this.tablero.setPrefSize(480,480);
-        this.inventarios = new Inventario();
+        this.inventarios = new Inventario(this.juego.obtenerInventarioMaterialesJugador(),
+                                          this.juego.obtenerInventarioHerramientas());
         this.tablero.getChildren().add(inventarios);
         this.getChildren().addAll(tablero);
     }
@@ -52,7 +53,8 @@ public class PantallaPrincipal extends VBox {
 
     public Scene getEscena() {
         Scene escenaJuego = new Scene(this);
-        escenaJuego.setOnKeyPressed(new EntradaTecladoHandler(this.tablero, this.juego.obtenerMapa(), this.juego.obtenerJugador()));
+        escenaJuego.setOnKeyPressed(new EntradaTecladoHandler(this.tablero, this.juego.obtenerMapa(),
+                                this.juego.obtenerJugador(), this.inventarios));
         return escenaJuego;
     }
 }

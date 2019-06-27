@@ -2,10 +2,10 @@ package modelo.patrones;
 
 import modelo.mapa.Ubicacion;
 import modelo.materiales.Material;
-import modelo.materiales.Piedra;
+import static modelo.juego.ConstantesJuego.MATERIAL_MANGO;
+import static modelo.juego.ConstantesJuego.MATERIAL_PUNTA_PICO_FINO;
 
 public class PatronPicoFino extends Patron {
-    Piedra MATERIAL_PUNTA_PICO_FINO = new Piedra();
     public PatronPicoFino(Material material) {
         this.inicializarPatron(material);
     }

@@ -41,7 +41,7 @@ public class MaderaTests {
     @Test
     public void testMaderaEsDesgastadaPorHachaMaderaYReduceSuDurabilidad(){
         Madera madera = new Madera();
-        hachaMadera.usar(madera);
+        madera.desgastarContra(hachaMadera);
         assertThat(madera.getDurabilidad(),is(DURABIDAD_INICIAL_MADERA - hachaMadera.getFuerza()));
 
     }
@@ -57,7 +57,7 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA);
         Hacha hachaPiedra= constructor.construir();
-        hachaPiedra.usar(madera);
+        madera.desgastarContra(hachaPiedra);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 5));
     }
 
@@ -71,8 +71,7 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_HACHA_METAL)
                 .conFuerza(FUERZA_HACHA_METAL);
         Hacha hachaMetal = constructor.construir();
-        Integer durabilidadMadera = madera.getDurabilidad();
-        hachaMetal.usar(madera);
+        madera.desgastarContra(hachaMetal);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 10));
     }
 
@@ -86,7 +85,7 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
-        picoMadera.usar(madera);
+        madera.desgastarContra(picoMadera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA));
     }
 
@@ -100,7 +99,7 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_PICO_PIEDRA)
                 .conFuerza(FUERZA_PICO_PIEDRA);
         Pico picoPiedra = constructor.construir();
-        picoPiedra.usar(madera);
+        madera.desgastarContra(picoPiedra);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA));
     }
 
@@ -114,7 +113,7 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_PICO_METAL)
                 .conFuerza(FUERZA_PICO_METAL);
         Pico picoMetal = constructor.construir();
-        picoMetal.usar(madera);
+        madera.desgastarContra(picoMetal);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA));
     }
 
@@ -128,7 +127,7 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_PICO_FINO)
                 .conFuerza(FUERZA_PICO_FINO);
         PicoFino picoFino = constructor.construir();
-        picoFino.usar(madera);
+        madera.desgastarContra(picoFino);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA));
     }
 
@@ -142,13 +141,13 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA);
         Hacha hachaMadera = constructor.construir();
-        hachaMadera.usar(madera);
+        madera.desgastarContra(hachaMadera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 2));
-        hachaMadera.usar(madera);
+        madera.desgastarContra(hachaMadera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 4));
-        hachaMadera.usar(madera);
+        madera.desgastarContra(hachaMadera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 6));
-        hachaMadera.usar(madera);
+        madera.desgastarContra(hachaMadera);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 8));
     }
 
@@ -162,9 +161,9 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA);
         Hacha hachaPiedra = constructor.construir();
-        hachaPiedra.usar(madera);
+        madera.desgastarContra(hachaPiedra);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 5));
-        hachaPiedra.usar(madera);
+        madera.desgastarContra(hachaPiedra);
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 10));
     }
 
@@ -178,25 +177,21 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA);
         Hacha hachaMadera = constructor.construir();
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
+        for(int i=0; i<7; i++){
+            madera.desgastarContra(hachaMadera);
+        }
     }
 
     @Test
     public void testMaderaAlMorirLlamaAObservador() {
         List<Ubicacion> ubicaciones = new ArrayList<>();
         Madera madera = new Madera(new Ubicacion(3,3), Optional.of(ubicable -> ubicaciones.add(ubicable.getUbicacion())));
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
+        for(int i=0; i<4 ; i++){
+            madera.desgastarContra(hachaMadera);
+        }
         // Aun no se llama al observador
         assertThat(ubicaciones.size(), is(0));
-        hachaMadera.usar(madera);
+        madera.desgastarContra(hachaMadera);
         // Ahora que ya se murio la madera, llama al observador, y lo hizo una sola vez
         assertThat(ubicaciones.size(), is(1));
         // Llamo con la misma madera en la misma ubicacion
@@ -213,9 +208,9 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_HACHA_PIEDRA)
                 .conFuerza(FUERZA_HACHA_PIEDRA);
         Hacha hachaPiedra = constructor.construir();
-        hachaPiedra.usar(madera);
-        hachaPiedra.usar(madera);
-        hachaPiedra.usar(madera);
+        madera.desgastarContra(hachaPiedra);
+        madera.desgastarContra(hachaPiedra);
+        madera.desgastarContra(hachaPiedra);
     }
 
     @Test(expected = MaterialSeHaGastadoException.class)
@@ -228,8 +223,8 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_HACHA_METAL)
                 .conFuerza(FUERZA_HACHA_METAL);
         Hacha hachaMetal = constructor.construir();
-        hachaMetal.usar(madera);
-        hachaMetal.usar(madera);
+        madera.desgastarContra(hachaMetal);
+        madera.desgastarContra(hachaMetal);
     }
 
     @Test
@@ -242,11 +237,9 @@ public class MaderaTests {
                 .conDesgaste(DESGASTE_PICO_MADERA)
                 .conFuerza(FUERZA_PICO_MADERA);
         Hacha hachaMadera = constructor.construir();
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
-        hachaMadera.usar(madera);
+        for (int i=0; i<5; i++){
+            madera.desgastarContra(hachaMadera);
+        }
         assertThat(madera.getDurabilidad(), is(0));
     }
 
@@ -273,11 +266,11 @@ public class MaderaTests {
                 .conFuerza(FUERZA_HACHA_METAL);
         Hacha hachaMetal = constructor.construir();
         Integer durabilidadMadera = madera.getDurabilidad();
-        hachaMadera.usar(madera);
+        madera.desgastarContra(hachaMadera);
         assertThat(madera.getDurabilidad(), is(durabilidadMadera - 2));
-        hachaPiedra.usar(madera);
+        madera.desgastarContra(hachaPiedra);
         assertThat(madera.getDurabilidad(), is(durabilidadMadera - 7));
-        hachaMetal.usar(madera);
+        madera.desgastarContra(hachaMetal);
         assertThat(madera.getDurabilidad(), is(0));//Es cero porque la madera ya estaria rota a este punto.
     }
 }

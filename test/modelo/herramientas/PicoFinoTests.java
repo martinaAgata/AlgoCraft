@@ -1,5 +1,6 @@
 package modelo.herramientas;
 
+import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import modelo.herramientas.ConstructorPicoFino;
 import modelo.herramientas.PicoFino;
 import modelo.materiales.Diamante;
@@ -28,10 +29,11 @@ public class PicoFinoTests {
         PicoFino picoFino = constructor.construir();
         assertThat(picoFino.getDurabilidad(), is(1000));
     }
+
     @Test
     public void testCrearPicoFinoConFuerza() {
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-                constructor
+        constructor
                 .conMaterial(new Metal())
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
@@ -39,10 +41,11 @@ public class PicoFinoTests {
         PicoFino picoFino = constructor.construir();
         assertThat(picoFino.getFuerza(), is(20));
     }
+
     @Test
-    public void testPicoFinoSeUsaContraDiamanteYSeReduceSuDurabilidad(){
+    public void testPicoFinoSeUsaContraDiamanteYSeReduceSuDurabilidad() {
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-                constructor
+        constructor
                 .conMaterial(new Metal())
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
@@ -50,13 +53,13 @@ public class PicoFinoTests {
         PicoFino picoFino = constructor.construir();
         Diamante diamante = new Diamante();
         picoFino.usar(diamante);
-        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int)(FUERZA_PICO_FINO*0.1))));
+        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int) (FUERZA_PICO_FINO * 0.1))));
     }
 
     @Test
-    public void testPicoFinoSeUsaContraMaderaYNoReduceSuDurabilidad(){
+    public void testPicoFinoSeUsaContraMaderaYNoReduceSuDurabilidad() {
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-                constructor
+        constructor
                 .conMaterial(new Metal())
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
@@ -64,13 +67,13 @@ public class PicoFinoTests {
         PicoFino picoFino = constructor.construir();
         Madera madera = new Madera();
         picoFino.usar(madera);
-        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int)(FUERZA_PICO_FINO*0.1))));
+        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int) (FUERZA_PICO_FINO * 0.1))));
     }
 
     @Test
-    public void testPicoFinoSeUsaContraMetalYNoReduceSuDurabilidad(){
+    public void testPicoFinoSeUsaContraMetalYNoReduceSuDurabilidad() {
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-                constructor
+        constructor
                 .conMaterial(new Metal())
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
@@ -78,13 +81,13 @@ public class PicoFinoTests {
         PicoFino picoFino = constructor.construir();
         Metal metal = new Metal();
         picoFino.usar(metal);
-        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int)(FUERZA_PICO_FINO*0.1))));
+        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int) (FUERZA_PICO_FINO * 0.1))));
     }
 
     @Test
-    public void testPicoFinoSeUsaContraPiedraYNoReduceSuDurabilidad(){
+    public void testPicoFinoSeUsaContraPiedraYNoReduceSuDurabilidad() {
         ConstructorPicoFino constructor = new ConstructorPicoFino();
-                constructor
+        constructor
                 .conMaterial(new Metal())
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
@@ -92,6 +95,21 @@ public class PicoFinoTests {
         PicoFino picoFino = constructor.construir();
         Piedra piedra = new Piedra();
         picoFino.usar(piedra);
-        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int)(FUERZA_PICO_FINO*0.1))));
+        assertThat(picoFino.getDurabilidad(), is(DURABILIDAD_PICO_FINO - ((int) (FUERZA_PICO_FINO * 0.1))));
+    }
+
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    public void testPicoFinoRotoNoSePuedeUsar() {
+        ConstructorPicoFino constructor = new ConstructorPicoFino();
+        constructor
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO);
+        PicoFino picoFino = constructor.construir();
+        Madera madera = new Madera();
+        for (int i = 0; i < 501; i++) {
+            picoFino.usar(madera);
+        }
     }
 }

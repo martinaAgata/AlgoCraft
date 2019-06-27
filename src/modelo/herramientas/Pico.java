@@ -3,7 +3,6 @@ package modelo.herramientas;
 import modelo.estados.EstadoVivo;
 import modelo.estrategias.EstrategiaDesgaste;
 import modelo.materiales.*;
-
 import java.util.Objects;
 import java.util.Optional;
 

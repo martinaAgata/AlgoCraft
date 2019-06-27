@@ -1,12 +1,10 @@
 package interfaz;
 
-import interfaz.handlers.DesgastarMaterialHandler;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import modelo.juego.Juego;
-import modelo.juego.NullUbicable;
 import modelo.juego.Ubicable;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;

@@ -3,10 +3,8 @@ package modelo.materiales;
 import modelo.estados.EstadoVivo;
 import modelo.herramientas.Hacha;
 import modelo.juego.Ubicable;
-import modelo.mapa.Casillero;
 import modelo.mapa.ObservadorUbicable;
 import modelo.mapa.Ubicacion;
-
 import java.util.Objects;
 import java.util.Optional;
 
@@ -35,11 +33,6 @@ public class Madera extends Material {
         return hacha.desgastarContra(this);
     }
 
-
-    public boolean esIgualAUbicable(Ubicable ubicable) {
-        return (this.getClass() == ubicable.getClass());
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(this.getClass());
@@ -48,5 +41,9 @@ public class Madera extends Material {
     @Override
     public boolean equals(Object obj) {
         return (this.getClass() == obj.getClass());
+    }
+
+    public boolean esIgualAUbicable(Ubicable ubicable) {
+        return (this.getClass() == ubicable.getClass());
     }
 }

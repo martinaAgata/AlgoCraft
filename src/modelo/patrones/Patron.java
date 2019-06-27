@@ -2,14 +2,13 @@ package modelo.patrones;
 
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
-import modelo.materiales.Madera;
 import modelo.materiales.Material;
+import static modelo.juego.ConstantesJuego.CANTIDAD_COLUMNAS_CRAFTEO;
+import static modelo.juego.ConstantesJuego.CANTIDAD_FILAS_CRAFTEO;
 
 public abstract class Patron {
-    private static final int CANTIDAD_FILAS = 3;
-    private static final int CANTIDAD_COLUMNAS = 3;
-    Madera MATERIAL_MANGO = new Madera();
-    Mapa tablero = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
+
+    Mapa tablero = new Mapa(CANTIDAD_FILAS_CRAFTEO, CANTIDAD_COLUMNAS_CRAFTEO);
 
     public void colocarMango(Material material) {
         Ubicacion ubicacionA = new Ubicacion(2, 2);

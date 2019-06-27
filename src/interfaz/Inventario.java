@@ -1,17 +1,40 @@
 package interfaz;
 
 import interfaz.handlers.ElegirHerramientaHandler;
-import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.control.Label;
+import modelo.herramientas.Herramienta;
+import modelo.materiales.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import static interfaz.ConstantesInterfaz.*;
+import static javafx.geometry.Pos.CENTER;
 
 public class Inventario extends VBox {
     private HBox hboxMateriales;
     private HBox hboxHerramientas;
+    private HashMap<Material, Integer> inventarioMateriales;
+    private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas;
 
-    public Inventario() {
+    private Integer cantidadMaderas;
+    private Integer cantidadPiedras;
+    private Integer cantidadMetales;
+    private Integer cantidadDiamantes;
+
+    public static final Madera madera = new Madera();
+    public static final Piedra piedra = new Piedra();
+    public static final Metal metal = new Metal();
+    public static final Diamante diamante = new Diamante();
+
+    public Inventario(HashMap<Material, Integer> inventarioMateriales,
+                      HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas) {
+        this.inventarioMateriales = inventarioMateriales;
+        this.inventarioHerramientas = inventarioHerramientas;
         hboxHerramientas = new HBox(10);
         hboxMateriales = new HBox(10);
         this.crearInventarioMateriales();
@@ -19,57 +42,142 @@ public class Inventario extends VBox {
         this.getChildren().add(this.hboxMateriales);
         this.getChildren().add(this.hboxHerramientas);
     }
+
+    public void actualizarInventario() {
+        this.cantidadMaderas = this.inventarioMateriales.get(madera);
+        this.cantidadPiedras = this.inventarioMateriales.get(piedra);
+        this.cantidadMetales = this.inventarioMateriales.get(metal);
+        this.cantidadDiamantes = this.inventarioMateriales.get(diamante);
+    }
+
     private void crearInventarioMateriales() {
-        this.hboxMateriales.setAlignment(Pos.CENTER);
+        this.hboxMateriales.setAlignment(CENTER);
         this.setPrefWidth(480);
         this.hboxMateriales.setSpacing(5);
-        ImageView madera = new ImageView(new Image(RUTA_IMG_MADERA));
-        madera.setFitHeight(40);
-        madera.setFitWidth(40);
-        ImageView piedra = new ImageView(new Image(RUTA_IMG_PIEDRA));
-        piedra.setFitHeight(40);
-        piedra.setFitWidth(40);
-        ImageView metal = new ImageView(new Image(RUTA_IMG_METAL));
-        metal.setFitHeight(40);
-        metal.setFitWidth(40);
-        ImageView diamante = new ImageView(new Image(RUTA_IMG_DIAMANTE));
-        diamante.setFitHeight(40);
-        diamante.setFitWidth(40);
-        this.hboxMateriales.getChildren().addAll(madera, piedra, metal, diamante);
+
+        /*----- Contador Madera -----*/
+        ImageView imgMadera = new ImageView(new Image(RUTA_IMG_MADERA));
+        imgMadera.setFitHeight(40);
+        imgMadera.setFitWidth(40);
+        Label contadorMadera = new Label();
+        contadorMadera.setFont(new Font(20));
+        cantidadMaderas = this.inventarioMateriales.get(new Madera());
+        contadorMadera.setText("" + cantidadMaderas);
+        contadorMadera.setGraphic(imgMadera);
+
+        /*----- Contador Piedra -----*/
+        ImageView imgPiedra = new ImageView(new Image(RUTA_IMG_PIEDRA));
+        imgPiedra.setFitHeight(40);
+        imgPiedra.setFitWidth(40);
+        Label contadorPiedra = new Label();
+        contadorPiedra.setFont(new Font(20));
+        cantidadPiedras = this.inventarioMateriales.get(new Piedra());
+        contadorPiedra.setText("" + cantidadPiedras);
+        contadorPiedra.setGraphic(imgPiedra);
+
+        /*----- Contador Metal -----*/
+        ImageView imgMetal = new ImageView(new Image(RUTA_IMG_METAL));
+        imgMetal.setFitHeight(40);
+        imgMetal.setFitWidth(40);
+        Label contadorMetal = new Label();
+        contadorMetal.setFont(new Font(20));
+        cantidadMetales = this.inventarioMateriales.get(new Metal());
+        contadorMetal.setText("" + cantidadMetales);
+        contadorMetal.setGraphic(imgMetal);
+
+        /*----- Contador Diamante -----*/
+        ImageView imgDiamante = new ImageView(new Image(RUTA_IMG_DIAMANTE));
+        imgDiamante.setFitHeight(40);
+        imgDiamante.setFitWidth(40);
+        Label contadorDiamante = new Label();
+        contadorDiamante.setFont(new Font(20));
+        cantidadDiamantes = this.inventarioMateriales.get(new Diamante());
+        contadorDiamante.setText("" + cantidadDiamantes);
+        contadorDiamante.setGraphic(imgDiamante);
+
+        this.hboxMateriales.getChildren().addAll(contadorMadera, contadorPiedra, contadorMetal, contadorDiamante);
     }
 
     private void crearInventarioHerramientas(){
-        this.hboxHerramientas.setAlignment(Pos.CENTER);
+        this.hboxHerramientas.setAlignment(CENTER);
         this.setPrefWidth(480);
         this.hboxHerramientas.setSpacing(7);
+
+        /*----- Contador Hacha Madera -----*/
         ImageView hachaMadera = new ImageView(new Image(RUTA_IMG_HACHA_MADERA));
         hachaMadera.setFitHeight(40);
         hachaMadera.setFitWidth(40);
-        hachaMadera.setOnMouseClicked(new ElegirHerramientaHandler());
+        Label contadorHachaMadera = new Label();
+        contadorHachaMadera.setFont(new Font(20));
+        contadorHachaMadera.setText("4" /*+ variable*/);
+        contadorHachaMadera.setGraphic(hachaMadera);
+        contadorHachaMadera.setOnMouseClicked(new ElegirHerramientaHandler());
+
+        /*----- Contador Hacha Piedra -----*/
         ImageView hachaPiedra = new ImageView(new Image(RUTA_IMG_HACHA_PIEDRA));
         hachaPiedra.setFitHeight(40);
         hachaPiedra.setFitWidth(40);
-        hachaPiedra.setOnMouseClicked(new ElegirHerramientaHandler());
+        Label contadorHachaPiedra = new Label();
+        contadorHachaPiedra.setFont(new Font(20));
+        contadorHachaPiedra.setText("4" /*+ variable*/);
+        contadorHachaPiedra.setGraphic(hachaPiedra);
+        contadorHachaPiedra.setOnMouseClicked(new ElegirHerramientaHandler());
+
+        /*----- Contador Hacha Metal -----*/
         ImageView hachaMetal = new ImageView(new Image(RUTA_IMG_HACHA_METAL));
         hachaMetal.setFitHeight(40);
         hachaMetal.setFitWidth(40);
-        hachaMetal.setOnMouseClicked(new ElegirHerramientaHandler());
+        Label contadorHachaMetal = new Label();
+        contadorHachaMetal.setFont(new Font(20));
+        contadorHachaMetal.setText("4" /*+ variable*/);
+        contadorHachaMetal.setGraphic(hachaMetal);
+        contadorHachaMetal.setOnMouseClicked(new ElegirHerramientaHandler());
+
+        /*----- Contador Pico Madera -----*/
         ImageView picoMadera = new ImageView(new Image(RUTA_IMG_PICO_MADERA));
         picoMadera.setFitHeight(40);
         picoMadera.setFitWidth(40);
         picoMadera.setOnMouseClicked(new ElegirHerramientaHandler());
+        Label contadorPicoMadera = new Label();
+        contadorPicoMadera.setFont(new Font(20));
+        contadorPicoMadera.setText("4" /*+ variable*/);
+        contadorPicoMadera.setGraphic(picoMadera);
+        contadorPicoMadera.setOnMouseClicked(new ElegirHerramientaHandler());
+
+        /*----- Contador Pico Piedra -----*/
         ImageView picoPiedra = new ImageView(new Image(RUTA_IMG_PICO_PIEDRA));
         picoPiedra.setFitHeight(40);
         picoPiedra.setFitWidth(40);
+        Label contadorPicoPiedra = new Label();
+        contadorPicoPiedra.setFont(new Font(20));
+        contadorPicoPiedra.setText("4" /*+ variable*/);
+        contadorPicoPiedra.setGraphic(picoPiedra);
+        contadorPicoPiedra.setOnMouseClicked(new ElegirHerramientaHandler());
         picoPiedra.setOnMouseClicked(new ElegirHerramientaHandler());
+
+        /*----- Contador Pico Metal -----*/
         ImageView picoMetal = new ImageView(new Image(RUTA_IMG_PICO_METAL));
         picoMetal.setFitHeight(40);
         picoMetal.setFitWidth(40);
         picoMetal.setOnMouseClicked(new ElegirHerramientaHandler());
+        Label contadorPicoMetal = new Label();
+        contadorPicoMetal.setFont(new Font(20));
+        contadorPicoMetal.setText("4" /*+ variable*/);
+        contadorPicoMetal.setGraphic(picoMetal);
+        contadorPicoMetal.setOnMouseClicked(new ElegirHerramientaHandler());
+
+        /*----- Contador Pico Fino -----*/
         ImageView picoFino = new ImageView(new Image(RUTA_IMG_PICO_FINO));
         picoFino.setFitHeight(40);
         picoFino.setFitWidth(40);
-        picoFino.setOnMouseClicked(new ElegirHerramientaHandler());
-        this.hboxHerramientas.getChildren().addAll(hachaMadera, hachaPiedra, hachaMetal, picoMadera, picoPiedra, picoMetal, picoFino);
+        Label contadorPicoFino = new Label();
+        contadorPicoFino.setFont(new Font(20));
+        contadorPicoFino.setText("4" /*+ variable*/);
+        contadorPicoFino.setGraphic(picoFino);
+        contadorPicoFino.setOnMouseClicked(new ElegirHerramientaHandler());
+
+        this.hboxHerramientas.getChildren().addAll(contadorHachaMadera, contadorHachaPiedra, contadorHachaMetal,
+                                                   contadorPicoMadera,  contadorPicoPiedra,  contadorPicoMetal,
+                                                   contadorPicoFino);
     }
 }

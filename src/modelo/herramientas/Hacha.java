@@ -5,7 +5,6 @@ import modelo.estrategias.EstrategiaDesgaste;
 import modelo.materiales.Desgastable;
 import modelo.materiales.Madera;
 import modelo.materiales.Material;
-
 import java.util.Objects;
 import java.util.Optional;
 

@@ -15,6 +15,7 @@ public class NullUbicable extends Ubicable {
     public Ubicable guardarUbicable(Ubicable otroUbicable) {
         return otroUbicable;
     }
+
     @Override
     public Ubicable eliminarUbicable() {
         throw new NoSePuedeEliminarPorqueEstaVacioException("El casillero se encuentra vacío");

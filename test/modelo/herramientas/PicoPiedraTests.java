@@ -1,5 +1,6 @@
 package modelo.herramientas;
 
+import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import modelo.herramientas.ConstructorPico;
 import modelo.herramientas.Pico;
 import modelo.materiales.Madera;
@@ -7,7 +8,8 @@ import modelo.materiales.Metal;
 import modelo.materiales.Piedra;
 import org.junit.Test;
 
-import static modelo.juego.ConstantesJuego.DESGASTE_PICO_PIEDRA;
+import static modelo.juego.ConstantesJuego.*;
+import static modelo.juego.ConstantesJuego.FUERZA_PICO_MADERA;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -80,4 +82,20 @@ public class PicoPiedraTests {
         assertThat(picoPiedra.getDurabilidad(), is(DURABILIDAD_PICO_PIEDRA - ((int)(FUERZA_PICO_PIEDRA/1.5))));
 
     }
+
+    @Test(expected = HerramientaRotaNoPuedeDesgastarseException.class)
+    public void testPicoDePiedraNoSePuedeUsarRoto() {
+        ConstructorPico constructor = new ConstructorPico();
+        constructor
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA);
+        Pico picoPiedra = constructor.construir();
+        Madera madera = new Madera();
+        for (int i = 0; i < 120; i++) {
+            picoPiedra.usar(madera);
+        }
+    }
 }
+

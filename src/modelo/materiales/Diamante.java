@@ -3,14 +3,10 @@ package modelo.materiales;
 import modelo.estados.EstadoVivo;
 import modelo.herramientas.PicoFino;
 import modelo.juego.Ubicable;
-import modelo.mapa.Casillero;
-import modelo.mapa.Mapa;
 import modelo.mapa.ObservadorUbicable;
 import modelo.mapa.Ubicacion;
-
 import java.util.Objects;
 import java.util.Optional;
-
 import static modelo.juego.ConstantesJuego.DURABILIDAD_DIAMANTE;
 
 public class Diamante extends Material {
@@ -34,12 +30,10 @@ public class Diamante extends Material {
 
     public boolean esIgualAUbicable(Ubicable ubicable) {
         return (this.getClass() == ubicable.getClass());
-
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(this.getClass());
     }
 

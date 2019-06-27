@@ -2,6 +2,7 @@ package modelo.patrones;
 
 import modelo.mapa.Ubicacion;
 import modelo.materiales.Material;
+import static modelo.juego.ConstantesJuego.MATERIAL_MANGO;
 
 public class PatronPico extends Patron {
 
