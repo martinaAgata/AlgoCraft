@@ -54,9 +54,9 @@ public class Jugador extends Ubicable {
         } catch (NoExisteNingunCasilleroParaLaUbicacionDadaException h) {
         } catch (NoSePuedeUbicarPorqueEstaOcupadoException e) {
             Material material = (Material) mapa.obtenerCasillero(ubicacion).obtenerUbicable();
-            //try {
+            try {
                 this.herramientaActual.usar(material);
-            //} catch (Exception f) { }
+            } catch (Exception f) { }
         }
     }
 
