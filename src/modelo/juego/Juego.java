@@ -156,13 +156,7 @@ public class Juego {
                 .construir(), dPPicoMetal);
         this.detectorPatron = dPPicoFino;
     }
-
-<<<<<<< Updated upstream
-=======
-
-
-
->>>>>>> Stashed changes
+    
     private void detectarHerramientatableroCrafteo() {
         this.herramientaCreada = this.detectorPatron.resolverPatron(this.tableroCrafteo);
     }
@@ -271,8 +265,4 @@ public class Juego {
         return this.jugador;
     }
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 }
