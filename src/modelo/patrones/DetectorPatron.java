@@ -3,7 +3,6 @@ package modelo.patrones;
 import modelo.herramientas.ConstructorHerramienta;
 import modelo.herramientas.Herramienta;
 import modelo.mapa.Mapa;
-
 import java.util.Optional;
 
 public abstract class DetectorPatron {

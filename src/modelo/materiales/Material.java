@@ -1,14 +1,10 @@
 package modelo.materiales;
 import modelo.estados.Estado;
-import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
 import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.exceptions.NoSePuedeDesgastarUnElementoConEstadoMuertoException;
 import modelo.herramientas.Herramienta;
 import modelo.juego.ObjetoUbicable;
-import modelo.mapa.ObservadorUbicable;
 import modelo.mapa.Ubicacion;
-
-import java.util.Optional;
 
 public abstract class Material extends ObjetoUbicable implements Desgastable {
 

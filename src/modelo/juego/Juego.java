@@ -30,8 +30,6 @@ public class Juego {
     private HashMap<Material, Integer> inventarioMaterialesJugador;
     private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas;
     private Optional<Herramienta> herramientaCreada;
-
-    /* Instancias genericas materiales */
     public static final Madera madera = new Madera();
     public static final Piedra piedra = new Piedra();
     public static final Metal metal = new Metal();
@@ -235,10 +233,6 @@ public class Juego {
         //Agregar al inventario
         inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
     } */
-
-
-    public void jugar() { }
-
 
     public void inicializarMapaConMateriales() {
         ObservadorUbicable observadorMateriales = new ObservadorUbicableImpl(this.mapa);

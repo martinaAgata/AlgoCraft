@@ -3,17 +3,22 @@ package modelo.juego;
 import modelo.estrategias.DesgasteAbrupto;
 import modelo.estrategias.DesgasteLinealFactor;
 import modelo.estrategias.EstrategiaDesgaste;
-import modelo.materiales.Diamante;
 import modelo.materiales.Madera;
-import modelo.materiales.Metal;
 import modelo.materiales.Piedra;
 
 public class ConstantesJuego {
 
+    /*----- Tamaños de tableros -----*/
     public static final int CANTIDAD_FILAS = 12;
     public static final int CANTIDAD_COLUMNAS = 12;
     public static final int CANTIDAD_FILAS_TABLERO_HERRAMIENTAS = 3;
     public static final int CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS = 3;
+    public static final int CANTIDAD_FILAS_CRAFTEO = 3;
+    public static final int CANTIDAD_COLUMNAS_CRAFTEO = 3;
+
+    /*----- Materiales de partes de las herramientas -----*/
+    public static final Madera MATERIAL_MANGO = new Madera();
+    public static final Piedra MATERIAL_PUNTA_PICO_FINO = new Piedra();
 
     /*----- Cantidades de materiales en tablero -----*/
     public static final int CANTIDAD_MADERAS = 9;

@@ -4,15 +4,10 @@ import modelo.estados.EstadoVivo;
 import modelo.estrategias.EstrategiaDesgaste;
 import modelo.materiales.Desgastable;
 import modelo.materiales.Diamante;
-
 import java.util.Objects;
 import java.util.Optional;
 
 public class PicoFino extends Herramienta {
-
-    private static final int DURABILIDAD_PICO_FINO = 1000;
-    private static final int FUERZA_PICO_FINO = 20;
-    private static final double FACTOR_DESGASTE = 0.1;
 
     public PicoFino(EstrategiaDesgaste estrategia, int durabilidad, int fuerza) {
         this.estado = new EstadoVivo(durabilidad);
@@ -28,9 +23,7 @@ public class PicoFino extends Herramienta {
     public Optional<Desgastable> desgastarContra(Diamante diamante) {
         diamante.reducirDurabilidad(this.fuerza);
         return Optional.empty();
-
     }
-
 
     @Override
     public int hashCode() {

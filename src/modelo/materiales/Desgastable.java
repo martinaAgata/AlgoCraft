@@ -1,7 +1,6 @@
 package modelo.materiales;
 
 import modelo.herramientas.*;
-
 import java.util.Optional;
 
 public interface Desgastable {

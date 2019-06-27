@@ -4,6 +4,7 @@ import modelo.herramientas.ConstructorHerramienta;
 import modelo.materiales.Material;
 
 public class DetectorPatronPico extends DetectorPatron {
+
     private final Material materialParteSuperior;
 
     public DetectorPatronPico(Material material, ConstructorHerramienta constructor) {

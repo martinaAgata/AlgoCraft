@@ -9,8 +9,6 @@ import javafx.scene.control.Label;
 import modelo.herramientas.Herramienta;
 import modelo.materiales.Madera;
 import modelo.materiales.Material;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
