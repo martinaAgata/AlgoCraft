@@ -1,5 +1,6 @@
 package interfaz.handlers;
 
+import interfaz.AbrirInterfazCrafteo;
 import interfaz.Tablero;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;

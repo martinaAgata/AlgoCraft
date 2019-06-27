@@ -49,4 +49,6 @@ public class Tablero extends VBox {
             }
         }
     }
+
+
 }

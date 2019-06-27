@@ -20,5 +20,7 @@ public class ConstantesInterfaz {
     public static final String RUTA_IMG_HACHA_MADERA = "file:src/interfaz/imagenes/wooden_axe.png";
     public static final String RUTA_IMG_HACHA_PIEDRA = "file:src/interfaz/imagenes/stone_axe.png";
     public static final String RUTA_IMG_HACHA_METAL = "file:src/interfaz/imagenes/iron_axe.png";
+    public static final String RUTA_IMG_TABLERO_CRAFTEO = "file:src/interfaz/imagenes/minecraft_table_big.jpg";
+    public static final String RUTA_IMG_EMPTY_CRAFT_SPACE = "file:src/interfaz/imagenes/emptyCraftBox.png";
 
 }
