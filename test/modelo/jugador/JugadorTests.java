@@ -1,11 +1,8 @@
 package modelo.jugador;
 
-import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
-import modelo.exceptions.NoSePuedeUbicarPorqueEstaOcupadoException;
 import modelo.herramientas.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
-import modelo.juego.Ubicable;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
 import modelo.materiales.Madera;
@@ -32,7 +29,7 @@ public class JugadorTests {
         constructor.conMaterial(new Madera()).conDesgaste(DESGASTE_HACHA_MADERA)
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA);
-        Jugador jugador = new Jugador(constructor.construir(), null);
+        Jugador jugador = new Jugador(constructor.construir(), null,null);
         //Terminar
     }
 
@@ -43,7 +40,7 @@ public class JugadorTests {
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA);
         Hacha hachaInicial = (Hacha) constructor.construir();
-        Jugador jugador = new Jugador(hachaInicial, null);
+        Jugador jugador = new Jugador(hachaInicial, null,null);
         assertThat(jugador.obtenerHerramientaActual(), is(hachaInicial));
     }
     @Test
@@ -55,7 +52,7 @@ public class JugadorTests {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        Jugador jugador = new Jugador(hachaInicial, null);
+        Jugador jugador = new Jugador(hachaInicial, null,null);
         Ubicacion ubicacionJugador = new Ubicacion(3,3);
         jugador.setUbicacion(ubicacionJugador);
         mapa.ubicarEnCasillero(jugador,ubicacionJugador);
@@ -69,8 +66,6 @@ public class JugadorTests {
     public void testJugadorPuedeMoverseHaciaLaDerechaEnJuegoInicializado() {
         Juego juego = new Juego();
         juego.inicializarJuego();
-        //juego.inicializarJugador();
-        //juego.inicializarMapaConMateriales();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseALaDerecha(juego.obtenerMapa());
     }
@@ -113,7 +108,7 @@ public class JugadorTests {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        Jugador jugador = new Jugador(hachaInicial, null);
+        Jugador jugador = new Jugador(hachaInicial, null,null);
         Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
         jugador.setUbicacion(ubicacionInicialJugador);
         mapa.ubicarEnCasillero(jugador,ubicacionInicialJugador);
@@ -132,7 +127,7 @@ public class JugadorTests {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        Jugador jugador = new Jugador(hachaInicial, null);
+        Jugador jugador = new Jugador(hachaInicial, null,null);
         Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
         jugador.setUbicacion(ubicacionInicialJugador);
         mapa.ubicarEnCasillero(jugador,ubicacionInicialJugador);
@@ -151,7 +146,7 @@ public class JugadorTests {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        Jugador jugador = new Jugador(hachaInicial, null);
+        Jugador jugador = new Jugador(hachaInicial, null,null);
         Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
         jugador.setUbicacion(ubicacionInicialJugador);
         mapa.ubicarEnCasillero(jugador,ubicacionInicialJugador);
@@ -170,14 +165,12 @@ public class JugadorTests {
                 .conDesgaste(DESGASTE_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA)
                 .construir();
-        Jugador jugador = new Jugador(hachaInicial, null);
         Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
-        jugador.setUbicacion(ubicacionInicialJugador);
+        Jugador jugador = new Jugador(hachaInicial, null,ubicacionInicialJugador);
         mapa.ubicarEnCasillero(jugador,ubicacionInicialJugador);
         jugador.moverseALaIzquierda(mapa);
         Ubicacion ubicacionEsperada = ubicacionInicialJugador.getUbicacionIzquierda();
         assertTrue(ubicacionEsperada.equals(jugador.obtenerUbicacion()));
-
     }
 
 
