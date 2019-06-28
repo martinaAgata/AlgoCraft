@@ -57,4 +57,10 @@ public class PantallaPrincipal extends VBox {
                                 this.juego.obtenerJugador(), this.inventarios));
         return escenaJuego;
     }
+
+    public void actualizarInventariosInterfaz(){
+        this.inventarios.actualizarInventarioMateriales();
+        this.inventarios.actualizarInventarioHerramientas();
+
+    }
 }
