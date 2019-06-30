@@ -202,32 +202,11 @@ public class Juego {
     }
 
     public void crearHerramienta() {
-        //ya tenes cosas en el mapa carfteo y decis crear herramienta
-        //detectarHerramientatableroCrafteo();
         if (!this.herramientaCreada.isPresent())
             throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
         eliminarMaterialesDelInventario();
         agregarHerramientaAlInventario();
     }
-
-   /* public void crearHerramienta() {
-        //ya tenes cosas en el mapa carfteo y decis crear herramienta
-        //detectarHerramientatableroCrafteo();
-        if (!this.herramientaCreada.isPresent()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
-        //Eliminar materiales del inventario
-        for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
-            for (int y=1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++) {
-                try {
-                    Material eliminar = (Material) this.tableroCrafteo.eliminarDeCasillero(new Ubicacion(x,y));
-
-                    this.inventarioMaterialesJugador.put(eliminar, this.inventarioMaterialesJugador.get(eliminar) - 1);
-                } catch (NoSePuedeEliminarPorqueEstaVacioException casilleroVacio){//Hacer nada}
-            }
-        }
-
-        //Agregar al inventario
-        inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
-    } */
 
     public void inicializarMapaConMateriales() {
         ObservadorUbicable observadorMateriales = new ObservadorUbicableImpl(this);
