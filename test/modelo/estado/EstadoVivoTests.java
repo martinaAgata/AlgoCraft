@@ -33,7 +33,6 @@ public class EstadoVivoTests {
     @Test
     public void testEstadoVivoDevueleveEstadoVivoConDurabilidadMayorACero(){
         EstadoVivo estadoVivo = new EstadoVivo(100);
-        //assertTrue((estadoVivo.desgastar(10)) instanceof EstadoVivo);
         assertThat(estadoVivo.desgastar(10), is(estadoVivo));
         assertThat(estadoVivo.desgastar(30), is(estadoVivo));
         assertThat(estadoVivo.desgastar(50), is(estadoVivo));

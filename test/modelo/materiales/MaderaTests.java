@@ -45,7 +45,6 @@ public class MaderaTests {
         assertThat(madera.getDurabilidad(),is(DURABIDAD_INICIAL_MADERA - hachaMadera.getFuerza()));
 
     }
-    // probar que el reducir durabilidad tambien funciona bien
 
     @Test
     public void testMaderaEsDesgastadaPorHachaPiedra(){

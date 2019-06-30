@@ -34,9 +34,8 @@ public class Juego {
     public static final Metal metal = new Metal();
     public static final Diamante diamante = new Diamante();
 
-    //NO ESTAMOS LLAMANDO INICIALIZAR JUEGO CUANDO CREO EL JUEGO
 
-    public Juego() { // ver lo del booleano para inicializar
+    public Juego() {
         this.mapa = new Mapa(CANTIDAD_FILAS, CANTIDAD_COLUMNAS);
         this.tableroCrafteo = new Mapa(CANTIDAD_FILAS_TABLERO_HERRAMIENTAS, CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS);
         this.inventarioHerramientas = new HashMap<>();
@@ -202,37 +201,25 @@ public class Juego {
     }
 
     public void crearHerramienta() {
-        //ya tenes cosas en el mapa carfteo y decis crear herramienta
-        //detectarHerramientatableroCrafteo();
         if (!this.herramientaCreada.isPresent())
             throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
         eliminarMaterialesDelInventario();
         agregarHerramientaAlInventario();
     }
 
-   /* public void crearHerramienta() {
-        //ya tenes cosas en el mapa carfteo y decis crear herramienta
-        //detectarHerramientatableroCrafteo();
-        if (!this.herramientaCreada.isPresent()) throw new NoHayHerramientaParaCrearException("No se puede crear ninguna herramienta con la combinacion actual");
-        //Eliminar materiales del inventario
-        for(int x=1; x <= CANTIDAD_FILAS_TABLERO_HERRAMIENTAS; x++) {
-            for (int y=1; y <= CANTIDAD_COLUMNAS_TABLERO_HERRAMIENTAS; y++) {
-                try {
-                    Material eliminar = (Material) this.tableroCrafteo.eliminarDeCasillero(new Ubicacion(x,y));
-
-                    this.inventarioMaterialesJugador.put(eliminar, this.inventarioMaterialesJugador.get(eliminar) - 1);
-                } catch (NoSePuedeEliminarPorqueEstaVacioException casilleroVacio){//Hacer nada}
-            }
-        }
-
-        //Agregar al inventario
-        inventarioHerramientas.get(herramientaCreada.get()).add(herramientaCreada.get());
-    } */
-
     public void inicializarMapaConMateriales() {
         ObservadorUbicable observadorMateriales = new ObservadorUbicableImpl(this);
         this.inicializarInventarioTablero();
         for (int i = 1; i <= 3; i++) {
+            for (int j = 1; j <= 3; j++) {
+                Ubicacion ubicacion = new Ubicacion(i, j);
+                Madera madera = new Madera(ubicacion, Optional.of(observadorMateriales));
+                inventarioTablero.put(madera, inventarioTablero.get(madera) + 1);
+                this.mapa.ubicarEnCasillero(madera, ubicacion);
+            }
+        }
+
+        for (int i = 9; i <= 11; i++) {
             for (int j = 1; j <= 3; j++) {
                 Ubicacion ubicacion = new Ubicacion(i, j);
                 Madera madera = new Madera(ubicacion, Optional.of(observadorMateriales));

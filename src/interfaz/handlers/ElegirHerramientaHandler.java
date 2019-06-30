@@ -6,8 +6,6 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import modelo.herramientas.Herramienta;
 
-import javax.swing.text.html.ImageView;
-
 public class ElegirHerramientaHandler implements EventHandler {
     private Inventario inventario;
     private Herramienta herramienta;
@@ -19,8 +17,6 @@ public class ElegirHerramientaHandler implements EventHandler {
     }
     @Override
     public void handle(Event event) {
-        System.out.println("Elegiria esta herramienta");
-        //ImageViewHerramienta imgVHerramienta = (ImageViewHerramienta) event.getSource();
         this.inventario.seleccionarHerramientaAUtilizar(this.herramienta);
     }
 }

@@ -46,7 +46,6 @@ public class CrafteoController {
         for(int i=1; i <= tableroCrafteo.obtenerCantidadFilas(); i++){
             for(int j=1; j <= tableroCrafteo.obtenerCantidadColumnas(); j++){
                 try { tableroCrafteo.eliminarDeCasillero(new Ubicacion(i,j)); }
-                //catch (NoExisteNingunCasilleroParaLaUbicacionDadaException e){ }
                 catch (NoSePuedeEliminarPorqueEstaVacioException e) { }
             }
         }
@@ -63,7 +62,7 @@ public class CrafteoController {
 
         int x = GridPane.getColumnIndex(imgView);
         int y = GridPane.getRowIndex(imgView);
-        x++;    y++; //Correcion de posicion x empezar desde 0.
+        x++;    y++;
         try {
             this.juego.ubicarMaterialTableroCrafteo(new Ubicacion(x, y), this.imgVM.getMaterial());
             Integer cantMaterial = this.inventarioMaterialJugadorCopy.get(imgVM.getMaterial());

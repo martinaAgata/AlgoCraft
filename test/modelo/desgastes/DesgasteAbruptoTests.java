@@ -29,7 +29,6 @@ public class DesgasteAbruptoTests {
         DesgasteAbrupto desgasteAbrupto = new DesgasteAbrupto();
         EstadoVivo estadoVivo = new EstadoVivo(10);
         for(int i=0; i<10; i++) desgasteAbrupto.desgastar(1,estadoVivo);
-        //assertThat(desgasteAbrupto.desgastar(1, estadoVivo), );
         assertNotEquals(estadoVivo, desgasteAbrupto.desgastar(1, estadoVivo).getClass());
     }
 }

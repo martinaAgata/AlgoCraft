@@ -30,7 +30,6 @@ public class JugadorTests {
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
                 .conFuerza(FUERZA_HACHA_MADERA);
         Jugador jugador = new Jugador(constructor.construir(), null,null);
-        //Terminar
     }
 
     @Test
@@ -172,15 +171,5 @@ public class JugadorTests {
         Ubicacion ubicacionEsperada = ubicacionInicialJugador.getUbicacionIzquierda();
         assertTrue(ubicacionEsperada.equals(jugador.obtenerUbicacion()));
     }
-
-
- /*    @Test (expected = Exception.class)
-     void test11JugadorNoPuedeMoverseHaciaLaIzquierdaEnJuegoInicializado() { //limite izquierdo del mapa
-        Juego juego = new Juego();
-        juego.inicializarJugador();
-        juego.inicializarMapaConMateriales();
-        Jugador jugador = juego.obtenerJugador();
-        jugador.moverseALaIzquierda(juego.obtenerMapa());
-    }*/
 
 }

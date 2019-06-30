@@ -90,6 +90,5 @@ public class DetectorPatronesPicoTest {
         DetectorPatron dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().construir());
         Optional<Herramienta> resultado = dp.resolverPatron(tablero);
         assertFalse(resultado.isPresent());
-        //assertThat(resultado.get(), not(instanceOf(Pico.class)));
     }
 }

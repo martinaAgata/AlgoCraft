@@ -55,6 +55,7 @@ public class AbrirInterfazCrafteo {
 
     public void iniciar(SeleccionarMaterialCrafteoHandler seleccionarHandler, UbicarMaterialCrafteoHandler ubicarHandler, CraftearHerramientaHandle craftHandle, SalirCrafteoHandler salirHandler) {
         ventanaEmergente = new Stage();
+        ventanaEmergente.getIcons().add(new Image(RUTA_IMG_LOGO));
         ventanaEmergente.setTitle("Mesa de Crafteo");
         FXMLLoader loader = new FXMLLoader();
         // Path to the FXML File
@@ -71,7 +72,6 @@ public class AbrirInterfazCrafteo {
         this.tableroGrid = (GridPane) tableroCraft.getChildren().get(1);
         inicializarGridPanetablero(ubicarHandler);
         this.inventarioMateriales = (HBox) tableroCraft.getChildren().get(2);
-        //testearInventarioHBox(seleccionarHandler);
         this.herramientaCrafteable = (ImageView) tableroCraft.getChildren().get(3);
         this.herramientaCrafteable.setOnMouseClicked(craftHandle);
         Scene scene = new Scene(tableroCraft, tableroCraft.getMaxWidth(), tableroCraft.getMaxHeight());
