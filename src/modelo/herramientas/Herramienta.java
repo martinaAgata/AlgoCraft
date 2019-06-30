@@ -29,4 +29,11 @@ public abstract class Herramienta implements Desgastable{
     public int getFuerza() {
         return fuerza;
     }
+
+    public boolean esIgualA(Herramienta herramienta){
+        if(this == herramienta) return true;
+        if(this.getClass() != herramienta.getClass()) return false;
+        if(this.getDurabilidad() != herramienta.getDurabilidad() || this.getFuerza() != herramienta.getFuerza()) return  false;
+        return true;
+    }
 }

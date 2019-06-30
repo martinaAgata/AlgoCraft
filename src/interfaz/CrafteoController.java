@@ -43,10 +43,10 @@ public class CrafteoController {
 
     public void vaciarMatrizCrafteo(){
         Mapa tableroCrafteo = this.juego.obtenerTableroCrafteo();
-        for(int i=0; i < tableroCrafteo.obtenerCantidadFilas(); i++){
-            for(int j=0; j < tableroCrafteo.obtenerCantidadColumnas(); j++){
+        for(int i=1; i <= tableroCrafteo.obtenerCantidadFilas(); i++){
+            for(int j=1; j <= tableroCrafteo.obtenerCantidadColumnas(); j++){
                 try { tableroCrafteo.eliminarDeCasillero(new Ubicacion(i,j)); }
-                catch (NoExisteNingunCasilleroParaLaUbicacionDadaException e){ }
+                //catch (NoExisteNingunCasilleroParaLaUbicacionDadaException e){ }
                 catch (NoSePuedeEliminarPorqueEstaVacioException e) { }
             }
         }

@@ -36,7 +36,7 @@ public class PicoFino extends Herramienta {
         if (this == obj) return true;
         if (this.getClass() != obj.getClass()) return false;
         PicoFino unPico = (PicoFino) obj;
-        if (this.getDurabilidad() != unPico.getDurabilidad() || this.getFuerza() != unPico.getFuerza()) return false;
+        if (this.getFuerza() != unPico.getFuerza()) return false;
         return true;
     }
 }

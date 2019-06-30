@@ -21,6 +21,9 @@ public class Jugador extends Ubicable {
     }
 
     public void setUbicacion(Ubicacion u) { this.ubicacion = u; }
+    public void setHerramientaActual(Herramienta herramienta){
+        this.herramientaActual = herramienta;
+    }
 
     public Herramienta obtenerHerramientaActual() {
         return herramientaActual;

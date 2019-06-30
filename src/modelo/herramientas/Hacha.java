@@ -31,7 +31,8 @@ public class Hacha extends Herramienta {
     @Override
     public int hashCode() {
         //Verificar que esto no rompa el inventario QUITAR
-        return Objects.hash(this.getClass(),this.material.getClass());
+        return Objects.hashCode(((String)this.getClass().getName())) + Objects.hashCode(this.material.getClass());
+        //return Objects.hash(((String)this.getClass().getName()),this.material.getClass());
     }
 
     @Override
@@ -39,7 +40,7 @@ public class Hacha extends Herramienta {
         if (this == obj) return true;
         if (this.getClass() != obj.getClass()) return false;
         Hacha unHacha = (Hacha) obj;
-        if (this.getDurabilidad() != unHacha.getDurabilidad() || this.getFuerza() != unHacha.getFuerza()) return false;
+        if (this.getFuerza() != unHacha.getFuerza()) return false;
         return true;
     }
 

@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import modelo.herramientas.Herramienta;
 import modelo.juego.Juego;
 import modelo.juego.Ubicable;
 import modelo.mapa.Mapa;
@@ -49,6 +50,7 @@ public class Tablero extends VBox {
     }
 
     public Juego obtenerJuego(){ return this.juego; }
-
-
+    public void seleccionarHerramientaAUtilizar(Herramienta herramienta){
+        this.juego.seleccionarHerramientaAUtilizar(herramienta);
+    }
 }

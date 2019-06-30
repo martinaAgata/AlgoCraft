@@ -1,7 +1,6 @@
 package interfaz;
 
 import interfaz.handlers.ElegirHerramientaHandler;
-import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -38,7 +37,7 @@ public class Inventario extends VBox {
     public static final Piedra piedra = new Piedra();
     public static final Metal metal = new Metal();
     public static final Diamante diamante = new Diamante();
-    private HashMap<Herramienta, Image> imagenPorHerramienta;
+    private HashMap<Herramienta, String> rutaImagenPorHerramienta;
 
     public Inventario(HashMap<Material, Integer> inventarioMateriales,
                       HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientas) {
@@ -46,7 +45,7 @@ public class Inventario extends VBox {
         this.inventarioHerramientas = inventarioHerramientas;
         hboxHerramientas = new HBox(10);
         hboxMateriales = new HBox(10);
-        this.imagenPorHerramienta = new HashMap<>();
+        this.rutaImagenPorHerramienta = new HashMap<>();
         this.cargarImagenPorHerramienta();
         this.crearInventarioMateriales();
         this.crearInventarioHerramientas();
@@ -55,13 +54,13 @@ public class Inventario extends VBox {
     }
 
     private void cargarImagenPorHerramienta(){
-        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera()), new Image(RUTA_IMG_HACHA_MADERA, CASILLERO_WIDTH, CASILLERO_HEIGHT, false, true));
-        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra()), new Image(RUTA_IMG_HACHA_PIEDRA, CASILLERO_WIDTH, CASILLERO_HEIGHT, false, true));
-        this.imagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal()), new Image(RUTA_IMG_HACHA_METAL, CASILLERO_WIDTH, CASILLERO_HEIGHT, false, true));
-        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera()), new Image(RUTA_IMG_PICO_MADERA, CASILLERO_WIDTH, CASILLERO_HEIGHT, false, true));
-        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra()), new Image(RUTA_IMG_PICO_PIEDRA, CASILLERO_WIDTH, CASILLERO_HEIGHT, false, true));
-        this.imagenPorHerramienta.put(new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal()), new Image(RUTA_IMG_PICO_METAL, CASILLERO_WIDTH, CASILLERO_HEIGHT, false, true));
-        this.imagenPorHerramienta.put(new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO), new Image(RUTA_IMG_PICO_FINO, CASILLERO_WIDTH, CASILLERO_HEIGHT, false, true));
+        this.rutaImagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera()), RUTA_IMG_HACHA_MADERA);
+        this.rutaImagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra()), RUTA_IMG_HACHA_PIEDRA);
+        this.rutaImagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal()), RUTA_IMG_HACHA_METAL);
+        this.rutaImagenPorHerramienta.put(new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera()), RUTA_IMG_PICO_MADERA);
+        this.rutaImagenPorHerramienta.put(new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra()), RUTA_IMG_PICO_PIEDRA);
+        this.rutaImagenPorHerramienta.put(new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal()), RUTA_IMG_PICO_METAL);
+        this.rutaImagenPorHerramienta.put(new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO), RUTA_IMG_PICO_FINO);
 
     }
 
@@ -126,7 +125,8 @@ public class Inventario extends VBox {
         Set<Herramienta> herramientas = this.inventarioHerramientas.keySet();
         for(Herramienta tipoHerramienta : herramientas){
             for(Herramienta herramienta : this.inventarioHerramientas.get(tipoHerramienta)){
-                ImageView imgVHerramienta = new ImageView(this.imagenPorHerramienta.get(herramienta));
+                String ruta = this.rutaImagenPorHerramienta.get(herramienta);
+                ImageView imgVHerramienta = new ImageView(new Image(ruta, CASILLERO_WIDTH, CASILLERO_HEIGHT, false, true));
                 imgVHerramienta.setFitHeight(40);
                 imgVHerramienta.setFitWidth(40);
                 Label labelHerramientaLife = new Label();
@@ -134,7 +134,7 @@ public class Inventario extends VBox {
                 Integer durabilidad = herramienta.getDurabilidad();
                 labelHerramientaLife.setText(durabilidad.toString());
                 labelHerramientaLife.setGraphic(imgVHerramienta);
-                labelHerramientaLife.setOnMouseClicked(new ElegirHerramientaHandler());
+                labelHerramientaLife.setOnMouseClicked(new ElegirHerramientaHandler(this, herramienta));
                 this.hboxHerramientas.getChildren().add(labelHerramientaLife);
             }
         }
@@ -147,5 +147,9 @@ public class Inventario extends VBox {
     public void actualizarInventarioHerramientas(){
         this.hboxHerramientas.getChildren().remove(0, this.hboxHerramientas.getChildren().size());
         this.crearInventarioHerramientas();
+    }
+
+    public void seleccionarHerramientaAUtilizar(Herramienta herramienta){
+        ((Tablero)this.getParent()).seleccionarHerramientaAUtilizar(herramienta);
     }
 }

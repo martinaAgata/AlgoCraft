@@ -147,7 +147,7 @@ public class Juego {
                 .conDesgaste(DESGASTE_PICO_METAL)
                 .conFuerza(FUERZA_PICO_METAL)
                 .construir(), dPPicoPiedra);
-        DetectorPatron dPPicoFino = new DetectorPatronPicoFino(piedra, () -> new ConstructorPicoFino()
+        DetectorPatron dPPicoFino = new DetectorPatronPicoFino(metal, () -> new ConstructorPicoFino()
                 .conMaterial(piedra)
                 .conDurabilidad(DURABILIDAD_PICO_FINO)
                 .conDesgaste(DESGASTE_PICO_FINO)
@@ -263,6 +263,16 @@ public class Juego {
         Diamante diamante = new Diamante(ubicacion, Optional.of(observadorMateriales));
         inventarioTablero.put(diamante, inventarioTablero.get(diamante) + 1);
         this.mapa.ubicarEnCasillero(diamante, ubicacion);
+    }
+
+    public void seleccionarHerramientaAUtilizar(Herramienta herramienta){
+        Herramienta herramientaSeleccionada = null;
+        for(Herramienta herramientaEnInventario : this.inventarioHerramientas.get(herramienta)){
+            if(!herramienta.esIgualA(herramientaEnInventario)) continue;
+            herramientaSeleccionada = herramientaEnInventario;
+            break;
+        }
+        this.jugador.setHerramientaActual(herramientaSeleccionada);
     }
 
     public Mapa obtenerMapa() {

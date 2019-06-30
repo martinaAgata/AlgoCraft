@@ -45,7 +45,7 @@ public class Pico extends Herramienta {
         if (this == obj) return true;
         if (this.getClass() != obj.getClass()) return false;
         Pico unPico = (Pico) obj;
-        if (this.getDurabilidad() != unPico.getDurabilidad() || this.getFuerza() != unPico.getFuerza()) return false;
+        if (this.getFuerza() != unPico.getFuerza()) return false;
         return true;
     }
 }

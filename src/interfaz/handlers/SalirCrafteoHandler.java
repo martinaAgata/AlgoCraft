@@ -14,6 +14,6 @@ public class SalirCrafteoHandler implements EventHandler<WindowEvent> {
 
     @Override
     public void handle(WindowEvent event) {
-        this.craftController.vaciarMatrizCrafteo();
+        if(event.getEventType() == WindowEvent.WINDOW_CLOSE_REQUEST) this.craftController.vaciarMatrizCrafteo();
     }
 }

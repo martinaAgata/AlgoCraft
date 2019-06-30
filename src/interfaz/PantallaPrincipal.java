@@ -7,6 +7,7 @@ import interfaz.handlers.Mover;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import modelo.herramientas.Herramienta;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
 import modelo.juego.NullUbicable;
