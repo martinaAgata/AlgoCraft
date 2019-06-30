@@ -76,10 +76,10 @@ public class CrafteoController {
     }
 
     public void crearHerramientaCrafteada(){
+        this.interfazCrafteo.actualizarHerramientaCrafteable(null);
+        this.vaciarMatrizCrafteo();
+        this.interfazCrafteo.actualizarInventarioHbox(this.juego.obtenerInventarioMaterialesJugador(), this.selecMaterial);
         try { this.juego.crearHerramienta(); }
         catch (NoHayHerramientaParaCrearException e) { return; }
-        this.vaciarMatrizCrafteo();
-        this.interfazCrafteo.actualizarHerramientaCrafteable(null);
-        this.interfazCrafteo.actualizarInventarioHbox(this.juego.obtenerInventarioMaterialesJugador(), this.selecMaterial);
     }
 }
