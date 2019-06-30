@@ -211,7 +211,7 @@ public class Juego {
         ObservadorUbicable observadorMateriales = new ObservadorUbicableImpl(this);
         this.inicializarInventarioTablero();
         for (int i = 1; i <= 3; i++) {
-            for (int j = 1; j <= 3; j++) {
+            for (int j = 9; j <= 11; j++) {
                 Ubicacion ubicacion = new Ubicacion(i, j);
                 Madera madera = new Madera(ubicacion, Optional.of(observadorMateriales));
                 inventarioTablero.put(madera, inventarioTablero.get(madera) + 1);
@@ -237,6 +237,15 @@ public class Juego {
             }
         }
 
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= 2 ; j++) {
+                Ubicacion ubicacion = new Ubicacion(i, j);
+                Metal metal = new Metal(ubicacion, Optional.of(observadorMateriales));
+                inventarioTablero.put(metal, inventarioTablero.get(metal) + 1);
+                this.mapa.ubicarEnCasillero(metal, ubicacion);
+            }
+        }
+
         for (int i = 8; i <= 9; i++) {
             for (int j = 8; j <= 9; j++) {
                 Ubicacion ubicacion = new Ubicacion(i, j);
@@ -246,10 +255,15 @@ public class Juego {
             }
         }
 
-        Ubicacion ubicacion = new Ubicacion(10, 10);
-        Diamante diamante = new Diamante(ubicacion, Optional.of(observadorMateriales));
-        inventarioTablero.put(diamante, inventarioTablero.get(diamante) + 1);
-        this.mapa.ubicarEnCasillero(diamante, ubicacion);
+        Ubicacion ubicacion1 = new Ubicacion(10, 10);
+        Diamante diamante1 = new Diamante(ubicacion1, Optional.of(observadorMateriales));
+        inventarioTablero.put(diamante1, inventarioTablero.get(diamante1) + 1);
+        this.mapa.ubicarEnCasillero(diamante1, ubicacion1);
+
+        Ubicacion ubicacion2 = new Ubicacion(12, 1);
+        Diamante diamante2 = new Diamante(ubicacion2, Optional.of(observadorMateriales));
+        inventarioTablero.put(diamante2, inventarioTablero.get(diamante2) + 1);
+        this.mapa.ubicarEnCasillero(diamante2, ubicacion2);
     }
 
     public void seleccionarHerramientaAUtilizar(Herramienta herramienta){
