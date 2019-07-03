@@ -6,7 +6,6 @@ import interfaz.handlers.SeleccionarMaterialCrafteoHandler;
 import interfaz.handlers.UbicarMaterialCrafteoHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
 import modelo.exceptions.NoHayHerramientaParaCrearException;
 import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
 import modelo.juego.Juego;
@@ -77,9 +76,9 @@ public class CrafteoController {
 
     public void crearHerramientaCrafteada(){
         this.interfazCrafteo.actualizarHerramientaCrafteable(null);
-        this.vaciarMatrizCrafteo();
-        this.interfazCrafteo.actualizarInventarioHbox(this.juego.obtenerInventarioMaterialesJugador(), this.selecMaterial);
         try { this.juego.crearHerramienta(); }
         catch (NoHayHerramientaParaCrearException e) { return; }
+        this.interfazCrafteo.actualizarInventarioHbox(this.juego.obtenerInventarioMaterialesJugador(), this.selecMaterial);
+        this.vaciarMatrizCrafteo();
     }
 }
