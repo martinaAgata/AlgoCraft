@@ -40,27 +40,39 @@ public class JuegoTests {
 
     public void inicializarMapaTestConMateriales() {
         for (int i = 1; i <= 3; i++) {
+            for (int j = 9; j <= 11; j++) {
+                mapaTest.ubicarEnCasillero(new Madera(),new Ubicacion(i, j));
+            }
+        }
+
+        for (int i = 9; i <= 11; i++) {
             for (int j = 1; j <= 3; j++) {
                 mapaTest.ubicarEnCasillero(new Madera(),new Ubicacion(i, j));
             }
         }
+
         for (int i = 4; i <= 7; i++) {
             for (int j = 4; j <= 7; j++) {
                 mapaTest.ubicarEnCasillero(new Piedra(),new Ubicacion(i, j));
             }
         }
 
-        for (int i = 8; i <= 9; i++) {
-            for (int j = 8; j <= 9; j++) {
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= 2 ; j++) {
                 mapaTest.ubicarEnCasillero(new Metal(),new Ubicacion(i, j));
             }
         }
 
-        for (int i = 10; i <= 10; i++) {
-            for (int j = 10; j <= 10; j++) {
-                mapaTest.ubicarEnCasillero(new Diamante(),new Ubicacion(i, j));
+        for (int i = 8; i <= 9; i++) {
+            for (int j = 8; j <= 9 ; j++) {
+                mapaTest.ubicarEnCasillero(new Metal(),new Ubicacion(i, j));
             }
         }
+
+        Ubicacion ubicacion1 = new Ubicacion(10,10);
+        Ubicacion ubicacion2 = new Ubicacion(12,1);
+        mapaTest.ubicarEnCasillero(new Diamante(), ubicacion1);
+        mapaTest.ubicarEnCasillero(new Diamante(), ubicacion2);
     }
 
     private void agregarHerramientaAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
