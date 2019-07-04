@@ -169,13 +169,7 @@ public class HachaMaderaTests {
 
     @Test
     public void testHachaMaderaEsIgualASiMisma(){
-        ConstructorHacha constructor = new ConstructorHacha();
-        constructor
-                .conMaterial(new Madera())
-                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
-                .conDesgaste(DESGASTE_HACHA_MADERA)
-                .conFuerza(FUERZA_HACHA_MADERA);
-        Hacha hachaMadera = constructor.construir();
+        Hacha hachaMadera = new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera());
         assertTrue(hachaMadera.esIgualA(hachaMadera));
     }
 

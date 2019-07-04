@@ -9,9 +9,12 @@ import modelo.materiales.Metal;
 import modelo.materiales.Piedra;
 import org.junit.Test;
 
-import static modelo.juego.ConstantesJuego.DESGASTE_PICO_FINO;
+import static junit.framework.TestCase.assertFalse;
+import static modelo.juego.ConstantesJuego.*;
+import static modelo.juego.ConstantesJuego.FUERZA_PICO_FINO;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertTrue;
 
 public class PicoFinoTests {
 
@@ -112,4 +115,47 @@ public class PicoFinoTests {
             picoFino.usar(madera);
         }
     }
+    @Test
+    public void testPicoFinoEsIgualASiMisma(){
+        PicoFino picoFino = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        assertTrue(picoFino.esIgualA(picoFino));
+    }
+
+    @Test
+    public void testNuevoPicoFinoEsIgualANuevoPicoFino(){
+        PicoFino picoFino = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        PicoFino nuevopicoFino = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        assertTrue(picoFino.esIgualA(nuevopicoFino));
+    }
+
+    @Test
+    public void testPicoFinoUsadaNOEsIgualANuevoPicoFino(){
+        PicoFino picoFino = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        picoFino.desgastarContra(new Piedra());
+        PicoFino nuevapicoFino = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        assertTrue(picoFino.esIgualA(nuevapicoFino));
+    }
+
+    @Test
+    public void testPicoFinoNOEsIgualAHacha(){
+        PicoFino picoFino = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Hacha hacha = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        assertFalse(picoFino.esIgualA(hacha));
+        hacha = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        assertFalse(picoFino.esIgualA(hacha));
+        hacha = new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera());
+        assertFalse(picoFino.esIgualA(hacha));
+    }
+
+    @Test
+    public void testPicoFinoNOEsigualAPico(){
+        PicoFino picoFino = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Pico pico = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        assertFalse(picoFino.esIgualA(pico));
+        pico = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        assertFalse(picoFino.esIgualA(pico));
+        pico = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        assertFalse(picoFino.esIgualA(pico));
+    }
+
 }
