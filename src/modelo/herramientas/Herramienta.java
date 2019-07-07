@@ -2,6 +2,8 @@ package modelo.herramientas;
 
 import modelo.estados.Estado;
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.HerramientaSeHaDesgastadoException;
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.exceptions.NoSePuedeDesgastarUnElementoConEstadoMuertoException;
 import modelo.materiales.*;
 import modelo.estrategias.EstrategiaDesgaste;

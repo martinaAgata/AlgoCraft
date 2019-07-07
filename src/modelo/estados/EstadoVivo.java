@@ -22,6 +22,7 @@ public class EstadoVivo implements Estado {
         }
         return this;
     }
+
     public int getDurabilidad() {
         return this.durabilidad;
     }

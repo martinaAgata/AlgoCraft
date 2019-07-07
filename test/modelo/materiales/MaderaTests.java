@@ -60,7 +60,7 @@ public class MaderaTests {
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 5));
     }
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testMaderaEsDesgastadaPorHachaMetal(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
@@ -150,7 +150,7 @@ public class MaderaTests {
         assertThat(madera.getDurabilidad(), is(DURABIDAD_INICIAL_MADERA - 8));
     }
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testMaderaEsDesgastadaPorHachaPiedraSeReduceVariasVeces(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
@@ -181,7 +181,7 @@ public class MaderaTests {
         }
     }
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testMaderaAlMorirLlamaAObservador() {
         List<Ubicacion> ubicaciones = new ArrayList<>();
         Madera madera = new Madera(new Ubicacion(3,3), Optional.of(ubicable -> ubicaciones.add(ubicable.getUbicacion())));
@@ -226,7 +226,7 @@ public class MaderaTests {
         madera.desgastarContra(hachaMetal);
     }
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testMaderaConEstadoMuertoDevuelveDurabilidadCero(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();
@@ -242,7 +242,7 @@ public class MaderaTests {
         assertThat(madera.getDurabilidad(), is(0));
     }
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testMaderaEsDesgastadaConHachaMaderaHachaPiedraHachaMetal(){
         Madera madera = new Madera();
         ConstructorHacha constructor = new ConstructorHacha();

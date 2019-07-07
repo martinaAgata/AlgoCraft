@@ -10,11 +10,11 @@ import javafx.event.EventHandler;
 import java.io.File;
 import static interfaz.ConstantesInterfaz.RUTA_SONIDO_DESTELLO;
 
-public class Jugar implements EventHandler<ActionEvent> {
+public class JugarHandler implements EventHandler<ActionEvent> {
 
     private final Stage stage;
 
-    public Jugar(Stage stage) {
+    public JugarHandler(Stage stage) {
         this.stage = stage;
     }
 

@@ -52,7 +52,6 @@ public class Inventario extends VBox {
         this.getChildren().add(this.hboxMateriales);
         this.getChildren().add(this.hboxHerramientas);
     }
-
     private void cargarImagenPorHerramienta(){
         this.rutaImagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera()), RUTA_IMG_HACHA_MADERA);
         this.rutaImagenPorHerramienta.put(new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra()), RUTA_IMG_HACHA_PIEDRA);
@@ -61,7 +60,6 @@ public class Inventario extends VBox {
         this.rutaImagenPorHerramienta.put(new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra()), RUTA_IMG_PICO_PIEDRA);
         this.rutaImagenPorHerramienta.put(new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal()), RUTA_IMG_PICO_METAL);
         this.rutaImagenPorHerramienta.put(new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO), RUTA_IMG_PICO_FINO);
-
     }
 
     public void actualizarInventario() {

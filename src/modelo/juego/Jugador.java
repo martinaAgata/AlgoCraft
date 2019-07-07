@@ -53,15 +53,11 @@ public class Jugador extends Ubicable {
             mapa.ubicarEnCasillero(this, ubicacion);
             mapa.eliminarDeCasillero(this.ubicacion);
             this.ubicacion = ubicacion;
-        } catch (NoExisteNingunCasilleroParaLaUbicacionDadaException h) {
         } catch (NoSePuedeUbicarPorqueEstaOcupadoException e) {
             Material material = (Material) mapa.obtenerCasillero(ubicacion).obtenerUbicable();
-            try {
-                this.herramientaActual.usar(material);
-            } catch (Exception f) { }
+            this.herramientaActual.usar(material);
         }
     }
-
 
     private void agregarAInventario(Material material) {
         this.inventarioMateriales.put(material, this.inventarioMateriales.get(material)+1);

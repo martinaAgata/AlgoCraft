@@ -1,6 +1,7 @@
 package modelo.herramientas;
 
 import modelo.exceptions.HerramientaRotaNoPuedeDesgastarseException;
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.herramientas.ConstructorHacha;
 import modelo.herramientas.Hacha;
 import modelo.materiales.Diamante;
@@ -17,8 +18,8 @@ import static org.junit.Assert.assertTrue;
 
 public class HachaMetalTests {
 
-    @Test
-    public void testHachaMetalSeUsaContraMaderaReduceSuDurabilidad() {
+    @Test (expected = MaterialSeHaGastadoException.class)
+    public void testHachaMetalSeUsaContraMaderaUnaVezYLaRompe() {
         ConstructorHacha constructor = new ConstructorHacha();
         constructor
                 .conMaterial(new Metal())
@@ -28,7 +29,6 @@ public class HachaMetalTests {
         Hacha hachaMetal = constructor.construir();
         Madera madera = new Madera();
         hachaMetal.usar(madera);
-        assertThat(hachaMetal.getDurabilidad(), is(395));
     }
 
     @Test

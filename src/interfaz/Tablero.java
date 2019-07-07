@@ -1,15 +1,17 @@
 package interfaz;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import modelo.herramientas.Herramienta;
 import modelo.juego.Juego;
 import modelo.juego.Ubicable;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
-
 import java.util.HashMap;
 
 public class Tablero extends VBox {
@@ -18,6 +20,8 @@ public class Tablero extends VBox {
     private final Mapa mapa;
     private final int alto, ancho;
     private final HashMap<String,Image> contenedorImagenes;
+    private HBox hboxTexto;
+    private Text texto;
 
     public Tablero(HashMap<String,Image> contenedorImagenes, Juego juego) {
         this.juego = juego;
@@ -32,9 +36,11 @@ public class Tablero extends VBox {
         this.alto = juego.obtenerMapa().obtenerCantidadFilas();
         this.ancho = juego.obtenerMapa().obtenerCantidadColumnas();
         this.contenedorImagenes = contenedorImagenes;
+        this.crearCajaDeTexto();
         this.actualizarTablero();
-        this.getChildren().addAll(this.grid);
+        this.getChildren().addAll(this.hboxTexto, this.grid);
     }
+
     public void actualizarTablero() {
         Ubicable ubicable;
         for (int x=1; x<=this.alto; x++) {
@@ -49,7 +55,20 @@ public class Tablero extends VBox {
         }
     }
 
+    private void crearCajaDeTexto() {
+        this.texto = new Text();
+        this.texto.setTextAlignment(TextAlignment.CENTER);
+        hboxTexto = new HBox(this.texto);
+        hboxTexto.setPadding(new Insets(10, 0, 0, 0));
+        this.hboxTexto.setAlignment(Pos.CENTER);
+    }
+
+    public void actualizarTexto(String string) {
+        this.texto.setText(string);
+    }
+
     public Juego obtenerJuego(){ return this.juego; }
+
     public void seleccionarHerramientaAUtilizar(Herramienta herramienta){
         this.juego.seleccionarHerramientaAUtilizar(herramienta);
     }

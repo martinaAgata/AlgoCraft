@@ -213,8 +213,8 @@ public class PiedraTests {
         }
     }
 
-    @Test
-    public void testPiedraConEstadoMuertoDevuelveDurabilidadCero() {
+    @Test (expected = MaterialSeHaGastadoException.class)
+    public void testPiedraConEstadoMuertoEsDesgastadaLanzaExcepcion() {
         Piedra piedra = new Piedra();
         ConstructorPico constructor = new ConstructorPico();
         constructor
@@ -224,7 +224,6 @@ public class PiedraTests {
                 .conFuerza(FUERZA_PICO_MADERA);
         Pico picoMadera = constructor.construir();
         for (int i = 0; i < 15; i++){ piedra.desgastarContra(picoMadera); }
-        assertThat(piedra.getDurabilidad(), is(0));
     }
 
     @Test
