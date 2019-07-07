@@ -618,6 +618,469 @@ public class JuegoTests {
         assertThat(herramienta.getDurabilidad(), is(395));
     }
 
+    //--------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void testJugadorNoDesgastaMaderaAlMoverseHaciaEllaConPicoMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(1,9));
+        Madera madera = (Madera) casillero.obtenerUbicable();
+        assertThat(madera.getDurabilidad(), CoreMatchers.is(10));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMetalAlDesgastarMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(400));
+    }
+
+    @Test
+    public void testJugadorDesgastaPiedraAlMoverseHaciaEllaConPicoMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4,6));
+        Piedra piedra = (Piedra) casillero.obtenerUbicable();
+        assertThat(piedra.getDurabilidad(), CoreMatchers.is(18));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMetalAlMoverseHaciaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(400));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaMetalAlMoverseHaciaElConPicoMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,1));
+        Metal metal = (Metal) casillero.obtenerUbicable();
+        assertThat(metal.getDurabilidad(), CoreMatchers.is(50));
+
+    }
+
+    @Test
+    public void testJugadorNoDesgastaDiamanteAlMoverseHaciaElConPicoMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(10,10));
+        Diamante diamante = (Diamante) casillero.obtenerUbicable();
+        assertThat(diamante.getDurabilidad(), CoreMatchers.is(100));
+    }
+
+    @Test
+    public void testJugadorDesgastaMetalAlMoverseHaciaElConPicoPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,1));
+        Metal metal = (Metal) casillero.obtenerUbicable();
+        assertThat(metal.getDurabilidad(), CoreMatchers.is(46));
+
+    }
+
+    @Test
+    public void testJugadorNoDesgastaDiamanteAlMoverseHaciaElConPicoPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(10,10));
+        Diamante diamante = (Diamante) casillero.obtenerUbicable();
+        assertThat(diamante.getDurabilidad(), CoreMatchers.is(100));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoPiedraAlMoverseHaciaDiamante(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(198));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMetalAlMoverseHaciaDiamante(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(400));
+    }
+
+
+
+    @Test
+    public void testJugadorDesgastaPicoPiedraAlDesgastarMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(198));
+    }
+
+    @Test
+    public void testJugadorDesgastaPiedraAlMoverseHaciaEllaConPicoPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4,6));
+        Piedra piedra = (Piedra) casillero.obtenerUbicable();
+        assertThat(piedra.getDurabilidad(), CoreMatchers.is(26));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoPiedraAlMoverseHaciaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(198));
+    }
+
+
+    //--------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void testJugadorNoDesgastaMaderaAlMoverseHaciaEllaConPicoFino(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(1,9));
+        Madera madera = (Madera) casillero.obtenerUbicable();
+        assertThat(madera.getDurabilidad(), CoreMatchers.is(10));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoFinoAlDesgastarMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(998));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaPiedraAlMoverseHaciaEllaConPicoFino(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4,6));
+        Piedra piedra = (Piedra) casillero.obtenerUbicable();
+        assertThat(piedra.getDurabilidad(), CoreMatchers.is(30));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoFinoAlMoverseHaciaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(998));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaMetalAlMoverseHaciaElConPicoFino(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,1));
+        Metal metal = (Metal) casillero.obtenerUbicable();
+        assertThat(metal.getDurabilidad(), CoreMatchers.is(50));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaDiamanteAlMoverseHaciaElConPicoFino(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(10,10));
+        Diamante diamante = (Diamante) casillero.obtenerUbicable();
+        assertThat(diamante.getDurabilidad(), CoreMatchers.is(80));
+    }
+
+
+    @Test
+    public void testJugadorDesgastaPicoFinoAlMoverseHaciaDiamante(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        jugador.setHerramientaActual(herramienta);
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(998));
+    }
+
+
+    //--------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void testJugadorNoDesgastaMaderaAlMoverseHaciaEllaConPicoMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(1,9));
+        Madera madera = (Madera) casillero.obtenerUbicable();
+        assertThat(madera.getDurabilidad(), CoreMatchers.is(10));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMaderaAlDesgastarMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorDesgastaPiedraAlMoverseHaciaEllaConPicoMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4,6));
+        Piedra piedra = (Piedra) casillero.obtenerUbicable();
+        assertThat(piedra.getDurabilidad(), CoreMatchers.is(28));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMaderaAlMoverseHaciaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaMetalAlMoverseHaciaElConPicoMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,1));
+        Metal metal = (Metal) casillero.obtenerUbicable();
+        assertThat(metal.getDurabilidad(), CoreMatchers.is(50));
+
+    }
+
+    @Test
+    public void testJugadorNoDesgastaDiamanteAlMoverseHaciaElConPicoMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(10,10));
+        Diamante diamante = (Diamante) casillero.obtenerUbicable();
+        assertThat(diamante.getDurabilidad(), CoreMatchers.is(100));
+    }
+
+
+    @Test
+    public void testJugadorDesgastaPicoMaderaAlMoverseHaciaDiamante(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        jugador.setHerramientaActual(herramienta);
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(98));
+    }
+
+
+
     private void moverseHastaDiamanteSegunMapaPlaneado(Jugador jugador, Mapa mapa){
         jugador.moverseAbajo(mapa);
         jugador.moverseAbajo(mapa);
