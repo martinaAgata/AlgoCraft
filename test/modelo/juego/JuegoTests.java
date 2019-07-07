@@ -1,5 +1,6 @@
 package modelo.juego;
 
+import junit.framework.Assert;
 import modelo.estrategias.EstrategiaDesgaste;
 import modelo.herramientas.*;
 import modelo.juego.Juego;
@@ -8,10 +9,7 @@ import modelo.mapa.Casillero;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
 import modelo.materiales.*;
-import modelo.patrones.Patron;
-import modelo.patrones.PatronHacha;
-import modelo.patrones.PatronPico;
-import modelo.patrones.PatronPicoFino;
+import modelo.patrones.*;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +17,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static modelo.juego.ConstantesJuego.*;
 import static org.hamcrest.core.Is.is;
@@ -1090,5 +1090,611 @@ public class JuegoTests {
         jugador.moverseALaDerecha(mapa);
         jugador.moverseALaDerecha(mapa);
         for (int i=0; i<3; i++) jugador.moverseAbajo(mapa);
+    }
+
+    //Tests de la parte de Crafteo
+
+    @Test
+    public void testMapaCrafteoUbicaMaterialesParaHachaMaderaCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Madera madera = new Madera();
+        Mapa tableroConHachaMadera = new Mapa(3,3);
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionA);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionB);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionC);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        assertTrue(tableroConHachaMadera.esIgualA(juego.obtenerTableroCrafteo()));
+    }
+
+    @Test
+    public void testMapaCrafteoUbicaMaterialesParaHachaPiedraCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Piedra piedra = new Piedra();
+        Madera madera = new Madera();
+        Mapa tableroHacha = new Mapa(3,3);
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        tableroHacha.ubicarEnCasillero(piedra, ubicacionA);
+        tableroHacha.ubicarEnCasillero(piedra, ubicacionB);
+        tableroHacha.ubicarEnCasillero(piedra, ubicacionC);
+        tableroHacha.ubicarEnCasillero(madera, ubicacionD);
+        tableroHacha.ubicarEnCasillero(madera, ubicacionE);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        assertTrue(tableroHacha.esIgualA(juego.obtenerTableroCrafteo()));
+    }
+
+    @Test
+    public void testMapaCrafteoUbicaMaterialesParaHachaMetalCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Metal metal = new Metal();
+        Madera madera = new Madera();
+        Mapa tableroConHachaMadera = new Mapa(3,3);
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        tableroConHachaMadera.ubicarEnCasillero(metal, ubicacionA);
+        tableroConHachaMadera.ubicarEnCasillero(metal, ubicacionB);
+        tableroConHachaMadera.ubicarEnCasillero(metal, ubicacionC);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        assertTrue(tableroConHachaMadera.esIgualA(juego.obtenerTableroCrafteo()));
+    }
+
+    @Test
+    public void testMapaCrafteoUbicaMaterialesParaPicoMaderaCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Madera madera = new Madera();
+        Mapa tableroConHachaMadera = new Mapa(3,3);
+        Ubicacion ubicacionA = new Ubicacion(1, 3);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionA);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionB);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionC);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        assertTrue(tableroConHachaMadera.esIgualA(juego.obtenerTableroCrafteo()));
+    }
+
+    @Test
+    public void testMapaCrafteoUbicaMaterialesParaPicoPiedraCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Piedra piedra = new Piedra();
+        Madera madera = new Madera();
+        Mapa tableroConHachaMadera = new Mapa(3,3);
+        Ubicacion ubicacionA = new Ubicacion(1, 3);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        tableroConHachaMadera.ubicarEnCasillero(piedra, ubicacionA);
+        tableroConHachaMadera.ubicarEnCasillero(piedra, ubicacionB);
+        tableroConHachaMadera.ubicarEnCasillero(piedra, ubicacionC);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        assertTrue(tableroConHachaMadera.esIgualA(juego.obtenerTableroCrafteo()));
+    }
+
+    @Test
+    public void testMapaCrafteoUbicaMaterialesParaPicoMetalCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Metal metal = new Metal();
+        Madera madera = new Madera();
+        Mapa tableroConHachaMadera = new Mapa(3,3);
+        Ubicacion ubicacionA = new Ubicacion(1, 3);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        tableroConHachaMadera.ubicarEnCasillero(metal, ubicacionA);
+        tableroConHachaMadera.ubicarEnCasillero(metal, ubicacionB);
+        tableroConHachaMadera.ubicarEnCasillero(metal, ubicacionC);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        assertTrue(tableroConHachaMadera.esIgualA(juego.obtenerTableroCrafteo()));
+    }
+    @Test
+    public void testMapaCrafteoUbicaMaterialesParaPicoFinoCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Metal metal = new Metal();
+        Madera madera = new Madera();
+        Mapa tableroPicoFino = new Mapa(3,3);
+        Ubicacion ubicacionA = new Ubicacion(1, 3);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        Ubicacion ubicacionF = new Ubicacion(2, 1);
+        tableroPicoFino.ubicarEnCasillero(metal, ubicacionA);
+        tableroPicoFino.ubicarEnCasillero(metal, ubicacionB);
+        tableroPicoFino.ubicarEnCasillero(metal, ubicacionC);
+        tableroPicoFino.ubicarEnCasillero(madera, ubicacionD);
+        tableroPicoFino.ubicarEnCasillero(madera, ubicacionE);
+        tableroPicoFino.ubicarEnCasillero(new Piedra(), ubicacionF);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionF, new Piedra());
+        assertTrue(tableroPicoFino.esIgualA(juego.obtenerTableroCrafteo()));
+    }
+
+    @Test
+    public void testMapaCrafeoUbicaCorrectamenteUnHachaDeMaderaYDevuelveHerramientaCorrecta(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Madera madera = new Madera();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        Material material = madera;
+        Herramienta herramienta = juego.obtenerHerramientaCrafteable();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 10 - 2);
+        assertEquals(herramienta.getDurabilidad(), 100 - 2);
+        material = new Piedra();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 30);
+        assertEquals(herramienta.getDurabilidad(), 100 - 4);
+        material = new Metal();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 50);
+        assertEquals(herramienta.getDurabilidad(), 100 - 6);
+        material = new Diamante();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 100);
+        assertEquals(herramienta.getDurabilidad(), 100 - 8);
+    }
+
+    @Test
+    public void testMapaCrafeoUbicaCorrectamenteUnHachaDePiedraYDevuelveHerramientaCorrecta(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Madera madera = new Madera();
+        Piedra piedra = new Piedra();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        Material material = madera;
+        Herramienta herramienta = juego.obtenerHerramientaCrafteable();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 10 - 5);
+        assertEquals(herramienta.getDurabilidad(), 200 - 5);
+        material = new Piedra();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 30);
+        assertEquals(herramienta.getDurabilidad(), 200 - 10);
+        material = new Metal();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 50);
+        assertEquals(herramienta.getDurabilidad(), 200 - 15);
+        material = new Diamante();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 100);
+        assertEquals(herramienta.getDurabilidad(), 200 - 20);
+    }
+
+    @Test
+    public void testMapaCrafeoUbicaCorrectamenteUnHachaDeMetalYDevuelveHerramientaCorrecta(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Madera madera = new Madera();
+        Metal metal = new Metal();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        Material material = madera;
+        Herramienta herramienta = juego.obtenerHerramientaCrafteable();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 10 - 10);
+        assertEquals(herramienta.getDurabilidad(), 400 - (10/2));
+        material = new Piedra();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 30);
+        assertEquals(herramienta.getDurabilidad(), 400 - 2*(10/2));
+        material = new Metal();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 50);
+        assertEquals(herramienta.getDurabilidad(), 400 - 3*(10/2));
+        material = new Diamante();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 100);
+        assertEquals(herramienta.getDurabilidad(), 400 - 4*(10/2));
+    }
+
+    @Test
+    public void testMapaCrafeoUbicaCorrectamenteUnPicoDeMaderaYDevuelveHerramientaCorrecta() {
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Madera madera = new Madera();
+        Mapa tableroConPicoMadera = new Mapa(3, 3);
+        Ubicacion ubicacionA = new Ubicacion(1, 1);
+        Ubicacion ubicacionB = new Ubicacion(2, 1);
+        Ubicacion ubicacionC = new Ubicacion(3, 1);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        Herramienta herramienta = juego.obtenerHerramientaCrafteable();
+        Material material = new Madera();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 10);
+        Assert.assertEquals(herramienta.getDurabilidad(), 100 - 2);
+        material = new Piedra();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 30 - 2);
+        Assert.assertEquals(herramienta.getDurabilidad(), 100 - 4);
+        material = new Metal();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 50);
+        Assert.assertEquals(herramienta.getDurabilidad(), 100 - 6);
+        material = new Diamante();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 100);
+        Assert.assertEquals(herramienta.getDurabilidad(), 100 - 8);
+    }
+
+    @Test
+    public void testMapaCrafeoUbicaCorrectamenteUnPicoDePiedraYDevuelveHerramientaCorrecta(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Piedra piedra = new Piedra();
+        Madera madera = new Madera();
+        Ubicacion ubicacionA = new Ubicacion(1, 1);
+        Ubicacion ubicacionB = new Ubicacion(2, 1);
+        Ubicacion ubicacionC = new Ubicacion(3, 1);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        Herramienta herramienta = juego.obtenerHerramientaCrafteable();
+        Material material = new Madera();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 10);
+        assertEquals(herramienta.getDurabilidad(), 198);
+        material = new Piedra();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 30 - 4);
+        assertEquals(herramienta.getDurabilidad(), 196);
+        material = new Metal();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 50 - 4);
+        assertEquals(herramienta.getDurabilidad(), 194);
+        material = new Diamante();
+        herramienta.usar(material);
+        assertEquals(material.getDurabilidad(), 100);
+        assertEquals(herramienta.getDurabilidad(), 192);
+    }
+
+    @Test
+    public void testMapaCrafeoUbicaCorrectamenteUnPicoDeMetalYDevuelveHerramientaCorrecta(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Metal metal = new Metal();
+        Madera madera = new Madera();
+        Ubicacion ubicacionA = new Ubicacion(1, 1);
+        Ubicacion ubicacionB = new Ubicacion(2, 1);
+        Ubicacion ubicacionC = new Ubicacion(3, 1);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        Herramienta herramienta = juego.obtenerHerramientaCrafteable();
+        Material material = new Madera();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 10);
+        Assert.assertEquals(herramienta.getDurabilidad(), 400);
+        material = new Piedra();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 30 - 12);
+        Assert.assertEquals(herramienta.getDurabilidad(), 400);
+        material = new Metal();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 50);
+        Assert.assertEquals(herramienta.getDurabilidad(), 400);
+        material = new Diamante();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 100);
+        Assert.assertEquals(herramienta.getDurabilidad(), 400);
+    }
+
+    @Test
+    public void testMapaCrafeoUbicaCorrectamenteUnPicoFinoYDevuelveHerramientaCorrecta() {
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        juego.ubicarMaterialTableroCrafteo((new Ubicacion(1,1)), (new Metal()));
+        juego.ubicarMaterialTableroCrafteo((new Ubicacion(2,1)), (new Metal()));
+        juego.ubicarMaterialTableroCrafteo((new Ubicacion(3,1)), (new Metal()));
+        juego.ubicarMaterialTableroCrafteo((new Ubicacion(1,2)), new Piedra());
+        juego.ubicarMaterialTableroCrafteo((new Ubicacion(2,2)), (new Madera()));
+        juego.ubicarMaterialTableroCrafteo((new Ubicacion(2,3)), (new Madera()));
+        Herramienta herramienta = juego.obtenerHerramientaCrafteable();
+        Material material = new Madera();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 10);
+        Assert.assertEquals(herramienta.getDurabilidad(), 1000 - 2);
+        material = new Piedra();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 30);
+        Assert.assertEquals(herramienta.getDurabilidad(), 1000 - 4);
+        material = new Metal();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 50);
+        Assert.assertEquals(herramienta.getDurabilidad(), 1000 - 6);
+        material = new Diamante();
+        herramienta.usar(material);
+        Assert.assertEquals(material.getDurabilidad(), 100 - 20);
+        Assert.assertEquals(herramienta.getDurabilidad(), 1000 - 8);
+    }
+    @Test
+    public void testSeCreaHachaMaderaCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        ArrayList<Herramienta> hachasMadera;
+        Madera madera = new Madera();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        hachasMadera = juego.obtenerInventarioHerramientas().get(juego.obtenerHerramientaCrafteable());
+        assertThat(hachasMadera.size(), is(1));
+        juego.crearHerramienta();
+        assertThat(hachasMadera.size(), is(2));
+    }
+
+    @Test
+    public void testSeCreaHachaPiedraCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        ArrayList<Herramienta> herramientasTipo;
+        Madera madera = new Madera();
+        Piedra piedra = new Piedra();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        herramientasTipo = juego.obtenerInventarioHerramientas().get(juego.obtenerHerramientaCrafteable());
+        assertThat(herramientasTipo.size(), is(0));
+        juego.crearHerramienta();
+        assertThat(herramientasTipo.size(), is(1));
+    }
+
+    @Test
+    public void testSeCreaHachaMetalCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        ArrayList<Herramienta> herramientasTipo;
+        Madera madera = new Madera();
+        Metal metal = new Metal();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        herramientasTipo = juego.obtenerInventarioHerramientas().get(juego.obtenerHerramientaCrafteable());
+        assertThat(herramientasTipo.size(), is(0));
+        juego.crearHerramienta();
+        assertThat(herramientasTipo.size(), is(1));
+    }
+
+    @Test
+    public void testSeCreaPicoMetalCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        ArrayList<Herramienta> herramientasTipo;
+        Madera madera = new Madera();
+        Metal metal = new Metal();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(3, 1);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        herramientasTipo = juego.obtenerInventarioHerramientas().get(juego.obtenerHerramientaCrafteable());
+        assertThat(herramientasTipo.size(), is(0));
+        juego.crearHerramienta();
+        assertThat(herramientasTipo.size(), is(1));
+    }
+
+    @Test
+    public void testSeCreaPicoPiedraPiedraCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        ArrayList<Herramienta> herramientasTipo;
+        Madera madera = new Madera();
+        Piedra piedra = new Piedra();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(3, 1);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, piedra);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        herramientasTipo = juego.obtenerInventarioHerramientas().get(juego.obtenerHerramientaCrafteable());
+        assertThat(herramientasTipo.size(), is(0));
+        juego.crearHerramienta();
+        assertThat(herramientasTipo.size(), is(1));
+    }
+
+    @Test
+    public void testSeCreaPicoMaderaPiedraCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        ArrayList<Herramienta> herramientasTipo;
+        Madera madera = new Madera();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(3, 1);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        herramientasTipo = juego.obtenerInventarioHerramientas().get(juego.obtenerHerramientaCrafteable());
+        assertThat(herramientasTipo.size(), is(0));
+        juego.crearHerramienta();
+        assertThat(herramientasTipo.size(), is(1));
+    }
+
+    @Test
+    public void testSeCreaPicoFinoPiedraCorrectamente(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        ArrayList<Herramienta> herramientasTipo;
+        Madera madera = new Madera();
+        Metal metal = new Metal();
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(3, 1);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        Ubicacion ubicacionF = new Ubicacion(1, 2);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, metal);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionF, new Piedra());
+        herramientasTipo = juego.obtenerInventarioHerramientas().get(juego.obtenerHerramientaCrafteable());
+        assertThat(herramientasTipo.size(), is(0));
+        juego.crearHerramienta();
+        assertThat(herramientasTipo.size(), is(1));
+    }
+
+    @Test
+    public void testSeCreaHerramientaVaciaTableroCrafteo(){
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Madera madera = new Madera();
+        Mapa tableroConHachaMadera = new Mapa(3,3);
+        Ubicacion ubicacionA = new Ubicacion(2, 1);
+        Ubicacion ubicacionB = new Ubicacion(1, 1);
+        Ubicacion ubicacionC = new Ubicacion(1, 2);
+        Ubicacion ubicacionD = new Ubicacion(2, 2);
+        Ubicacion ubicacionE = new Ubicacion(2, 3);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionA);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionB);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionC);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionD);
+        tableroConHachaMadera.ubicarEnCasillero(madera, ubicacionE);
+        juego.ubicarMaterialTableroCrafteo(ubicacionA, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionB, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionC, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionD, madera);
+        juego.ubicarMaterialTableroCrafteo(ubicacionE, madera);
+        assertTrue(tableroConHachaMadera.esIgualA(juego.obtenerTableroCrafteo()));
+        juego.crearHerramienta();
+        tableroConHachaMadera.eliminarDeCasillero(ubicacionA);
+        tableroConHachaMadera.eliminarDeCasillero(ubicacionB);
+        tableroConHachaMadera.eliminarDeCasillero(ubicacionC);
+        tableroConHachaMadera.eliminarDeCasillero(ubicacionD);
+        tableroConHachaMadera.eliminarDeCasillero(ubicacionE);
+        assertTrue(tableroConHachaMadera.esIgualA(juego.obtenerTableroCrafteo()));
     }
 }
