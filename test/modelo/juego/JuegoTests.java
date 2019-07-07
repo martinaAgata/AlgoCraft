@@ -651,7 +651,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(0.5), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseAbajo(juego.obtenerMapa());
