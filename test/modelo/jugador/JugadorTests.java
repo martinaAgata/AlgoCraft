@@ -1,5 +1,6 @@
 package modelo.jugador;
 
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
 import modelo.herramientas.*;
 import modelo.juego.Juego;
@@ -397,7 +398,7 @@ public class JugadorTests {
     }
 
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testJugadorDesgastaMaderaAlGolpearlaConHachaMetal(){
         Hacha hacha = (Hacha) new ConstructorHacha()
                 .conMaterial(new Piedra())
@@ -910,7 +911,7 @@ public class JugadorTests {
     }
 
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testJugadorDesgastaHachaMetalAlGolpearUnaMadera(){
         Hacha hacha = (Hacha) new ConstructorHacha()
                 .conMaterial(new Piedra())

@@ -2,6 +2,7 @@ package modelo.juego;
 
 import junit.framework.Assert;
 import modelo.estrategias.EstrategiaDesgaste;
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.herramientas.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
@@ -1338,8 +1339,8 @@ public class JuegoTests {
         assertEquals(herramienta.getDurabilidad(), 200 - 20);
     }
 
-    @Test
-    public void testMapaCrafeoUbicaCorrectamenteUnHachaDeMetalYDevuelveHerramientaCorrecta(){
+    @Test (expected = MaterialSeHaGastadoException.class)
+    public void testMapaCrafteoUbicaCorrectamenteUnHachaDeMetalYDevuelveHerramientaCorrecta(){
         Juego juego = new Juego();
         juego.inicializarJuego();
         Madera madera = new Madera();
