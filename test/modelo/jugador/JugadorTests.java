@@ -1,5 +1,7 @@
 package modelo.jugador;
 
+import modelo.estrategias.DesgasteAbrupto;
+import modelo.estrategias.DesgasteLinealFactor;
 import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
 import modelo.herramientas.*;
@@ -11,7 +13,6 @@ import modelo.materiales.*;
 import org.junit.Test;
 import java.util.HashMap;
 import static junit.framework.Assert.assertNotSame;
-import static junit.framework.TestCase.assertFalse;
 import static modelo.juego.ConstantesJuego.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -19,33 +20,26 @@ import static org.junit.Assert.assertTrue;
 
 public class JugadorTests {
 
-    @Test
-    public void testJugadorSeInicializaConUnItemEnElInventario() {
-        ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
-        constructor.conMaterial(new Madera()).conDesgaste(DESGASTE_HACHA_MADERA)
-                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
-                .conFuerza(FUERZA_HACHA_MADERA);
-        Jugador jugador = new Jugador(constructor.construir(), null,null);
-    }
 
     @Test
     public void testJugadorSeInicializaConUnHachaDeMadera() {
         ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
-        constructor.conMaterial(new Madera()).conDesgaste(DESGASTE_HACHA_MADERA)
-                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
-                .conFuerza(FUERZA_HACHA_MADERA);
+        constructor.conMaterial(new Madera()).conDesgaste(new DesgasteLinealFactor(1))
+                .conDurabilidad(100)
+                .conFuerza(2);
         Hacha hachaInicial = (Hacha) constructor.construir();
         Jugador jugador = new Jugador(hachaInicial, null,null);
         assertThat(jugador.obtenerHerramientaActual(), is(hachaInicial));
     }
+
     @Test
     public void testJugadorPuedeMoverseEnMapaNuevoHaciaArribaLuegoAbajo(){
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
-                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
-                .conDesgaste(DESGASTE_HACHA_MADERA)
-                .conFuerza(FUERZA_HACHA_MADERA)
+                .conDurabilidad(100)
+                .conDesgaste(new DesgasteLinealFactor(1))
+                .conFuerza(2)
                 .construir();
         Jugador jugador = new Jugador(hachaInicial, null,null);
         Ubicacion ubicacionJugador = new Ubicacion(3,3);
@@ -53,6 +47,7 @@ public class JugadorTests {
         mapa.ubicarEnCasillero(jugador,ubicacionJugador);
         jugador.moverseArriba(mapa);
         jugador.moverseAbajo(mapa);
+        assertTrue(jugador.obtenerUbicacion().equals(ubicacionJugador));
     }
 
     /*el jugador se inicializa en la posicion (1,6)*/
@@ -65,42 +60,14 @@ public class JugadorTests {
         jugador.moverseALaDerecha(juego.obtenerMapa());
     }
 
-    @Test (expected = NoExisteNingunCasilleroParaLaUbicacionDadaException.class)
-    public void testJugadorNoPuedeMoverseHaciaArribaEnJuegoInicializado() {
-        Juego juego = new Juego();
-        juego.inicializarJuego();
-        Jugador jugador = juego.obtenerJugador();
-        Ubicacion ubicacionAnterior = jugador.obtenerUbicacion();
-        jugador.moverseArriba(juego.obtenerMapa());
-
-    }
-
-    @Test
-    public void testJugadorNoCambiaDePosicionALaTerceraVezDeMoverseAbajoEnJuegoInicializado() {
-        Juego juego = new Juego();
-        juego.inicializarInventarioHerramienta();
-        juego.inicializarMapaConMateriales();
-        juego.inicializarJugador();
-        Jugador jugador = juego.obtenerJugador();
-        Ubicacion ubicacion1 = jugador.obtenerUbicacion();
-        jugador.moverseAbajo(juego.obtenerMapa());
-        assertFalse(jugador.obtenerUbicacion() == ubicacion1);
-        Ubicacion ubicacion2 = jugador.obtenerUbicacion();
-        jugador.moverseAbajo(juego.obtenerMapa());
-        assertFalse(jugador.obtenerUbicacion() == ubicacion2);
-        Ubicacion ubicacion3 = jugador.obtenerUbicacion();
-        jugador.moverseAbajo(juego.obtenerMapa());
-        assertThat(jugador.obtenerUbicacion(), is(ubicacion3));
-    }
-
     @Test
     public void testJugadorSeMueveArribaYEstaEnLaPosicionEsperada(){
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
-                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
-                .conDesgaste(DESGASTE_HACHA_MADERA)
-                .conFuerza(FUERZA_HACHA_MADERA)
+                .conDurabilidad(100)
+                .conDesgaste(new DesgasteLinealFactor(1))
+                .conFuerza(2)
                 .construir();
         Jugador jugador = new Jugador(hachaInicial, null,null);
         Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
@@ -117,9 +84,9 @@ public class JugadorTests {
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
-                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
-                .conDesgaste(DESGASTE_HACHA_MADERA)
-                .conFuerza(FUERZA_HACHA_MADERA)
+                .conDurabilidad(100)
+                .conDesgaste(new DesgasteLinealFactor(1))
+                .conFuerza(2)
                 .construir();
         Jugador jugador = new Jugador(hachaInicial, null,null);
         Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
@@ -136,9 +103,9 @@ public class JugadorTests {
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
-                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
-                .conDesgaste(DESGASTE_HACHA_MADERA)
-                .conFuerza(FUERZA_HACHA_MADERA)
+                .conDurabilidad(100)
+                .conDesgaste(new DesgasteLinealFactor(1))
+                .conFuerza(2)
                 .construir();
         Jugador jugador = new Jugador(hachaInicial, null,null);
         Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
@@ -155,9 +122,9 @@ public class JugadorTests {
         Mapa mapa = new Mapa(10,10);
         Hacha hachaInicial = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
-                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
-                .conDesgaste(DESGASTE_HACHA_MADERA)
-                .conFuerza(FUERZA_HACHA_MADERA)
+                .conDurabilidad(100)
+                .conDesgaste(new DesgasteLinealFactor(1))
+                .conFuerza(2)
                 .construir();
         Ubicacion ubicacionInicialJugador = new Ubicacion(3,3);
         Jugador jugador = new Jugador(hachaInicial, null,ubicacionInicialJugador);
@@ -169,7 +136,7 @@ public class JugadorTests {
 
     @Test
     public void testJugadorSeteaHachaPiedraCorrectamente(){
-        Hacha hacha = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Hacha hacha = new Hacha(new DesgasteLinealFactor(1), 200, 5, new Piedra());
         Jugador jugador = new Jugador(null, null, null);
         assertNotSame(jugador.obtenerHerramientaActual(), hacha);
         jugador.setHerramientaActual(hacha);
@@ -178,7 +145,7 @@ public class JugadorTests {
 
     @Test
     public void testJugadorSeteaHachaMetalCorrectamente(){
-        Hacha hacha = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        Hacha hacha = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
         Jugador jugador = new Jugador(null, null, null);
         assertNotSame(jugador.obtenerHerramientaActual(), hacha);
         jugador.setHerramientaActual(hacha);
@@ -187,7 +154,7 @@ public class JugadorTests {
 
     @Test
     public void testJugadorSeteaHachaMaderaCorrectamente(){
-        Hacha hacha = new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera());
+        Hacha hacha = new Hacha(new DesgasteLinealFactor(1), 100, 2, new Madera());
         Jugador jugador = new Jugador(null, null, null);
         assertNotSame(jugador.obtenerHerramientaActual(), hacha);
         jugador.setHerramientaActual(hacha);
@@ -196,7 +163,7 @@ public class JugadorTests {
 
     @Test
     public void testJugadorSeteaPicoMaderaCorrectamente(){
-        Pico pico = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        Pico pico = new Pico(new DesgasteLinealFactor(1), 100, 2, new Madera());
         Jugador jugador = new Jugador(null, null, null);
         assertNotSame(jugador.obtenerHerramientaActual(), pico);
         jugador.setHerramientaActual(pico);
@@ -205,7 +172,7 @@ public class JugadorTests {
 
     @Test
     public void testJugadorSeteaPicoPiedraCorrectamente(){
-        Pico pico = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Piedra());
+        Pico pico = new Pico(new DesgasteLinealFactor(1/1.5), 200, 4, new Piedra());
         Jugador jugador = new Jugador(null, null, null);
         assertNotSame(jugador.obtenerHerramientaActual(), pico);
         jugador.setHerramientaActual(pico);
@@ -214,7 +181,7 @@ public class JugadorTests {
 
     @Test
     public void testJugadorSeteaPicoMetalCorrectamente(){
-        Pico pico = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Pico pico = new Pico(new DesgasteAbrupto(), 400, 12, new Metal());
         Jugador jugador = new Jugador(null, null, null);
         assertNotSame(jugador.obtenerHerramientaActual(), pico);
         jugador.setHerramientaActual(pico);
@@ -223,7 +190,7 @@ public class JugadorTests {
 
     @Test
     public void testJugadorSeteaPicoFinoCorrectamente(){
-        PicoFino pico = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        PicoFino pico = new PicoFino(new DesgasteLinealFactor(0.1), 1000, 20);
         Jugador jugador = new Jugador(null, null, null);
         assertNotSame(jugador.obtenerHerramientaActual(), pico);
         jugador.setHerramientaActual(pico);
@@ -231,7 +198,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void testJugadorDesgasteMaterialAlMovecerseHaciaEl(){
+    public void testJugadorDesgasteMaterialAlMoverseHaciaEl(){
         Hacha hachaMadera = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)
@@ -1133,9 +1100,9 @@ public class JugadorTests {
     public void testJugadorDesgastaPicoMetalAlGolpearUnaMadera(){
         Pico pico = (Pico) new ConstructorPico()
                 .conMaterial(new Metal())
-                .conDurabilidad(DURABILIDAD_PICO_METAL)
-                .conDesgaste(DESGASTE_PICO_METAL)
-                .conFuerza(FUERZA_PICO_METAL)
+                .conDurabilidad(400)
+                .conDesgaste(new DesgasteAbrupto())
+                .conFuerza(12)
                 .construir();
         Madera madera = new Madera();
         Mapa tableroJuego = new Mapa(2,2);
@@ -1151,9 +1118,9 @@ public class JugadorTests {
     public void testJugadorDesgastaPicoMetalAlGolpearUnaPiedra(){
         Pico pico = (Pico) new ConstructorPico()
                 .conMaterial(new Metal())
-                .conDurabilidad(DURABILIDAD_PICO_METAL)
-                .conDesgaste(DESGASTE_PICO_METAL)
-                .conFuerza(FUERZA_PICO_METAL)
+                .conDurabilidad(400)
+                .conDesgaste(new DesgasteAbrupto())
+                .conFuerza(12)
                 .construir();
         Piedra piedra = new Piedra();
         Mapa tableroJuego = new Mapa(2,2);
@@ -1169,9 +1136,9 @@ public class JugadorTests {
     public void testJugadorDesgastaPicoMetalAlGolpearUnMetal(){
         Pico pico = (Pico) new ConstructorPico()
                 .conMaterial(new Metal())
-                .conDurabilidad(DURABILIDAD_PICO_METAL)
-                .conDesgaste(DESGASTE_PICO_METAL)
-                .conFuerza(FUERZA_PICO_METAL)
+                .conDurabilidad(400)
+                .conDesgaste(new DesgasteAbrupto())
+                .conFuerza(12)
                 .construir();
         Metal metal = new Metal();
         Mapa tableroJuego = new Mapa(2,2);
@@ -1187,9 +1154,9 @@ public class JugadorTests {
     public void testJugadorDesgastaPicoMetalAlGolpearUnDiamante(){
         Pico pico = (Pico) new ConstructorPico()
                 .conMaterial(new Metal())
-                .conDurabilidad(DURABILIDAD_PICO_METAL)
-                .conDesgaste(DESGASTE_PICO_METAL)
-                .conFuerza(FUERZA_PICO_METAL)
+                .conDurabilidad(400)
+                .conDesgaste(new DesgasteAbrupto())
+                .conFuerza(12)
                 .construir();
         Diamante diamante = new Diamante();
         Mapa tableroJuego = new Mapa(2,2);
@@ -1272,4 +1239,6 @@ public class JugadorTests {
         jugador.moverseALaDerecha(tableroJuego);
         assertThat(pico.getDurabilidad(), is(998));
     }
+
+
 }

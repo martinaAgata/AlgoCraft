@@ -1,7 +1,6 @@
 package modelo.juego;
 
 import modelo.exceptions.*;
-import modelo.herramientas.ConstructorHacha;
 import modelo.herramientas.Herramienta;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
@@ -20,12 +19,13 @@ public class Jugador extends Ubicable {
     }
 
     public void setUbicacion(Ubicacion u) { this.ubicacion = u; }
+
     public void setHerramientaActual(Herramienta herramienta){
         this.herramientaActual = herramienta;
     }
 
     public Herramienta obtenerHerramientaActual() {
-        return herramientaActual;
+        return this.herramientaActual;
     }
 
     public void moverseALaDerecha(Mapa mapa) {
@@ -59,9 +59,6 @@ public class Jugador extends Ubicable {
         }
     }
 
-    private void agregarAInventario(Material material) {
-        this.inventarioMateriales.put(material, this.inventarioMateriales.get(material)+1);
-    }
 
     public Ubicacion obtenerUbicacion(){
         return ubicacion;

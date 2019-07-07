@@ -1,11 +1,13 @@
 package modelo.juego;
 
 import junit.framework.Assert;
+import modelo.estrategias.DesgasteAbrupto;
+import modelo.estrategias.DesgasteLinealFactor;
 import modelo.estrategias.EstrategiaDesgaste;
 import modelo.exceptions.MaterialSeHaGastadoException;
+import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
+import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
 import modelo.herramientas.*;
-import modelo.juego.Juego;
-import modelo.juego.Jugador;
 import modelo.mapa.Casillero;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
@@ -21,11 +23,25 @@ import java.util.Map;
 import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static modelo.juego.ConstantesJuego.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-
+//se inicializan los inventarios correctamente
+//se inicializan patrones correctamente
+// al inivializar juego se iicializan :
+        /*inicializarInventarioMaterial();
+        inicializarInventarioHerramienta();
+        inicializarJugador();
+        inicializarMapaConMateriales();
+        inicializarPatrones();
+        }*/
+// detectarHerramientatableroCrafteo()
+// ubicarMaterialTableroCrafteo
+//quitarMaterialTableroCrafteo
+//obtenerTableroCrafteo
+//
 
 public class JuegoTests {
 
@@ -38,10 +54,18 @@ public class JuegoTests {
     Mapa mapaTest;
     Jugador jugadorTest = new Jugador(hachaMaderaTest, null,null);
     private HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientasTest;
+    private HashMap<Material, Integer> inventarioMaterialesJugadorTest;
+    private DetectorPatron detectorPatronTest;
 
 
+    private void inicializarInventarioMaterialesTest(){
+        inventarioMaterialesJugadorTest.put(new Madera(), 0);
+        inventarioMaterialesJugadorTest.put(new Metal(), 0);
+        inventarioMaterialesJugadorTest.put(new Piedra(), 0);
+        inventarioMaterialesJugadorTest.put(new Diamante(), 0);
+    }
 
-    public void inicializarMapaTestConMateriales() {
+    private void inicializarMapaTestConMateriales() {
         for (int i = 1; i <= 3; i++) {
             for (int j = 9; j <= 11; j++) {
                 mapaTest.ubicarEnCasillero(new Madera(),new Ubicacion(i, j));
@@ -86,10 +110,36 @@ public class JuegoTests {
         inventarioHerramientasTest.put(constructor.construir(), new ArrayList<>());
     }
 
-    private void inicializarInventarioHerramientaTest() {
-        agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Madera(),
-                DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
+    private void agregarListaDeHerramientasAinventarioHerramientasTest(ConstructorHerramientaAbstracto constructor,
+                                                                   Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste) {
+        constructor.conMaterial(material).conDurabilidad(durabilidad)
+                .conDesgaste(desgaste)
+                .conFuerza(fuerza);
+        inventarioHerramientasTest.put(constructor.construir(), new ArrayList<>());
     }
+
+    public void inicializarInventarioHerramientaTest() {
+        agregarListaDeHerramientasAinventarioHerramientasTest(new ConstructorHacha(), new Madera(),
+                DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
+        agregarListaDeHerramientasAinventarioHerramientasTest(new ConstructorHacha(), new Piedra(),
+                DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, DESGASTE_HACHA_PIEDRA);
+        agregarListaDeHerramientasAinventarioHerramientasTest(new ConstructorHacha(), new Metal(),
+                DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, DESGASTE_HACHA_METAL);
+        agregarListaDeHerramientasAinventarioHerramientasTest(new ConstructorPico(), new Madera(),
+                DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, DESGASTE_PICO_MADERA);
+        agregarListaDeHerramientasAinventarioHerramientasTest(new ConstructorPico(), new Piedra(),
+                DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, DESGASTE_PICO_PIEDRA);
+        agregarListaDeHerramientasAinventarioHerramientasTest(new ConstructorPico(), new Metal(),
+                DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, DESGASTE_PICO_METAL);
+        agregarListaDeHerramientasAinventarioHerramientasTest(new ConstructorPicoFino(), new Metal(),
+                DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO, DESGASTE_PICO_FINO);
+    }
+
+
+   // private void inicializarInventarioHerramientaTest() {
+    //   agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Madera(),
+       //         DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
+    //}
 
 
     public void inicializarMapaTestConJugador(){
@@ -104,10 +154,58 @@ public class JuegoTests {
             inventarioHerramientasTest.get(hachaInicial).add(hachaInicial);
         }
 
+    private void inicializarPatronesTest() {
+        DetectorPatron dPHachaMadera = new DetectorPatronHacha(new Madera(), () -> new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir());
+        DetectorPatron dPHachaPiedra = new DetectorPatronHacha(new Piedra(), () -> new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir(), dPHachaMadera);
+        DetectorPatron dPHachaMetal = new DetectorPatronHacha(new Metal(), () -> new ConstructorHacha()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir(), dPHachaPiedra);
+        DetectorPatron dPPicoMadera = new DetectorPatronPico(new Madera(), () -> new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir(), dPHachaMetal);
+        DetectorPatron dPPicoPiedra = new DetectorPatronPico(new Piedra(), () -> new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .construir(), dPPicoMadera);
+        DetectorPatron dPPicoMetal = new DetectorPatronPico(new Metal(), () -> new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir(), dPPicoPiedra);
+        DetectorPatron dPPicoFino = new DetectorPatronPicoFino(new Metal(), () -> new ConstructorPicoFino()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir(), dPPicoMetal);
+        detectorPatronTest = dPPicoFino;
+    }
+
     @Before
     public void setup() {
           mapaTest = new Mapa(12, 12);
           inventarioHerramientasTest = new HashMap<>();
+          inventarioMaterialesJugadorTest = new HashMap<>();
+
     }
 
     @Test
@@ -135,10 +233,22 @@ public class JuegoTests {
     }
 
     @Test
-    public void testSeInicializaJuegoConUnJugadorConUnHachaMadera(){
+    public void testSeInicializaJugadorConUnHachaMadera(){
         Juego juego = new Juego();
-
+        juego.inicializarMapaConMateriales();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Hacha hachaInicial = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        assertTrue(jugador.obtenerHerramientaActual().equals(hachaInicial));
     }
+
+
 
     @Test
     public void testSeUbicaCorrectamenteMaterialEnTableroCrafteoParaPatronHachaMadera(){
@@ -374,7 +484,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1),200, 5, new Piedra());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -393,7 +503,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1),200, 5, new Piedra());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -408,7 +518,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1),200, 5, new Piedra());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -427,7 +537,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1),200, 5, new Piedra());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -442,7 +552,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1),200, 5, new Piedra());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaIzquierda(juego.obtenerMapa());
@@ -462,7 +572,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1),200, 5, new Piedra());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseALaIzquierda(juego.obtenerMapa());
         jugador.moverseALaIzquierda(juego.obtenerMapa());
@@ -479,7 +589,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1),200, 5, new Piedra());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
@@ -495,80 +605,63 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1),200, 5, new Piedra());
         jugador.setHerramientaActual(herramienta);
         moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
         assertThat(herramienta.getDurabilidad(), is(195));
     }
     //--------------------------------------------------------------------------------------------------------------
 
-    @Test
+    @Test (expected = NoSePuedeEliminarPorqueEstaVacioException.class)
     public void testJugadorDesgastaMaderaAlMoverseHaciaEllaConHachaMetal(){
         Juego juego = new Juego();
         juego.inicializarInventarioHerramienta();
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
         Casillero casillero = tablero.obtenerCasillero(new Ubicacion(1,9));
-        Madera madera = (Madera) casillero.obtenerUbicable();
-        assertThat(madera.getDurabilidad(), CoreMatchers.is(0));
-
-    }
+        casillero.eliminarUbicable();
+        }
 
     @Test
     public void testJugadorDesgastaHachaMetalAlDesgastarMadera(){
         Juego juego = new Juego();
-        juego.inicializarInventarioHerramienta();
         juego.inicializarMapaConMateriales();
+        juego.inicializarInventarioHerramienta();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
-        assertThat(herramienta.getDurabilidad(), is(395));
+        assertThat(jugador.obtenerHerramientaActual().getDurabilidad(), is(395));
     }
 
     @Test
-    public void testJugadorNoDesgastaPiedraAlMoverseHaciaEllaConHachaMetal(){
+    public void testJugadorNoDesgastaPiedraAlMoverseHaciaEllaConHachaMetal() {
         Juego juego = new Juego();
         juego.inicializarInventarioHerramienta();
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
-        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4,6));
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4, 6));
         Piedra piedra = (Piedra) casillero.obtenerUbicable();
         assertThat(piedra.getDurabilidad(), CoreMatchers.is(30));
-
     }
 
-    @Test
-    public void testJugadorDesgastaHachaMetalAlMoverseHaciaMetal(){
-        Juego juego = new Juego();
-        juego.inicializarInventarioHerramienta();
-        juego.inicializarMapaConMateriales();
-        juego.inicializarJugador();
-        Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
-        jugador.setHerramientaActual(herramienta);
-        jugador.moverseAbajo(juego.obtenerMapa());
-        jugador.moverseAbajo(juego.obtenerMapa());
-        jugador.moverseAbajo(juego.obtenerMapa());
-        assertThat(herramienta.getDurabilidad(), is(395));
-    }
 
     @Test
     public void testJugadorNoDesgastaMetalAlMoverseHaciaElConHachaMetal(){
@@ -577,7 +670,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaIzquierda(juego.obtenerMapa());
@@ -597,7 +690,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
@@ -613,9 +706,24 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
         moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
+        assertThat(jugador.obtenerHerramientaActual().getDurabilidad(), is(395));
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMetalAlMoverseHaciaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(new DesgasteLinealFactor(1/2), 400, 10, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
         assertThat(herramienta.getDurabilidad(), is(395));
     }
 
@@ -628,7 +736,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Herramienta herramienta = new Pico(new DesgasteAbrupto(), 400, 12, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -647,7 +755,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Herramienta herramienta = new Pico(new DesgasteAbrupto(), 400, 12, new Metal());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -662,7 +770,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Herramienta herramienta = new Pico(new DesgasteAbrupto(), 400, 12, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -681,7 +789,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Herramienta herramienta = new Pico(new DesgasteAbrupto(), 400, 12, new Metal());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -696,7 +804,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Herramienta herramienta = new Pico(new DesgasteAbrupto(), 400, 12, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaIzquierda(juego.obtenerMapa());
@@ -716,7 +824,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Herramienta herramienta = new Pico(new DesgasteAbrupto(), 400, 12, new Metal());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
@@ -732,16 +840,17 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(2/3), 200, 4, new Piedra());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
+        jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseALaIzquierda(juego.obtenerMapa());
         jugador.moverseALaIzquierda(juego.obtenerMapa());
         jugador.moverseALaIzquierda(juego.obtenerMapa());
         jugador.moverseALaIzquierda(juego.obtenerMapa());
-        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,1));
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,2));
         Metal metal = (Metal) casillero.obtenerUbicable();
-        assertThat(metal.getDurabilidad(), CoreMatchers.is(46));
+        assertThat(metal.getDurabilidad(), is(46));
 
     }
 
@@ -752,7 +861,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(2/3), 200, 4, new Piedra());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
@@ -768,7 +877,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(2/3), 200, 4, new Piedra());
         jugador.setHerramientaActual(herramienta);
         moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
         assertThat(herramienta.getDurabilidad(), is(198));
@@ -781,7 +890,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Herramienta herramienta = new Pico(new DesgasteAbrupto(), 400, 12, new Metal());
         jugador.setHerramientaActual(herramienta);
         moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
         assertThat(herramienta.getDurabilidad(), is(400));
@@ -796,12 +905,12 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(2/3), 200, 4, new Piedra());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
-        assertThat(herramienta.getDurabilidad(), is(198));
+        assertThat(jugador.obtenerHerramientaActual().getDurabilidad(), is(198));
     }
 
     @Test
@@ -811,7 +920,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(2/3), 200, 4, new Piedra());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -830,7 +939,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_PIEDRA, DURABILIDAD_PICO_PIEDRA, FUERZA_PICO_PIEDRA, new Piedra());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(2/3), 200, 4, new Piedra());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -848,7 +957,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Herramienta herramienta = new PicoFino(new DesgasteLinealFactor(1/10), 1000, 20);
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -867,7 +976,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Herramienta herramienta = new PicoFino(new DesgasteLinealFactor(1/10), 1000, 20);
         jugador.setHerramientaActual(herramienta);
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -882,7 +991,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Herramienta herramienta = new PicoFino(new DesgasteLinealFactor(1/10), 1000, 20);
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -901,7 +1010,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Herramienta herramienta = new PicoFino(new DesgasteLinealFactor(1/10), 1000, 20);
         jugador.setHerramientaActual(herramienta);
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -916,7 +1025,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Herramienta herramienta = new PicoFino(new DesgasteLinealFactor(1/10), 1000, 20);
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaIzquierda(juego.obtenerMapa());
@@ -936,7 +1045,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Herramienta herramienta = new PicoFino(new DesgasteLinealFactor(1/10), 1000, 20);
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
@@ -953,10 +1062,10 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Herramienta herramienta = new PicoFino(new DesgasteLinealFactor(1/10), 1000, 20);
         jugador.setHerramientaActual(herramienta);
         moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
-        assertThat(herramienta.getDurabilidad(), is(998));
+        assertThat(jugador.obtenerHerramientaActual().getDurabilidad(), is(998));
     }
 
 
@@ -969,7 +1078,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(1), 100, 2, new Madera());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -988,7 +1097,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(1), 100, 2, new Madera());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -1003,7 +1112,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(1), 100, 2, new Madera());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -1022,7 +1131,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(1), 100, 2, new Madera());
         jugador.setHerramientaActual(herramienta);
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -1037,7 +1146,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(1), 100, 2, new Madera());
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaIzquierda(juego.obtenerMapa());
@@ -1057,8 +1166,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
-        jugador.setHerramientaActual(herramienta);
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(1), 100, 2, new Madera());
         Mapa tablero = juego.obtenerMapa();
         moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
         Casillero casillero = tablero.obtenerCasillero(new Ubicacion(10,10));
@@ -1074,7 +1182,7 @@ public class JuegoTests {
         juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
-        Herramienta herramienta = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        Herramienta herramienta = new Pico(new DesgasteLinealFactor(1), 100, 2, new Madera());
         jugador.setHerramientaActual(herramienta);
         moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
         assertThat(herramienta.getDurabilidad(), is(98));
@@ -1697,5 +1805,57 @@ public class JuegoTests {
         tableroConHachaMadera.eliminarDeCasillero(ubicacionD);
         tableroConHachaMadera.eliminarDeCasillero(ubicacionE);
         assertTrue(tableroConHachaMadera.esIgualA(juego.obtenerTableroCrafteo()));
+    }
+
+    @Test
+    public void testJugadorPuedeMoverseHaciaLaDerechaEnJuegoInicializado() {
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Jugador jugador = juego.obtenerJugador();
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+    }
+
+
+    @Test
+    public void testJugadorNoCambiaDePosicionALaTerceraVezDeMoverseAbajoEnJuegoInicializado() {
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Ubicacion ubicacion1 = jugador.obtenerUbicacion();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertFalse(jugador.obtenerUbicacion() == ubicacion1);
+        Ubicacion ubicacion2 = jugador.obtenerUbicacion();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertFalse(jugador.obtenerUbicacion() == ubicacion2);
+        Ubicacion ubicacion3 = jugador.obtenerUbicacion();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertThat(jugador.obtenerUbicacion(), CoreMatchers.is(ubicacion3));
+    }
+
+
+    @Test
+    public void testElInventarioDeMaterialesSeInicializaCorrectamente() {
+        Juego juego = new Juego();
+        juego.inicializarInventarioMaterial();
+        inicializarInventarioMaterialesTest();
+        assertTrue(juego.obtenerInventarioMaterialesJugador().equals(inventarioMaterialesJugadorTest));
+    }
+
+    @Test
+        public void testElInventarioDeHerramientasSeInicializaCorrectamente() {
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        inicializarInventarioHerramientaTest();
+        assertTrue(juego.obtenerInventarioHerramientas().equals(inventarioHerramientasTest));
+    }
+
+    @Test(expected = NoExisteNingunCasilleroParaLaUbicacionDadaException.class)
+    public void testJugadorNoPuedeMoverseHaciaArribaEnJuegoInicializado() {
+        Juego juego = new Juego();
+        juego.inicializarJuego();
+        Jugador jugador = juego.obtenerJugador();
+        jugador.moverseArriba(juego.obtenerMapa());
     }
 }

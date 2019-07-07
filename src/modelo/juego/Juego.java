@@ -288,12 +288,6 @@ public class Juego {
         return null;
     }
 
-    public void setInvetarioMaterialesJugador(HashMap inventarioMateriales){
-        this.inventarioMaterialesJugador = inventarioMateriales;
-    }
 
-    public void setInvetarioHerramientasJugador(HashMap inventarioHerramientas){
-        this.inventarioMaterialesJugador = inventarioHerramientas;
-    }
 
 }
