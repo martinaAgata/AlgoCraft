@@ -5,9 +5,15 @@ import modelo.juego.Juego;
 import modelo.juego.Jugador;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
+import modelo.materiales.Diamante;
 import modelo.materiales.Madera;
+import modelo.materiales.Metal;
+import modelo.materiales.Piedra;
 import org.junit.Test;
 
+import java.util.HashMap;
+
+import static junit.framework.Assert.assertNotSame;
 import static junit.framework.TestCase.assertFalse;
 import static modelo.juego.ConstantesJuego.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -16,13 +22,6 @@ import static org.junit.Assert.assertTrue;
 
 public class JugadorTests {
 
-    /*Es la entidad controlable por el usuario, el cual puede moverse
-    por el mapa, y conseguir materiales que haya en su mapa.
-    Al iniciar la partida, el jugador inicia con un hacha de madera
-    en el inventario.
-    El jugador debe poder desplazarse en todas las direcciones y puede moverse
-    por todos los casilleros vacíos (es decir, sin ningún material).
-    */
     @Test
     public void testJugadorSeInicializaConUnItemEnElInventario() {
         ConstructorHerramientaAbstracto constructor = new ConstructorHacha();
@@ -171,5 +170,70 @@ public class JugadorTests {
         Ubicacion ubicacionEsperada = ubicacionInicialJugador.getUbicacionIzquierda();
         assertTrue(ubicacionEsperada.equals(jugador.obtenerUbicacion()));
     }
+
+    @Test
+    public void testJugadorSeteaHachaPiedraCorrectamente(){
+        Hacha hacha = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        Jugador jugador = new Jugador(null, null, null);
+        assertNotSame(jugador.obtenerHerramientaActual(), hacha);
+        jugador.setHerramientaActual(hacha);
+        assertThat(hacha, is(jugador.obtenerHerramientaActual()));
+    }
+
+    @Test
+    public void testJugadorSeteaHachaMetalCorrectamente(){
+        Hacha hacha = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        Jugador jugador = new Jugador(null, null, null);
+        assertNotSame(jugador.obtenerHerramientaActual(), hacha);
+        jugador.setHerramientaActual(hacha);
+        assertThat(hacha, is(jugador.obtenerHerramientaActual()));
+    }
+
+    @Test
+    public void testJugadorSeteaHachaMaderaCorrectamente(){
+        Hacha hacha = new Hacha(DESGASTE_HACHA_MADERA, DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, new Madera());
+        Jugador jugador = new Jugador(null, null, null);
+        assertNotSame(jugador.obtenerHerramientaActual(), hacha);
+        jugador.setHerramientaActual(hacha);
+        assertThat(hacha, is(jugador.obtenerHerramientaActual()));
+    }
+
+    @Test
+    public void testJugadorSeteaPicoMaderaCorrectamente(){
+        Pico pico = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Madera());
+        Jugador jugador = new Jugador(null, null, null);
+        assertNotSame(jugador.obtenerHerramientaActual(), pico);
+        jugador.setHerramientaActual(pico);
+        assertThat(pico, is(jugador.obtenerHerramientaActual()));
+    }
+
+    @Test
+    public void testJugadorSeteaPicoPiedraCorrectamente(){
+        Pico pico = new Pico(DESGASTE_PICO_MADERA, DURABILIDAD_PICO_MADERA, FUERZA_PICO_MADERA, new Piedra());
+        Jugador jugador = new Jugador(null, null, null);
+        assertNotSame(jugador.obtenerHerramientaActual(), pico);
+        jugador.setHerramientaActual(pico);
+        assertThat(pico, is(jugador.obtenerHerramientaActual()));
+    }
+
+    @Test
+    public void testJugadorSeteaPicoMetalCorrectamente(){
+        Pico pico = new Pico(DESGASTE_PICO_METAL, DURABILIDAD_PICO_METAL, FUERZA_PICO_METAL, new Metal());
+        Jugador jugador = new Jugador(null, null, null);
+        assertNotSame(jugador.obtenerHerramientaActual(), pico);
+        jugador.setHerramientaActual(pico);
+        assertThat(pico, is(jugador.obtenerHerramientaActual()));
+    }
+
+    @Test
+    public void testJugadorSeteaPicoFinoCorrectamente(){
+        PicoFino pico = new PicoFino(DESGASTE_PICO_FINO, DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO);
+        Jugador jugador = new Jugador(null, null, null);
+        assertNotSame(jugador.obtenerHerramientaActual(), pico);
+        jugador.setHerramientaActual(pico);
+        assertThat(pico, is(jugador.obtenerHerramientaActual()));
+    }
+
+
 
 }
