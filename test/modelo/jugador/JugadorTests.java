@@ -248,7 +248,7 @@ public class JugadorTests {
     }
 
     @Test
-    public void testJugadorDesgasteHerramientaAlDesgastarUnMaterial(){
+    public void testJugadorDesgastaHachaMaderaAlGolpearUnaMadera(){
         Hacha hachaMadera = (Hacha) new ConstructorHacha()
                 .conMaterial(new Madera())
                 .conDurabilidad(DURABILIDAD_HACHA_MADERA)

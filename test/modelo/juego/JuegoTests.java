@@ -134,6 +134,12 @@ public class JuegoTests {
     }
 
     @Test
+    public void testSeInicializaJuegoConUnJugadorConUnHachaMadera(){
+        Juego juego = new Juego();
+
+    }
+
+    @Test
     public void testSeUbicaCorrectamenteMaterialEnTableroCrafteoParaPatronHachaMadera(){
         PatronHacha patron = new PatronHacha(new Madera());
         Juego juego = new Juego();
@@ -240,15 +246,11 @@ public class JuegoTests {
     }
 
     @Test
-    public void testJugadorDesgastaMaterialAlMoverse(){
+    public void testJugadorDesgastaMaderaAlMoverseHaciaElla(){
         Juego juego = new Juego();
-        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
-        juego.setInvetarioMaterialesJugador(inventarioMaterialesJugador);
-        HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientasJugador = new HashMap<>();
-        juego.setInvetarioHerramientasJugador(inventarioHerramientasJugador);
         juego.inicializarInventarioHerramienta();
-        juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseALaDerecha(juego.obtenerMapa());
@@ -261,21 +263,16 @@ public class JuegoTests {
     }
 
     @Test
-    public void testJugadorDesgastaHerramientaAlDesgastarMaterial(){
+    public void testJugadorDesgastaHachaMaderaAlDesgastarMadera(){
         Juego juego = new Juego();
-        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
-        juego.setInvetarioMaterialesJugador(inventarioMaterialesJugador);
-        HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientasJugador = new HashMap<>();
-        juego.setInvetarioHerramientasJugador(inventarioHerramientasJugador);
         juego.inicializarInventarioHerramienta();
-        juego.inicializarJugador();
         juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
         jugador.moverseALaDerecha(juego.obtenerMapa());
         Herramienta hachaMadera = jugador.obtenerHerramientaActual();
         assertThat(hachaMadera.getDurabilidad(), is(98));
-
     }
 }

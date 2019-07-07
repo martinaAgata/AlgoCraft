@@ -295,4 +295,5 @@ public class Juego {
     public void setInvetarioHerramientasJugador(HashMap inventarioHerramientas){
         this.inventarioMaterialesJugador = inventarioHerramientas;
     }
+
 }
