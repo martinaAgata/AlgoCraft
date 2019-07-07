@@ -275,4 +275,357 @@ public class JuegoTests {
         Herramienta hachaMadera = jugador.obtenerHerramientaActual();
         assertThat(hachaMadera.getDurabilidad(), is(98));
     }
+
+    @Test
+    public void testJugadorNoDesgastaPiedraAlMoverseHaciaEllaConHachaMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4,6));
+        Piedra piedra = (Piedra) casillero.obtenerUbicable();
+        assertThat(piedra.getDurabilidad(), CoreMatchers.is(30));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMaderaAlMoverseHaciaPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        Herramienta hachaMadera = jugador.obtenerHerramientaActual();
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaMetalAlMoverseHaciaElConHachaMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,1));
+        Metal metal = (Metal) casillero.obtenerUbicable();
+        assertThat(metal.getDurabilidad(), CoreMatchers.is(50));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMaderaAlMoverseHaciaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Herramienta hachaMadera = jugador.obtenerHerramientaActual();
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaDiamanteAlMoverseHaciaElConHachaMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Mapa tablero = juego.obtenerMapa();
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(10,10));
+        Diamante diamante = (Diamante) casillero.obtenerUbicable();
+        assertThat(diamante.getDurabilidad(), CoreMatchers.is(100));
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMaderaAlMoverseHaciaDiamante(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
+        Herramienta hachaMadera = jugador.obtenerHerramientaActual();
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorDesgastaMaderaAlMoverseHaciaEllaConHachaPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(1,9));
+        Madera madera = (Madera) casillero.obtenerUbicable();
+        assertThat(madera.getDurabilidad(), CoreMatchers.is(5));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaPiedraAlDesgastarMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(195));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaPiedraAlMoverseHaciaEllaConHachaPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4,6));
+        Piedra piedra = (Piedra) casillero.obtenerUbicable();
+        assertThat(piedra.getDurabilidad(), CoreMatchers.is(30));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaPiedraAlMoverseHaciaPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(195));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaMetalAlMoverseHaciaElConHachaPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,1));
+        Metal metal = (Metal) casillero.obtenerUbicable();
+        assertThat(metal.getDurabilidad(), CoreMatchers.is(50));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaPiedraAlMoverseHaciaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Herramienta hachaMadera = jugador.obtenerHerramientaActual();
+        assertThat(hachaMadera.getDurabilidad(), is(195));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaDiamanteAlMoverseHaciaElConHachaPiedra(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(10,10));
+        Diamante diamante = (Diamante) casillero.obtenerUbicable();
+        assertThat(diamante.getDurabilidad(), CoreMatchers.is(100));
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaPiedraAlMoverseHaciaDiamante(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_PIEDRA, DURABILIDAD_HACHA_PIEDRA, FUERZA_HACHA_PIEDRA, new Piedra());
+        jugador.setHerramientaActual(herramienta);
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(195));
+    }
+    //--------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void testJugadorDesgastaMaderaAlMoverseHaciaEllaConHachaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(1,9));
+        Madera madera = (Madera) casillero.obtenerUbicable();
+        assertThat(madera.getDurabilidad(), CoreMatchers.is(0));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMetalAlDesgastarMadera(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(395));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaPiedraAlMoverseHaciaEllaConHachaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(4,6));
+        Piedra piedra = (Piedra) casillero.obtenerUbicable();
+        assertThat(piedra.getDurabilidad(), CoreMatchers.is(30));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMetalAlMoverseHaciaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        jugador.moverseAbajo(juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(395));
+    }
+
+    @Test
+    public void testJugadorNoDesgastaMetalAlMoverseHaciaElConHachaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        jugador.moverseALaIzquierda(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(2,1));
+        Metal metal = (Metal) casillero.obtenerUbicable();
+        assertThat(metal.getDurabilidad(), CoreMatchers.is(50));
+
+    }
+
+    @Test
+    public void testJugadorNoDesgastaDiamanteAlMoverseHaciaElConHachaMetal(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        Mapa tablero = juego.obtenerMapa();
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, tablero);
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(10,10));
+        Diamante diamante = (Diamante) casillero.obtenerUbicable();
+        assertThat(diamante.getDurabilidad(), CoreMatchers.is(100));
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMetalAlMoverseHaciaDiamante(){
+        Juego juego = new Juego();
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarMapaConMateriales();
+        juego.inicializarJugador();
+        Jugador jugador = juego.obtenerJugador();
+        Herramienta herramienta = new Hacha(DESGASTE_HACHA_METAL, DURABILIDAD_HACHA_METAL, FUERZA_HACHA_METAL, new Metal());
+        jugador.setHerramientaActual(herramienta);
+        moverseHastaDiamanteSegunMapaPlaneado(jugador, juego.obtenerMapa());
+        assertThat(herramienta.getDurabilidad(), is(395));
+    }
+
+    private void moverseHastaDiamanteSegunMapaPlaneado(Jugador jugador, Mapa mapa){
+        jugador.moverseAbajo(mapa);
+        jugador.moverseAbajo(mapa);
+        jugador.moverseALaDerecha(mapa);
+        jugador.moverseALaDerecha(mapa);
+        for (int i=0; i<4; i++) jugador.moverseAbajo(mapa);
+        jugador.moverseALaDerecha(mapa);
+        jugador.moverseALaDerecha(mapa);
+        for (int i=0; i<3; i++) jugador.moverseAbajo(mapa);
+    }
 }

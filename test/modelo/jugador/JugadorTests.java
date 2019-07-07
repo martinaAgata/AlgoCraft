@@ -246,6 +246,518 @@ public class JugadorTests {
         jugador.moverseALaDerecha(tableroJuego);
         assertThat(madera.getDurabilidad(), is(8));
     }
+    @Test
+    public void testJugadorDesgastaMaderaAlGolpearlaConHachaMadera(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(madera.getDurabilidad(), is(8));
+
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaPiedraAlGolpearlaConHachaMadera(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(piedra.getDurabilidad(), is(30));
+
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMetalAlGolpearloConHachaMadera(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(metal.getDurabilidad(), is(50));
+
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaDiamanteAlGolpearloConHachaMadera(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(diamante.getDurabilidad(), is(100));
+    }
+
+    @Test
+    public void testJugadorDesgastaMaderaAlGolpearlaConHachaPiedra(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(madera.getDurabilidad(), is(5));
+
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaPiedraAlGolpearlaConHachaPiedra(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(piedra.getDurabilidad(), is(30));
+
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMetalAlGolpearloConHachaPiedra(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(metal.getDurabilidad(), is(50));
+
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaDiamanteAlGolpearloConHachaPiedra(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(diamante.getDurabilidad(), is(100));
+    }
+
+
+    @Test
+    public void testJugadorDesgastaMaderaAlGolpearlaConHachaMetal(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(madera.getDurabilidad(), is(0));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaPiedraAlGolpearlaConHachaMetal(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(piedra.getDurabilidad(), is(30));
+
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMetalAlGolpearloConHachaMetal(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(metal.getDurabilidad(), is(50));
+
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaDiamanteAlGolpearloConHachaMetal(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(diamante.getDurabilidad(), is(100));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMaderaAlGolpearlaConPicoMadera(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(madera.getDurabilidad(), is(10));
+    }
+
+    @Test
+    public void testJugadorDesgastaPiedraAlGolperlaConPicoMadera(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(piedra.getDurabilidad(), is(28));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMetalAlGolpearloConPicoMadera(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(metal.getDurabilidad(), is(50));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaDiamanteAlGolpearloConPicoMadera(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(diamante.getDurabilidad(), is(100));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMaderaAlGolpearlaConPicoPiedra(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(madera.getDurabilidad(), is(10));
+    }
+
+    @Test
+    public void testJugadorDesgastaPiedraAlGolpearlaConPicoPiedra(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(piedra.getDurabilidad(), is(26));
+    }
+
+    @Test
+    public void testJugadorDesgastaMetalAlGolpearloConPicoPiedra(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(metal.getDurabilidad(), is(46));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaDiamanteAlGolpearloConPicoPiedra(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(diamante.getDurabilidad(), is(100));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMaderaAlGolpearlaConPicoMetal(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(madera.getDurabilidad(), is(10));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaPiedraAlGolpearloConPicoMetal(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(piedra.getDurabilidad(), is(18));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMetalAlGolpearloConPicoMetal(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(metal.getDurabilidad(), is(50));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaDiamanteAlGolperaloConPicoMetal(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(diamante.getDurabilidad(), is(100));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMaderaAlGolpearlaConPicoFino(){
+        PicoFino pico = (PicoFino) new ConstructorPicoFino()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(madera.getDurabilidad(), is(10));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaPiedraAlGolpearlaConPicoFino(){
+        PicoFino pico = (PicoFino) new ConstructorPicoFino()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(piedra.getDurabilidad(), is(30));
+    }
+
+    @Test
+    public void testJugadorNoSeDesgastaMetalAlGolpearloConPicoFino(){
+        PicoFino pico = (PicoFino) new ConstructorPicoFino()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(metal.getDurabilidad(), is(50));
+    }
+
+    @Test
+    public void testJugadorDesgastaDiamanteAlGolpearloConPicoFino(){
+        PicoFino pico = (PicoFino) new ConstructorPicoFino()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(diamante.getDurabilidad(), is(80));
+    }
 
     @Test
     public void testJugadorDesgastaHachaMaderaAlGolpearUnaMadera(){
@@ -258,11 +770,505 @@ public class JugadorTests {
         Madera madera = new Madera();
         Mapa tableroJuego = new Mapa(2,2);
         tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
-        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
         Ubicacion ubicacionJugador = new Ubicacion(1,1);
         Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
         jugador.moverseALaDerecha(tableroJuego);
         assertThat(hachaMadera.getDurabilidad(), is(98));
 
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMaderaAlGolpearUnaPiedra(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMaderaAlGolpearUnMetal(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMaderaAlGolpearUnDiamante(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaPiedraAlGolpearUnaMadera(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hacha.getDurabilidad(), is(195));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaPiedraAlGolpearUnaPiedra(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hacha.getDurabilidad(), is(195));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaPiedraAlGolpearUnMetal(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hacha.getDurabilidad(), is(195));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaPiedraAlGolpearUnDiamante(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_PIEDRA)
+                .conDesgaste(DESGASTE_HACHA_PIEDRA)
+                .conFuerza(FUERZA_HACHA_PIEDRA)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hacha.getDurabilidad(), is(195));
+    }
+
+
+    @Test
+    public void testJugadorDesgastaHachaMetalAlGolpearUnaMadera(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hacha.getDurabilidad(), is(395));
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMetalAlGolpearUnaPiedra(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hacha.getDurabilidad(), is(395));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMetalAlGolpearUnMetal(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hacha.getDurabilidad(), is(395));
+
+    }
+
+    @Test
+    public void testJugadorDesgastaHachaMetalAlGolpearUnDiamante(){
+        Hacha hacha = (Hacha) new ConstructorHacha()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_HACHA_METAL)
+                .conDesgaste(DESGASTE_HACHA_METAL)
+                .conFuerza(FUERZA_HACHA_METAL)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hacha.getDurabilidad(), is(395));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMaderaAlGolpearUnaMadera(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMaderaAlGolpearUnaPiedra(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMaderaAlGolpearUnMetal(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMaderaAlGolpearUnDiamante(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_PICO_MADERA)
+                .conDesgaste(DESGASTE_PICO_MADERA)
+                .conFuerza(FUERZA_PICO_MADERA)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(98));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoPiedraAlGolpearUnaMadera(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(198));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoPiedraAlGolpearUnaPiedra(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(198));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoPiedraAlGolpearUnMetal(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(198));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoPiedraAlGolpearUnDiamante(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Piedra())
+                .conDurabilidad(DURABILIDAD_PICO_PIEDRA)
+                .conDesgaste(DESGASTE_PICO_PIEDRA)
+                .conFuerza(FUERZA_PICO_PIEDRA)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(198));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMetalAlGolpearUnaMadera(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(400));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMetalAlGolpearUnaPiedra(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(400));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMetalAlGolpearUnMetal(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(400));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoMetalAlGolpearUnDiamante(){
+        Pico pico = (Pico) new ConstructorPico()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_METAL)
+                .conDesgaste(DESGASTE_PICO_METAL)
+                .conFuerza(FUERZA_PICO_METAL)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(400));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoFinoAlGolpearUnaMadera(){
+        PicoFino pico = (PicoFino) new ConstructorPicoFino()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(998));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoFinoAlGolpearUnaPiedra(){
+        PicoFino pico = (PicoFino) new ConstructorPicoFino()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir();
+        Piedra piedra = new Piedra();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(piedra, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(998));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoFinoAlGolpearUnMetal(){
+        PicoFino pico = (PicoFino) new ConstructorPicoFino()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir();
+        Metal metal = new Metal();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(metal, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(998));
+    }
+
+    @Test
+    public void testJugadorDesgastaPicoFinoAlGolpearUnDiamante(){
+        PicoFino pico = (PicoFino) new ConstructorPicoFino()
+                .conMaterial(new Metal())
+                .conDurabilidad(DURABILIDAD_PICO_FINO)
+                .conDesgaste(DESGASTE_PICO_FINO)
+                .conFuerza(FUERZA_PICO_FINO)
+                .construir();
+        Diamante diamante = new Diamante();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(diamante, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(pico, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(pico.getDurabilidad(), is(998));
     }
 }
