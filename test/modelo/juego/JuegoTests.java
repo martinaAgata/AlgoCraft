@@ -663,6 +663,8 @@ public class JuegoTests {
     }
 
 
+
+
     @Test
     public void testJugadorNoDesgastaMetalAlMoverseHaciaElConHachaMetal(){
         Juego juego = new Juego();
@@ -841,6 +843,7 @@ public class JuegoTests {
         juego.inicializarJugador();
         Jugador jugador = juego.obtenerJugador();
         Herramienta herramienta = new Pico(new DesgasteLinealFactor(2/3), 200, 4, new Piedra());
+
         jugador.setHerramientaActual(herramienta);
         Mapa tablero = juego.obtenerMapa();
         jugador.moverseAbajo(juego.obtenerMapa());
@@ -1858,4 +1861,5 @@ public class JuegoTests {
         Jugador jugador = juego.obtenerJugador();
         jugador.moverseArriba(juego.obtenerMapa());
     }
+
 }
