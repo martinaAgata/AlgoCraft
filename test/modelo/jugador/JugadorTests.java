@@ -343,7 +343,6 @@ public class JugadorTests {
         Jugador jugador = new Jugador(hacha, inventarioMaterialesJugador, ubicacionJugador);
         jugador.moverseALaDerecha(tableroJuego);
         assertThat(metal.getDurabilidad(), is(50));
-
     }
 
     @Test

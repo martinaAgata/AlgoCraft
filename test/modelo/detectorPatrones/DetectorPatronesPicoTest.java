@@ -1,5 +1,6 @@
 package modelo.detectorPatrones;
 
+import modelo.estrategias.DesgasteAbrupto;
 import modelo.herramientas.ConstructorPico;
 import modelo.herramientas.Herramienta;
 import modelo.herramientas.Pico;
@@ -376,7 +377,7 @@ public class DetectorPatronesPicoTest {
         tableroConPicoMetal.ubicarEnCasillero(madera, ubicacionD);
         tableroConPicoMetal.ubicarEnCasillero(madera, ubicacionE);
         DetectorPatron dp = new DetectorPatronPico(new Metal(), () -> new ConstructorPico().conMaterial(new Metal())
-                .conDurabilidad(DURABILIDAD_PICO_METAL).conDesgaste(DESGASTE_PICO_METAL).conFuerza(FUERZA_PICO_METAL)
+                .conDurabilidad(400).conDesgaste(new DesgasteAbrupto()).conFuerza(12)
                 .construir());
         Optional<Herramienta> resultado = dp.resolverPatron(tableroConPicoMetal);
         Herramienta herramienta = resultado.get();

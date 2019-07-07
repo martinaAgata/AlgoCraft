@@ -6,7 +6,6 @@ import modelo.estrategias.DesgasteLinealFactor;
 import modelo.estrategias.EstrategiaDesgaste;
 import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
-import modelo.exceptions.NoSePuedeEliminarPorqueEstaVacioException;
 import modelo.herramientas.*;
 import modelo.mapa.Casillero;
 import modelo.mapa.Mapa;
@@ -28,20 +27,6 @@ import static junit.framework.TestCase.assertTrue;
 import static modelo.juego.ConstantesJuego.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-//se inicializan los inventarios correctamente
-//se inicializan patrones correctamente
-// al inivializar juego se iicializan :
-        /*inicializarInventarioMaterial();
-        inicializarInventarioHerramienta();
-        inicializarJugador();
-        inicializarMapaConMateriales();
-        inicializarPatrones();
-        }*/
-// detectarHerramientatableroCrafteo()
-// ubicarMaterialTableroCrafteo
-//quitarMaterialTableroCrafteo
-//obtenerTableroCrafteo
-//
 
 public class JuegoTests {
 
@@ -102,14 +87,6 @@ public class JuegoTests {
         mapaTest.ubicarEnCasillero(new Diamante(), ubicacion2);
     }
 
-    private void agregarHerramientaAinventarioHerramientas(ConstructorHerramientaAbstracto constructor,
-                                                           Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste){
-        constructor.conMaterial(material).conDurabilidad(durabilidad)
-                .conDesgaste(desgaste)
-                .conFuerza(fuerza);
-        inventarioHerramientasTest.put(constructor.construir(), new ArrayList<>());
-    }
-
     private void agregarListaDeHerramientasAinventarioHerramientasTest(ConstructorHerramientaAbstracto constructor,
                                                                    Material material, int durabilidad, int fuerza, EstrategiaDesgaste desgaste) {
         constructor.conMaterial(material).conDurabilidad(durabilidad)
@@ -134,12 +111,6 @@ public class JuegoTests {
         agregarListaDeHerramientasAinventarioHerramientasTest(new ConstructorPicoFino(), new Metal(),
                 DURABILIDAD_PICO_FINO, FUERZA_PICO_FINO, DESGASTE_PICO_FINO);
     }
-
-
-   // private void inicializarInventarioHerramientaTest() {
-    //   agregarHerramientaAinventarioHerramientas(new ConstructorHacha(), new Madera(),
-       //         DURABILIDAD_HACHA_MADERA, FUERZA_HACHA_MADERA, DESGASTE_HACHA_MADERA);
-    //}
 
 
     public void inicializarMapaTestConJugador(){
@@ -612,12 +583,13 @@ public class JuegoTests {
     }
     //--------------------------------------------------------------------------------------------------------------
 
-    @Test (expected = NoSePuedeEliminarPorqueEstaVacioException.class)
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testJugadorDesgastaMaderaAlMoverseHaciaEllaConHachaMetal(){
         Juego juego = new Juego();
+        juego.inicializarInventarioMaterial();
         juego.inicializarInventarioHerramienta();
-        juego.inicializarMapaConMateriales();
         juego.inicializarJugador();
+        juego.inicializarMapaConMateriales();
         Jugador jugador = juego.obtenerJugador();
         Herramienta herramienta = new Hacha(new DesgasteLinealFactor(0.5), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
@@ -629,18 +601,22 @@ public class JuegoTests {
         casillero.eliminarUbicable();
         }
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testJugadorDesgastaHachaMetalAlDesgastarMadera(){
         Juego juego = new Juego();
-        juego.inicializarMapaConMateriales();
+
+        juego.inicializarInventarioMaterial();
         juego.inicializarInventarioHerramienta();
         juego.inicializarJugador();
+        juego.inicializarMapaConMateriales();
+
         Jugador jugador = juego.obtenerJugador();
         Herramienta herramienta = new Hacha(new DesgasteLinealFactor(0.5), 400, 10, new Metal());
         jugador.setHerramientaActual(herramienta);
-        jugador.moverseALaDerecha(juego.obtenerMapa());
-        jugador.moverseALaDerecha(juego.obtenerMapa());
-        jugador.moverseALaDerecha(juego.obtenerMapa());
+        Mapa mapa = juego.obtenerMapa();
+        jugador.moverseALaDerecha(mapa);
+        jugador.moverseALaDerecha(mapa);
+        jugador.moverseALaDerecha(mapa);
         assertThat(jugador.obtenerHerramientaActual().getDurabilidad(), is(395));
     }
 
@@ -1018,7 +994,7 @@ public class JuegoTests {
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
         jugador.moverseAbajo(juego.obtenerMapa());
-        assertThat(herramienta.getDurabilidad(), is(998));
+        assertThat(jugador.obtenerHerramientaActual().getDurabilidad(), is(998));
     }
 
     @Test

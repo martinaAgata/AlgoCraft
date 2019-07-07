@@ -51,15 +51,15 @@ public class ConstantesJuego {
     public static final EstrategiaDesgaste DESGASTE_HACHA_METAL = new DesgasteLinealFactor(FACTOR_DESGASTE_HACHA_METAL);
 
     /*----- PicoMadera -----*/
-    public static final double FACTOR_DESGASTE_PICO_MADERA = 1.0;
     public static final int DURABILIDAD_PICO_MADERA = 100;
     public static final int FUERZA_PICO_MADERA = 2;
+    public static final double FACTOR_DESGASTE_PICO_MADERA = 1.0;
     public static final EstrategiaDesgaste DESGASTE_PICO_MADERA =new DesgasteLinealFactor(FACTOR_DESGASTE_PICO_MADERA);
 
     /*----- PicoPiedra -----*/
-    public static final double FACTOR_DESGASTE_PICO_PIEDRA = (1 / 1.5);
     public static final int DURABILIDAD_PICO_PIEDRA = 200;
     public static final int FUERZA_PICO_PIEDRA = 4;
+    public static final double FACTOR_DESGASTE_PICO_PIEDRA = (1 / 1.5);
     public static final EstrategiaDesgaste DESGASTE_PICO_PIEDRA =new DesgasteLinealFactor(FACTOR_DESGASTE_PICO_PIEDRA);
 
     /*----- PicoMetal -----*/
