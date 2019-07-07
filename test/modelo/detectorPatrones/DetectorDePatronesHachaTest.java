@@ -1,5 +1,6 @@
 package modelo.detectorPatrones;
 
+import modelo.exceptions.MaterialSeHaGastadoException;
 import modelo.herramientas.ConstructorHacha;
 import modelo.herramientas.ConstructorPico;
 import modelo.herramientas.Hacha;
@@ -405,7 +406,7 @@ public class DetectorDePatronesHachaTest {
         assertFalse(resultado.isPresent());
     }
 
-    @Test
+    @Test (expected = MaterialSeHaGastadoException.class)
     public void testSeCreaUnHachaDeMetalYSeReconocePatron(){
         Madera madera = new Madera();
         Metal metal = new Metal();

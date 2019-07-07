@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 public class CrafteoController {
     private Juego juego;
+    private Tablero tablero;
     private AbrirInterfazCrafteo interfazCrafteo;
     private SeleccionarMaterialCrafteoHandler selecMaterial;
     private UbicarMaterialCrafteoHandler ubicarMaterial;
@@ -25,8 +26,10 @@ public class CrafteoController {
     private ImageViewMaterial imgVM;
     private HashMap<Material, String> rutasMateriales;
     private HashMap<Material, Integer> inventarioMaterialJugadorCopy;
-    public CrafteoController(Juego juego){
+
+    public CrafteoController(Juego juego, Tablero tablero){
         this.juego = juego;
+        this.tablero = tablero;
         this.interfazCrafteo = new AbrirInterfazCrafteo();
         this.selecMaterial = new SeleccionarMaterialCrafteoHandler(this);
         this.ubicarMaterial = new UbicarMaterialCrafteoHandler(this);
@@ -76,8 +79,12 @@ public class CrafteoController {
 
     public void crearHerramientaCrafteada(){
         this.interfazCrafteo.actualizarHerramientaCrafteable(null);
-        try { this.juego.crearHerramienta(); }
-        catch (NoHayHerramientaParaCrearException e) { return; }
+        try {
+            this.juego.crearHerramienta();
+        } catch (NoHayHerramientaParaCrearException e) {
+            return;
+        }
+        this.tablero.actualizarTexto("La herramienta construída se ha guardado en el inventario");
         this.interfazCrafteo.actualizarInventarioHbox(this.juego.obtenerInventarioMaterialesJugador(), this.selecMaterial);
         this.vaciarMatrizCrafteo();
     }

@@ -1,5 +1,6 @@
 package modelo.jugador;
 
+import modelo.exceptions.NoExisteNingunCasilleroParaLaUbicacionDadaException;
 import modelo.herramientas.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
@@ -63,14 +64,13 @@ public class JugadorTests {
         jugador.moverseALaDerecha(juego.obtenerMapa());
     }
 
-    @Test
+    @Test (expected = NoExisteNingunCasilleroParaLaUbicacionDadaException.class)
     public void testJugadorNoPuedeMoverseHaciaArribaEnJuegoInicializado() {
         Juego juego = new Juego();
         juego.inicializarJuego();
         Jugador jugador = juego.obtenerJugador();
         Ubicacion ubicacionAnterior = jugador.obtenerUbicacion();
         jugador.moverseArriba(juego.obtenerMapa());
-        assertThat(jugador.obtenerUbicacion(), is(ubicacionAnterior));
 
     }
 

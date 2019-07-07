@@ -15,14 +15,14 @@ import java.io.File;
 import static interfaz.ConstantesInterfaz.RUTA_SONIDO_MOVIMIENTO;
 
 public class EntradaTecladoHandler implements EventHandler<KeyEvent> {
-    private Mover moverJugador;
+    private MoverHandler moverJugador;
     private CrafteoController crafteoController;
     private PantallaPrincipal pantallaPrincipal;
 
 
     public EntradaTecladoHandler(Tablero tablero, Mapa mapa, Jugador jugador, Inventario inventario){
-        this.moverJugador = new Mover(tablero, mapa, jugador, inventario);
-        this.crafteoController = new CrafteoController(tablero.obtenerJuego());
+        this.moverJugador = new MoverHandler(tablero, mapa, jugador, inventario);
+        this.crafteoController = new CrafteoController(tablero.obtenerJuego(), tablero);
         this.pantallaPrincipal = (PantallaPrincipal) tablero.getParent();
     }
 
