@@ -15,7 +15,6 @@ public class Jugador extends Ubicable {
 
     public Jugador(Herramienta herramientaInicial, HashMap inventarioMateriales, Ubicacion inicial) {
         super(inicial);
-        ConstructorHacha constructor = new ConstructorHacha();
         this.herramientaActual = herramientaInicial;
         this.inventarioMateriales = inventarioMateriales;
     }

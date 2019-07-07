@@ -6,7 +6,10 @@ import modelo.juego.Jugador;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
 import modelo.materiales.Madera;
+import modelo.materiales.Material;
 import org.junit.Test;
+
+import java.util.HashMap;
 
 import static junit.framework.TestCase.assertFalse;
 import static modelo.juego.ConstantesJuego.*;
@@ -170,6 +173,44 @@ public class JugadorTests {
         jugador.moverseALaIzquierda(mapa);
         Ubicacion ubicacionEsperada = ubicacionInicialJugador.getUbicacionIzquierda();
         assertTrue(ubicacionEsperada.equals(jugador.obtenerUbicacion()));
+    }
+
+
+    @Test
+    public void testJugadorDesgasteMaterialAlMovecerseHaciaEl(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador = new HashMap<>();
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(madera.getDurabilidad(), is(8));
+    }
+
+    @Test
+    public void testJugadorDesgasteHerramientaAlDesgastarUnMaterial(){
+        Hacha hachaMadera = (Hacha) new ConstructorHacha()
+                .conMaterial(new Madera())
+                .conDurabilidad(DURABILIDAD_HACHA_MADERA)
+                .conDesgaste(DESGASTE_HACHA_MADERA)
+                .conFuerza(FUERZA_HACHA_MADERA)
+                .construir();
+        Madera madera = new Madera();
+        Mapa tableroJuego = new Mapa(2,2);
+        tableroJuego.ubicarEnCasillero(madera, new Ubicacion(1,2));
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();;
+        Ubicacion ubicacionJugador = new Ubicacion(1,1);
+        Jugador jugador = new Jugador(hachaMadera, inventarioMaterialesJugador, ubicacionJugador);
+        jugador.moverseALaDerecha(tableroJuego);
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+
     }
 
 }

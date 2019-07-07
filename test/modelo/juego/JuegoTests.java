@@ -4,6 +4,7 @@ import modelo.estrategias.EstrategiaDesgaste;
 import modelo.herramientas.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
+import modelo.mapa.Casillero;
 import modelo.mapa.Mapa;
 import modelo.mapa.Ubicacion;
 import modelo.materiales.*;
@@ -11,6 +12,7 @@ import modelo.patrones.Patron;
 import modelo.patrones.PatronHacha;
 import modelo.patrones.PatronPico;
 import modelo.patrones.PatronPicoFino;
+import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -237,5 +239,43 @@ public class JuegoTests {
         assertTrue(tableroJuego.esIgualA(tableroPatron));
     }
 
+    @Test
+    public void testJugadorDesgastaMaterialAlMoverse(){
+        Juego juego = new Juego();
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        juego.setInvetarioMaterialesJugador(inventarioMaterialesJugador);
+        HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientasJugador = new HashMap<>();
+        juego.setInvetarioHerramientasJugador(inventarioHerramientasJugador);
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarJugador();
+        juego.inicializarMapaConMateriales();
+        Jugador jugador = juego.obtenerJugador();
+        Mapa tablero = juego.obtenerMapa();
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        Casillero casillero = tablero.obtenerCasillero(new Ubicacion(1,9));
+        Madera madera = (Madera) casillero.obtenerUbicable();
+        assertThat(madera.getDurabilidad(), CoreMatchers.is(8));
 
+    }
+
+    @Test
+    public void testJugadorDesgastaHerramientaAlDesgastarMaterial(){
+        Juego juego = new Juego();
+        HashMap<Material, Integer> inventarioMaterialesJugador  = new HashMap<>();
+        juego.setInvetarioMaterialesJugador(inventarioMaterialesJugador);
+        HashMap<Herramienta, ArrayList<Herramienta>> inventarioHerramientasJugador = new HashMap<>();
+        juego.setInvetarioHerramientasJugador(inventarioHerramientasJugador);
+        juego.inicializarInventarioHerramienta();
+        juego.inicializarJugador();
+        juego.inicializarMapaConMateriales();
+        Jugador jugador = juego.obtenerJugador();
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        jugador.moverseALaDerecha(juego.obtenerMapa());
+        Herramienta hachaMadera = jugador.obtenerHerramientaActual();
+        assertThat(hachaMadera.getDurabilidad(), is(98));
+
+    }
 }
